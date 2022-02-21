@@ -23,7 +23,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <title>Yeve</title>
+          <link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+        </Head>
         <body>
           <Main />
           <NextScript />

@@ -1,4 +1,5 @@
 import GlobalStyles from './../styles/GlobalStyles'
+import '../App.css'
 
 const App = ({ Component, pageProps }) => (
   <>

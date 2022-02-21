@@ -1,24 +1,19 @@
 import React from 'react'
-import tw from 'twin.macro'
+import Navbar from '../components/navbar'
+import Hero from '../components/hero'
+import Services from '../components/services'
+import tw, { css } from 'twin.macro'
 import { Button, Logo } from './../components'
+import { useState } from 'react'
 
-const styles = {
-  // Move long class sets out of jsx to keep it scannable
-  container: ({ hasBackground }) => [
-    tw`flex flex-col items-center justify-center h-screen`,
-    hasBackground && tw`bg-gradient-to-b from-electric to-ribbon`,
-  ],
+const IndexPage = () => {
+  const [page, setPage] = useState(0)
+  return (
+    <>
+      <Hero page={page} />
+      <Services />
+    </>
+  )
 }
-
-const IndexPage = () => (
-  <div css={styles.container({ hasBackground: true })}>
-    <div tw="flex flex-col justify-center h-full gap-y-5">
-      <Button variant="primary">Submit</Button>
-      <Button variant="secondary">Cancel</Button>
-      <Button isSmall>Close</Button>
-    </div>
-    <Logo />
-  </div>
-)
 
 export default IndexPage
