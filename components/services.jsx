@@ -51,6 +51,7 @@ const Services = () => {
     <section css={servicesSection}>
       <div css={heroBlock}>
         <div>
+          <div tw="mb-3 text-gold font-semibold">FOR CLIENTS</div>
           <h1>Find service providers</h1>
           <ol>
             {clientList.map((item, ind) => (
@@ -160,6 +161,7 @@ const Services = () => {
           </div>
         </div>
         <div>
+          <div tw="mb-3 text-gold font-semibold">FOR VENDORS</div>
           <h1>Provide services for events</h1>
           <ol>
             {vendorList.map((item, ind) => (

@@ -15,7 +15,7 @@ const socialSection = css`
 `
 const socialBlock = css`
   margin: 135px 106px 40px 158px;
-  padding: 0 56px;
+  padding: 25px 56px;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
@@ -44,6 +44,7 @@ const Social = () => {
     <section css={socialSection}>
       <div css={heroBlock}>
         <div tw="flex flex-col justify-center items-center w-full">
+          <div tw="mb-3 text-gold font-semibold">YEVE SOCIAL</div>
           <h1 style={{ textAlign: 'center', maxWidth: '100%' }}>
             A better way to collaborate
           </h1>
@@ -85,7 +86,7 @@ const Social = () => {
       </div>
       <div css={socialBlock} tw="bg-[#191A1F]">
         <div>
-          <p>YEVE SOCIAL</p>
+          <div tw="mb-3 text-gold font-semibold">YEVE SOCIAL</div>
           <h1 style={{ color: 'white' }}>
             Find and connect with professionals on yeve
           </h1>

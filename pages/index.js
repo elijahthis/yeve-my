@@ -5,6 +5,7 @@ import Services from '../components/services'
 import Venues from '../components/venues'
 import HostWeddings from '../components/hostWeddings'
 import Social from '../components/social'
+import Footer from '../components/footer'
 import tw, { css } from 'twin.macro'
 import { Button, Logo } from './../components'
 import { useState } from 'react'
@@ -18,6 +19,7 @@ const IndexPage = () => {
       <Venues />
       <HostWeddings />
       <Social />
+      <Footer />
     </>
   )
 }
