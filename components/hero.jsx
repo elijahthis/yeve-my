@@ -9,7 +9,7 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 // import { Button } from 'antd'
 
 export const heroBlock = css`
-  padding: 135px 106px 0 158px;
+  padding: 135px 106px 40px 158px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
