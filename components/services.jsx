@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import SearchBar from './searchbar'
 import { heroBlock } from './hero'
 import tw, { css } from 'twin.macro'
 import { Button } from './../components'
@@ -25,6 +26,7 @@ const vendorList = [
 const servicesSection = css`
   min-height: 200vh;
   background-color: #ffffff;
+  position: relative;
 `
 const card = css`
   position: relative;
@@ -49,19 +51,18 @@ const card2 = css`
 const Services = () => {
   return (
     <section css={servicesSection}>
+      <SearchBar />
       <div css={heroBlock}>
         <div>
           <div tw="mb-3 text-gold font-semibold">FOR CLIENTS</div>
           <h1>Find service providers</h1>
           <ol>
             {clientList.map((item, ind) => (
-              <div tw="flex flex-row items-start">
+              <div key={ind} tw="flex flex-row items-start">
                 <div tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center">
                   {ind + 1}
                 </div>
-                <li key={ind} tw="ml-4">
-                  {item}
-                </li>
+                <li tw="ml-4">{item}</li>
               </div>
             ))}
           </ol>

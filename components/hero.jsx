@@ -13,6 +13,7 @@ export const heroBlock = css`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  color: #111217;
   > div {
     > h1 {
       font-family: Montserrat;

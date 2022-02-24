@@ -3,6 +3,7 @@ import { heroBlock } from './hero'
 import tw, { css } from 'twin.macro'
 import { Button } from './../components'
 import groupSide from '../images/group-side.png'
+import socialSide from '../images/social-side.png'
 
 const socialList = [
   'Busy sity is not so easy and it required time and skills to make it all easy going  sity is not so easy and it required time.',
@@ -91,7 +92,13 @@ const Social = () => {
             Find and connect with professionals on yeve
           </h1>
         </div>
-        <div></div>
+        <div
+          css={css`
+            width: 300px;
+          `}
+        >
+          <Image src={socialSide} />
+        </div>
       </div>
     </section>
   )
