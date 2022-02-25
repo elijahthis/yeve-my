@@ -6,7 +6,6 @@ const SearchBar = () => {
     <div
       css={css`
         width: clamp(300px, 80vw, 1124px);
-        // height: 78px;
         background-color: white;
         box-shadow: 0px 16px 100px rgba(177, 185, 187, 0.23);
         border-radius: 8px;
@@ -22,7 +21,7 @@ const SearchBar = () => {
 
         @media (max-width: 800px) {
           flex-direction: column;
-          // height: 78px;
+          gap: 1rem;
         }
       `}
     >

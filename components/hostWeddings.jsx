@@ -15,7 +15,7 @@ const weddingList = [
 ]
 
 const hostWeddingsSection = css`
-  min-height: 200vh;
+  // min-height: 200vh;
   background-color: #ffffff;
 `
 
@@ -62,7 +62,7 @@ const HostWeddings = () => {
       >
         <div
           css={css`
-            width: 600px;
+            width: clamp(300px, 80vw, 600px);
             position: absolute;
             left: -158px;
             top: 0;

@@ -24,7 +24,7 @@ const vendorList = [
 ]
 
 const servicesSection = css`
-  min-height: 200vh;
+  // min-height: 200vh;
   background-color: #ffffff;
   position: relative;
 `
@@ -36,6 +36,7 @@ const card = css`
   background-color: #ffffff;
   box-shadow: 0px 16px 100px rgba(177, 185, 187, 0.23);
   border-radius: 8px;
+  text-align: left;
 `
 const card2 = css`
   width: clamp(300px, 80vw, 366px);
@@ -53,7 +54,13 @@ const Services = () => {
     <section css={servicesSection}>
       <SearchBar />
       <div css={heroBlock} tw="gap-8">
-        <div>
+        <div
+          css={css`
+            @media (max-width: 1140px) {
+              margin-top: 5rem;
+            }
+          `}
+        >
           <div tw="mb-3 text-gold font-semibold">FOR CLIENTS</div>
           <h1>Find service providers</h1>
           <ol>
@@ -145,8 +152,20 @@ const Services = () => {
             >
               <FaRegBell color="white" size="24" />
             </div>
-            <p tw="font-bold">EVENT AVAILABLE!</p>
-            <p tw="text-sm">
+            <p
+              tw="font-bold"
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              EVENT AVAILABLE!
+            </p>
+            <p
+              tw="text-sm text-[#8c8c8c]"
+              style={{
+                textAlign: 'left',
+              }}
+            >
               Victor Smith is looking for a bass guitarist around your area.
             </p>
           </div>

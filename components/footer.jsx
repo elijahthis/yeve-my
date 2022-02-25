@@ -12,6 +12,12 @@ const Footer = () => {
     <footer
       css={css`
         padding: 48px 88px;
+        @media (max-width: 1140px) {
+          padding: 24px;
+          > div > :nth-child(2n + 1) {
+            visibility: hidden;
+          }
+        }
       `}
     >
       <p tw="text-center mb-9 text-gold font-semibold">OUR PARTNERS</p>
