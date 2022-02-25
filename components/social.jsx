@@ -38,6 +38,21 @@ const socialBlock = css`
       color: #8c8c8c;
     }
   }
+
+  @media (max-width: 1140px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    text-align: center;
+  }
+  @media (max-width: 1024px) {
+    margin: 135px clamp(21px, 7vw, 106px) 40px clamp(21px, 7vw, 106px);
+    width: 90%;
+    > div > h1 {
+      font-size: 1.5rem;
+      line-height: 32px;
+    }
+  }
 `
 
 const Social = () => {
@@ -49,12 +64,30 @@ const Social = () => {
           <h1 style={{ textAlign: 'center', maxWidth: '100%' }}>
             A better way to collaborate
           </h1>
-          <div tw="w-full flex flex-row justify-end relative">
+          <div
+            css={css`
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: end;
+              gap: 1rem;
+              position: relative;
+              @media (max-width: 1140px) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              }
+            `}
+          >
             <div
               css={css`
-                width: 600px;
+                width: clamp(300px, 100%, 600px);
                 position: absolute;
                 left: -158px;
+                @media (max-width: 1140px) {
+                  position: relative;
+                  left: 0;
+                }
               `}
             >
               <Image src={groupSide} />

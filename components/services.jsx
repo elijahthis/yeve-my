@@ -52,22 +52,25 @@ const Services = () => {
   return (
     <section css={servicesSection}>
       <SearchBar />
-      <div css={heroBlock}>
+      <div css={heroBlock} tw="gap-8">
         <div>
           <div tw="mb-3 text-gold font-semibold">FOR CLIENTS</div>
           <h1>Find service providers</h1>
           <ol>
             {clientList.map((item, ind) => (
-              <div key={ind} tw="flex flex-row items-start">
-                <div tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center">
+              <div tw="flex flex-row items-start gap-4">
+                <div
+                  tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center"
+                  style={{ minWidth: '48px' }}
+                >
                   {ind + 1}
                 </div>
-                <li tw="ml-4">{item}</li>
+                <li key={ind}>{item}</li>
               </div>
             ))}
           </ol>
-          <div>
-            <Button variant="fill" isSmall={true} tw="mr-3">
+          <div tw="flex flex-row gap-3">
+            <Button variant="fill" isSmall={true}>
               Find Services
             </Button>
             <Button variant="outline" isSmall={true} tw="border-gold text-gold">
@@ -78,7 +81,9 @@ const Services = () => {
         <div
           css={css`
             display: grid;
-            grid-template-columns: 186px 186px 186px;
+            grid-template-columns:
+              clamp(100px, 27vw, 186px) clamp(100px, 27vw, 186px)
+              clamp(100px, 27vw, 186px);
             column-gap: 1rem;
             place-items: center;
           `}
@@ -166,13 +171,14 @@ const Services = () => {
           <h1>Provide services for events</h1>
           <ol>
             {vendorList.map((item, ind) => (
-              <div tw="flex flex-row items-start">
-                <div tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center">
+              <div tw="flex flex-row items-start gap-4">
+                <div
+                  tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center"
+                  style={{ minWidth: '48px' }}
+                >
                   {ind + 1}
                 </div>
-                <li key={ind} tw="ml-4">
-                  {item}
-                </li>
+                <li key={ind}>{item}</li>
               </div>
             ))}
           </ol>

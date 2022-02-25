@@ -53,7 +53,13 @@ const HostWeddings = () => {
   ]
   return (
     <section css={hostWeddingsSection}>
-      <div css={heroBlock} tw="relative items-center">
+      <div
+        css={heroBlock}
+        tw="relative items-center"
+        style={{
+          // flexDirection: 'column-reverse',
+        }}
+      >
         <div
           css={css`
             width: 600px;
@@ -68,7 +74,7 @@ const HostWeddings = () => {
           {hostList.map(item => (
             <div
               css={css`
-                width: 366px;
+                width: clamp(300px, 80vw, 366px);
                 height: 84px;
                 background-color: white;
                 border-radius: 8px;
@@ -93,7 +99,16 @@ const HostWeddings = () => {
             </div>
           ))}
         </div>
-        <div>
+
+        <div
+          css={css`
+            @media (max-width: 1140px) {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+          `}
+        >
           <h1>Host and manage your event from anywhere</h1>
           <p>
             Busy sity is not so easy and it required time and skills to make it
@@ -109,17 +124,32 @@ const HostWeddings = () => {
       <div css={heroBlock}>
         <div tw="flex flex-col justify-center items-center w-full">
           <h1 style={{ textAlign: 'center' }}>Supercharged for weddings</h1>
-          <div tw="w-full flex flex-row justify-start relative">
+          <div
+            css={css`
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: start;
+              gap: 1rem;
+              position: relative;
+              @media (max-width: 1140px) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              }
+            `}
+          >
             <div tw="mt-20">
               <ol>
                 {weddingList.map((item, ind) => (
-                  <div tw="flex flex-row items-start">
-                    <div tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center">
+                  <div tw="flex flex-row items-start gap-4">
+                    <div
+                      tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center"
+                      style={{ minWidth: '48px' }}
+                    >
                       {ind + 1}
                     </div>
-                    <li key={ind} tw="ml-4">
-                      {item}
-                    </li>
+                    <li key={ind}>{item}</li>
                   </div>
                 ))}
               </ol>
@@ -135,9 +165,13 @@ const HostWeddings = () => {
             </div>
             <div
               css={css`
-                width: 600px;
+                width: clamp(300px, 100%, 600px);
                 position: absolute;
                 right: -106px;
+                @media (max-width: 1140px) {
+                  position: relative;
+                  right: 0;
+                }
               `}
             >
               <Image src={weddingSide} />

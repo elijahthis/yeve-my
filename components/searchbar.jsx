@@ -5,14 +5,14 @@ const SearchBar = () => {
   return (
     <div
       css={css`
-        width: 80vw;
+        width: clamp(300px, 80vw, 366px);
         height: 78px;
         background-color: white;
         box-shadow: 0px 16px 100px rgba(177, 185, 187, 0.23);
         border-radius: 8px;
         position: absolute;
         top: -39px;
-        margin-left: 158px;
+        margin-left: clamp(21px, 7vw, 158px);
         display: flex;
         flex-direction: row;
         align-items: center;

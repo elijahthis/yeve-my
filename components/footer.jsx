@@ -15,7 +15,7 @@ const Footer = () => {
       `}
     >
       <p tw="text-center mb-9 text-gold font-semibold">OUR PARTNERS</p>
-      <div tw="flex flex-row justify-between">
+      <div tw="flex flex-row justify-between items-center">
         <Image src={sponsor1} alt="RCCG" width="64px" height="64px" />
         <Image src={sponsor2} alt="Swert" width="84px" height="62px" />
         <Image src={sponsor3} alt="Slingstone" width="170px" height="60px" />
