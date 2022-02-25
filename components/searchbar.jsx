@@ -5,8 +5,8 @@ const SearchBar = () => {
   return (
     <div
       css={css`
-        width: clamp(300px, 80vw, 366px);
-        height: 78px;
+        width: clamp(300px, 80vw, 1124px);
+        // height: 78px;
         background-color: white;
         box-shadow: 0px 16px 100px rgba(177, 185, 187, 0.23);
         border-radius: 8px;
@@ -16,14 +16,26 @@ const SearchBar = () => {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 16px;
-        padding: 16px;
-        padding-left: 28px;
+        justify-content: space-between;
+        padding: 22px;
         color: #8c8c8c;
+
+        @media (max-width: 800px) {
+          flex-direction: column;
+          // height: 78px;
+        }
       `}
     >
-      <FaSearch />
-      <form tw="w-full flex flex-row justify-between">
+      <div
+        tw="flex flex-row items-center gap-4"
+        css={css`
+          @media (max-width: 800px) {
+            width: 100%;
+          }
+        `}
+      >
+        <FaSearch />
+
         <input
           type="search"
           name="main-search"
@@ -33,12 +45,17 @@ const SearchBar = () => {
             width: 60vw;
           `}
         />
-        <input
-          type="submit"
-          value="Search"
-          tw="px-8 py-3 rounded text-white text-sm bg-black2"
-        />
-      </form>
+      </div>
+      <input
+        type="submit"
+        value="Search"
+        tw="px-8 py-3 rounded text-white text-sm bg-black2"
+        css={css`
+          @media (max-width: 800px) {
+            width: 100%;
+          }
+        `}
+      />
     </div>
   )
 }

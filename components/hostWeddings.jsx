@@ -55,9 +55,9 @@ const HostWeddings = () => {
     <section css={hostWeddingsSection}>
       <div
         css={heroBlock}
-        tw="relative items-center"
+        tw="relative items-center gap-8"
         style={{
-          // flexDirection: 'column-reverse',
+          flexDirection: 'reverse',
         }}
       >
         <div

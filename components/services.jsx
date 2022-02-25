@@ -30,7 +30,7 @@ const servicesSection = css`
 `
 const card = css`
   position: relative;
-  width: 366px;
+  width: clamp(300px, 80vw, 366px);
   height: 106px;
   padding: 14px 0 0 64px;
   background-color: #ffffff;
@@ -38,7 +38,7 @@ const card = css`
   border-radius: 8px;
 `
 const card2 = css`
-  width: 366px;
+  width: clamp(300px, 80vw, 366px);
   height: 261px;
   border-radius: 8px;
   background-color: white;
