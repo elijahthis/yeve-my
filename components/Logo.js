@@ -1,14 +1,14 @@
 import 'twin.macro'
+import Link from 'next/link'
 
 const Logo = () => (
-  <a
+  <Link href="/" passHref>
+    <a
     // Use the tw prop to add tailwind styles directly on jsx elements
-    href="https://github.com/ben-rogerson/twin.macro"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <YeveSvg />
-  </a>
+    >
+      <YeveSvg />
+    </a>
+  </Link>
 )
 
 const YeveSvg = () => (
