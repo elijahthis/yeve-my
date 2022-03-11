@@ -106,26 +106,30 @@ const Navbar = ({ page }) => {
           </ul>
         </nav>
         <div>
-          <Button
-            variant="round-outline"
-            tw="bg-transparent text-white border-white hocus:(text-gold border-gold) mr-4"
-            isSmall={true}
-            css={css`
-              transition: color 0.3s, background-color 0.3s, border-color 0.3s;
-            `}
-          >
-            Login
-          </Button>
-          <Button
-            variant="round-fill"
-            tw="bg-white text-black border-white hocus:(bg-gold border-gold)"
-            isSmall={true}
-            css={css`
-              transition: color 0.3s, background-color 0.3s;
-            `}
-          >
-            Register
-          </Button>
+          <Link href="/login">
+            <Button
+              variant="round-outline"
+              tw="bg-transparent text-white border-white hocus:(text-gold border-gold) mr-4"
+              isSmall={true}
+              css={css`
+                transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+              `}
+            >
+              Login
+            </Button>
+          </Link>
+          <Link href="/register">
+            <Button
+              variant="round-fill"
+              tw="bg-white text-black border-white hocus:(bg-gold border-gold)"
+              isSmall={true}
+              css={css`
+                transition: color 0.3s, background-color 0.3s;
+              `}
+            >
+              Register
+            </Button>
+          </Link>
         </div>
       </header>
       <header

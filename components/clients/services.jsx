@@ -1,0 +1,247 @@
+import tw, { css } from 'twin.macro'
+import Image from 'next/image'
+import service1 from '../../images/service1.png'
+import service2 from '../../images/service2.png'
+import service3 from '../../images/service3.png'
+import service4 from '../../images/service4.png'
+import service5 from '../../images/service5.png'
+import service6 from '../../images/service6.png'
+import profileImg from '../../images/profile-img.png'
+import { BiChevronRight } from 'react-icons/bi'
+import { useState, useEffect } from 'react'
+import { ChooseService, ServiceRequest, RequestSummary } from './servicePhases'
+
+export const servicesSection = css`
+  background-color: #fafafa;
+  color: #343434;
+  padding: 24px;
+  font-size: 14px;
+  overflow-y: scroll;
+  h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    font-family: Montserrat;
+  }
+  h4 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    font-family: Montserrat;
+  }
+  h5 {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    font-family: Montserrat;
+  }
+`
+const Services = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
+  const [servicePhase, setServicePhase] = useState(null)
+  const [formData, setFormData] = useState({
+    services: [],
+    details: {
+      postcode: '',
+      address: '',
+      fromDate: '',
+      fromTime: '',
+      toDate: '',
+      toTime: '',
+      numHours: 1,
+      moreInfo: '',
+    },
+    rehearsals: {
+      state: false,
+      count: 0,
+      same: false,
+      address: '',
+      date: '',
+      time: '',
+    },
+    eventType: { type: '', recurring: false, period: 'Weekly', dayMonth: '' },
+    dressCode: { dressCode: '' },
+    budget: [],
+    vendorPreferences: { count: 1, experienceLevel: 'All' },
+  })
+  const categories = [
+    { name: 'Musicians', image: service1 },
+    { name: 'Child Performer', image: service2 },
+    { name: 'Food & Drinks', image: service3 },
+    { name: 'Security', image: service4 },
+    { name: 'Wedding', image: service5 },
+    { name: 'Event Travel', image: service6 },
+  ]
+  const upcoming = [
+    {
+      gig: 'Bass Guitarist',
+      name: 'Victor Smith',
+      status: 'Pending Approval',
+      image: profileImg,
+    },
+    {
+      gig: 'Bass Guitarist',
+      name: 'Victor Smith',
+      status: 'Pending Approval',
+      image: profileImg,
+    },
+    {
+      gig: 'Bass Guitarist',
+      name: 'Victor Smith',
+      status: 'Pending Approval',
+      image: profileImg,
+    },
+  ]
+
+  switch (servicePhase) {
+    case null:
+      return (
+        <section css={servicesSection}>
+          <h3>Services</h3>
+          <div
+            css={css`
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              gap: 26px;
+              width: 100%;
+            `}
+          >
+            <div
+              css={css`
+                width: 706px;
+              `}
+            >
+              <div tw="flex flex-row items-center justify-between my-7">
+                <h5>Welcome</h5>
+                <p tw="font-semibold">
+                  Choose from a list of service categories below
+                </p>
+              </div>
+              <div tw="flex flex-row gap-5 flex-wrap">
+                {categories.map((cat, ind) => (
+                  <div
+                    css={css`
+                      width: 222px;
+                      height: 180;
+                      background-color: #fefefe;
+                      border-radius: 8px;
+                      box-shadow: 0px 4px 8px rgba(16, 24, 51, 0.08);
+                      padding: 14px 12px;
+                      cursor: pointer;
+                    `}
+                    key={ind}
+                    onClick={() => {
+                      setServicePhase(0)
+                    }}
+                  >
+                    <div
+                      css={css`
+                        width: 200px;
+                        height: 122px;
+                        overflow: hidden;
+                        border-radius: 8px;
+                      `}
+                    >
+                      <Image src={cat.image} alt={cat.name} />
+                    </div>
+                    <div tw="flex flex-row justify-between items-center mt-2">
+                      <h5>{cat.name}</h5>
+                      <BiChevronRight size={18} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h5 tw="my-7">Upcoming</h5>
+              <div
+                tw="bg-[#fefefe] rounded-lg"
+                css={css`
+                  > :last-child {
+                    border-bottom: 0;
+                  }
+                  > * {
+                    border-bottom: 1px solid #ebebeb;
+                  }
+                `}
+              >
+                {upcoming.map(item => (
+                  <div
+                    tw="flex flex-row items-start justify-between"
+                    css={css`
+                      width: 300px;
+                      padding: 25px 18px;
+                    `}
+                  >
+                    <div tw="flex flex-row items-start justify-between gap-3 h-16">
+                      <Image src={item.image} width="43px" height="43px" />
+                      <div>
+                        <p tw="font-semibold">{item.gig}</p>
+                        <p>{item.name}</p>
+                        <p tw="text-gold font-semibold text-xs mt-1">
+                          {item.status}
+                        </p>
+                      </div>
+                    </div>
+                    <div tw="text-xs h-full flex flex-col justify-between h-16 text-right">
+                      <p>1d</p>
+                      <p>$70/h</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )
+
+      break
+
+    case 0:
+      return (
+        <ChooseService
+          servicePhase={servicePhase}
+          setServicePhase={setServicePhase}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )
+    case 1:
+      return (
+        <ServiceRequest
+          servicePhase={servicePhase}
+          setServicePhase={setServicePhase}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )
+    case 2:
+      return (
+        <RequestSummary
+          servicePhase={servicePhase}
+          setServicePhase={setServicePhase}
+          formData={formData}
+          setFormData={setFormData}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          modalChild={modalChild}
+          setModalChild={setModalChild}
+        />
+      )
+    default:
+      return (
+        <ChooseService
+          servicePhase={servicePhase}
+          setServicePhase={setServicePhase}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )
+
+      break
+  }
+}
+
+export default Services

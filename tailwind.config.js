@@ -11,6 +11,7 @@ module.exports = {
         lightgrey2: '#8C8C8C',
         purple: '#9446F9',
         faded_purple: '#9546FA',
+        red: '#cf142b',
       },
     },
     screens: {

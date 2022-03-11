@@ -26,6 +26,17 @@ export default class MyDocument extends Document {
         <Head />
         <body>
           <Main />
+
+          <div
+            id="myportal"
+            style={{
+              position: 'fixed',
+              top: '0',
+              left: '0',
+              width: '100vw',
+              zIndex: '3',
+            }}
+          />
           <NextScript />
         </body>
       </Html>
