@@ -1,7 +1,13 @@
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
 import { BiChevronRight } from 'react-icons/bi'
-import { CancelRecurring } from '../modalChildren'
+import {
+  ActivateEvent,
+  CancelRecurring,
+  CompleteEvent,
+  ViewQuote,
+  VendorReview,
+} from '../modalChildren'
 
 export const actionBtn = css`
   font-size: 14px;
@@ -12,7 +18,13 @@ export const actionBtn = css`
   border: 1px solid #e5e5e5;
   cursor: pointer;
 `
-export const VendorCard = ({ cardData }) => {
+export const VendorCard = ({
+  cardData,
+  openModal,
+  setOpenModal,
+  modalChild,
+  setModalChild,
+}) => {
   return (
     <div
       css={css`
@@ -56,15 +68,14 @@ export const VendorCard = ({ cardData }) => {
       </div>
       <div
         css={css`
-          display: ${['Gig Published', 'In Progress', 'Activated'].includes(
-            cardData.status,
-          )
+          display: ${['Gig Published', 'In Progress'].includes(cardData.status)
             ? 'none'
             : 'block'};
         `}
         tw="mt-5"
       >
-        {cardData.status === 'Pending Acceptance' ? (
+        {cardData.status === 'Pending Acceptance' &&
+        cardData.budgetAccepted === true ? (
           <div tw="pt-3 flex flex-row items-center justify-between border-t border-[#E5E5E5]">
             <span tw="px-4 text-[#FD5C47]" css={actionBtn}>
               Decline
@@ -73,11 +84,29 @@ export const VendorCard = ({ cardData }) => {
               Accept
             </span>
           </div>
+        ) : cardData.status === 'Pending Acceptance' &&
+          cardData.budgetAccepted === false ? (
+          <div tw="pt-3 border-t border-[#E5E5E5]">
+            <span
+              tw="w-full grid place-items-center text-gold"
+              css={actionBtn}
+              onClick={() => {
+                setModalChild(<ViewQuote setOpenModal={setOpenModal} />)
+                setOpenModal(true)
+              }}
+            >
+              View Quote
+            </span>
+          </div>
         ) : cardData.status === 'Pending Activation' ? (
           <div tw="pt-3 flex flex-col items-center gap-2 justify-between border-t border-[#E5E5E5]">
             <span
               tw="w-full grid place-items-center text-[#3E9F4D]"
               css={actionBtn}
+              onClick={() => {
+                setModalChild(<ActivateEvent setOpenModal={setOpenModal} />)
+                setOpenModal(true)
+              }}
             >
               Confirm activation
             </span>
@@ -92,6 +121,19 @@ export const VendorCard = ({ cardData }) => {
               css={actionBtn}
             >
               Hire Again
+            </span>
+          </div>
+        ) : cardData.status === 'Activated' ? (
+          <div tw="pt-3 border-t border-[#E5E5E5]">
+            <span
+              tw="w-full grid place-items-center text-[#3E9F4D]"
+              css={actionBtn}
+              onClick={() => {
+                setModalChild(<VendorReview setOpenModal={setOpenModal} />)
+                setOpenModal(true)
+              }}
+            >
+              Complete Event
             </span>
           </div>
         ) : (
@@ -153,11 +195,7 @@ export const RecurringCard = ({
             tw="w-full grid place-items-center text-gold"
             css={actionBtn}
             onClick={() => {
-              setModalChild(
-                <CancelRecurring
-                  setOpenModal={setOpenModal}
-                />,
-              )
+              setModalChild(<CancelRecurring setOpenModal={setOpenModal} />)
               setOpenModal(true)
             }}
           >

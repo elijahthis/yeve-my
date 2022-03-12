@@ -4,7 +4,12 @@ import profilePlaceholder from '../../images/profile-1.png'
 import imgPlaceholder from '../../images/Group 526.png'
 import Modal from '../modal'
 
-export const PendingRequests = () => {
+export const PendingRequests = ({
+  openModal,
+  setOpenModal,
+  modalChild,
+  setModalChild,
+}) => {
   const cardList = [
     {
       gig: 'Keyboardist',
@@ -25,6 +30,7 @@ export const PendingRequests = () => {
       price: 120,
       duration: 2,
       status: 'Pending Acceptance',
+      budgetAccepted: true,
     },
     {
       gig: 'Keyboardist',
@@ -35,18 +41,35 @@ export const PendingRequests = () => {
       price: 120,
       duration: 2,
       status: 'Pending Acceptance',
+      budgetAccepted: false,
     },
   ]
   return (
-    <div tw="py-4 flex flex-row gap-6">
-      {cardList.map(card => (
-        <VendorCard cardData={card} />
-      ))}
-    </div>
+    <>
+      <div tw="py-4 flex flex-row gap-6">
+        {cardList.map(card => (
+          <VendorCard
+            cardData={card}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            modalChild={modalChild}
+            setModalChild={setModalChild}
+          />
+        ))}
+      </div>
+      <Modal openModal={openModal} setOpenModal={setOpenModal}>
+        {modalChild}
+      </Modal>
+    </>
   )
 }
 
-export const ActiveBookings = () => {
+export const ActiveBookings = ({
+  openModal,
+  setOpenModal,
+  modalChild,
+  setModalChild,
+}) => {
   const cardList = [
     {
       gig: 'Keyboardist',
@@ -80,15 +103,31 @@ export const ActiveBookings = () => {
     },
   ]
   return (
-    <div tw="py-4 flex flex-row gap-6">
-      {cardList.map(card => (
-        <VendorCard cardData={card} />
-      ))}
-    </div>
+    <>
+      <div tw="py-4 flex flex-row gap-6">
+        {cardList.map(card => (
+          <VendorCard
+            cardData={card}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            modalChild={modalChild}
+            setModalChild={setModalChild}
+          />
+        ))}
+      </div>
+      <Modal openModal={openModal} setOpenModal={setOpenModal}>
+        {modalChild}
+      </Modal>
+    </>
   )
 }
 
-export const PastBookings = () => {
+export const PastBookings = ({
+  openModal,
+  setOpenModal,
+  modalChild,
+  setModalChild,
+}) => {
   const cardList = [
     {
       gig: 'Keyboardist',
@@ -122,11 +161,22 @@ export const PastBookings = () => {
     },
   ]
   return (
-    <div tw="py-4 flex flex-row gap-6">
-      {cardList.map(card => (
-        <VendorCard cardData={card} />
-      ))}
-    </div>
+    <>
+      <div tw="py-4 flex flex-row gap-6">
+        {cardList.map(card => (
+          <VendorCard
+            cardData={card}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            modalChild={modalChild}
+            setModalChild={setModalChild}
+          />
+        ))}
+      </div>
+      <Modal openModal={openModal} setOpenModal={setOpenModal}>
+        {modalChild}
+      </Modal>
+    </>
   )
 }
 

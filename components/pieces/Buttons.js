@@ -7,7 +7,7 @@ export const ProceedButton = ({ content, onClick, bg, col }) => {
         background-color: ${bg};
         color: ${col};
       `}
-      tw="py-3 w-full rounded text-white font-semibold grid place-items-center text-sm cursor-pointer"
+      tw="py-3 w-full rounded font-semibold grid place-items-center text-sm cursor-pointer"
       onClick={onClick}
     >
       {content}
