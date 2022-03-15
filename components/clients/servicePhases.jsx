@@ -2,6 +2,7 @@ import tw, { css } from 'twin.macro'
 import Image from 'next/image'
 import { servicesSection } from './services'
 import { BiChevronLeft } from 'react-icons/bi'
+import { BsArrowRight } from 'react-icons/bs'
 import { FiCheck } from 'react-icons/fi'
 import { IoClose, IoPersonOutline } from 'react-icons/io5'
 import musician1 from '../../images/musician-1.png'
@@ -13,7 +14,7 @@ import musician6 from '../../images/musician-6.png'
 import { useEffect, useState } from 'react'
 import { BooleanToggle, DropdownMenu, DatePickerr } from '../formTools'
 import Modal from '../modal'
-import { ProceedButton } from '../pieces/Buttons'
+import { ProceedButton, BackButton } from '../pieces/Buttons'
 import { RequestSubmitted } from '../modalChildren'
 
 export const ChooseService = ({
@@ -61,45 +62,56 @@ export const ChooseService = ({
   return (
     <section css={servicesSection} style={{ backgroundColor: 'white' }}>
       <div tw="flex flex-row items-center mb-4">
-        <div
-          tw="flex flex-row items-center cursor-pointer font-bold"
+        <BackButton
           onClick={() => {
             setServicePhase(null)
           }}
+        />
+        <h3
+          css={css`
+            margin-left: 40px;
+            @media (max-width: 1140px) {
+              margin-left: 16px;
+            }
+          `}
         >
-          <BiChevronLeft
-            size={38}
-            color="#DE8E0E"
-            style={{ transform: 'translateX(-25%' }}
-          />
-          Back
-        </div>
-        <h3 tw="ml-10">{services[servicePhase].name}</h3>
+          {services[servicePhase].name}
+        </h3>
       </div>
-      <form
-        tw="rounded-lg overflow-hidden mb-6"
+      <div
+        tw="rounded-lg mb-6"
         css={css`
-          display: grid;
-          grid-template-columns: 1fr 100px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
           border: 1px solid #e5e5e5;
           border-right: 0;
+          max-width: 1152px;
+          width: 100%;
         `}
-        onSubmit={ev => {
-          ev.preventDefault()
-          serviceField.length !== 0 ? setServicePhase(1) : ''
-        }}
       >
-        <div tw="px-3 py-1 bg-white font-semibold flex flex-row items-center justify-between">
+        <div
+          tw="px-3 py-1 bg-white font-semibold flex flex-row items-center justify-between"
+          css={css`
+            width: calc(100% - 100px);
+            @media (max-width: 1140px) {
+              width: calc(100% - 45px);
+            }
+          `}
+        >
           <div
             tw="flex flex-row items-center gap-3"
             css={css`
-              width: 820px;
-              max-width: 820px;
+              width: calc(100% - 120px);
               overflow-x: scroll;
               -ms-overflow-style: none; /* IE and Edge */
               scrollbar-width: none;
               ::-webkit-scrollbar {
                 display: none;
+              }
+              @media (max-width: 1140px) {
+                width: calc(100% - 60px);
               }
             `}
           >
@@ -111,6 +123,7 @@ export const ChooseService = ({
                   tw="flex flex-row items-center gap-2"
                   css={css`
                     cursor: pointer;
+
                     > :nth-child(3) {
                       opacity: 0;
                       transition: opacity 0.5s;
@@ -153,39 +166,98 @@ export const ChooseService = ({
             )}
           </div>
           <div
-            tw="text-gold cursor-pointer"
+            tw="text-gold cursor-pointer w-max"
+            css={css`
+              display: ${serviceField.length !== 0 ? 'block' : 'none'};
+              @media (max-width: 1140px) {
+                span {
+                  display: none;
+                }
+              }
+            `}
             onClick={() => {
               setServicePhase(null)
             }}
           >
-            Add Service +
+            Add <span>Service</span> +
           </div>
         </div>
 
-        <input
+        <button
           type="submit"
-          value="Proceed"
           css={css`
             width: 100px;
             height: 100%;
             padding: 12px;
-            background-color: #de8e0e;
-            color: #ffffff;
+            background-color: ${serviceField.length !== 0
+              ? '#de8e0e'
+              : '#d2d2d2'};
+            color: ${serviceField.length !== 0 ? '#ffffff' : '#8c8c8c'};
             font-weight: 600;
             cursor: pointer;
-            border: 1px solid #de8e0e;
+            border: 1px solid;
+            border-color: ${serviceField.length !== 0 ? '#de8e0e' : '#d2d2d2'};
             display: grid;
             place-items: center;
+            border-radius: 0px 8px 8px 0px;
+            @media (max-width: 1140px) {
+              display: none;
+            }
           `}
-        />
-      </form>
-      <div tw="flex flex-row flex-wrap gap-5">
+          onClick={() => {
+            serviceField.length !== 0 ? setServicePhase(1) : null
+          }}
+        >
+          Proceed
+        </button>
+        <button
+          type="submit"
+          css={css`
+            width: 45px;
+            height: 100%;
+            padding: 12px;
+            background-color: ${serviceField.length !== 0
+              ? '#de8e0e'
+              : '#d2d2d2'};
+            color: ${serviceField.length !== 0 ? '#ffffff' : '#8c8c8c'};
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid;
+            border-color: ${serviceField.length !== 0 ? '#de8e0e' : '#d2d2d2'};
+            display: none;
+            place-items: center;
+            border-radius: 0px 8px 8px 0px;
+            @media (max-width: 1140px) {
+              display: grid;
+            }
+          `}
+          onClick={() => {
+            serviceField.length !== 0 ? setServicePhase(1) : null
+          }}
+        >
+          <BsArrowRight />
+        </button>
+      </div>
+      <div
+        tw="flex flex-row flex-wrap gap-5"
+        css={css`
+          gap: 20px;
+          @media (max-width: 1140px) {
+            gap: 9px;
+          }
+        `}
+      >
         {services[servicePhase].list.map((item, ind) => (
           <div
             css={css`
               width: 276px;
               height: 140px;
               position: relative;
+
+              @media (max-width: 1140px) {
+                width: clamp(155px, 40vw, 276px);
+                height: clamp(80px, 20vw, 140px);
+              }
             `}
             onClick={() => {
               serviceField.includes(item.title)
@@ -197,9 +269,9 @@ export const ChooseService = ({
                 : setServiceField([...new Set([...serviceField, item.title])])
             }}
           >
-            <Image src={item.image} />
+            <Image src={item.image} layout="fill" />
             <div
-              tw="w-full h-full absolute top-0 left-0 font-bold grid place-items-center cursor-pointer"
+              tw="w-full h-full absolute top-0 left-0 font-bold grid place-items-center cursor-pointer rounded"
               css={
                 serviceField.includes(item.title)
                   ? css`
@@ -255,20 +327,21 @@ export const ServiceRequest = ({
   return (
     <section css={servicesSection} style={{ backgroundColor: 'white' }}>
       <div tw="flex flex-row items-center mb-4">
-        <div
-          tw="flex flex-row items-center cursor-pointer font-bold"
+        <BackButton
           onClick={() => {
             setServicePhase(0)
           }}
+        />
+        <h3
+          css={css`
+            margin-left: 40px;
+            @media (max-width: 1140px) {
+              margin-left: 16px;
+            }
+          `}
         >
-          <BiChevronLeft
-            size={38}
-            color="#DE8E0E"
-            style={{ transform: 'translateX(-25%' }}
-          />
-          Back
-        </div>
-        <h3 tw="ml-10">Service Request</h3>
+          Service Request
+        </h3>
       </div>
       <div
         css={css`
@@ -316,6 +389,12 @@ export const ServiceRequest = ({
               cursor: pointer;
               background-color: transparent;
               color: #de8e0e;
+            }
+          }
+          @media (max-width: 1140px) {
+            display: block;
+            > :nth-child(2) > form > * {
+              width: clamp(300px, 100%, 471px);
             }
           }
         `}
@@ -725,22 +804,31 @@ export const RequestSummary = ({
 }) => {
   return (
     <>
-      <section css={servicesSection} style={{ backgroundColor: 'white' }}>
-        <div tw="flex flex-row items-center mb-4">
-          <div
-            tw="flex flex-row items-center cursor-pointer font-bold"
+      <section css={servicesSection} style={{ backgroundColor: '#fafafa' }}>
+        <div
+          tw="flex flex-row items-center"
+          css={css`
+            margin-bottom: 16px;
+            @media (max-width: 1140px) {
+              margin-bottom: 10px;
+            }
+          `}
+        >
+          <BackButton
             onClick={() => {
               setServicePhase(1)
             }}
+          />
+          <h3
+            css={css`
+              margin-left: 40px;
+              @media (max-width: 1140px) {
+                margin-left: 16px;
+              }
+            `}
           >
-            <BiChevronLeft
-              size={38}
-              color="#DE8E0E"
-              style={{ transform: 'translateX(-25%' }}
-            />
-            Back
-          </div>
-          <h3 tw="ml-10">Service Request</h3>
+            Service Request
+          </h3>
         </div>
         <div
           css={css`
@@ -749,6 +837,10 @@ export const RequestSummary = ({
             padding: 20px 38px;
             border-radius: 4px;
             margin: 0 auto;
+            background-color: #ffffff;
+            @media (max-width: 1140px) {
+              display: none;
+            }
           `}
         >
           <h4 tw="mb-7">Request Summary</h4>
@@ -929,6 +1021,257 @@ export const RequestSummary = ({
               >
                 <p>Your budget</p>
                 <p className="right">&#163;120</p>
+              </div>
+            </div>
+            <div tw="py-8">
+              <ProceedButton
+                content="Submit Request"
+                bg="#de8e0e"
+                col="white"
+                onClick={() => {
+                  setModalChild(
+                    <RequestSubmitted
+                      setOpenModal={setOpenModal}
+                      setServicePhase={setServicePhase}
+                    />,
+                  )
+                  setOpenModal(true)
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        css={css`
+          h4 {
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-family: Montserrat;
+          }
+          display: none;
+          @media (max-width: 1140px) {
+            display: block;
+            h4 {
+              font-size: 16px;
+              line-height: 24px;
+            }
+          }
+        `}
+      >
+        <div
+          css={css`
+            width: clamp(300px, 100vw, 511px);
+            padding: 20px 38px;
+            border-radius: 4px;
+            margin: 0 auto;
+            h4 {
+              margin-bottom: 28px;
+            }
+            @media (max-width: 1140px) {
+              padding: 18px 20px;
+              h4 {
+                margin-bottom: 18px;
+              }
+            }
+          `}
+        >
+          <h4>Request Summary</h4>
+          <div
+            css={css`
+              font-weight: 600;
+              font-size: 12px;
+              line-height: 18px;
+              color: #343434;
+              & > div {
+                border-bottom: 1px solid #e5e5e5;
+                > div {
+                  display: grid;
+                  grid-template-columns: 105px 1fr 40px;
+                  margin: 18px 0;
+                }
+              }
+
+              .right {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 24px;
+                color: #1a1a1a;
+                text-align: right;
+              }
+              @media (max-width: 1140px) {
+                .right {
+                  color: #de8e0e;
+                }
+                > div > div {
+                  margin: 12px 0;
+                  > :first-child {
+                    color: #8c8c8c;
+                    font-weight: 400;
+                    line-height: 18px;
+                  }
+                }
+                .money {
+                  color: #1a1a1a;
+                }
+              }
+            `}
+          >
+            <div>
+              <div>
+                <p>Service:</p>
+                <p>Bass Guitarist</p>
+                <p
+                  className="right"
+                  tw="cursor-pointer"
+                  onClick={() => {
+                    setServicePhase(1)
+                  }}
+                >
+                  Edit
+                </p>
+              </div>
+              <div>
+                <p>Event Type:</p>
+                <p>{formData.eventType.type}</p>
+                <p
+                  className="right"
+                  tw="cursor-pointer"
+                  onClick={() => {
+                    setServicePhase(1)
+                  }}
+                >
+                  Edit
+                </p>
+              </div>
+              <div>
+                <p>Date:</p>
+                <p>9th May 2020</p>
+                <p
+                  className="right"
+                  tw="cursor-pointer"
+                  onClick={() => {
+                    setServicePhase(1)
+                  }}
+                >
+                  Edit
+                </p>
+              </div>
+              <div>
+                <p>Time:</p>
+                <p>13:00 - 16:00</p>
+                <p
+                  className="right"
+                  tw="cursor-pointer"
+                  onClick={() => {
+                    setServicePhase(1)
+                  }}
+                >
+                  Edit
+                </p>
+              </div>
+              <div>
+                <p>Dress Code:</p>
+                <p>{formData.dressCode.dressCode}</p>
+                <p
+                  className="right"
+                  tw="cursor-pointer"
+                  onClick={() => {
+                    setServicePhase(1)
+                  }}
+                >
+                  Edit
+                </p>
+              </div>
+            </div>
+            <div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <p
+                  css={css`
+                    max-width: 105px;
+                  `}
+                >
+                  {formData.details.address}
+                </p>
+                <p
+                  className="right"
+                  tw="cursor-pointer"
+                  onClick={() => {
+                    setServicePhase(1)
+                  }}
+                >
+                  Edit
+                </p>
+              </div>
+            </div>
+            <div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <p>Base Rate</p>
+                <p className="right money">&#163;70</p>
+              </div>
+              <div>
+                <p>Additional Time</p>
+                <p>1hr</p>
+                <p className="right money">&#163;20</p>
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <p>Rehearsal</p>
+                <p className="right money">&#163;30</p>
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  color: '#DE8E0E',
+                }}
+              >
+                <p>Discount</p>
+                <p
+                  className="right"
+                  style={{
+                    color: '#DE8E0E',
+                  }}
+                >
+                  0%
+                </p>
+              </div>
+            </div>
+            <div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <p>Your budget</p>
+                <p className="right money">&#163;120</p>
               </div>
             </div>
             <div tw="py-8">

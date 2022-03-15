@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { MyProfile, Reviews, Feed } from './profileStates'
 import profileImg from '../../images/profile-img.png'
 import CreatePost from './createPost'
+import { BsShop } from 'react-icons/bs'
 import { FaSearch } from 'react-icons/fa'
 import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
 import { MdAdd } from 'react-icons/md'
@@ -26,22 +27,64 @@ const profileSection = css`
     color: #1a1a1a;
     font-family: Montserrat;
   }
+  @media (max-width: 1140px) {
+    h3 {
+      font-size: 24px;
+      line-height: 48px;
+    }
+    h4 {
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
 `
 
 const Profile = () => {
   const [phase, setPhase] = useState(0)
-  const phases = ['My Profile', 'Feed', 'Events', 'Reviews']
+  const phases = [
+    ['My Profile', <BsShop size={18} />],
+    ['Feed', <BsShop size={18} />],
+    ['Events', <BsShop size={18} />],
+    ['Reviews', <BsShop size={18} />],
+  ]
   return (
     <section css={profileSection}>
-      <h3
+      <div
         css={css`
           margin-bottom: 60px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          > :last-child {
+            display: none;
+          }
+          @media (max-width: 1140px) {
+            margin-bottom: 32px;
+            > :last-child {
+              display: grid;
+            }
+          }
         `}
       >
-        My Profile
-      </h3>
+        <h3>My Profile</h3>
+        <button tw="grid place-items-center bg-gold text-white px-4 py-3 text-base font-bold rounded-lg">
+          <MdAdd size={18} />
+        </button>
+      </div>
       <div tw="flex flex-col items-center">
-        <Image src={profileImg} alt="" width="120px" height="120px" />
+        <div
+          css={css`
+            width: 120px;
+            height: 120px;
+            @media (max-width: 1140px) {
+              width: 68px;
+              height: 68px;
+            }
+          `}
+        >
+          <Image src={profileImg} alt="" />
+        </div>
         <h4>Lillian Brooks</h4>
         <div tw="flex flex-row items-center gap-2 font-semibold">
           <HiOutlineLocationMarker /> London, United Kingdom
@@ -54,7 +97,15 @@ const Profile = () => {
                 <HiStar color="#DE8E0E" key={ind} />
               ))}
           </div>
-          4.5 (35 Gigs)
+          <span
+            css={css`
+              @media (max-width: 1140px) {
+                display: none;
+              }
+            `}
+          >
+            4.5 (35 Gigs)
+          </span>
         </div>
         <p
           css={css`
@@ -62,6 +113,9 @@ const Profile = () => {
             text-align: center;
             margin-top: 18px;
             margin-bottom: 56px;
+            @media (max-width: 1140px) {
+              color: #767676;
+            }
           `}
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. A magna ut
@@ -71,22 +125,56 @@ const Profile = () => {
 
       <section
         css={css`
-          width: 1012px;
+          max-width: 1012px;
+          @media (max-width: 1140px) {
+            form {
+              display: none;
+            }
+          }
         `}
       >
-        <div tw="flex flex-row justify-center items-center gap-16">
+        <div
+          tw="flex flex-row justify-center items-center gap-16"
+          css={css`
+            @media (max-width: 1140px) {
+              border-bottom: 1px solid #e5e5e5;
+              > :last-child {
+                display: none;
+              }
+            }
+          `}
+        >
           {phases.map((item, ind) => (
             <span
               tw="py-4 font-semibold text-[#343434] cursor-pointer"
               css={css`
                 border-bottom: ${phase === ind ? '1px solid #de8e0e' : '0'};
+                > :nth-child(2) {
+                  display: none;
+                }
+                @media (max-width: 1140px) {
+                  border-bottom: 0;
+                  > :first-child {
+                    display: none;
+                  }
+                  > :nth-child(2) {
+                    display: inline;
+                  }
+                }
               `}
               onClick={() => {
                 setPhase(ind)
               }}
               key={ind}
             >
-              {item}
+              <span>{item[0]}</span>
+              <span
+                css={css`
+                  color: ${phase === ind ? '#DE8E0E' : '#9f9f9f'};
+                `}
+              >
+                {item[1]}
+              </span>
             </span>
           ))}
           <div tw="flex flex-row items-center gap-2 p-2 bg-[#1a1a1a] text-white rounded">

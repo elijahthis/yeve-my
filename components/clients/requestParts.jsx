@@ -1,5 +1,5 @@
 import tw, { css } from 'twin.macro'
-import { VendorCard, RecurringCard } from '../pieces/vendorCard'
+import { VendorCard, RecurringCard } from '../pieces/cards'
 import profilePlaceholder from '../../images/profile-1.png'
 import imgPlaceholder from '../../images/Group 526.png'
 import Modal from '../modal'
@@ -9,6 +9,7 @@ export const PendingRequests = ({
   setOpenModal,
   modalChild,
   setModalChild,
+  shape,
 }) => {
   const cardList = [
     {
@@ -46,17 +47,22 @@ export const PendingRequests = ({
   ]
   return (
     <>
-      <div tw="py-4 flex flex-row gap-6">
-        {cardList.map(card => (
-          <VendorCard
-            cardData={card}
-            openModal={openModal}
-            setOpenModal={setOpenModal}
-            modalChild={modalChild}
-            setModalChild={setModalChild}
-          />
-        ))}
-      </div>
+      {shape === 0 ? (
+        <div tw="py-4 flex flex-row gap-6">
+          {cardList.map((card, ind) => (
+            <VendorCard
+              key={ind}
+              cardData={card}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              modalChild={modalChild}
+              setModalChild={setModalChild}
+            />
+          ))}
+        </div>
+      ) : (
+        <div></div>
+      )}
       <Modal openModal={openModal} setOpenModal={setOpenModal}>
         {modalChild}
       </Modal>
@@ -69,6 +75,7 @@ export const ActiveBookings = ({
   setOpenModal,
   modalChild,
   setModalChild,
+  shape,
 }) => {
   const cardList = [
     {
@@ -127,6 +134,7 @@ export const PastBookings = ({
   setOpenModal,
   modalChild,
   setModalChild,
+  shape,
 }) => {
   const cardList = [
     {
@@ -185,6 +193,7 @@ export const RecurringBookings = ({
   setOpenModal,
   modalChild,
   setModalChild,
+  shape,
 }) => {
   const cardList = [
     {

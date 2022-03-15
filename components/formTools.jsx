@@ -3,6 +3,7 @@ import 'antd/dist/antd.css'
 import { DatePicker, Radio, Menu, Dropdown, Button } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import { useDebugValue, useState } from 'react'
+import { FaSearch } from 'react-icons/fa'
 
 export const DropdownMenu = ({ list, placeholder, onChange }) => {
   const [placeholderVal, setPlaceholderVal] = useState(placeholder)
@@ -127,3 +128,27 @@ export const DatePickerr = () => {
     />
   )
 }
+
+export const ProgressBar = ({ percent }) => (
+  <div
+    css={css`
+      width: 100%;
+      max-width: 220px;
+      .bar {
+        color: #de8eoe;
+      }
+    `}
+  >
+    <div>
+      <div className="bar"></div>
+    </div>
+    <p></p>
+  </div>
+)
+
+export const SearchBar = ({ placeholder }) => (
+  <div tw="flex flex-row items-center gap-3 px-4 py-3 bg-[#FEFEFE] text-[#767676] rounded border border-[#E5E5E5]">
+    <FaSearch />
+    <input type="search" name="" id="" placeholder={placeholder} />
+  </div>
+)

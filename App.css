@@ -3,3 +3,13 @@
 * {
   font-family: Open Sans, sans-serif;
 }
+
+.edit-next {
+  overflow-y: hidden;
+}
+
+@media screen and (max-width: 1140px) {
+  .edit-next {
+    overflow-y: visible;
+  }
+}

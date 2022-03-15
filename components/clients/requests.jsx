@@ -1,4 +1,5 @@
 import tw, { css } from 'twin.macro'
+import { useState } from 'react'
 import TabBar from '../pieces/tabBar'
 import {
   PendingRequests,
@@ -6,7 +7,8 @@ import {
   PastBookings,
   RecurringBookings,
 } from './requestParts'
-
+import { SearchBar, DropdownMenu } from '../formTools'
+import { BsSortDownAlt, BsSortUp, BsListTask, BsGridFill } from 'react-icons/bs'
 
 export const requestsSection = css`
   background-color: #fafafa;
@@ -37,6 +39,7 @@ export const requestsSection = css`
 `
 
 const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
+  const [shape, setShape] = useState(0)
   const requestTabData = [
     {
       title: 'Pending Requests',
@@ -46,6 +49,7 @@ const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
           setOpenModal={setOpenModal}
           modalChild={modalChild}
           setModalChild={setModalChild}
+          shape={shape}
         />
       ),
       unread: 1,
@@ -58,6 +62,7 @@ const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
           setOpenModal={setOpenModal}
           modalChild={modalChild}
           setModalChild={setModalChild}
+          shape={shape}
         />
       ),
       unread: 0,
@@ -70,6 +75,7 @@ const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
           setOpenModal={setOpenModal}
           modalChild={modalChild}
           setModalChild={setModalChild}
+          shape={shape}
         />
       ),
       unread: 0,
@@ -82,6 +88,7 @@ const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
           setOpenModal={setOpenModal}
           modalChild={modalChild}
           setModalChild={setModalChild}
+          shape={shape}
         />
       ),
       unread: 0,
@@ -89,9 +96,37 @@ const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   ]
   return (
     <section css={requestsSection}>
-      <h3>Requests</h3>
+      <div tw="flex flex-row items-center justify-between mb-4">
+        <h3>Requests</h3>
+        <div tw="flex flex-row items-center gap-4">
+          <div
+            css={css`
+              > * {
+                height: 48px;
+              }
+            `}
+          >
+            <SearchBar placeholder="Search for a vendor" />
+          </div>
+          <div
+            css={css`
+              > * {
+                height: 48px;
+              }
+            `}
+          >
+            <DropdownMenu list={['name', 'size']} placeholder="Sort by" />
+          </div>
+          <BsSortDownAlt size={16} />
+        </div>
+      </div>
       <div>
-        <TabBar dataList={requestTabData} />
+        <TabBar
+          dataList={requestTabData}
+          switchShapeIcon={[<BsListTask />, <BsGridFill />]}
+          shape={shape}
+          setShape={setShape}
+        />
       </div>
     </section>
   )

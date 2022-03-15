@@ -24,6 +24,10 @@ export const MyProfile = () => {
               word-spacing: 0;
               font-size: 0;
               border-radius: 4px;
+              @media (max-width: 1140px) {
+                width: 104px;
+                height: 71px;
+              }
             `}
             key={ind}
           >
@@ -124,6 +128,9 @@ export const Reviews = () => {
                   background-color: #ffffff;
                   border-radius: 8px;
                   box-shadow: 0px 4px 8px rgba(16, 24, 51, 0.08);
+                  @media (max-width: 600px) {
+                    width: clamp(300px, 100%, 520px);
+                  }
                 `}
               >
                 <Image

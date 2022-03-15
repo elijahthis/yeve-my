@@ -206,5 +206,3 @@ export const RecurringCard = ({
     </div>
   )
 }
-
-export default RecurringCard
