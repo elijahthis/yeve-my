@@ -9,34 +9,7 @@ import {
 } from './requestParts'
 import { SearchBar, DropdownMenu } from '../formTools'
 import { BsSortDownAlt, BsSortUp, BsListTask, BsGridFill } from 'react-icons/bs'
-
-export const requestsSection = css`
-  background-color: #fafafa;
-  color: #343434;
-  padding: 24px;
-  font-size: 14px;
-  overflow-y: scroll;
-  h3 {
-    font-size: 32px;
-    font-weight: 700;
-    color: #1a1a1a;
-    font-family: Montserrat;
-  }
-  h4 {
-    font-size: 24px;
-    line-height: 32px;
-    font-weight: 700;
-    color: #1a1a1a;
-    font-family: Montserrat;
-  }
-  h5 {
-    font-size: 18px;
-    line-height: 24px;
-    font-weight: 700;
-    color: #1a1a1a;
-    font-family: Montserrat;
-  }
-`
+import { sectionStyles } from '../../styles/GeneralStyles'
 
 const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   const [shape, setShape] = useState(0)
@@ -95,7 +68,7 @@ const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
     },
   ]
   return (
-    <section css={requestsSection}>
+    <section css={sectionStyles}>
       <div tw="flex flex-row items-center justify-between mb-4">
         <h3>Requests</h3>
         <div tw="flex flex-row items-center gap-4">

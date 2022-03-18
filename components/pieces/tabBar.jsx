@@ -1,7 +1,13 @@
 import tw, { css } from 'twin.macro'
 import { useState } from 'react'
 
-const TabBar = ({ dataList, switchShapeIcon, shape, setShape }) => {
+const TabBar = ({
+  dataList,
+  switchShapeIcon,
+  shape,
+  setShape,
+  actionButton,
+}) => {
   const [active, setActive] = useState(0)
   return (
     <div>
@@ -52,10 +58,13 @@ const TabBar = ({ dataList, switchShapeIcon, shape, setShape }) => {
             }
           `}
           onClick={() => {
-            setShape(shape => (shape + 1) % 2)
+            if (switchShapeIcon) {
+              setShape(shape => (shape + 1) % 2)
+            }
           }}
         >
           {switchShapeIcon ? switchShapeIcon[shape] : null}
+          {actionButton ? actionButton : null}
         </div>
       </div>
       <div>{dataList[active].component}</div>

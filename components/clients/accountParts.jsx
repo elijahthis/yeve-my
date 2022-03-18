@@ -5,7 +5,7 @@ import visaIcon from '../../images/visa-icon.png'
 import Image from 'next/image'
 import { BiChevronRight } from 'react-icons/bi'
 import { useState } from 'react'
-import { AddPayment, CardDetails, YeveWallet } from './paymentParts'
+import { AddPayment, CardDetails, YeveWalletSection } from './paymentParts'
 
 export const ProfileInfo = () => {
   return (
@@ -306,7 +306,7 @@ export const Payment = () => {
       )
     case 2:
       return (
-        <YeveWallet paymentPart={paymentPart} setPaymentPart={setPaymentPart} />
+        <YeveWalletSection paymentPart={paymentPart} setPaymentPart={setPaymentPart} />
       )
     default:
       return (

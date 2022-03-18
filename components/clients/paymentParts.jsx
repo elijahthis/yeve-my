@@ -4,6 +4,7 @@ import bankIcon from '../../images/bank-icon.png'
 import stripeIcon from '../../images/stripe-icon.png'
 import flutterwaveIcon from '../../images/flutterwave-icon.png'
 import yeveWalletBg from '../../images/yeve-wallet.png'
+import YeveWallet from '../pieces/yeveWallet'
 import { BiChevronRight } from 'react-icons/bi'
 import Image from 'next/image'
 import Modal from '../modal'
@@ -256,7 +257,7 @@ export const CardDetails = ({ paymentPart, setPaymentPart }) => {
   )
 }
 
-export const YeveWallet = ({ paymentPart, setPaymentPart }) => {
+export const YeveWalletSection = ({ paymentPart, setPaymentPart }) => {
   const [openModal, setOpenModal] = useState(false)
 
   return (
@@ -334,16 +335,13 @@ export const YeveWallet = ({ paymentPart, setPaymentPart }) => {
                 </span>
               </div>
               <div className="form-div">
-                <label htmlFor="">
-                  <div tw="relative">
-                    <Image src={yeveWalletBg} />
-                    <div tw="absolute top-0 left-0 w-full h-full grid place-items-center text-white text-center">
-                      <div>
-                        <h5 style={{ color: '#ffffff' }}>&#163;290.00</h5>
-                        <p>Wallet Balance</p>
-                      </div>
-                    </div>
-                  </div>
+                <label
+                  htmlFor=""
+                  css={css`
+                    height: 112px;
+                  `}
+                >
+                  <YeveWallet />
                 </label>
               </div>
             </div>

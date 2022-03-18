@@ -1,7 +1,7 @@
 import tw, { css } from 'twin.macro'
 import TabBar from '../pieces/tabBar'
 import { ProfileInfo, Payment } from './accountParts'
-import { servicesSection } from './services'
+import { sectionStyles } from '../../styles/GeneralStyles'
 
 const Account = () => {
   const accountTabData = [
@@ -9,7 +9,7 @@ const Account = () => {
     { title: 'Payment', component: <Payment /> },
   ]
   return (
-    <section css={servicesSection}>
+    <section css={sectionStyles}>
       <div>
         <h3>Account</h3>
         <div

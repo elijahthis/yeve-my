@@ -1,28 +1,24 @@
 import tw, { css } from 'twin.macro'
 import MainNav from '../components/mainNav'
 import SideBar from '../components/sidebar'
-import Profile from '../components/clients/profile'
-import Services from '../components/clients/services'
-import Requests from '../components/clients/requests'
-import Account from '../components/clients/account'
-import Events from '../components/clients/events'
+import Home from '../components/vendors/home'
 import { BsShop } from 'react-icons/bs'
 import { useState } from 'react'
 
-const ClientLayout = () => {
-  const [part, setPart] = useState(2)
-  const [openModal, setOpenModal] = useState(false)
-  const [modalChild, setModalChild] = useState(<></>)
+const Vendors = () => {
   const [sideOpen, setSideOpen] = useState(false)
+  const [part, setPart] = useState(2)
   const menuItems = [
-    { icon: <BsShop />, label: 'Services' },
-    { icon: <BsShop />, label: 'Requests' },
-    { icon: <BsShop />, label: 'My Profile' },
-    { icon: <BsShop />, label: 'Messages' },
-    { icon: <BsShop />, label: 'Events' },
-    { icon: <BsShop />, label: 'Calendar' },
+    { icon: <BsShop />, label: 'Home' },
+    { icon: <BsShop />, label: 'My Requests' },
+    { icon: <BsShop />, label: 'Plan Event' },
+    { icon: <BsShop />, label: 'My Team' },
     { icon: <BsShop />, label: 'Account' },
+    { icon: <BsShop />, label: 'Upgrade' },
+    { icon: <BsShop />, label: 'Inbox' },
+    { icon: <BsShop />, label: 'Calendar' },
   ]
+
   return (
     <>
       <MainNav sideOpen={sideOpen} setSideOpen={setSideOpen} />
@@ -61,35 +57,27 @@ const ClientLayout = () => {
           }}
         ></div>
         {part === 0 ? (
-          <Services
-            openModal={openModal}
-            setOpenModal={setOpenModal}
-            modalChild={modalChild}
-            setModalChild={setModalChild}
-          />
+          <Home />
         ) : part === 1 ? (
-          <Requests
-            openModal={openModal}
-            setOpenModal={setOpenModal}
-            modalChild={modalChild}
-            setModalChild={setModalChild}
-          />
+          <Home />
         ) : part === 2 ? (
-          <Profile />
+          <Home />
         ) : part === 3 ? (
-          <Profile />
+          <Home />
         ) : part === 4 ? (
-          <Events />
+          <Home />
         ) : part === 5 ? (
-          <Profile />
+          <Home />
         ) : part === 6 ? (
-          <Account />
+          <Home />
+        ) : part === 7 ? (
+          <Home />
         ) : (
-          <Profile />
+          <Home />
         )}
       </main>
     </>
   )
 }
 
-export default ClientLayout
+export default Vendors

@@ -1,5 +1,6 @@
 import tw, { css } from 'twin.macro'
 import { VendorCard, RecurringCard } from '../pieces/cards'
+import GridView from '../pieces/gridView'
 import profilePlaceholder from '../../images/profile-1.png'
 import imgPlaceholder from '../../images/Group 526.png'
 import Modal from '../modal'
@@ -61,7 +62,12 @@ export const PendingRequests = ({
           ))}
         </div>
       ) : (
-        <div></div>
+        <div>
+          <GridView
+            list={cardList}
+            headers={['Name', 'Service', 'Rate', 'Event Date', 'Approval']}
+          />
+        </div>
       )}
       <Modal openModal={openModal} setOpenModal={setOpenModal}>
         {modalChild}
@@ -111,17 +117,26 @@ export const ActiveBookings = ({
   ]
   return (
     <>
-      <div tw="py-4 flex flex-row gap-6">
-        {cardList.map(card => (
-          <VendorCard
-            cardData={card}
-            openModal={openModal}
-            setOpenModal={setOpenModal}
-            modalChild={modalChild}
-            setModalChild={setModalChild}
+      {shape === 0 ? (
+        <div tw="py-4 flex flex-row gap-6">
+          {cardList.map(card => (
+            <VendorCard
+              cardData={card}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              modalChild={modalChild}
+              setModalChild={setModalChild}
+            />
+          ))}
+        </div>
+      ) : (
+        <div>
+          <GridView
+            list={cardList}
+            headers={['Name', 'Service', 'Rate', 'Event Date', 'Approval']}
           />
-        ))}
-      </div>
+        </div>
+      )}
       <Modal openModal={openModal} setOpenModal={setOpenModal}>
         {modalChild}
       </Modal>
@@ -170,17 +185,26 @@ export const PastBookings = ({
   ]
   return (
     <>
-      <div tw="py-4 flex flex-row gap-6">
-        {cardList.map(card => (
-          <VendorCard
-            cardData={card}
-            openModal={openModal}
-            setOpenModal={setOpenModal}
-            modalChild={modalChild}
-            setModalChild={setModalChild}
+      {shape === 0 ? (
+        <div tw="py-4 flex flex-row gap-6">
+          {cardList.map(card => (
+            <VendorCard
+              cardData={card}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              modalChild={modalChild}
+              setModalChild={setModalChild}
+            />
+          ))}
+        </div>
+      ) : (
+        <div>
+          <GridView
+            list={cardList}
+            headers={['Name', 'Service', 'Rate', 'Event Date', 'Approval']}
           />
-        ))}
-      </div>
+        </div>
+      )}
       <Modal openModal={openModal} setOpenModal={setOpenModal}>
         {modalChild}
       </Modal>

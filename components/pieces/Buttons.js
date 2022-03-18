@@ -46,3 +46,18 @@ export const BackButton = ({ onClick }) => (
     <BsArrowLeft size={18} />
   </div>
 )
+
+export const BlackButton = ({ content, onClick, bg, col }) => {
+  return (
+    <button
+      css={css`
+        background-color: ${bg ? bg : '#1a1a1a'};
+        color: ${col ? col : 'white'};
+      `}
+      tw="py-4 px-2 rounded font-semibold grid place-items-center text-sm cursor-pointer"
+      onClick={onClick}
+    >
+      {content}
+    </button>
+  )
+}

@@ -7,6 +7,10 @@ import imgPlaceholder from '../images/card-banner.png'
 import profilePlaceholder from '../images/profile-placeholder.png'
 import premiumIcon from '../images/premium-icon.png'
 import { DropdownMenu } from './formTools'
+import ImageUploadPreview from './pieces/imageUploadPreview'
+import { useState, useEffect } from 'react'
+import { AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai'
+import { FiMoreVertical } from 'react-icons/fi'
 
 export const RequestSubmitted = ({ setOpenModal, setServicePhase }) => {
   return (
@@ -592,4 +596,536 @@ export const WithdrawEarnings = ({ setOpenModal }) => {
       </div>
     </div>
   )
+}
+
+export const CreatePostPhase0 = ({
+  setOpenModal,
+  setPhase,
+  formData,
+  setFormData,
+}) => {
+  const [active, setActive] = useState(false)
+  useEffect(() => {
+    if (formData.imageURL !== '') {
+      setActive(true)
+      console.log('its: ' + formData.imageURL)
+    } else setActive(false)
+  }, [formData])
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 30px 40px;
+        width: 466px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin-top: 28px;
+        }
+        p {
+          width: 278px;
+          margin-top: 6px;
+          color: #000000;
+          font-size: 14px;
+        }
+        span {
+          margin-bottom: 13px;
+          font-weight: 600;
+          font-size: 12px;
+          color: #8c8c8c;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setPhase(0)
+          setOpenModal(false)
+        }}
+      />
+      <h4>Create Post</h4>
+      <p>Upload photos or videos</p>
+      <div
+        tw="w-full"
+        css={css`
+          margin-top: 48px;
+          margin-bottom: 24px;
+        `}
+      >
+        <ImageUploadPreview
+          limit={1}
+          onChangeFunc={val => {
+            const newData = { ...formData }
+            newData.imageURL = val
+            setFormData(newData)
+          }}
+        />
+      </div>
+      <div tw="flex flex-row items-center gap-9 w-full">
+        <ProceedButton
+          bg={active ? '#de8e0e' : '#D2D2D2'}
+          col={active ? 'white' : '#8C8C8C'}
+          content="Upload"
+          onClick={() => {
+            active ? setPhase(1) : null
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+export const CreatePostPhase1 = ({
+  setOpenModal,
+  setPhase,
+  formData,
+  setFormData,
+}) => {
+  return (
+    <div
+      css={css`
+        background-color: #ffffff;
+        border-radius: 4px;
+
+        width: clamp(300px, 80vw, 825px);
+        text-align: center;
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+        }
+        label {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          gap: 4px;
+
+          width: 100%;
+          textarea {
+            width: 100%;
+            height: 180px;
+            resize: none;
+            background: #fafafa;
+            border: 1px solid #d2d2d2;
+            box-sizing: border-box;
+            border-radius: 4px;
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 24px;
+          }
+          span {
+            font-size: 12px;
+            line-height: 18px;
+            color: #343434;
+          }
+        }
+
+        @media (max-width: 1140px) {
+          padding: 16px 14px;
+          h4 {
+            font-size: 16px;
+            line-height: 24px;
+          }
+
+          > :first-child {
+            right: 14px;
+          }
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer top-6"
+        onClick={() => {
+          setPhase(0)
+          setOpenModal(false)
+        }}
+      />
+      <div
+        css={css`
+          padding: 20px 0;
+          border-bottom: 1px solid #e5e5e5;
+        `}
+      >
+        <h4>Create Post</h4>
+      </div>
+      <div
+        css={css`
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 21px;
+          width: 100%;
+          padding: 24px;
+          > * {
+            height: 370px;
+          }
+        `}
+      >
+        <div
+          css={css`
+            width: 100%;
+            position: relative;
+          `}
+        >
+          <Image src={formData.imageURL} alt="" layout="fill" />
+        </div>
+        <div tw="flex flex-col items-start justify-between">
+          <div tw="flex flex-row items-center gap-2">
+            <div
+              css={css`
+                width: 32px;
+                height: 32px;
+              `}
+            >
+              <Image src={profilePlaceholder} alt="" />
+            </div>
+            <p>John Smith</p>
+          </div>
+          <label htmlFor="">
+            <span>Add Caption</span>
+            <textarea
+              name=""
+              id=""
+              placeholder="Add Caption"
+              value={formData.body}
+              onChange={ev => {
+                const newData = { ...formData }
+                newData.body = ev.target.value
+                setFormData(newData)
+              }}
+            ></textarea>
+            <span>0/60</span>
+          </label>
+          <ProceedButton
+            bg="#de8e0e"
+            col="white"
+            content="Upload"
+            onClick={() => {
+              setPhase(2)
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+export const CreatePostPhase2 = ({
+  setOpenModal,
+  setPhase,
+  formData,
+  setFormData,
+}) => {
+  return (
+    <div
+      css={css`
+        background-color: #ffffff;
+        border-radius: 4px;
+
+        width: clamp(300px, 80vw, 902px);
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+        }
+        label {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          gap: 4px;
+
+          width: 100%;
+          textarea {
+            width: 100%;
+            height: 180px;
+            resize: none;
+            background: #fafafa;
+            border: 1px solid #d2d2d2;
+            box-sizing: border-box;
+            border-radius: 4px;
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 24px;
+          }
+          span {
+            font-size: 12px;
+            line-height: 18px;
+            color: #343434;
+          }
+        }
+
+        @media (max-width: 1140px) {
+          h4 {
+            font-size: 16px;
+            line-height: 24px;
+          }
+
+          > :first-child {
+            right: 14px;
+          }
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      {/* <div
+        css={css`
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 100%;
+          > * {
+            height: 490px;
+          }
+        `}
+      >
+        <div
+          css={css`
+            width: 100%;
+            position: relative;
+          `}
+        >
+          <Image src={formData.imageURL} alt="" layout="fill" />
+        </div>
+        <div>
+          <div
+            tw="flex flex-row items-center gap-2"
+            css={css`
+              padding: 20px;
+              width: 100%;
+              border-bottom: 1px solid #e5e5e5;
+            `}
+          >
+            <div
+              css={css`
+                width: 32px;
+                height: 32px;
+              `}
+            >
+              <Image src={profilePlaceholder} alt="" />
+            </div>
+            <p>John Smith</p>
+          </div>
+          <div>
+            <div>
+              <span>{formData.time}</span>
+              <p>{formData.body}</p>
+            </div>
+            <div>
+              <div
+                css={css`
+                  margin-left: 8px;
+                `}
+              >
+                <p tw="font-semibold">Mike Jay</p>
+                <p tw="text-xs flex flex-row items-center gap-2">
+                  <span>5 Min</span>
+                  <span>Reply</span>
+                </p>
+              </div>
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </div> */}
+
+      <div
+        css={css`
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          background-color: white;
+          border-radius: 4px;
+        `}
+      >
+        <div
+          css={css`
+            width: 100%;
+            position: relative;
+          `}
+        >
+          <Image src={formData.imageURL} alt="" layout="fill" />
+        </div>
+        <div>
+          <div tw="flex flex-row justify-between items-center p-5 border-b border-[#e5e5e5]">
+            <div tw="flex flex-row items-center gap-2">
+              <Image
+                src={profilePlaceholder}
+                alt=""
+                width="32px"
+                height="32px"
+              />
+              <p>John Smith</p>
+            </div>
+            <div tw="flex flex-row items-center gap-5">
+              Follow <FiMoreVertical />
+            </div>
+          </div>
+          <div
+            tw="px-5"
+            css={css`
+              > * {
+                padding: 12px 0;
+                border-bottom: 1px solid #e5e5e5;
+              }
+            `}
+          >
+            <div>
+              <p tw="text-xs">5 Min</p>
+              <p tw="text-xs font-semibold">{formData.body}</p>
+            </div>
+            <div tw="flex flex-col gap-4" style={{ padding: '16px 0' }}>
+              <div tw="flex flex-row items-start">
+                <Image
+                  src={profilePlaceholder}
+                  alt=""
+                  width="32px"
+                  height="32px"
+                />
+                <div
+                  css={css`
+                    margin-left: 8px;
+                  `}
+                >
+                  <p tw="font-semibold">Mike Jay</p>
+                  <p tw="text-xs flex flex-row items-center gap-2">
+                    <span>5 Min</span>
+                    <span>Reply</span>
+                  </p>
+                </div>
+                <span
+                  css={css`
+                    margin-left: 25px;
+                    font-size: 12px;
+                  `}
+                >
+                  Brilliant!
+                </span>
+              </div>
+              <div tw="flex flex-row items-start">
+                <Image
+                  src={profilePlaceholder}
+                  alt=""
+                  width="32px"
+                  height="32px"
+                />
+                <div
+                  css={css`
+                    margin-left: 8px;
+                  `}
+                >
+                  <p tw="font-semibold">Mike Jay</p>
+                  <p tw="text-xs flex flex-row items-center gap-2">
+                    <span>5 Min</span>
+                    <span>Reply</span>
+                  </p>
+                </div>
+                <span
+                  css={css`
+                    margin-left: 25px;
+                    font-size: 12px;
+                  `}
+                >
+                  Brilliant!
+                </span>
+              </div>
+            </div>
+            <div
+              tw="flex flex-col gap-6"
+              css={css`
+                font-weight: 600;
+              `}
+            >
+              <div tw="flex flex-row items-center justify-between">
+                <div tw="flex flex-row items-center gap-7">
+                  <AiOutlineHeart size={20} />
+                  <AiOutlineShareAlt size={20} />
+                </div>
+                <span>32 likes</span>
+              </div>
+              <div tw="flex flex-row items-center justify-between">
+                <span>Add Comment</span>
+                <span tw="text-gold">Post</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export const CreatePost = ({ setOpenModal }) => {
+  const [phase, setPhase] = useState(0)
+  const [formData, setFormData] = useState({
+    imageURL: '',
+    body: '',
+    time: '5min',
+  })
+  switch (phase) {
+    case 0:
+      return (
+        <CreatePostPhase0
+          setOpenModal={setOpenModal}
+          setPhase={setPhase}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )
+    case 1:
+      return (
+        <CreatePostPhase1
+          setOpenModal={setOpenModal}
+          setPhase={setPhase}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )
+    case 2:
+      return (
+        <CreatePostPhase2
+          setOpenModal={setOpenModal}
+          setPhase={setPhase}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )
+
+    default:
+      return (
+        <CreatePostPhase0
+          setOpenModal={setOpenModal}
+          setPhase={setPhase}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )
+  }
 }

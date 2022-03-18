@@ -4,6 +4,9 @@ import { DatePicker, Radio, Menu, Dropdown, Button } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import { useDebugValue, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
+import 'antd/dist/antd.css'
+import { Switch } from 'antd'
+import { FiCalendar } from 'react-icons/fi'
 
 export const DropdownMenu = ({ list, placeholder, onChange }) => {
   const [placeholderVal, setPlaceholderVal] = useState(placeholder)
@@ -133,16 +136,19 @@ export const ProgressBar = ({ percent }) => (
   <div
     css={css`
       width: 100%;
-      max-width: 220px;
+      border-radius: 20px;
       .bar {
-        color: #de8eoe;
+        background-color: #de8e0e;
+        height: 8px;
+        width: ${percent}%;
+        border-radius: 20px;
       }
     `}
   >
-    <div>
+    <div tw="w-full">
       <div className="bar"></div>
     </div>
-    <p></p>
+    <p>{percent}% complete</p>
   </div>
 )
 
@@ -152,3 +158,95 @@ export const SearchBar = ({ placeholder }) => (
     <input type="search" name="" id="" placeholder={placeholder} />
   </div>
 )
+
+export const ToggleText = ({
+  checkedChildren,
+  unCheckedChildren,
+  changeFunc,
+}) => {
+  return (
+    <div
+      css={css`
+        button {
+          height: 32px;
+          width: 92px;
+          > * {
+            padding: 5px 0;
+          }
+          .ant-switch-handle {
+            width: 25px;
+            height: 25px;
+            top: 3px;
+            ::before {
+              border-radius: 50%;
+            }
+          }
+        }
+        .ant-switch-checked > div {
+          left: calc(100% - 25px - 2px);
+        }
+      `}
+    >
+      <Switch
+        checkedChildren={checkedChildren}
+        unCheckedChildren={unCheckedChildren}
+        defaultChecked
+        size="default"
+        onClick={ev => {
+          changeFunc(ev)
+        }}
+      />
+    </div>
+  )
+}
+
+export const DateFilter = () => {
+  const filters = ['1D', '30D', '1Y', 'All']
+  const [active, setActive] = useState(0)
+  return (
+    <div
+      tw="flex flex-row items-center gap-3"
+      css={css`
+        background: #ffffff;
+        border: 1px solid #e5e5e5;
+        box-sizing: border-box;
+        border-radius: 8px;
+        max-width: 213px;
+      `}
+    >
+      <div
+        css={css`
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          span {
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #767676;
+            :hover {
+              color: #de8e0e;
+            }
+          }
+        `}
+      >
+        {filters.map((filter, ind) => (
+          <span
+            css={
+              active === ind
+                ? css`
+                    background: #fdf9f3;
+                    color: #de8e0e;
+                  `
+                : null
+            }
+            onClick={() => setActive(ind)}
+          >
+            {filter}
+          </span>
+        ))}
+      </div>
+      <FiCalendar size={16} />
+    </div>
+  )
+}

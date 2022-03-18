@@ -3,11 +3,6 @@ import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 const Modal = ({ children, openModal, setOpenModal }) => {
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => {
-    setMounted(true)
-    return () => setMounted(false)
-  }, [openModal])
   return createPortal(
     <div
       css={css`
