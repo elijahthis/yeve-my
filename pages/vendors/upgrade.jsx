@@ -59,6 +59,7 @@ const Cards = ({ setPhase }) => {
           setCurrent={setCurrent}
           ind={ind}
           setPhase={setPhase}
+          key={ind}
         />
       ))}
     </section>

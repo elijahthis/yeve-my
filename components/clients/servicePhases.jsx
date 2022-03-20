@@ -259,6 +259,7 @@ export const ChooseService = ({
                 height: clamp(80px, 20vw, 140px);
               }
             `}
+            key={ind}
             onClick={() => {
               serviceField.includes(item.title)
                 ? setServiceField(

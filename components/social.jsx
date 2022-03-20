@@ -95,7 +95,7 @@ const Social = () => {
             <div tw="mt-20">
               <ol>
                 {socialList.map((item, ind) => (
-                  <div tw="flex flex-row items-start">
+                  <div tw="flex flex-row items-start" key={ind}>
                     <div tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center">
                       {ind + 1}
                     </div>

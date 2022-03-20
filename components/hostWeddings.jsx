@@ -71,7 +71,7 @@ const HostWeddings = () => {
           <Image src={hostSide} />
         </div>
         <div>
-          {hostList.map(item => (
+          {hostList.map((item, ind) => (
             <div
               css={css`
                 width: clamp(300px, 80vw, 366px);
@@ -86,6 +86,7 @@ const HostWeddings = () => {
                 column-gap: 1rem;
                 margin-bottom: 1.125rem;
               `}
+              key={ind}
             >
               <div
                 tw={'w-12 h-12 rounded-full grid place-items-center'}
@@ -142,7 +143,7 @@ const HostWeddings = () => {
             <div tw="mt-20">
               <ol>
                 {weddingList.map((item, ind) => (
-                  <div tw="flex flex-row items-start gap-4">
+                  <div tw="flex flex-row items-start gap-4" key={ind}>
                     <div
                       tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center"
                       style={{ minWidth: '48px' }}

@@ -142,7 +142,7 @@ export const Reviews = () => {
         >
           <p tw="w-full my-5 font-bold">34 Reviews</p>
           <div tw="flex flex-row flex-wrap gap-8">
-            {reviewList.map(review => (
+            {reviewList.map((review, ind) => (
               <div
                 css={css`
                   width: 260px;
@@ -155,6 +155,7 @@ export const Reviews = () => {
                     width: clamp(300px, 100%, 520px);
                   }
                 `}
+                key={ind}
               >
                 <Image
                   src={review.avatar}
@@ -230,8 +231,8 @@ export const Feed = () => {
             padding: 32px 0;
           `}
         >
-          {feedData.map(item => (
-            <Post postData={item} />
+          {feedData.map((item, ind) => (
+            <Post postData={item} key={ind} />
           ))}
         </div>
       </div>

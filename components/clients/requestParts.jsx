@@ -119,13 +119,14 @@ export const ActiveBookings = ({
     <>
       {shape === 0 ? (
         <div tw="py-4 flex flex-row gap-6">
-          {cardList.map(card => (
+          {cardList.map((card, ind) => (
             <VendorCard
               cardData={card}
               openModal={openModal}
               setOpenModal={setOpenModal}
               modalChild={modalChild}
               setModalChild={setModalChild}
+              key={ind}
             />
           ))}
         </div>
@@ -187,13 +188,14 @@ export const PastBookings = ({
     <>
       {shape === 0 ? (
         <div tw="py-4 flex flex-row gap-6">
-          {cardList.map(card => (
+          {cardList.map((card, ind) => (
             <VendorCard
               cardData={card}
               openModal={openModal}
               setOpenModal={setOpenModal}
               modalChild={modalChild}
               setModalChild={setModalChild}
+              key={ind}
             />
           ))}
         </div>
@@ -254,13 +256,14 @@ export const RecurringBookings = ({
   return (
     <>
       <div tw="py-4 flex flex-row gap-6">
-        {cardList.map(card => (
+        {cardList.map((card, ind) => (
           <RecurringCard
             cardData={card}
             openModal={openModal}
             setOpenModal={setOpenModal}
             modalChild={modalChild}
             setModalChild={setModalChild}
+            key={ind}
           />
         ))}
       </div>

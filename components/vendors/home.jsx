@@ -75,7 +75,10 @@ const Home = () => {
           View
         </a>
       </div>
-      <section css={sectionStyles}>
+      <section
+        css={sectionStyles}
+        style={{ height: 'calc(100vh - 102px - 45px)', overflowY: 'scroll' }}
+      >
         <PendingActionsBanner />
         <section
           css={css`
@@ -88,7 +91,7 @@ const Home = () => {
                 margin-bottom: 24px;
               }
               > :nth-child(2) {
-                height: 96px;
+                min-height: 96px;
                 margin-bottom: 64px;
               }
               > :nth-child(3) {
@@ -103,8 +106,8 @@ const Home = () => {
           <div>
             <h3>Home</h3>
             <div tw="flex flex-row items-center gap-6 flex-wrap">
-              {infoCards.map(card => (
-                <VendorInfoCard cardData={card} />
+              {infoCards.map((card, ind) => (
+                <VendorInfoCard cardData={card} key={ind} />
               ))}
             </div>
             <div>

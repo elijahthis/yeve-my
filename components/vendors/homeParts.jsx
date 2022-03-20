@@ -130,10 +130,7 @@ const VendorTabs = () => {
 export const VendorProfile = () => {
   return (
     <>
-      <section
-        css={sectionStyles}
-        style={{ overflowY: 'visible', padding: '0' }}
-      >
+      <section css={sectionStyles} style={{ overflow: 'hidden', padding: '0' }}>
         <div
           css={css`
             width: 100%;
@@ -157,7 +154,7 @@ export const VendorProfile = () => {
             <MdAdd size={18} />
           </button>
         </div>
-        <div tw="flex flex-col items-center relative">
+        <div tw="flex flex-col items-center">
           <div
             css={css`
               width: 100%;
@@ -170,8 +167,7 @@ export const VendorProfile = () => {
           </div>
           <div
             css={css`
-              position: absolute;
-              top: 60%;
+              transform: translateY(-8%);
             `}
           >
             <div tw="flex flex-col items-center relative">

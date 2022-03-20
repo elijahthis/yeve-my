@@ -303,7 +303,7 @@ export const UpcomingLiveList = ({ cardData }) => {
       `}
     >
       <ul tw="font-semibold text-sm text-[#767676]">
-        {cardData.map(card => (
+        {cardData.map((card, ind) => (
           <div
             css={css`
               padding: 22px 32px;
@@ -312,6 +312,7 @@ export const UpcomingLiveList = ({ cardData }) => {
                 list-style-type: disc;
               }
             `}
+            key={ind}
           >
             <li>
               <p tw="text-black">{card.gig}</p>

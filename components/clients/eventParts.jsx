@@ -47,8 +47,8 @@ export const AllEvents = () => {
   ]
   return (
     <div tw="py-4 flex flex-row gap-6 flex-wrap">
-      {cardList.map(card => (
-        <EventCard cardData={card} />
+      {cardList.map((card, ind) => (
+        <EventCard cardData={card} key={ind} />
       ))}
     </div>
   )
@@ -71,8 +71,8 @@ export const PublishedEvents = () => {
   ]
   return (
     <div tw="py-4 flex flex-row gap-6 flex-wrap">
-      {cardList.map(card => (
-        <EventCard cardData={card} />
+      {cardList.map((card, ind) => (
+        <EventCard cardData={card} key={ind} />
       ))}
     </div>
   )
@@ -107,8 +107,8 @@ export const DraftsEvents = () => {
   ]
   return (
     <div tw="py-4 flex flex-row gap-6 flex-wrap">
-      {cardList.map(card => (
-        <EventCard cardData={card} />
+      {cardList.map((card, ind) => (
+        <EventCard cardData={card} key={ind} />
       ))}
     </div>
   )

@@ -36,13 +36,13 @@ const GridView = ({ list, headers }) => {
           <th>
             <input type="checkbox" name="" id="" />
           </th>
-          {headers.map(header => (
-            <th>{header}</th>
+          {headers.map((header, ind) => (
+            <th key={ind}>{header}</th>
           ))}
         </tr>
-        {list.map(item => {
+        {list.map(item, ind => {
           return (
-            <tr>
+            <tr key={ind}>
               <td>
                 <input type="checkbox" name="" id="" />
               </td>

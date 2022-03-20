@@ -241,6 +241,7 @@ export const DateFilter = () => {
                 : null
             }
             onClick={() => setActive(ind)}
+            key={ind}
           >
             {filter}
           </span>

@@ -152,13 +152,14 @@ const RecurringComponent2 = () => {
           }
         `}
       >
-        {upcoming.map(item => (
+        {upcoming.map((item, ind) => (
           <div
             tw="flex flex-row items-start justify-between"
             css={css`
               width: 300px;
               padding: 25px 18px;
             `}
+            key={ind}
           >
             <div tw="flex flex-row items-start justify-between gap-3 h-16">
               <Image src={item.image} width="43px" height="43px" />

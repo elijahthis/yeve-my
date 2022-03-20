@@ -65,7 +65,7 @@ const Services = () => {
           <h1>Find service providers</h1>
           <ol>
             {clientList.map((item, ind) => (
-              <div tw="flex flex-row items-start gap-4">
+              <div tw="flex flex-row items-start gap-4" key={ind}>
                 <div
                   tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center"
                   style={{ minWidth: '48px' }}
@@ -190,7 +190,7 @@ const Services = () => {
           <h1>Provide services for events</h1>
           <ol>
             {vendorList.map((item, ind) => (
-              <div tw="flex flex-row items-start gap-4">
+              <div tw="flex flex-row items-start gap-4" key={ind}>
                 <div
                   tw="w-12 h-12 rounded-full bg-[#FDF9F3] text-gold font-bold grid place-items-center"
                   style={{ minWidth: '48px' }}
