@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
-import { servicesSection } from './services'
+import { sectionStyles } from '../../styles/GeneralStyles'
 import { BiChevronLeft } from 'react-icons/bi'
 import { BsArrowRight } from 'react-icons/bs'
 import { FiCheck } from 'react-icons/fi'
@@ -16,6 +16,7 @@ import { BooleanToggle, DropdownMenu, DatePickerr } from '../formTools'
 import Modal from '../modal'
 import { ProceedButton, BackButton } from '../pieces/Buttons'
 import { RequestSubmitted } from '../modalChildren'
+import { ServiceCard2 } from '../pieces/cards'
 
 export const ChooseService = ({
   servicePhase,
@@ -60,7 +61,7 @@ export const ChooseService = ({
   }, [serviceField])
 
   return (
-    <section css={servicesSection} style={{ backgroundColor: 'white' }}>
+    <section css={sectionStyles} style={{ backgroundColor: 'white' }}>
       <div tw="flex flex-row items-center mb-4">
         <BackButton
           onClick={() => {
@@ -252,54 +253,26 @@ export const ChooseService = ({
             css={css`
               width: 276px;
               height: 140px;
-              position: relative;
-
               @media (max-width: 1140px) {
                 width: clamp(155px, 40vw, 276px);
                 height: clamp(80px, 20vw, 140px);
               }
             `}
-            key={ind}
-            onClick={() => {
-              serviceField.includes(item.title)
-                ? setServiceField(
-                    serviceField.filter(x => {
-                      return x !== item.title
-                    }),
-                  )
-                : setServiceField([...new Set([...serviceField, item.title])])
-            }}
           >
-            <Image src={item.image} layout="fill" />
-            <div
-              tw="w-full h-full absolute top-0 left-0 font-bold grid place-items-center cursor-pointer rounded"
-              css={
+            <ServiceCard2
+              cardData={item}
+              clickFunc={() => {
                 serviceField.includes(item.title)
-                  ? css`
-                      background-color: rgba(222, 142, 14, 0.8);
-                      h5 {
-                        color: white;
-                      }
-                    `
-                  : css`
-                      h5 {
-                        color: white;
-                      }
-                    `
-              }
-            >
-              {' '}
-              <div tw="flex flex-col items-center gap-1">
-                {serviceField.includes(item.title) ? (
-                  <div tw="p-2 bg-white rounded-full text-[rgba(222, 142, 14, 0.8)]">
-                    <FiCheck strokeWidth={5} />
-                  </div>
-                ) : (
-                  <></>
-                )}
-                <h5>{item.title}</h5>
-              </div>
-            </div>
+                  ? setServiceField(
+                      serviceField.filter(x => {
+                        return x !== item.title
+                      }),
+                    )
+                  : setServiceField([...new Set([...serviceField, item.title])])
+              }}
+              referenceList={serviceField}
+              key={ind}
+            />
           </div>
         ))}
       </div>
@@ -326,7 +299,7 @@ export const ServiceRequest = ({
   const dressCodeList = ['Formal', 'Casual', 'Smart Casual', 'Native']
 
   return (
-    <section css={servicesSection} style={{ backgroundColor: 'white' }}>
+    <section css={sectionStyles} style={{ backgroundColor: 'white' }}>
       <div tw="flex flex-row items-center mb-4">
         <BackButton
           onClick={() => {
@@ -793,7 +766,7 @@ export const ServiceRequest = ({
   )
 }
 
-export const RequestSummary = ({
+export const RdivequestSummary = ({
   servicePhase,
   setServicePhase,
   formData,
@@ -805,7 +778,7 @@ export const RequestSummary = ({
 }) => {
   return (
     <>
-      <section css={servicesSection} style={{ backgroundColor: '#fafafa' }}>
+      <section css={sectionStyles} style={{ backgroundColor: '#fafafa' }}>
         <div
           tw="flex flex-row items-center"
           css={css`

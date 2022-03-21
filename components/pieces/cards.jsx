@@ -1,5 +1,6 @@
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
+import { FiCheck } from 'react-icons/fi'
 import { BiChevronRight } from 'react-icons/bi'
 import {
   ActivateEvent,
@@ -9,6 +10,7 @@ import {
   VendorReview,
 } from '../modalChildren'
 import { ProgressBar } from '../formTools'
+import { HiStar } from 'react-icons/hi'
 
 export const actionBtn = css`
   font-size: 14px;
@@ -19,6 +21,90 @@ export const actionBtn = css`
   border: 1px solid #e5e5e5;
   cursor: pointer;
 `
+
+export const ServiceCard1 = ({ cardData, clickFunc }) => {
+  return (
+    <div
+      css={css`
+        background-color: #fefefe;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(16, 24, 51, 0.08);
+        padding: 14px 12px;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        @media (max-width: 1140px) {
+          padding: 9px 8px;
+        }
+      `}
+      onClick={clickFunc}
+    >
+      <div
+        css={css`
+          width: 100%;
+          height: 78%;
+          overflow: hidden;
+          border-radius: 8px;
+          @media (max-width: 1140px) {
+            width: 137px;
+            height: 84px;
+          }
+        `}
+      >
+        <Image src={cardData.image} alt={cardData.name} />
+      </div>
+      <div
+        tw="flex flex-row justify-between items-center"
+        css={css`
+          margin-top: 8px;
+          @media (max-width: 1140px) {
+            margin-top: 6px;
+          }
+        `}
+      >
+        <h5>{cardData.name}</h5>
+        <BiChevronRight size={18} />
+      </div>
+    </div>
+  )
+}
+export const ServiceCard2 = ({ cardData, clickFunc, referenceList }) => {
+  return (
+    <div tw="relative w-full h-full" onClick={clickFunc}>
+      <Image src={cardData.image} layout="fill" />
+      <div
+        tw="w-full h-full absolute top-0 left-0 font-bold grid place-items-center cursor-pointer rounded"
+        css={
+          referenceList.includes(cardData.title)
+            ? css`
+                background-color: rgba(222, 142, 14, 0.8);
+                h5 {
+                  color: white;
+                }
+              `
+            : css`
+                h5 {
+                  color: white;
+                }
+              `
+        }
+      >
+        {' '}
+        <div tw="flex flex-col items-center gap-1">
+          {referenceList.includes(cardData.title) ? (
+            <div tw="p-2 bg-white rounded-full text-[rgba(222, 142, 14, 0.8)]">
+              <FiCheck strokeWidth={5} />
+            </div>
+          ) : (
+            <></>
+          )}
+          <h5>{cardData.title}</h5>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export const VendorCard = ({
   cardData,
   openModal,
@@ -141,6 +227,30 @@ export const VendorCard = ({
           <></>
         )}
       </div>
+    </div>
+  )
+}
+
+export const ReviewCard = ({ cardData }) => {
+  return (
+    <div
+      css={css`
+        width: 100%;
+        height: 100%;
+        padding: 20px 16px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(16, 24, 51, 0.08);
+      `}
+    >
+      <Image src={cardData.avatar} alt="avatar" width="43px" height="43px" />
+      <p tw="font-semibold">{cardData.event}</p>
+      <div tw="flex flex-row items-center gap-2 mb-4">
+        <HiStar />
+        <p tw="font-semibold">{cardData.rating}</p>
+        {cardData.date}
+      </div>
+      <p tw="italic">{cardData.comment}</p>
     </div>
   )
 }

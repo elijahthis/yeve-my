@@ -9,7 +9,13 @@ import { FaPlay, FaSearch } from 'react-icons/fa'
 import { FiMoreVertical } from 'react-icons/fi'
 import { HiStar } from 'react-icons/hi'
 import Post from '../pieces/post'
-import { ReviewCard } from '../pieces/cards'
+import service1 from '../../images/service1.png'
+import service2 from '../../images/service2.png'
+import service3 from '../../images/service3.png'
+import service4 from '../../images/service4.png'
+import service5 from '../../images/service5.png'
+import service6 from '../../images/service6.png'
+import { ServiceCard1, ReviewCard } from '../pieces/cards'
 
 export const MyProfile = () => {
   return (
@@ -40,8 +46,8 @@ export const MyProfile = () => {
           .map((vid, ind) => (
             <div
               css={css`
-                width: 260px;
-                height: 180px;
+                width: 168px;
+                height: 115px;
                 position: relative;
                 letter-spacing: 0;
                 word-spacing: 0;
@@ -146,8 +152,9 @@ export const Reviews = () => {
             {reviewList.map((review, ind) => (
               <div
                 css={css`
-                  width: 260px;
-                  height: 210px;
+                  max-width: 230px;
+                  min-height: 210px;
+
                   @media (max-width: 600px) {
                     width: clamp(300px, 100%, 520px);
                   }
@@ -171,18 +178,18 @@ export const Feed = () => {
       userName: 'John Smith',
       userProfile: profilePlaceholder,
       body: `My Soul Thirsts for You
-
-    Woke up this morning longing for more of Him in my soul.
-    Lord, my soul thirsts for you#Soul #Yeve #Music`,
+  
+      Woke up this morning longing for more of Him in my soul.
+      Lord, my soul thirsts for you#Soul #Yeve #Music`,
     },
     {
       media: vidPlaceholder2,
       userName: 'John Smith',
       userProfile: profilePlaceholder,
       body: `My Soul Thirsts for You
-
-    Woke up this morning longing for more of Him in my soul.
-    Lord, my soul thirsts for you#Soul #Yeve #Music`,
+  
+      Woke up this morning longing for more of Him in my soul.
+      Lord, my soul thirsts for you#Soul #Yeve #Music`,
     },
   ]
   return (
@@ -209,7 +216,7 @@ export const Feed = () => {
       >
         <div
           css={css`
-            width: 902px;
+            max-width: 902px;
             display: flex;
             flex-direction: column;
             gap: 2.5rem;
@@ -222,5 +229,72 @@ export const Feed = () => {
         </div>
       </div>
     </>
+  )
+}
+
+export const Services = () => {
+  const categories = [
+    { name: 'Musicians', image: service1 },
+    { name: 'Child Performer', image: service2 },
+    { name: 'Food & Drinks', image: service3 },
+    { name: 'Security', image: service4 },
+    { name: 'Wedding', image: service5 },
+    { name: 'Event Travel', image: service6 },
+  ]
+  return (
+    <div
+      css={css`
+        max-width: 706px;
+      `}
+    >
+      <div
+        tw="flex flex-row items-center justify-between my-7"
+        css={css`
+          @media (max-width: 1140px) {
+            margin: 16px 0;
+            > :nth-child(1) {
+              display: none;
+            }
+            > :nth-child(2) {
+              font-weight: 400;
+              color: #767676;
+            }
+          }
+        `}
+      >
+        <h5>Welcome</h5>
+        <p tw="font-semibold">Choose from a list of service categories below</p>
+      </div>
+      <div
+        tw="flex flex-row flex-wrap"
+        css={css`
+          gap: 20px;
+          @media (max-width: 1140px) {
+            gap: 12px;
+          }
+        `}
+      >
+        {categories.map((cat, ind) => (
+          <div
+            css={css`
+              width: 222px;
+              height: 180px;
+              @media (max-width: 1140px) {
+                width: 153px;
+                height: 126px;
+              }
+            `}
+          >
+            <ServiceCard1
+              cardData={cat}
+              clickFunc={() => {
+                // setServicePhase(0)
+              }}
+              key={ind}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

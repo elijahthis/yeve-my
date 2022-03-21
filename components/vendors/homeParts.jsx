@@ -1,18 +1,20 @@
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
-import { MyProfile, Reviews, Feed } from '../clients/profileStates'
 import profileImg from '../../images/profile-img.png'
 import bannerImg from '../../images/profile-banner.png'
 import Modal from '../modal'
 import { CreatePost } from '../modalChildren'
-import { BsShop } from 'react-icons/bs'
+import { BsShop, BsQuestionCircleFill } from 'react-icons/bs'
 import { FaSearch } from 'react-icons/fa'
+import { FiShare2 } from 'react-icons/fi'
 import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
 import { MdAdd } from 'react-icons/md'
 import { useState, useEffect } from 'react'
 import { BlackButton } from '../pieces/Buttons'
 import TabBar from '../pieces/tabBar'
 import { sectionStyles } from '../../styles/GeneralStyles'
+import { ToggleText } from '../formTools'
+import { MyProfile, Reviews, Feed, Services } from './homeStates'
 
 const VendorTabs = () => {
   const profileData = [
@@ -21,16 +23,20 @@ const VendorTabs = () => {
       component: <MyProfile />,
     },
     {
-      title: 'Feed',
-      component: <Feed />,
+      title: 'Portfolio',
+      component: <MyProfile />,
     },
     {
-      title: 'Events',
+      title: 'Feed',
       component: <Feed />,
     },
     {
       title: 'Reviews',
       component: <Reviews />,
+    },
+    {
+      title: 'Services',
+      component: <Services />,
     },
   ]
   const profileDataMobile = [
@@ -40,7 +46,7 @@ const VendorTabs = () => {
     },
     {
       title: <BsShop size={18} />,
-      component: <Feed />,
+      component: <MyProfile />,
     },
     {
       title: <BsShop size={18} />,
@@ -50,14 +56,29 @@ const VendorTabs = () => {
       title: <BsShop size={18} />,
       component: <Reviews />,
     },
+    {
+      title: <BsShop size={18} />,
+      component: <Feed />,
+    },
   ]
   return (
     <section
       css={css`
+        // width: 100%;
+
         max-width: 900px;
+        width: 100%;
         > :nth-child(2) {
           display: none;
         }
+        > div > :first-child > div {
+          justify-content: center;
+        }
+        > div > :first-child > div > div {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
         @media (max-width: 1140px) {
           > :nth-child(1) {
             display: none;
@@ -167,10 +188,35 @@ export const VendorProfile = () => {
           </div>
           <div
             css={css`
-              transform: translateY(-8%);
+              // transform: translateY(-8%);
+              transform: matrix(1, 0, 0, 1, 0, -94.8);
+
+              width: 100%;
             `}
           >
             <div tw="flex flex-col items-center relative">
+              <div
+                tw="flex flex-row items-start justify-between w-full"
+                css={css`
+                  transform: translateY(200%);
+                `}
+              >
+                <div tw="flex flex-col items-start gap-2">
+                  <div tw="flex flex-row items-start justify-between gap-1">
+                    <BsQuestionCircleFill />
+                    Support Me
+                  </div>
+                  <ToggleText
+                    checkedChildren="On"
+                    unCheckedChildren="Off"
+                    changeFunc={() => {}}
+                  />
+                </div>
+                <div tw="flex flex-row items-center justify-between gap-2">
+                  Share
+                  <FiShare2 />
+                </div>
+              </div>
               <div
                 css={css`
                   width: 120px;
@@ -186,8 +232,11 @@ export const VendorProfile = () => {
                 <Image src={profileImg} alt="" />
               </div>
               <h4>Lillian Brooks</h4>
-              <div tw="flex flex-row items-center gap-2 font-semibold">
-                <HiOutlineLocationMarker /> London, United Kingdom
+              <div tw="flex flex-row items-center gap-4">
+                <span>KEYBOARDIST</span>
+                <div tw="flex flex-row items-center gap-2 font-semibold">
+                  <HiOutlineLocationMarker /> London, United Kingdom
+                </div>
               </div>
               <div tw="flex flex-row items-center gap-4 font-semibold">
                 <div tw="flex flex-row items-center">

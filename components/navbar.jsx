@@ -2,6 +2,8 @@ import { Logo, Button } from './../components'
 import tw, { css } from 'twin.macro'
 import { useState } from 'react'
 import Link from 'next/link'
+import ToolTip from './pieces/tooltip'
+import { FeaturesToolTip } from './pieces/Tooltips'
 
 const Logo1 = () => (
   <Link href="/" passHref>
@@ -79,7 +81,12 @@ const active = css`
 
 const Navbar = ({ page }) => {
   const [navOpen, setNavOpen] = useState(false)
-  const navItems = ['Home', 'Features', 'Resources', 'Discover']
+  const navItems = [
+    { title: 'Home', tooltip: null },
+    { title: 'Features', tooltip: <FeaturesToolTip /> },
+    { title: 'Resources', tooltip: null },
+    { title: 'Discover', tooltip: null },
+  ]
   return (
     <>
       <header
@@ -98,9 +105,10 @@ const Navbar = ({ page }) => {
               <li
                 key={ind}
                 css={ind === page ? active : linkItem}
-                tw="hover:cursor-pointer"
+                tw="hover:cursor-pointer relative"
               >
-                {item}
+                <span>{item.title}</span>
+                {/* {item.tooltip ? <ToolTip>{item.tooltip}</ToolTip> : null} */}
               </li>
             ))}
           </ul>
@@ -185,7 +193,7 @@ const Navbar = ({ page }) => {
                 css={ind === page ? active : linkItem}
                 tw="hover:cursor-pointer my-2"
               >
-                {item}
+                {item.title}
               </li>
             ))}
           </ul>

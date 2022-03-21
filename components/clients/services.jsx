@@ -12,6 +12,7 @@ import { BiChevronRight } from 'react-icons/bi'
 import { useState, useEffect } from 'react'
 import { ChooseService, ServiceRequest, RequestSummary } from './servicePhases'
 import { sectionStyles } from '../../styles/GeneralStyles'
+import { ServiceCard1 } from '../pieces/cards'
 
 const ServiceComponent1 = ({ setServicePhase }) => {
   const categories = [
@@ -61,48 +62,19 @@ const ServiceComponent1 = ({ setServicePhase }) => {
             css={css`
               width: 222px;
               height: 180px;
-              background-color: #fefefe;
-              border-radius: 8px;
-              box-shadow: 0px 4px 8px rgba(16, 24, 51, 0.08);
-              padding: 14px 12px;
-              cursor: pointer;
               @media (max-width: 1140px) {
                 width: 153px;
                 height: 126px;
-                padding: 9px 8px;
               }
             `}
-            key={ind}
-            onClick={() => {
-              setServicePhase(0)
-            }}
           >
-            <div
-              css={css`
-                width: 200px;
-                height: 122px;
-                overflow: hidden;
-                border-radius: 8px;
-                @media (max-width: 1140px) {
-                  width: 137px;
-                  height: 84px;
-                }
-              `}
-            >
-              <Image src={cat.image} alt={cat.name} />
-            </div>
-            <div
-              tw="flex flex-row justify-between items-center"
-              css={css`
-                margin-top: 8px;
-                @media (max-width: 1140px) {
-                  margin-top: 6px;
-                }
-              `}
-            >
-              <h5>{cat.name}</h5>
-              <BiChevronRight size={18} />
-            </div>
+            <ServiceCard1
+              cardData={cat}
+              clickFunc={() => {
+                setServicePhase(0)
+              }}
+              key={ind}
+            />
           </div>
         ))}
       </div>
