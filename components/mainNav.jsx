@@ -28,13 +28,7 @@ const navCSS = css`
   }
 `
 
-const MainNav = ({
-  sideOpen,
-  setSideOpen,
-  permissions,
-  setPart,
-  setRequestsPhase,
-}) => {
+const MainNav = ({ sideOpen, setSideOpen, permissions, setPart }) => {
   const [showNotif, setShowNotif] = useState(false)
   useEffect(() => {
     document.body.addEventListener('click', () => {
@@ -88,10 +82,7 @@ const MainNav = ({
                 ev.stopPropagation()
               }}
             >
-              <NotificationsToolTip
-                setPart={setPart}
-                setRequestsPhase={setRequestsPhase}
-              />
+              <NotificationsToolTip />
             </div>
           </div>
 

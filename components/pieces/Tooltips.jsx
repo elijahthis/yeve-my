@@ -1,4 +1,5 @@
 import tw, { css } from 'twin.macro'
+import { useRouter } from 'next/router'
 import {
   BsShop,
   BsLightning,
@@ -82,7 +83,8 @@ export const FeaturesToolTip = () => {
   )
 }
 
-export const NotificationsToolTip = ({ setPart, setRequestsPhase }) => {
+export const NotificationsToolTip = () => {
+  const router = useRouter()
   const dataList = [
     {
       title: 'EVENT AVAILABLE',
@@ -90,8 +92,7 @@ export const NotificationsToolTip = ({ setPart, setRequestsPhase }) => {
       icon: <BsLightning size={21} />,
       time: '1m',
       func: function () {
-        setPart(1)
-        setRequestsPhase(0)
+        router.push('/vendors/my-requests/generate-quoteA')
       },
     },
     {
@@ -100,8 +101,7 @@ export const NotificationsToolTip = ({ setPart, setRequestsPhase }) => {
       icon: <AiOutlineCheckCircle size={21} />,
       time: '7h',
       func: function () {
-        setPart(1)
-        setRequestsPhase(0)
+        router.push('/vendors/my-requests/view-gig')
       },
     },
     {

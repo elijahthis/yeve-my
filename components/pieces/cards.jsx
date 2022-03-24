@@ -1,5 +1,6 @@
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { FiCheck } from 'react-icons/fi'
 import { IoClose } from 'react-icons/io5'
 import { BiChevronRight } from 'react-icons/bi'
@@ -629,7 +630,9 @@ export const ServicesListCard = ({ cardData }) => {
   )
 }
 
-export const ViewGig = ({ setOpenModal, setModalChild, setRequestsPhase }) => {
+export const ViewGigCard = ({ setOpenModal, setModalChild }) => {
+  const router = useRouter()
+
   return (
     <div
       css={css`
@@ -737,7 +740,7 @@ export const ViewGig = ({ setOpenModal, setModalChild, setRequestsPhase }) => {
             col="#ffffff"
             content="Generate Quote"
             onClick={() => {
-              setRequestsPhase(1)
+              router.push('/vendors/my-requests/generate-quoteA')
             }}
           />
         </div>
@@ -746,12 +749,7 @@ export const ViewGig = ({ setOpenModal, setModalChild, setRequestsPhase }) => {
           col="white"
           content="Accept"
           onClick={() => {
-            setModalChild(
-              <EventAccepted
-                setOpenModal={setOpenModal}
-                setRequestsPhase={setRequestsPhase}
-              />,
-            )
+            setModalChild(<EventAccepted setOpenModal={setOpenModal} />)
             setOpenModal(true)
           }}
         />
@@ -760,11 +758,9 @@ export const ViewGig = ({ setOpenModal, setModalChild, setRequestsPhase }) => {
   )
 }
 
-export const PreviewQuoteCard = ({
-  setOpenModal,
-  setModalChild,
-  setRequestsPhase,
-}) => {
+export const PreviewQuoteCard = ({ setOpenModal, setModalChild }) => {
+  const router = useRouter()
+
   return (
     <div
       css={css`
@@ -838,12 +834,7 @@ export const PreviewQuoteCard = ({
           col="white"
           content="Publish"
           onClick={() => {
-            setModalChild(
-              <QuoteSent
-                setOpenModal={setOpenModal}
-                setRequestsPhase={setRequestsPhase}
-              />,
-            )
+            setModalChild(<QuoteSent setOpenModal={setOpenModal} />)
             setOpenModal(true)
           }}
         />

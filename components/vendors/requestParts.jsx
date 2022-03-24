@@ -3,7 +3,6 @@ import { VendorCard2, RecurringCard } from '../pieces/cards'
 import GridView from '../pieces/gridView'
 import profilePlaceholder from '../../images/profile-1.png'
 import imgPlaceholder from '../../images/Group 526.png'
-import Modal from '../modal'
 
 export const PendingRequests = ({
   openModal,
@@ -41,9 +40,6 @@ export const PendingRequests = ({
           />
         </div>
       )}
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        {modalChild}
-      </Modal>
     </>
   )
 }
@@ -86,9 +82,6 @@ export const ActiveBookings = ({
           />
         </div>
       )}
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        {modalChild}
-      </Modal>
     </>
   )
 }
@@ -129,9 +122,6 @@ export const PastBookings = ({
           />
         </div>
       )}
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        {modalChild}
-      </Modal>
     </>
   )
 }
@@ -176,22 +166,17 @@ export const RecurringBookings = ({
     },
   ]
   return (
-    <>
-      <div tw="py-4 flex flex-row gap-6">
-        {cardList.map((card, ind) => (
-          <RecurringCard
-            cardData={card}
-            openModal={openModal}
-            setOpenModal={setOpenModal}
-            modalChild={modalChild}
-            setModalChild={setModalChild}
-            key={ind}
-          />
-        ))}
-      </div>
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        {modalChild}
-      </Modal>
-    </>
+    <div tw="py-4 flex flex-row gap-6">
+      {cardList.map((card, ind) => (
+        <RecurringCard
+          cardData={card}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          modalChild={modalChild}
+          setModalChild={setModalChild}
+          key={ind}
+        />
+      ))}
+    </div>
   )
 }

@@ -1,15 +1,20 @@
 import tw, { css } from 'twin.macro'
-import { PendingActionsBanner } from '../pieces/pendingActions'
+import VendorsLayout from '../../layouts/vendorsLayout'
+import { PendingActionsBanner } from '../../components/pieces/pendingActions'
 import { sectionStyles } from '../../styles/GeneralStyles'
 import { BsShop } from 'react-icons/bs'
-import { VendorInfoCard } from '../pieces/cards'
-import { VendorProfile } from './homeParts'
-import { UpcomingLiveList, NewsCard, ServicesListCard } from '../pieces/cards'
-import YeveWallet from '../pieces/yeveWallet'
+import { VendorInfoCard } from '../../components/pieces/cards'
+import { VendorProfile } from '../../components/vendors/homeParts'
+import {
+  UpcomingLiveList,
+  NewsCard,
+  ServicesListCard,
+} from '../../components/pieces/cards'
+import YeveWallet from '../../components/pieces/yeveWallet'
 import imgPlaceholder from '../../images/musician-5.png'
-import { DateFilter } from '../formTools'
+import { DateFilter } from '../../components/formTools'
 
-const Home = () => {
+export const HomeRoot = () => {
   const infoCards = [
     {
       title: 'Number of Gigs',
@@ -153,6 +158,14 @@ const Home = () => {
         </section>
       </section>
     </section>
+  )
+}
+
+const Home = () => {
+  return (
+    <VendorsLayout>
+      <HomeRoot />
+    </VendorsLayout>
   )
 }
 

@@ -1,5 +1,7 @@
 import tw, { css } from 'twin.macro'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 const Logo1 = () => (
   <Link href="/" passHref>
@@ -39,7 +41,8 @@ const Logo1 = () => (
   </Link>
 )
 
-const SideBar = ({ menuList, part, setPart, sideOpen, setSideOpen }) => {
+const SideBar = ({ menuList, sideOpen, setSideOpen }) => {
+  const router = useRouter()
   const sideBar = css`
     display: flex;
     flex-direction: column;
@@ -67,6 +70,10 @@ const SideBar = ({ menuList, part, setPart, sideOpen, setSideOpen }) => {
       }
     }
   `
+  useEffect(() => {
+    console.log(router.pathname)
+  }, [])
+
   return (
     <aside css={sideBar}>
       <div>
@@ -76,16 +83,22 @@ const SideBar = ({ menuList, part, setPart, sideOpen, setSideOpen }) => {
         <div
           key={ind}
           css={css`
-            background-color: ${part === ind
+            background-color: ${router.pathname.startsWith(
+              `/vendors/${item.route}`,
+            )
               ? 'rgba(222, 142, 14, 0.05)'
               : 'transparent'};
-            color: ${part === ind ? '#1A1A1A' : '#767676'};
-            border-right: ${part === ind ? '4px solid #de8e0e' : '0'};
+            color: ${router.pathname.startsWith(`/vendors/${item.route}`)
+              ? '#1A1A1A'
+              : '#767676'};
+            border-right: ${router.pathname.startsWith(`/vendors/${item.route}`)
+              ? '4px solid #de8e0e'
+              : '0'};
             cursor: pointer;
           `}
           tw="flex flex-row items-center gap-5 text-sm py-4 px-6"
           onClick={() => {
-            setPart(ind)
+            router.push(`/vendors/${item.route}`, undefined, { shallow: true })
             setSideOpen(false)
           }}
         >

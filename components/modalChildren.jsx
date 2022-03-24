@@ -1,5 +1,6 @@
 import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai'
 import { IoClose } from 'react-icons/io5'
@@ -1239,7 +1240,8 @@ export const CreatePost = ({ setOpenModal }) => {
   }
 }
 
-export const EventAccepted = ({ setOpenModal, setRequestsPhase }) => {
+export const EventAccepted = ({ setOpenModal }) => {
+  const router = useRouter()
   return (
     <div
       css={css`
@@ -1293,7 +1295,7 @@ export const EventAccepted = ({ setOpenModal, setRequestsPhase }) => {
         tw="absolute right-6 cursor-pointer"
         onClick={() => {
           setOpenModal(false)
-          setRequestsPhase(null)
+          router.push('/vendors/my-requests')
         }}
       />
       <div tw="p-2 bg-white rounded-full text-[#65B02A] border-4 border-[#65B02A] mb-6 mt-10">
@@ -1310,14 +1312,16 @@ export const EventAccepted = ({ setOpenModal, setRequestsPhase }) => {
         content="Back Home"
         onClick={() => {
           setOpenModal(false)
-          setRequestsPhase(null)
+          router.push('/vendors/my-requests')
         }}
       />
     </div>
   )
 }
 
-export const CancelEvent = ({ setOpenModal, setRequestsPhase }) => {
+export const CancelEvent = ({ setOpenModal }) => {
+  const router = useRouter()
+
   return (
     <div
       css={css`
@@ -1387,7 +1391,7 @@ export const CancelEvent = ({ setOpenModal, setRequestsPhase }) => {
           content="Yes"
           onClick={() => {
             setOpenModal(false)
-            setRequestsPhase(null)
+            router.push('/vendors/my-requests')
           }}
         />
       </div>
@@ -1395,7 +1399,9 @@ export const CancelEvent = ({ setOpenModal, setRequestsPhase }) => {
   )
 }
 
-export const QuoteSent = ({ setOpenModal, setRequestsPhase }) => {
+export const QuoteSent = ({ setOpenModal }) => {
+  const router = useRouter()
+
   return (
     <div
       css={css`
@@ -1449,7 +1455,7 @@ export const QuoteSent = ({ setOpenModal, setRequestsPhase }) => {
         tw="absolute right-6 cursor-pointer"
         onClick={() => {
           setOpenModal(false)
-          setRequestsPhase(null)
+          router.push('/vendors/my-requests')
         }}
       />
       <div tw="p-2 bg-white rounded-full text-[#65B02A] border-4 border-[#65B02A] mb-6 mt-10">
@@ -1467,7 +1473,7 @@ export const QuoteSent = ({ setOpenModal, setRequestsPhase }) => {
           content="Back Home"
           onClick={() => {
             setOpenModal(false)
-            setRequestsPhase(null)
+            router.push('/vendors/my-requests')
           }}
         />
         <ProceedButton
@@ -1476,7 +1482,7 @@ export const QuoteSent = ({ setOpenModal, setRequestsPhase }) => {
           content="Share Quote"
           onClick={() => {
             setOpenModal(false)
-            setRequestsPhase(null)
+            router.push('/vendors/my-requests')
           }}
         />
       </div>
