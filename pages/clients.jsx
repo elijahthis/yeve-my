@@ -24,8 +24,14 @@ const ClientLayout = () => {
     { icon: <BsShop />, label: 'Account' },
   ]
   return (
+    //client base page. grid layout. Grid children: MainNav - top, SideBar -
+    //left, main - center
     <>
-      <MainNav sideOpen={sideOpen} setSideOpen={setSideOpen} />
+      <MainNav
+        sideOpen={sideOpen}
+        setSideOpen={setSideOpen}
+        permissions="client"
+      />
       <main
         css={css`
           display: grid;
@@ -61,6 +67,7 @@ const ClientLayout = () => {
           }}
         ></div>
         {part === 0 ? (
+          // find in ===> components/clients/services.jsx
           <Services
             openModal={openModal}
             setOpenModal={setOpenModal}
@@ -68,6 +75,7 @@ const ClientLayout = () => {
             setModalChild={setModalChild}
           />
         ) : part === 1 ? (
+          // find in ===> components/clients/requests.jsx
           <Requests
             openModal={openModal}
             setOpenModal={setOpenModal}
@@ -75,14 +83,17 @@ const ClientLayout = () => {
             setModalChild={setModalChild}
           />
         ) : part === 2 ? (
+          // find in ===> components/clients/profile.jsx
           <Profile />
         ) : part === 3 ? (
           <Profile />
         ) : part === 4 ? (
+          // find in ===> components/clients/events.jsx
           <Events />
         ) : part === 5 ? (
           <Profile />
         ) : part === 6 ? (
+          // find in ===> components/clients/account.jsx
           <Account />
         ) : (
           <Profile />

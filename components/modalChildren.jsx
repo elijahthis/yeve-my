@@ -1,16 +1,16 @@
 import tw, { css } from 'twin.macro'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { ProceedButton } from './pieces/Buttons'
+import { AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai'
 import { IoClose } from 'react-icons/io5'
-import { FiCheck } from 'react-icons/fi'
+import { FiCheck, FiMoreVertical } from 'react-icons/fi'
 import imgPlaceholder from '../images/card-banner.png'
 import profilePlaceholder from '../images/profile-placeholder.png'
+import { ProceedButton } from './pieces/Buttons'
 import premiumIcon from '../images/premium-icon.png'
 import { DropdownMenu } from './formTools'
 import ImageUploadPreview from './pieces/imageUploadPreview'
-import { useState, useEffect } from 'react'
-import { AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai'
-import { FiMoreVertical } from 'react-icons/fi'
+import RatingStars from './pieces/ratingStars'
 
 export const RequestSubmitted = ({ setOpenModal, setServicePhase }) => {
   return (
@@ -156,7 +156,13 @@ export const CancelRecurring = ({ setOpenModal }) => {
   )
 }
 
-export const ActivateEvent = ({ setOpenModal }) => {
+export const ActivateEvent = ({
+  setOpenModal,
+  cardList,
+  setCardList,
+  vendor,
+  cardInd,
+}) => {
   return (
     <div
       css={css`
@@ -199,7 +205,10 @@ export const ActivateEvent = ({ setOpenModal }) => {
         }}
       />
       <h4>Activate Event?</h4>
-      <p>Activate event to confirm vendor arrival to the event venue</p>
+      <p>
+        Activate event to confirm {vendor ? 'your' : 'vendor'} arrival to the
+        event venue
+      </p>
       <div tw="flex flex-row items-center gap-9 w-full">
         <ProceedButton
           bg="#f8f8f8"
@@ -214,6 +223,9 @@ export const ActivateEvent = ({ setOpenModal }) => {
           col="white"
           content="Yes, activate"
           onClick={() => {
+            const newList = [...cardList]
+            newList[cardInd].status = 'Activated'
+            setCardList(newList)
             setOpenModal(false)
           }}
         />
@@ -222,7 +234,95 @@ export const ActivateEvent = ({ setOpenModal }) => {
   )
 }
 
-export const CompleteEvent = ({ setOpenModal }) => {
+export const RateClient = ({ setOpenModal }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 38px;
+        width: 466px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin-top: 28px;
+        }
+        p {
+          font-size: 12px;
+          line-height: 18px;
+          max-width: 190px;
+          color: #343434;
+        }
+        .button {
+          padding: 6px 20px;
+          background-color: #fafafa;
+          color: #767676;
+          border: 1px solid #d2d2d2;
+          border-radius: 4px;
+          font-weight: 600;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+        }}
+      />
+      <h4>Rate your client</h4>
+      <div tw="flex flex-col items-start gap-11 w-full mt-12 mb-3">
+        <div tw="w-full">
+          <div tw="flex flex-row justify-center items-center w-full">
+            <RatingStars size={38} active={true} />
+          </div>
+        </div>
+        <div tw="flex flex-col items-start gap-1 w-full">
+          <p>Add comments (optional)</p>
+          <textarea
+            name=""
+            id=""
+            tw="w-full"
+            placeholder="Add comments (optional)"
+          ></textarea>
+        </div>
+      </div>
+      <div tw="flex flex-row items-center gap-9 w-full">
+        <ProceedButton
+          bg="#f8f8f8"
+          col="#767676"
+          content="Report Issue"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+        <ProceedButton
+          bg="#de8e0e"
+          col="white"
+          content="Yes, complete"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+export const CompleteEvent = ({ setOpenModal, setModalChild, vendor }) => {
   return (
     <div
       css={css`
@@ -266,15 +366,16 @@ export const CompleteEvent = ({ setOpenModal }) => {
       />
       <h4>Complete Event?</h4>
       <p>
-        Complete event to confirm that the event has been completed. Kindly
-        confirm within 48 hours or it will be automatically confirmed in the
-        vendor’s favor
+        Complete event to confirm that the event has been completed.{' '}
+        {vendor
+          ? null
+          : 'Kindly confirm within 48 hours or it will be automatically confirmed in the vendor’s favor'}
       </p>
       <div tw="flex flex-row items-center gap-9 w-full">
         <ProceedButton
           bg="#f8f8f8"
           col="#767676"
-          content="Report Issue"
+          content={vendor ? 'No, Cancel' : 'Report Issue'}
           onClick={() => {
             setOpenModal(false)
           }}
@@ -284,7 +385,9 @@ export const CompleteEvent = ({ setOpenModal }) => {
           col="white"
           content="Yes, complete"
           onClick={() => {
-            setOpenModal(false)
+            if (vendor)
+              setModalChild(<RateClient setOpenModal={setOpenModal} />)
+            else setOpenModal(false)
           }}
         />
       </div>
@@ -452,6 +555,12 @@ export const VendorReview = ({ setOpenModal }) => {
           <div tw="flex flex-row items-center gap-2">
             <button className="button">No</button>
             <button className="button">Yes</button>
+          </div>
+        </div>
+        <div tw="w-full">
+          <p tw="mb-1">Rate Vendor</p>
+          <div tw="flex flex-row justify-center items-center w-full">
+            <RatingStars size={38} active={true} />
           </div>
         </div>
         <div tw="flex flex-col items-start gap-1 w-full">
@@ -1128,4 +1237,249 @@ export const CreatePost = ({ setOpenModal }) => {
         />
       )
   }
+}
+
+export const EventAccepted = ({ setOpenModal, setRequestsPhase }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 30px 25px;
+        width: clamp(300px, 80vw, 466px);
+        text-align: center;
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+        }
+        p {
+          max-width: 278px;
+          margin-bottom: 97px;
+          margin-top: 12px;
+          color: #000000;
+          font-size: 14px;
+        }
+        @media (max-width: 1140px) {
+          padding: 16px 14px;
+          h4 {
+            font-size: 16px;
+            line-height: 24px;
+          }
+          p {
+            color: #767676;
+            font-weight: 400;
+            margin-bottom: 32px;
+          }
+          > :first-child {
+            right: 14px;
+          }
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+          setRequestsPhase(null)
+        }}
+      />
+      <div tw="p-2 bg-white rounded-full text-[#65B02A] border-4 border-[#65B02A] mb-6 mt-10">
+        <FiCheck strokeWidth={3} size={33} />
+      </div>
+      <h4>Event Accepted</h4>
+      <p>
+        We have submitted your request and it is processing. We will notify you
+        when it has been accepted by the client
+      </p>
+      <ProceedButton
+        bg="#de8e0e"
+        col="white"
+        content="Back Home"
+        onClick={() => {
+          setOpenModal(false)
+          setRequestsPhase(null)
+        }}
+      />
+    </div>
+  )
+}
+
+export const CancelEvent = ({ setOpenModal, setRequestsPhase }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 30px 40px;
+        width: 466px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin-top: 28px;
+        }
+        p {
+          width: 278px;
+          margin-bottom: 47px;
+          margin-top: 12px;
+          color: #000000;
+          font-size: 14px;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+        }}
+      />
+      <h4>Cancel Event?</h4>
+      <p>
+        Note that three cancellations in a row can lead to suspension. Once you
+        proceed with this action, it cannot be undone.
+      </p>
+      <label htmlFor="">
+        Give reason for cancellation
+        <textarea
+          name=""
+          id=""
+          placeholder="Give reason for cancellation"
+        ></textarea>
+      </label>
+      <div tw="flex flex-row items-center gap-9 w-full">
+        <ProceedButton
+          bg="#f8f8f8"
+          col="#767676"
+          content="No"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+        <ProceedButton
+          bg="#de8e0e"
+          col="white"
+          content="Yes"
+          onClick={() => {
+            setOpenModal(false)
+            setRequestsPhase(null)
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+export const QuoteSent = ({ setOpenModal, setRequestsPhase }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 30px 25px;
+        width: clamp(300px, 80vw, 466px);
+        text-align: center;
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+        }
+        p {
+          max-width: 278px;
+          margin-bottom: 97px;
+          margin-top: 12px;
+          color: #000000;
+          font-size: 14px;
+        }
+        @media (max-width: 1140px) {
+          padding: 16px 14px;
+          h4 {
+            font-size: 16px;
+            line-height: 24px;
+          }
+          p {
+            color: #767676;
+            font-weight: 400;
+            margin-bottom: 32px;
+          }
+          > :first-child {
+            right: 14px;
+          }
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+          setRequestsPhase(null)
+        }}
+      />
+      <div tw="p-2 bg-white rounded-full text-[#65B02A] border-4 border-[#65B02A] mb-6 mt-10">
+        <FiCheck strokeWidth={3} size={33} />
+      </div>
+      <h4>Quote Sent</h4>
+      <p>
+        Your quote has been sent to the client. We will notify you on the
+        client’s approval
+      </p>
+      <div tw="flex flex-row items-center gap-9 w-full">
+        <ProceedButton
+          bg="#f8f8f8"
+          col="#767676"
+          content="Back Home"
+          onClick={() => {
+            setOpenModal(false)
+            setRequestsPhase(null)
+          }}
+        />
+        <ProceedButton
+          bg="#de8e0e"
+          col="white"
+          content="Share Quote"
+          onClick={() => {
+            setOpenModal(false)
+            setRequestsPhase(null)
+          }}
+        />
+      </div>
+    </div>
+  )
 }

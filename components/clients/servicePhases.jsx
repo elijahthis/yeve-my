@@ -766,7 +766,7 @@ export const ServiceRequest = ({
   )
 }
 
-export const RdivequestSummary = ({
+export const RequestSummary = ({
   servicePhase,
   setServicePhase,
   formData,

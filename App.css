@@ -13,3 +13,7 @@
     overflow-y: visible;
   }
 }
+
+.ant-tooltip-content > * {
+  background-color: #ffffff;
+}

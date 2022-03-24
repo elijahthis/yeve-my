@@ -7,7 +7,8 @@ const FadedIcon = ({ icon }) => {
         width: 48px;
         height: 48px;
         display: grid;
-        grid-template-columns: center;
+        place-items: center;
+        border-radius: 50%;
         background-color: #fdf9f3;
         color: #de8e0e;
       `}

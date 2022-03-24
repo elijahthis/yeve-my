@@ -1,6 +1,7 @@
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
 import { FiCheck } from 'react-icons/fi'
+import { IoClose } from 'react-icons/io5'
 import { BiChevronRight } from 'react-icons/bi'
 import {
   ActivateEvent,
@@ -8,9 +9,18 @@ import {
   CompleteEvent,
   ViewQuote,
   VendorReview,
+  EventAccepted,
+  CancelEvent,
+  QuoteSent,
 } from '../modalChildren'
 import { ProgressBar } from '../formTools'
 import { HiStar } from 'react-icons/hi'
+import { Tooltip } from 'antd'
+import 'antd/dist/antd.css'
+import imgPlaceholder from '../../images/card-banner.png'
+import profilePlaceholder from '../../images/profile-placeholder.png'
+import premiumIcon from '../../images/premium-icon.png'
+import { ProceedButton } from './Buttons'
 
 export const actionBtn = css`
   font-size: 14px;
@@ -21,6 +31,8 @@ export const actionBtn = css`
   border: 1px solid #e5e5e5;
   cursor: pointer;
 `
+
+// General / Client side / shared
 
 export const ServiceCard1 = ({ cardData, clickFunc }) => {
   return (
@@ -57,12 +69,13 @@ export const ServiceCard1 = ({ cardData, clickFunc }) => {
         tw="flex flex-row justify-between items-center"
         css={css`
           margin-top: 8px;
+
           @media (max-width: 1140px) {
             margin-top: 6px;
           }
         `}
       >
-        <h5>{cardData.name}</h5>
+        <h5 style={{ marginBottom: '0' }}>{cardData.name}</h5>
         <BiChevronRight size={18} />
       </div>
     </div>
@@ -254,7 +267,6 @@ export const ReviewCard = ({ cardData }) => {
     </div>
   )
 }
-
 export const RecurringCard = ({
   cardData,
   openModal,
@@ -313,6 +325,126 @@ export const RecurringCard = ({
             Cancel recurring
           </span>
         </div>
+      </div>
+    </div>
+  )
+}
+
+// Vendor side
+export const VendorCard2 = ({
+  cardData,
+  openModal,
+  setOpenModal,
+  modalChild,
+  setModalChild,
+  cardList,
+  setCardList,
+  cardInd,
+}) => {
+  return (
+    <div
+      css={css`
+        width: 247px;
+        background: #ffffff;
+        box-shadow: 0px 4px 8px rgba(16, 24, 51, 0.08);
+        border-radius: 8px;
+        padding: 16px;
+        padding-top: 22px;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        color: #767676;
+        height: max-content;
+      `}
+    >
+      <div>
+        <div tw="flex flex-row items-start justify-between">
+          <div tw="flex flex-row items-start gap-3">
+            <div>
+              <p tw="text-black">{cardData.gig}</p>
+              <p>{cardData.name}</p>
+            </div>
+          </div>
+          <BiChevronRight color="black" size={22} />
+        </div>
+        {cardData.status === 'Event Completed' ? null : (
+          <p tw="mt-4">{cardData.address}</p>
+        )}
+        <div tw="flex flex-row items-center justify-between mt-2">
+          <div>
+            <p>{cardData.date}</p>
+            <p>{cardData.time}</p>
+          </div>
+          <div tw="text-right">
+            <p>
+              &#163;{cardData.price}/{cardData.duration}
+              {cardData.duration > 1 ? 'hrs' : 'hr'}
+            </p>
+            <p tw="text-xs text-gold">{cardData.status}</p>
+          </div>
+        </div>
+      </div>
+      <div
+        css={css`
+          display: ${['Pending Acceptance', 'Event Completed'].includes(
+            cardData.status,
+          )
+            ? 'none'
+            : 'block'};
+        `}
+        tw="mt-5"
+      >
+        {cardData.status === 'Accepted' ? (
+          <div tw="pt-3 border-t border-[#E5E5E5]">
+            <Tooltip
+              title="Activate to confirm you have arrived the venue"
+              overlayInnerStyle={{
+                maxWidth: '172px',
+              }}
+              placement="bottom"
+            >
+              <span
+                tw="w-full grid place-items-center text-[#3E9F4D]"
+                css={actionBtn}
+                onClick={() => {
+                  setModalChild(
+                    <ActivateEvent
+                      setOpenModal={setOpenModal}
+                      vendor={true}
+                      cardList={cardList}
+                      setCardList={setCardList}
+                      cardInd={cardInd}
+                    />,
+                  )
+                  setOpenModal(true)
+                }}
+              >
+                Activate
+              </span>
+            </Tooltip>
+          </div>
+        ) : cardData.status === 'Activated' ? (
+          <div tw="pt-3 border-t border-[#E5E5E5]">
+            <span
+              tw="w-full grid place-items-center text-[#3E9F4D]"
+              css={actionBtn}
+              onClick={() => {
+                setModalChild(
+                  <CompleteEvent
+                    setOpenModal={setOpenModal}
+                    setModalChild={setModalChild}
+                    vendor={true}
+                  />,
+                )
+                setOpenModal(true)
+              }}
+            >
+              Complete Event
+            </span>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   )
@@ -459,6 +591,263 @@ export const NewsCard = ({ cardData }) => {
         <span tw="text-xs text-[#8c8c8c]">{cardData.time}</span>
       </div>
       <p tw="text-xs">{cardData.body}</p>
+    </div>
+  )
+}
+
+export const ServicesListCard = ({ cardData }) => {
+  return (
+    <div
+      css={css`
+        color: #767676;
+        background: #fefefe;
+        box-shadow: 0px 4px 8px rgba(16, 24, 51, 0.08);
+        border-radius: 8px;
+        > :first-child {
+          padding-top: 28px;
+        }
+        > :last-child {
+          padding-bottom: 28px;
+        }
+      `}
+    >
+      {cardData.map((item, ind) => (
+        <div
+          tw="flex flex-row items-start justify-between border-b border-[#EBEBEB]"
+          css={css`
+            padding: 18px 20px;
+          `}
+        >
+          <div>
+            <p tw="text-sm">{item}</p>
+            <p tw="text-xs">{ind === 0 ? 'Primary' : 'Secondary'} Service</p>
+          </div>
+          <p tw="text-gold cursor-pointer">Add+</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export const ViewGig = ({ setOpenModal, setModalChild, setRequestsPhase }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 16px 24px;
+        width: 564px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+
+        h5 {
+          font-size: 18px;
+          line-height: 24px;
+          font-weight: 700;
+          color: #343434;
+          font-family: Montserrat;
+        }
+        p {
+          width: 100%;
+          margin-top: 12px;
+          color: #1a1a1a;
+          font-size: 14px;
+        }
+        span {
+          color: #343434;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+        }}
+      />
+      <div>
+        <Image src={imgPlaceholder} />
+      </div>
+      <div tw="flex flex-row items-center gap-2 mt-5 mb-8">
+        <div tw="w-8 h-8 relative">
+          <Image src={profilePlaceholder} />
+          <div tw="w-3 h-3 absolute bottom-0 right-0">
+            <Image src={premiumIcon} />
+          </div>
+        </div>
+        <div tw="flex flex-col items-start">
+          <span tw="text-[#343434]">by John Smith</span>
+          <span tw="text-[#767676] text-xs">5m ago</span>
+        </div>
+      </div>
+      <div tw="border-b border-[#E5E5E5] w-full py-4">
+        <h5>Event Details</h5>
+        <div
+          tw="w-full mt-3"
+          css={css`
+            > * {
+              > :first-child {
+                font-size: 12px;
+              }
+            }
+          `}
+        >
+          <div tw="flex flex-row items-center justify-between w-full mb-2">
+            <span>Event Type:</span>
+            <span>Birthday Party</span>
+          </div>
+          <div tw="flex flex-row items-center justify-between w-full mb-2">
+            <span>Date:</span>
+            <span>09 May 2020</span>
+          </div>
+          <div tw="flex flex-row items-center justify-between w-full mb-2">
+            <span>Time:</span>
+            <span>13:00</span>
+          </div>
+          <div tw="flex flex-row items-center justify-between w-full mb-2">
+            <span>Dress Code:</span>
+            <span>Smart Casual</span>
+          </div>
+          <div tw="flex flex-row items-center justify-between w-full mb-4">
+            <span>Price:</span>
+            <span>£120</span>
+          </div>
+        </div>
+      </div>
+      <div tw="border-b border-[#E5E5E5] w-full py-4">
+        <h5>Location</h5>
+        <p>1 London Street, London Road, Greater, London SE1 2AB</p>
+      </div>
+      <div tw="flex flex-row items-center gap-9 w-full mt-4">
+        <ProceedButton bg="#f8f8f8" col="#767676" content="Reject" />
+        <div
+          css={css`
+            width: 150%;
+          `}
+        >
+          <ProceedButton
+            bg="#1a1a1a"
+            col="#ffffff"
+            content="Generate Quote"
+            onClick={() => {
+              setRequestsPhase(1)
+            }}
+          />
+        </div>
+        <ProceedButton
+          bg="#de8e0e"
+          col="white"
+          content="Accept"
+          onClick={() => {
+            setModalChild(
+              <EventAccepted
+                setOpenModal={setOpenModal}
+                setRequestsPhase={setRequestsPhase}
+              />,
+            )
+            setOpenModal(true)
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+export const PreviewQuoteCard = ({
+  setOpenModal,
+  setModalChild,
+  setRequestsPhase,
+}) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 16px 24px;
+        width: 564px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+
+        h5 {
+          font-size: 18px;
+          line-height: 24px;
+          font-weight: 700;
+          color: #343434;
+          font-family: Montserrat;
+        }
+        p {
+          width: 100%;
+          margin-top: 12px;
+          color: #1a1a1a;
+          font-size: 14px;
+        }
+        span {
+          color: #343434;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+        }}
+      />
+      <div>
+        <Image src={imgPlaceholder} />
+      </div>
+      <div tw="flex flex-row items-center gap-2 mt-5 mb-8">
+        <div tw="w-8 h-8 relative">
+          <Image src={profilePlaceholder} />
+          <div tw="w-3 h-3 absolute bottom-0 right-0">
+            <Image src={premiumIcon} />
+          </div>
+        </div>
+        <span tw="text-[#343434]">by John Smith</span>
+      </div>
+      <div tw="border-b border-[#E5E5E5] w-full py-4">
+        <h5>Description</h5>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. A magna ut
+          lorem consequat. Lorem ipsum dolor sit. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. A magna ut lorem consequat. Lorem ipsum
+          dolor sit.
+        </p>
+      </div>
+      <div tw="border-b border-[#E5E5E5] w-full py-4">
+        <h5>Pricing</h5>
+        <p>&#163;120</p>
+      </div>
+      <div tw="flex flex-row items-center gap-9 w-full mt-4">
+        <ProceedButton
+          bg="#de8e0e"
+          col="white"
+          content="Publish"
+          onClick={() => {
+            setModalChild(
+              <QuoteSent
+                setOpenModal={setOpenModal}
+                setRequestsPhase={setRequestsPhase}
+              />,
+            )
+            setOpenModal(true)
+          }}
+        />
+      </div>
     </div>
   )
 }

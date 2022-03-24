@@ -2,12 +2,16 @@ import tw, { css } from 'twin.macro'
 import MainNav from '../components/mainNav'
 import SideBar from '../components/sidebar'
 import Home from '../components/vendors/home'
+import Account from '../components/clients/account'
+import Requests from '../components/vendors/requests'
 import { BsShop } from 'react-icons/bs'
 import { useState } from 'react'
+import { PartContext } from '../contexts/vendorPart'
 
 const Vendors = () => {
   const [sideOpen, setSideOpen] = useState(false)
   const [part, setPart] = useState(2)
+  const [requestsPhase, setRequestsPhase] = useState(1)
   const menuItems = [
     { icon: <BsShop />, label: 'Home' },
     { icon: <BsShop />, label: 'My Requests' },
@@ -20,8 +24,14 @@ const Vendors = () => {
   ]
 
   return (
-    <>
-      <MainNav sideOpen={sideOpen} setSideOpen={setSideOpen} />
+    <PartContext.Provider value={part}>
+      <MainNav
+        sideOpen={sideOpen}
+        setSideOpen={setSideOpen}
+        permissions="vendor"
+        setPart={setPart}
+        setRequestsPhase={setRequestsPhase}
+      />
       <main
         css={css`
           display: grid;
@@ -59,13 +69,16 @@ const Vendors = () => {
         {part === 0 ? (
           <Home />
         ) : part === 1 ? (
-          <Home />
+          <Requests
+            requestsPhase={requestsPhase}
+            setRequestsPhase={setRequestsPhase}
+          />
         ) : part === 2 ? (
           <Home />
         ) : part === 3 ? (
           <Home />
         ) : part === 4 ? (
-          <Home />
+          <Account />
         ) : part === 5 ? (
           <Home />
         ) : part === 6 ? (
@@ -76,7 +89,7 @@ const Vendors = () => {
           <Home />
         )}
       </main>
-    </>
+    </PartContext.Provider>
   )
 }
 

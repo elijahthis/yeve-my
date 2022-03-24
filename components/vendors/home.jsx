@@ -4,7 +4,7 @@ import { sectionStyles } from '../../styles/GeneralStyles'
 import { BsShop } from 'react-icons/bs'
 import { VendorInfoCard } from '../pieces/cards'
 import { VendorProfile } from './homeParts'
-import { UpcomingLiveList, NewsCard } from '../pieces/cards'
+import { UpcomingLiveList, NewsCard, ServicesListCard } from '../pieces/cards'
 import YeveWallet from '../pieces/yeveWallet'
 import imgPlaceholder from '../../images/musician-5.png'
 import { DateFilter } from '../formTools'
@@ -61,6 +61,7 @@ const Home = () => {
       address: '10 Downing street, SE11 6FA',
     },
   ]
+  const myServicesList = ['Service 1', 'Service 2', 'Service 3']
   const newsData = {
     image: imgPlaceholder,
     title: 'The future of events',
@@ -139,6 +140,13 @@ const Home = () => {
               <div>
                 <h5>Yeve News</h5>
                 <NewsCard cardData={newsData} />
+              </div>
+              <div>
+                <div tw="flex flex-row items-center justify-between mb-4">
+                  <h5 style={{ marginBottom: '0' }}>My Services</h5>
+                  <p>0/3 added</p>
+                </div>
+                <ServicesListCard cardData={myServicesList} />
               </div>
             </div>
           </div>

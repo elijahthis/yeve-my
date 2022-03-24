@@ -5,9 +5,10 @@ import vidPlaceholder2 from '../../images/vid-placeholder-2.png'
 import profilePlaceholder from '../../images/profile-1.png'
 import avatarPlaceholder from '../../images/avatar.png'
 import { AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai'
+import { BsArrowRight } from 'react-icons/bs'
 import { FaPlay, FaSearch } from 'react-icons/fa'
-import { FiMoreVertical } from 'react-icons/fi'
-import { HiStar } from 'react-icons/hi'
+import { IoClose, IoPersonOutline } from 'react-icons/io5'
+import { ProceedButton, BackButton } from '../pieces/Buttons'
 import Post from '../pieces/post'
 import service1 from '../../images/service1.png'
 import service2 from '../../images/service2.png'
@@ -15,7 +16,14 @@ import service3 from '../../images/service3.png'
 import service4 from '../../images/service4.png'
 import service5 from '../../images/service5.png'
 import service6 from '../../images/service6.png'
-import { ServiceCard1, ReviewCard } from '../pieces/cards'
+import musician1 from '../../images/musician-1.png'
+import musician2 from '../../images/musician-2.png'
+import musician3 from '../../images/musician-3.png'
+import musician4 from '../../images/musician-4.png'
+import musician5 from '../../images/musician-5.png'
+import musician6 from '../../images/musician-6.png'
+import { ServiceCard1, ServiceCard2, ReviewCard } from '../pieces/cards'
+import { useState } from 'react'
 
 export const MyProfile = () => {
   return (
@@ -232,7 +240,7 @@ export const Feed = () => {
   )
 }
 
-export const Services = () => {
+export const ServicePhaseNull = ({ servicePhase, setServicePhase }) => {
   const categories = [
     { name: 'Musicians', image: service1 },
     { name: 'Child Performer', image: service2 },
@@ -245,10 +253,11 @@ export const Services = () => {
     <div
       css={css`
         max-width: 706px;
+        margin-top: 24px;
       `}
     >
       <div
-        tw="flex flex-row items-center justify-between my-7"
+        tw="flex flex-row items-center justify-between my-4"
         css={css`
           @media (max-width: 1140px) {
             margin: 16px 0;
@@ -262,7 +271,6 @@ export const Services = () => {
           }
         `}
       >
-        <h5>Welcome</h5>
         <p tw="font-semibold">Choose from a list of service categories below</p>
       </div>
       <div
@@ -288,7 +296,7 @@ export const Services = () => {
             <ServiceCard1
               cardData={cat}
               clickFunc={() => {
-                // setServicePhase(0)
+                setServicePhase(0)
               }}
               key={ind}
             />
@@ -297,4 +305,151 @@ export const Services = () => {
       </div>
     </div>
   )
+}
+export const ChooseService = ({
+  servicePhase,
+  setServicePhase,
+  formData,
+  setFormData,
+}) => {
+  const musicianList = [
+    { title: 'Keyboardist', image: musician1 },
+    { title: 'Drummer', image: musician2 },
+    { title: 'Bass Guitarist', image: musician3 },
+    { title: 'Vocalist', image: musician4 },
+    { title: 'Electric Guitarist', image: musician5 },
+    { title: 'Acoustic Guitarist', image: musician6 },
+  ]
+  const services = [
+    { name: 'Musicians', list: musicianList },
+    { name: 'Child Performer', list: musicianList },
+    { name: 'Food & Drinks', list: musicianList },
+    { name: 'Security', list: musicianList },
+    { name: 'Wedding', list: musicianList },
+    { name: 'Event Travel', list: musicianList },
+  ]
+  const [serviceField, setServiceField] = useState(formData.services)
+  return (
+    <div
+      css={css`
+        margin-top: 24px;
+      `}
+    >
+      <div tw="flex flex-row items-center mb-4">
+        <BackButton
+          onClick={() => {
+            setServicePhase(null)
+          }}
+        />
+        <h5
+          style={{ marginBottom: '0' }}
+          css={css`
+            margin-left: 40px;
+            @media (max-width: 1140px) {
+              margin-left: 16px;
+            }
+          `}
+        >
+          {services[servicePhase].name}
+        </h5>
+      </div>
+
+      <div
+        tw="flex flex-row flex-wrap gap-5"
+        css={css`
+          gap: 20px;
+          @media (max-width: 1140px) {
+            gap: 9px;
+          }
+        `}
+      >
+        {services[servicePhase].list.map((item, ind) => (
+          <div
+            css={css`
+              width: 248px;
+              height: 126px;
+              @media (max-width: 1140px) {
+                width: clamp(155px, 40vw, 276px);
+                height: clamp(80px, 20vw, 140px);
+              }
+            `}
+          >
+            <ServiceCard2
+              cardData={item}
+              clickFunc={() => {
+                serviceField.includes(item.title)
+                  ? setServiceField(
+                      serviceField.filter(x => {
+                        return x !== item.title
+                      }),
+                    )
+                  : setServiceField([...new Set([...serviceField, item.title])])
+              }}
+              referenceList={serviceField}
+              key={ind}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export const Services = () => {
+  const [servicePhase, setServicePhase] = useState(null)
+  const [formData, setFormData] = useState({
+    services: [],
+    details: {
+      postcode: '',
+      address: '',
+      fromDate: '',
+      fromTime: '',
+      toDate: '',
+      toTime: '',
+      numHours: 1,
+      moreInfo: '',
+    },
+    rehearsals: {
+      state: false,
+      count: 0,
+      same: false,
+      address: '',
+      date: '',
+      time: '',
+    },
+    eventType: { type: '', recurring: false, period: 'Weekly', dayMonth: '' },
+    dressCode: { dressCode: '' },
+    budget: [],
+    vendorPreferences: { count: 1, experienceLevel: 'All' },
+  })
+  switch (servicePhase) {
+    case null:
+      return (
+        <ServicePhaseNull
+          servicePhase={servicePhase}
+          setServicePhase={setServicePhase}
+        />
+      )
+      break
+
+    case 0:
+      return (
+        <ChooseService
+          servicePhase={servicePhase}
+          setServicePhase={setServicePhase}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )
+      break
+
+    default:
+      return (
+        <ServicePhaseNull
+          servicePhase={servicePhase}
+          setServicePhase={setServicePhase}
+        />
+      )
+      break
+  }
 }

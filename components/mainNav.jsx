@@ -1,12 +1,15 @@
 import Image from 'next/image'
 import tw, { css } from 'twin.macro'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Logo, Button } from './../components'
 import { GoMail } from 'react-icons/go'
 import { FiCalendar } from 'react-icons/fi'
 import { BiBell } from 'react-icons/bi'
 import { FaSearch } from 'react-icons/fa'
 import profileImg from '../images/profile-img.png'
+import { Tooltip } from 'antd'
+import 'antd/dist/antd.css'
+import { FeaturesToolTip, NotificationsToolTip } from './pieces/Tooltips'
 
 const navCSS = css`
   display: flex;
@@ -25,7 +28,20 @@ const navCSS = css`
   }
 `
 
-const MainNav = ({ sideOpen, setSideOpen }) => {
+const MainNav = ({
+  sideOpen,
+  setSideOpen,
+  permissions,
+  setPart,
+  setRequestsPhase,
+}) => {
+  const [showNotif, setShowNotif] = useState(false)
+  useEffect(() => {
+    document.body.addEventListener('click', () => {
+      setShowNotif(false)
+    })
+  }, [])
+
   return (
     <>
       <header css={navCSS} tw="border-b border-[#e5e5e5]">
@@ -47,7 +63,38 @@ const MainNav = ({ sideOpen, setSideOpen }) => {
         <div tw="flex flex-row items-center gap-10">
           <GoMail size={25} color="#404040" />
           <FiCalendar size={25} color="#404040" />
-          <BiBell size={25} color="#404040" />
+          <div tw="relative">
+            <BiBell
+              size={25}
+              color="#404040"
+              onClick={ev => {
+                ev.stopPropagation()
+                setShowNotif(!showNotif)
+              }}
+              tw="cursor-pointer"
+            />
+            <div
+              css={css`
+                position: absolute;
+                transform: translate3d(-80%, 15%, 0);
+                background-color: #ffffff;
+                border-radius: 4px;
+                box-shadow: 0px 4px 8px rgba(16, 24, 51, 0.08);
+                z-index: 4;
+                display: ${showNotif ? 'block' : 'none'};
+              `}
+              className="notifications"
+              onClick={ev => {
+                ev.stopPropagation()
+              }}
+            >
+              <NotificationsToolTip
+                setPart={setPart}
+                setRequestsPhase={setRequestsPhase}
+              />
+            </div>
+          </div>
+
           <Image src={profileImg} alt="" width="40px" height="40px" />
         </div>
       </header>

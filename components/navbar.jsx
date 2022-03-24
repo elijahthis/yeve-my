@@ -2,7 +2,8 @@ import { Logo, Button } from './../components'
 import tw, { css } from 'twin.macro'
 import { useState } from 'react'
 import Link from 'next/link'
-import ToolTip from './pieces/tooltip'
+import { Tooltip } from 'antd'
+import 'antd/dist/antd.css'
 import { FeaturesToolTip } from './pieces/Tooltips'
 
 const Logo1 = () => (
@@ -93,6 +94,7 @@ const Navbar = ({ page }) => {
         tw="flex flex-row justify-between px-20 py-7 text-sm text-white"
         css={css`
           padding: 28px clamp(21px, 6vw, 80px);
+
           @media (max-width: 1140px) {
             display: none;
           }
@@ -102,14 +104,22 @@ const Navbar = ({ page }) => {
         <nav>
           <ul tw="w-96 flex flex-row justify-between my-auto mx-0">
             {navItems.map((item, ind) => (
-              <li
-                key={ind}
-                css={ind === page ? active : linkItem}
-                tw="hover:cursor-pointer relative"
+              <Tooltip
+                title={item.tooltip ? item.tooltip : null}
+                overlayInnerStyle={{
+                  backgroundColor: 'rgba(255,255,255,1)',
+                  width: 'max-content',
+                }}
+                arrowPointAtCenter={true}
               >
-                <span>{item.title}</span>
-                {/* {item.tooltip ? <ToolTip>{item.tooltip}</ToolTip> : null} */}
-              </li>
+                <li
+                  key={ind}
+                  css={ind === page ? active : linkItem}
+                  tw="hover:cursor-pointer relative"
+                >
+                  <span>{item.title}</span>
+                </li>
+              </Tooltip>
             ))}
           </ul>
         </nav>
