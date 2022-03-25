@@ -48,7 +48,7 @@ const UpgradeCard = ({ cardData, current, setCurrent, ind, setPhase }) => {
           What's included:
         </p>
         <ol tw="mt-4">
-          {cardData.features.map(feature, ind => (
+          {cardData.features.map((feature, ind) => (
             <li tw="flex flex-row items-center gap-4 mb-3" key={ind}>
               <div tw="p-1 bg-white rounded-full text-[#65B02A] border-2 border-[#65B02A]">
                 <FiCheck strokeWidth={3} size={12} />

@@ -2,7 +2,6 @@ import tw, { css } from 'twin.macro'
 import Image from 'next/image'
 import profileImg from '../../images/profile-img.png'
 import bannerImg from '../../images/profile-banner.png'
-import Modal from '../modal'
 import { CreatePost } from '../modalChildren'
 import { BsShop, BsQuestionCircleFill } from 'react-icons/bs'
 import { FaSearch } from 'react-icons/fa'
@@ -16,7 +15,7 @@ import { sectionStyles } from '../../styles/GeneralStyles'
 import { ToggleText } from '../formTools'
 import { MyProfile, Reviews, Feed, Services } from './homeStates'
 
-const VendorTabs = () => {
+const VendorTabs = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   const profileData = [
     {
       title: 'My Profile',
@@ -112,6 +111,7 @@ const VendorTabs = () => {
                 </div>
               }
               onClick={() => {
+                setModalChild(<CreatePost setOpenModal={setOpenModal} />)
                 setOpenModal(true)
               }}
             />
@@ -148,7 +148,12 @@ const VendorTabs = () => {
   )
 }
 
-export const VendorProfile = () => {
+export const VendorProfile = ({
+  openModal,
+  setOpenModal,
+  modalChild,
+  setModalChild,
+}) => {
   return (
     <>
       <section css={sectionStyles} style={{ overflow: 'hidden', padding: '0' }}>
@@ -271,7 +276,12 @@ export const VendorProfile = () => {
                 ut lorem consequat. Lorem ipsum dolor sit.
               </p>
             </div>
-            <VendorTabs />
+            <VendorTabs
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              modalChild={modalChild}
+              setModalChild={setModalChild}
+            />
           </div>
         </div>
       </section>

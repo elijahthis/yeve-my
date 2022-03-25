@@ -1,4 +1,6 @@
 import tw, { css } from 'twin.macro'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import VendorsLayout from '../../layouts/vendorsLayout'
 import { PendingActionsBanner } from '../../components/pieces/pendingActions'
 import { sectionStyles } from '../../styles/GeneralStyles'
@@ -13,8 +15,15 @@ import {
 import YeveWallet from '../../components/pieces/yeveWallet'
 import imgPlaceholder from '../../images/musician-5.png'
 import { DateFilter } from '../../components/formTools'
+import Modal from '../../components/modal'
+import { ProceedButton } from '../../components/pieces/Buttons'
 
-export const HomeRoot = () => {
+export const HomeRoot = ({
+  openModal,
+  setOpenModal,
+  modalChild,
+  setModalChild,
+}) => {
   const infoCards = [
     {
       title: 'Number of Gigs',
@@ -73,13 +82,21 @@ export const HomeRoot = () => {
     time: '5h',
     body: 'The coronavirus pandemic has had adevastating effect on the music industryshort-term. Live music revenue, whichwas predicted to generate almost £30bnfor the industry in 2020... Read More',
   }
+
+  const router = useRouter()
+
   return (
     <section>
       <div tw="flex flex-row items-center justify-between py-3 px-4 bg-white">
         <p tw="text-[#8C8C8C] text-sm">You are currently on free plan</p>
-        <a href="/" tw="text-gold mr-9">
+        <p
+          tw="text-gold mr-9 font-semibold cursor-pointer"
+          onClick={() => {
+            router.push('/vendors/upgrade')
+          }}
+        >
           View
-        </a>
+        </p>
       </div>
       <section
         css={sectionStyles}
@@ -117,7 +134,12 @@ export const HomeRoot = () => {
               ))}
             </div>
             <div>
-              <VendorProfile />
+              <VendorProfile
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                modalChild={modalChild}
+                setModalChild={setModalChild}
+              />
             </div>
           </div>
           <div>
@@ -153,6 +175,14 @@ export const HomeRoot = () => {
                 </div>
                 <ServicesListCard cardData={myServicesList} />
               </div>
+              <div>
+                <ProceedButton
+                  content="Generate Quote"
+                  onClick={() => {
+                    router.push('/vendors/my-requests/generate-quoteB')
+                  }}
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -162,9 +192,27 @@ export const HomeRoot = () => {
 }
 
 const Home = () => {
+  const [openModal, setOpenModal] = useState(false)
+  const [modalChild, setModalChild] = useState(<></>)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <VendorsLayout>
-      <HomeRoot />
+      <HomeRoot
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        modalChild={modalChild}
+        setModalChild={setModalChild}
+      />
+      {mounted ? (
+        <Modal openModal={openModal} setOpenModal={setOpenModal}>
+          {modalChild}
+        </Modal>
+      ) : null}
     </VendorsLayout>
   )
 }

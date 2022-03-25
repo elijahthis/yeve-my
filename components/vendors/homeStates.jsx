@@ -41,7 +41,7 @@ export const MyProfile = () => {
         </div>
       </form>
       <div
-        tw="flex flex-row flex-wrap gap-6 justify-between py-9"
+        tw="flex flex-row flex-wrap gap-6 py-9"
         css={css`
           @media (max-width: 1140px) {
             column-gap: 6px;

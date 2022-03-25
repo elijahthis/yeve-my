@@ -6,8 +6,8 @@ export const ProceedButton = ({ content, onClick, bg, col }) => {
   return (
     <button
       css={css`
-        background-color: ${bg};
-        color: ${col};
+        background-color: ${bg ? bg : '#de8e0e'};
+        color: ${col ? col : '#ffffff'};
       `}
       tw="py-3 w-full rounded font-semibold grid place-items-center text-sm cursor-pointer"
       onClick={onClick}
