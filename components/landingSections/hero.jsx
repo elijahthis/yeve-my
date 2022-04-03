@@ -1,9 +1,8 @@
 import tw, { css } from 'twin.macro'
-import Navbar from './navbar'
+import Navbar from '../navbar'
 import Image from 'next/image'
-import heroSide from '../images/hero-side.png'
-import { Button } from './../components'
-// import { Button } from 'antd'
+import heroSide from '../../images/hero-side.png'
+import { Button } from '../../components'
 
 export const heroBlock = css`
   padding: 135px 106px 40px 158px;

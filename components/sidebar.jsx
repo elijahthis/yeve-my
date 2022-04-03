@@ -43,6 +43,14 @@ const Logo1 = () => (
 
 const SideBar = ({ menuList, sideOpen, setSideOpen }) => {
   const router = useRouter()
+  let basePath = router.pathname.startsWith(`/vendors`)
+    ? '/vendors/'
+    : router.pathname.startsWith(`/clients`)
+    ? '/clients/'
+    : router.pathname.startsWith(`/admin`)
+    ? '/admin/'
+    : '/clients/'
+
   const sideBar = css`
     display: flex;
     flex-direction: column;
@@ -71,7 +79,8 @@ const SideBar = ({ menuList, sideOpen, setSideOpen }) => {
     }
   `
   useEffect(() => {
-    console.log(router.pathname)
+    console.log(router.pathname, basePath)
+    console.log(menuList)
   }, [])
 
   return (
@@ -84,21 +93,21 @@ const SideBar = ({ menuList, sideOpen, setSideOpen }) => {
           key={ind}
           css={css`
             background-color: ${router.pathname.startsWith(
-              `/vendors/${item.route}`,
+              basePath + item.route,
             )
               ? 'rgba(222, 142, 14, 0.05)'
               : 'transparent'};
-            color: ${router.pathname.startsWith(`/vendors/${item.route}`)
+            color: ${router.pathname.startsWith(basePath + item.route)
               ? '#1A1A1A'
               : '#767676'};
-            border-right: ${router.pathname.startsWith(`/vendors/${item.route}`)
+            border-right: ${router.pathname.startsWith(basePath + item.route)
               ? '4px solid #de8e0e'
               : '0'};
             cursor: pointer;
           `}
           tw="flex flex-row items-center gap-5 text-sm py-4 px-6"
           onClick={() => {
-            router.push(`/vendors/${item.route}`, undefined, { shallow: true })
+            router.push(basePath + item.route, undefined, { shallow: true })
             setSideOpen(false)
           }}
         >

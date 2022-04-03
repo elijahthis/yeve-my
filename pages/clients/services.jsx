@@ -1,5 +1,8 @@
 import tw, { css } from 'twin.macro'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import ClientsLayout from '../../layouts/clientsLayout'
 import service1 from '../../images/service1.png'
 import service2 from '../../images/service2.png'
 import service3 from '../../images/service3.png'
@@ -7,12 +10,16 @@ import service4 from '../../images/service4.png'
 import service5 from '../../images/service5.png'
 import service6 from '../../images/service6.png'
 import profileImg from '../../images/profile-img.png'
-import TabBar from '../pieces/tabBar'
+import TabBar from '../../components/pieces/tabBar'
 import { BiChevronRight } from 'react-icons/bi'
-import { useState, useEffect } from 'react'
-import { ChooseService, ServiceRequest, RequestSummary } from './servicePhases'
+import {
+  ChooseService,
+  ServiceRequest,
+  RequestSummary,
+} from '../../components/clients/servicePhases'
 import { sectionStyles } from '../../styles/GeneralStyles'
-import { ServiceCard1 } from '../pieces/cards'
+import { ServiceCard1 } from '../../components/pieces/cards'
+import Modal from '../../components/modal'
 
 const ServiceComponent1 = ({ setServicePhase }) => {
   const categories = [
@@ -152,7 +159,12 @@ const RecurringComponent2 = () => {
   )
 }
 
-const Services = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
+const ServicesRoot = ({
+  openModal,
+  setOpenModal,
+  modalChild,
+  setModalChild,
+}) => {
   const [servicePhase, setServicePhase] = useState(null)
   const [formData, setFormData] = useState({
     services: [],
@@ -186,7 +198,6 @@ const Services = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
     },
     { title: 'UPCOMING', component: <RecurringComponent2 /> },
   ]
-
   switch (servicePhase) {
     case null:
       return (
@@ -254,9 +265,7 @@ const Services = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
           setServicePhase={setServicePhase}
           formData={formData}
           setFormData={setFormData}
-          openModal={openModal}
           setOpenModal={setOpenModal}
-          modalChild={modalChild}
           setModalChild={setModalChild}
         />
       )
@@ -271,6 +280,34 @@ const Services = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
       )
       break
   }
+}
+
+const Services = () => {
+  const [openModal, setOpenModal] = useState(false)
+  const [modalChild, setModalChild] = useState(<></>)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  return (
+    <>
+      <ClientsLayout>
+        <ServicesRoot
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          modalChild={modalChild}
+          setModalChild={setModalChild}
+        />
+        {mounted ? (
+          <Modal openModal={openModal} setOpenModal={setOpenModal}>
+            {modalChild}
+          </Modal>
+        ) : null}
+      </ClientsLayout>
+    </>
+  )
 }
 
 export default Services

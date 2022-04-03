@@ -1,16 +1,16 @@
 import Image from 'next/image'
-import SearchBar from './searchbar'
+import SearchBar from '../searchbar'
 import { heroBlock } from './hero'
 import tw, { css } from 'twin.macro'
-import { Button } from './../components'
+import { Button } from '../../components'
 import { FaRegBell } from 'react-icons/fa'
-import cardBanner from '../images/card-banner.png'
-import service1 from '../images/service1.png'
-import service2 from '../images/service2.png'
-import service3 from '../images/service3.png'
-import service4 from '../images/service4.png'
-import service5 from '../images/service5.png'
-import service6 from '../images/service6.png'
+import cardBanner from '../../images/card-banner.png'
+import service1 from '../../images/service1.png'
+import service2 from '../../images/service2.png'
+import service3 from '../../images/service3.png'
+import service4 from '../../images/service4.png'
+import service5 from '../../images/service5.png'
+import service6 from '../../images/service6.png'
 
 const clientList = [
   'Busy sity is not so easy and it required time and skills to make it all easy going  sity is not so easy and it required time.',
@@ -23,11 +23,6 @@ const vendorList = [
   'Busy sity is not so easy and it required time and skills to make it all easy going  sity is not so easy and it required time.',
 ]
 
-const servicesSection = css`
-  // min-height: 200vh;
-  background-color: #ffffff;
-  position: relative;
-`
 const card = css`
   position: relative;
   width: clamp(300px, 80vw, 366px);
@@ -51,7 +46,13 @@ const card2 = css`
 
 const Services = () => {
   return (
-    <section css={servicesSection}>
+    <section
+      css={css`
+        // min-height: 200vh;
+        background-color: #ffffff;
+        position: relative;
+      `}
+    >
       <SearchBar />
       <div css={heroBlock} tw="gap-8">
         <div

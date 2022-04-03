@@ -172,7 +172,7 @@ export const ProfileInfo = () => {
   )
 }
 
-export const Payment = () => {
+export const Payment = ({ setOpenModal, setModalChild }) => {
   const [paymentPart, setPaymentPart] = useState(null)
 
   switch (paymentPart) {
@@ -306,7 +306,12 @@ export const Payment = () => {
       )
     case 2:
       return (
-        <YeveWalletSection paymentPart={paymentPart} setPaymentPart={setPaymentPart} />
+        <YeveWalletSection
+          paymentPart={paymentPart}
+          setPaymentPart={setPaymentPart}
+          setOpenModal={setOpenModal}
+          setModalChild={setModalChild}
+        />
       )
     default:
       return (

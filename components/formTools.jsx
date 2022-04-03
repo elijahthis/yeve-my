@@ -1,11 +1,16 @@
 import tw, { css } from 'twin.macro'
+import { useState, useEffect } from 'react'
 import 'antd/dist/antd.css'
 import { DatePicker, Radio, Menu, Dropdown, Button } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
-import { useDebugValue, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import 'antd/dist/antd.css'
 import { Switch } from 'antd'
+import {
+  MdOutlineModeEdit,
+  MdDeleteOutline,
+  MdOutlineMoreVert,
+} from 'react-icons/md'
 import { FiCalendar } from 'react-icons/fi'
 
 export const DropdownMenu = ({ list, placeholder, onChange }) => {
@@ -248,6 +253,42 @@ export const DateFilter = () => {
         ))}
       </div>
       <FiCalendar size={16} />
+    </div>
+  )
+}
+
+export const CrudOptions = ({ more, moreList }) => {
+  const [openPopUp, setOpenPopUp] = useState(false)
+  useEffect(() => {
+    document.body.addEventListener('click', () => setOpenPopUp(false))
+  }, [])
+
+  return (
+    <div
+      tw="flex flex-row items-center gap-12"
+      css={css`
+        svg {
+          cursor: pointer;
+        }
+      `}
+    >
+      <div tw="flex flex-row items-center gap-6">
+        <MdOutlineModeEdit size={18} />
+        <MdDeleteOutline size={18} />
+      </div>
+      {more ? (
+        <div
+          tw="relative"
+          onClick={ev => {
+            ev.stopPropagation()
+          }}
+        >
+          <div onClick={() => setOpenPopUp(!openPopUp)}>
+            <MdOutlineMoreVert size={18} />
+          </div>
+          {openPopUp ? moreList : null}
+        </div>
+      ) : null}
     </div>
   )
 }

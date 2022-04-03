@@ -79,5 +79,64 @@ const GridView = ({ list, headers }) => {
     </div>
   )
 }
+export const GridView2 = ({ list, headers }) => {
+  return (
+    <div
+      css={css`
+        margin-top: 27px;
+        table {
+          //   border-spacing: 16px;
+          width: 100%;
+          background: #ffffff;
+          border-radius: 8px;
+          font-family: 'Open Sans';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 24px;
+        }
+
+        td {
+          text-align: left;
+          padding: 20px;
+          border-bottom: 1px solid #e5e5e5;
+        }
+        th {
+          text-align: left;
+          padding: 12px 20px;
+          border-bottom: 1px solid #e5e5e5;
+          font-weight: 600;
+        }
+      `}
+    >
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input type="checkbox" name="" id="" />
+            </th>
+            {headers.map((header, ind) => (
+              <th key={ind}>{header[0]}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((item, ind) => {
+            return (
+              <tr key={ind}>
+                <td>
+                  <input type="checkbox" name="" id="" />
+                </td>
+                {headers.map(header => (
+                  <td>{item[header[1]]}</td>
+                ))}
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
+}
 
 export default GridView

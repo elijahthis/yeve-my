@@ -1,19 +1,20 @@
 import tw, { css } from 'twin.macro'
-import { useState } from 'react'
 import MainNav from '../components/mainNav'
 import SideBar from '../components/sidebar'
 import { BsShop } from 'react-icons/bs'
+import { useState } from 'react'
 
-const ClientsLayout = ({ children }) => {
+const AdminLayout = ({ children }) => {
   const [sideOpen, setSideOpen] = useState(false)
   const menuItems = [
-    { icon: <BsShop />, label: 'Services', route: 'services' },
-    { icon: <BsShop />, label: 'Requests', route: 'requests' },
-    { icon: <BsShop />, label: 'My Profile', route: 'my-profile' },
-    { icon: <BsShop />, label: 'Messages', route: 'messages' },
-    { icon: <BsShop />, label: 'Events', route: 'events' },
-    { icon: <BsShop />, label: 'Calendar', route: 'calendar' },
-    { icon: <BsShop />, label: 'Account', route: 'account' },
+    { icon: <BsShop />, label: 'Dashboard', route: 'dashboard' },
+    { icon: <BsShop />, label: 'Suppliers', route: 'suppliers' },
+    { icon: <BsShop />, label: 'Customers', route: 'customers' },
+    { icon: <BsShop />, label: 'Orders', route: 'orders' },
+    { icon: <BsShop />, label: 'Messaging', route: 'messaging' },
+    { icon: <BsShop />, label: 'Admins', route: 'admins' },
+    { icon: <BsShop />, label: 'CMS', route: 'cms' },
+    { icon: <BsShop />, label: 'Help & Support', route: 'help-and-support' },
   ]
 
   return (
@@ -21,7 +22,7 @@ const ClientsLayout = ({ children }) => {
       <MainNav
         sideOpen={sideOpen}
         setSideOpen={setSideOpen}
-        permissions="client"
+        permissions="vendor"
       />
       <main
         css={css`
@@ -61,4 +62,4 @@ const ClientsLayout = ({ children }) => {
   )
 }
 
-export default ClientsLayout
+export default AdminLayout

@@ -1,17 +1,25 @@
 import tw, { css } from 'twin.macro'
-import { useState } from 'react'
-import TabBar from '../pieces/tabBar'
+import { useState, useEffect } from 'react'
+import Image from 'next/image'
+import ClientsLayout from '../../layouts/clientsLayout'
+import TabBar from '../../components/pieces/tabBar'
 import {
   PendingRequests,
   ActiveBookings,
   PastBookings,
   RecurringBookings,
-} from './requestParts'
-import { SearchBar, DropdownMenu } from '../formTools'
+} from '../../components/clients/requestParts'
+import { SearchBar, DropdownMenu } from '../../components/formTools'
 import { BsSortDownAlt, BsSortUp, BsListTask, BsGridFill } from 'react-icons/bs'
 import { sectionStyles } from '../../styles/GeneralStyles'
+import Modal from '../../components/modal'
 
-const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
+const RequestsRoot = ({
+  openModal,
+  setOpenModal,
+  modalChild,
+  setModalChild,
+}) => {
   const [shape, setShape] = useState(0)
   const requestTabData = [
     {
@@ -102,6 +110,32 @@ const Requests = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
         />
       </div>
     </section>
+  )
+}
+
+const Requests = () => {
+  const [openModal, setOpenModal] = useState(false)
+  const [modalChild, setModalChild] = useState(<></>)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  return (
+    <ClientsLayout>
+      <RequestsRoot
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        modalChild={modalChild}
+        setModalChild={setModalChild}
+      />
+      {mounted ? (
+        <Modal openModal={openModal} setOpenModal={setOpenModal}>
+          {modalChild}
+        </Modal>
+      ) : null}
+    </ClientsLayout>
   )
 }
 

@@ -69,9 +69,6 @@ export const PendingRequests = ({
           />
         </div>
       )}
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        {modalChild}
-      </Modal>
     </>
   )
 }
@@ -138,9 +135,6 @@ export const ActiveBookings = ({
           />
         </div>
       )}
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        {modalChild}
-      </Modal>
     </>
   )
 }
@@ -207,9 +201,6 @@ export const PastBookings = ({
           />
         </div>
       )}
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        {modalChild}
-      </Modal>
     </>
   )
 }
@@ -267,9 +258,6 @@ export const RecurringBookings = ({
           />
         ))}
       </div>
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        {modalChild}
-      </Modal>
     </>
   )
 }

@@ -771,9 +771,7 @@ export const RequestSummary = ({
   setServicePhase,
   formData,
   setFormData,
-  openModal,
   setOpenModal,
-  modalChild,
   setModalChild,
 }) => {
   return (
@@ -1267,9 +1265,6 @@ export const RequestSummary = ({
           </div>
         </div>
       </section>
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        {modalChild}
-      </Modal>
     </>
   )
 }

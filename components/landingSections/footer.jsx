@@ -1,11 +1,11 @@
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
-import sponsor1 from '../images/sponsor1.png'
-import sponsor2 from '../images/sponsor2.png'
-import sponsor3 from '../images/sponsor3.png'
-import sponsor4 from '../images/sponsor4.png'
-import sponsor5 from '../images/sponsor5.png'
-import sponsor6 from '../images/sponsor6.png'
+import sponsor1 from '../../images/sponsor1.png'
+import sponsor2 from '../../images/sponsor2.png'
+import sponsor3 from '../../images/sponsor3.png'
+import sponsor4 from '../../images/sponsor4.png'
+import sponsor5 from '../../images/sponsor5.png'
+import sponsor6 from '../../images/sponsor6.png'
 
 const Footer = () => {
   return (

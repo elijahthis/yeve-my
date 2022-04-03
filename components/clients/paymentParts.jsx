@@ -257,9 +257,12 @@ export const CardDetails = ({ paymentPart, setPaymentPart }) => {
   )
 }
 
-export const YeveWalletSection = ({ paymentPart, setPaymentPart }) => {
-  const [openModal, setOpenModal] = useState(false)
-
+export const YeveWalletSection = ({
+  paymentPart,
+  setPaymentPart,
+  setOpenModal,
+  setModalChild,
+}) => {
   return (
     <>
       <div
@@ -328,6 +331,9 @@ export const YeveWalletSection = ({ paymentPart, setPaymentPart }) => {
                 <span
                   tw="text-sm text-gold cursor-pointer"
                   onClick={() => {
+                    setModalChild(
+                      <WithdrawEarnings setOpenModal={setOpenModal} />,
+                    )
                     setOpenModal(true)
                   }}
                 >
@@ -348,9 +354,6 @@ export const YeveWalletSection = ({ paymentPart, setPaymentPart }) => {
           </form>
         </div>
       </div>
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        <WithdrawEarnings setOpenModal={setOpenModal} />
-      </Modal>
     </>
   )
 }

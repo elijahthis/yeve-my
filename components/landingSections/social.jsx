@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { heroBlock } from './hero'
 import tw, { css } from 'twin.macro'
-import { Button } from './../components'
-import groupSide from '../images/group-side.png'
-import socialSide from '../images/social-side.png'
+import { Button } from '../../components'
+import groupSide from '../../images/group-side.png'
+import socialSide from '../../images/social-side.png'
 
 const socialList = [
   'Busy sity is not so easy and it required time and skills to make it all easy going  sity is not so easy and it required time.',
@@ -11,9 +11,6 @@ const socialList = [
   'Busy sity is not so easy and it required time and skills to make it all easy going  sity is not so easy and it required time.',
 ]
 
-const socialSection = css`
-  background-color: #ffffff;
-`
 const socialBlock = css`
   margin: 135px 106px 40px 158px;
   padding: 25px 56px;
@@ -57,7 +54,11 @@ const socialBlock = css`
 
 const Social = () => {
   return (
-    <section css={socialSection}>
+    <section
+      css={css`
+        background-color: #ffffff;
+      `}
+    >
       <div css={heroBlock}>
         <div tw="flex flex-col justify-center items-center w-full">
           <div tw="mb-3 text-gold font-semibold">YEVE SOCIAL</div>
