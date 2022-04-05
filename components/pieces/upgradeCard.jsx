@@ -35,7 +35,7 @@ const UpgradeCard = ({ cardData, current, setCurrent, ind, setPhase }) => {
               checkedChildren="Monthly"
               unCheckedChildren="Annually"
               changeFunc={val => setCycle(val)}
-            />
+            />  
           </div>
         ) : null}
       </div>

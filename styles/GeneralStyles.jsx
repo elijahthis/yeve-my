@@ -1,4 +1,5 @@
 import tw, { css } from 'twin.macro'
+import { keyframes } from '@emotion/react'
 
 export const sectionStyles = css`
   background-color: #fafafa;
@@ -43,6 +44,7 @@ export const sectionStyles = css`
     }
   }
 `
+
 export const formStyles = css`
   display: grid;
   grid-template-columns: 316px 1fr;
@@ -61,6 +63,16 @@ export const formStyles = css`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    .double {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+      > * {
+        width: 100%;
+      }
+    }
   }
   label {
     display: flex;
@@ -97,12 +109,66 @@ export const formStyles = css`
     }
   }
 `
+
+export const formCoreStyles = css`
+  h4 {
+    margin: 16px 0;
+  }
+  .form-div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .double {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+      > * {
+        width: 100%;
+      }
+    }
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  input,
+  textarea {
+    padding: 12px 16px;
+    border-radius: 4px;
+    background-color: #fafafa;
+    border: 1px solid #d2d2d2;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .date-drop {
+    top: 0;
+  }
+  input[type='submit'] {
+    background-color: #de8e0e;
+    color: #ffffff;
+    border: 1px solid #de8e0e;
+    margin: 16px 0;
+    :hover {
+      cursor: pointer;
+      background-color: transparent;
+      color: #de8e0e;
+    }
+  }
+  @media (max-width: 1140px) {
+    display: block;
+  }
+`
+
 export const venuesSectionStyles = css`
   min-height: 200vh;
   background-color: #ffffff;
   background-color: #111217;
   min-height: 100vh;
 `
+
 export const cardStyles = css`
   width: clamp(300px, 80vw, 357px);
   height: 178px;
@@ -112,6 +178,7 @@ export const cardStyles = css`
   margin-bottom: 40px;
   text-align: left;
 `
+
 export const errorStyles = css`
   min-height: 400px;
   height: 100vh;
@@ -160,6 +227,39 @@ export const errorStyles = css`
       > :first-child {
         width: 300px;
       }
+    }
+  }
+`
+
+export const loaderAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+export const loaderStyles = css`
+  width: 100wv;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  color: #de8e0e;
+  font-size: 16px;
+  font-weight: 600;
+  > * {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 200px;
+    height: 200px;
+
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: ${loaderAnimation} 1s ease infinite;
     }
   }
 `

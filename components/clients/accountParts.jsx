@@ -1,4 +1,5 @@
 import tw, { css } from 'twin.macro'
+import { formStyles } from '../../styles/GeneralStyles'
 import profilePlaceholder from '../../images/Ellipse 56.png'
 import yeveWalletIcon from '../../images/yeve-wallet-icon.png'
 import visaIcon from '../../images/visa-icon.png'
@@ -9,63 +10,7 @@ import { AddPayment, CardDetails, YeveWalletSection } from './paymentParts'
 
 export const ProfileInfo = () => {
   return (
-    <div
-      css={css`
-        display: grid;
-        grid-template-columns: 316px 1fr;
-        padding: 24px 0;
-        > :nth-child(2) > form > * {
-          width: 471px;
-          margin-bottom: 24px;
-          display: flex;
-          flex-direction: column;
-          font-size: 12px;
-          font-weight: 600;
-        }
-        h4 {
-          margin: 16px 0;
-        }
-        .form-div {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        label {
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-        }
-        input,
-        textarea {
-          padding: 12px 16px;
-          border-radius: 4px;
-          background-color: #fafafa;
-          border: 1px solid #d2d2d2;
-          font-weight: 600;
-          font-size: 14px;
-        }
-        .date-drop {
-          top: 0;
-        }
-        input[type='submit'] {
-          background-color: #de8e0e;
-          color: #ffffff;
-          border: 1px solid #de8e0e;
-          margin: 16px 0;
-          :hover {
-            cursor: pointer;
-            background-color: transparent;
-            color: #de8e0e;
-          }
-        }
-        @media (max-width: 1140px) {
-          display: block;
-          > :nth-child(2) > form > * {
-            width: clamp(300px, 100%, 471px);
-          }
-        }
-      `}
-    >
+    <div css={formStyles} tw="py-6">
       <div></div>
       <div>
         <form
@@ -178,63 +123,7 @@ export const Payment = ({ setOpenModal, setModalChild }) => {
   switch (paymentPart) {
     case null:
       return (
-        <div
-          css={css`
-            display: grid;
-            grid-template-columns: 316px 1fr;
-            padding: 24px 0;
-            > :nth-child(2) > form > * {
-              width: 471px;
-              margin-bottom: 24px;
-              display: flex;
-              flex-direction: column;
-              font-size: 12px;
-              font-weight: 600;
-            }
-            h4 {
-              margin: 16px 0;
-            }
-            .form-div {
-              display: flex;
-              flex-direction: column;
-              gap: 1rem;
-            }
-            label {
-              display: flex;
-              flex-direction: column;
-              gap: 0.25rem;
-            }
-            input,
-            textarea {
-              padding: 12px 16px;
-              border-radius: 4px;
-              background-color: #fafafa;
-              border: 1px solid #d2d2d2;
-              font-weight: 600;
-              font-size: 14px;
-            }
-            .date-drop {
-              top: 0;
-            }
-            input[type='submit'] {
-              background-color: #de8e0e;
-              color: #ffffff;
-              border: 1px solid #de8e0e;
-              margin: 16px 0;
-              :hover {
-                cursor: pointer;
-                background-color: transparent;
-                color: #de8e0e;
-              }
-            }
-            @media (max-width: 1140px) {
-              display: block;
-              > :nth-child(2) > form > * {
-                width: clamp(300px, 100%, 471px);
-              }
-            }
-          `}
-        >
+        <div css={formStyles} tw="py-6">
           <div></div>
           <div>
             <form action="">
@@ -315,63 +204,7 @@ export const Payment = ({ setOpenModal, setModalChild }) => {
       )
     default:
       return (
-        <div
-          css={css`
-            display: grid;
-            grid-template-columns: 316px 1fr;
-            padding: 24px 0;
-            > :nth-child(2) > form > * {
-              width: 471px;
-              margin-bottom: 24px;
-              display: flex;
-              flex-direction: column;
-              font-size: 12px;
-              font-weight: 600;
-            }
-            h4 {
-              margin: 16px 0;
-            }
-            .form-div {
-              display: flex;
-              flex-direction: column;
-              gap: 1rem;
-            }
-            label {
-              display: flex;
-              flex-direction: column;
-              gap: 0.25rem;
-            }
-            input,
-            textarea {
-              padding: 12px 16px;
-              border-radius: 4px;
-              background-color: #fafafa;
-              border: 1px solid #d2d2d2;
-              font-weight: 600;
-              font-size: 14px;
-            }
-            .date-drop {
-              top: 0;
-            }
-            input[type='submit'] {
-              background-color: #de8e0e;
-              color: #ffffff;
-              border: 1px solid #de8e0e;
-              margin: 16px 0;
-              :hover {
-                cursor: pointer;
-                background-color: transparent;
-                color: #de8e0e;
-              }
-            }
-            @media (max-width: 1140px) {
-              display: block;
-              > :nth-child(2) > form > * {
-                width: clamp(300px, 100%, 471px);
-              }
-            }
-          `}
-        >
+        <div css={formStyles} tw="py-6">
           <div></div>
           <div>
             <form action="">

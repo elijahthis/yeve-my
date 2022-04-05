@@ -8,15 +8,11 @@ import { BlackButton } from '../../../components/pieces/Buttons'
 import { SearchBar, CrudOptions } from '../../../components/formTools'
 import { GridView2 } from '../../../components/pieces/gridView'
 import { MdOutlineMail } from 'react-icons/md'
+import { BooleanToggle } from '../../../components/formTools'
 import { SendMessage } from '../../../components/modalChildren'
 import SortComponent from '../../../components/pieces/sort'
 
-const CustomersRoot = ({
-  openModal,
-  setOpenModal,
-  modalChild,
-  setModalChild,
-}) => {
+const AdminsRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   const router = useRouter()
 
   const moreList = (
@@ -77,46 +73,23 @@ const CustomersRoot = ({
 
   const gridList = [
     {
-      name: 'John Smith',
+      name: 'Mobu E.',
       email: 'JohnSmith@gmail.com',
-      date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
-    },
-    {
-      name: 'John Smith',
-      email: 'JohnSmith@gmail.com',
-      date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
-    },
-    {
-      name: 'John Smith',
-      email: 'JohnSmith@gmail.com',
-      date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
-    },
-    {
-      name: 'John Smith',
-      email: 'JohnSmith@gmail.com',
-      date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
-    },
-    {
-      name: 'John Smith',
-      email: 'JohnSmith@gmail.com',
-      date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
+      'date-created': 'Aug 20, 2021  15:00',
+      'last-online': 'Aug 20, 2021',
+      status: 'Active',
     },
   ]
 
   return (
     <section css={sectionStyles}>
       <div tw="flex flex-row items-center justify-between mb-7">
-        <h3>Customers</h3>
+        <h3>Admins</h3>
         <BlackButton
           content="Create +"
           bg="#de8e0e"
           onClick={() => {
-            router.push('/admin/customers/create-customer')
+            router.push('/admin/admins/create-admin')
           }}
         />
       </div>
@@ -142,13 +115,19 @@ const CustomersRoot = ({
         <GridView2
           headers={[
             { title: 'Name', key: 'name' },
-            { title: 'Email Address', key: 'email' },
-            { title: 'Date Created', key: 'date' },
-            { title: 'Lifetime Value', key: 'value' },
+            { title: 'Email', key: 'email' },
+            { title: 'Date Created', key: 'date-created' },
+            { title: 'Last Online', key: 'last-online' },
+            {
+              title: 'Status',
+              key: 'status',
+              type: 'Bool',
+              list: ['Active', 'Inactive'],
+            },
             {
               title: '',
               key: 'actions',
-              type: 'actions-crud',
+              type: 'actions-ud',
               moreList: moreList,
             },
           ]}
@@ -159,7 +138,7 @@ const CustomersRoot = ({
   )
 }
 
-const Customers = () => {
+const Admins = () => {
   const [openModal, setOpenModal] = useState(false)
   const [modalChild, setModalChild] = useState(<></>)
   const [mounted, setMounted] = useState(false)
@@ -169,7 +148,7 @@ const Customers = () => {
   }, [])
   return (
     <AdminLayout>
-      <CustomersRoot
+      <AdminsRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
         modalChild={modalChild}
@@ -184,4 +163,4 @@ const Customers = () => {
   )
 }
 
-export default Customers
+export default Admins

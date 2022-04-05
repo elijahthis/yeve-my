@@ -1,8 +1,10 @@
 import tw, { css } from 'twin.macro'
+import { formStyles } from '../../styles/GeneralStyles'
 import { LoginNav } from '../login'
 import UpgradeCard from '../../components/pieces/upgradeCard'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Router from 'next/router'
 import { BackButton } from '../../components/pieces/Buttons'
 
 const Cards = ({ setPhase }) => {
@@ -187,7 +189,6 @@ const AccountInfo = ({ setPhase }) => (
 
 const Upgrade = () => {
   const [phase, setPhase] = useState(0)
-  const router = useRouter()
   return (
     <>
       <LoginNav />
@@ -235,7 +236,7 @@ const Upgrade = () => {
             <BackButton
               onClick={() => {
                 if (phase) setPhase(0)
-                else router.push('/vendors/home')
+                else Router.back()
               }}
             />
           </div>

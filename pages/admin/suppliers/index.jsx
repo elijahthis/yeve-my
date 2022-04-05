@@ -8,16 +8,21 @@ import { BlackButton } from '../../../components/pieces/Buttons'
 import { SearchBar, CrudOptions } from '../../../components/formTools'
 import { GridView2 } from '../../../components/pieces/gridView'
 import { MdOutlineMail } from 'react-icons/md'
-import { SendMessage } from '../../../components/modalChildren'
+import { SendMessage, PaymentHistory } from '../../../components/modalChildren'
 import SortComponent from '../../../components/pieces/sort'
 
-const CustomersRoot = ({
+const SuppliersRoot = ({
   openModal,
   setOpenModal,
   modalChild,
   setModalChild,
 }) => {
   const router = useRouter()
+  const badgeList = {
+    green: 'Approved',
+    gold: 'Pending',
+    grey: 'Onboarding',
+  }
 
   const moreList = (
     <div
@@ -57,7 +62,12 @@ const CustomersRoot = ({
         <MdOutlineMail />
         <p>Send message</p>
       </div>
-      <div>
+      <div
+        onClick={() => {
+          setModalChild(<PaymentHistory setOpenModal={setOpenModal} />)
+          setOpenModal(true)
+        }}
+      >
         <svg
           width="16"
           height="12"
@@ -80,43 +90,43 @@ const CustomersRoot = ({
       name: 'John Smith',
       email: 'JohnSmith@gmail.com',
       date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
+      approval: 'Approved',
     },
     {
       name: 'John Smith',
       email: 'JohnSmith@gmail.com',
       date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
+      approval: 'Onboarding',
     },
     {
       name: 'John Smith',
       email: 'JohnSmith@gmail.com',
       date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
+      approval: 'Approved',
     },
     {
       name: 'John Smith',
       email: 'JohnSmith@gmail.com',
       date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
+      approval: 'Pending',
     },
     {
       name: 'John Smith',
       email: 'JohnSmith@gmail.com',
       date: 'Aug 20, 2021  15:00',
-      value: '£120.00',
+      approval: 'Approved',
     },
   ]
 
   return (
     <section css={sectionStyles}>
       <div tw="flex flex-row items-center justify-between mb-7">
-        <h3>Customers</h3>
+        <h3>Suppliers</h3>
         <BlackButton
           content="Create +"
           bg="#de8e0e"
           onClick={() => {
-            router.push('/admin/customers/create-customer')
+            router.push('/admin/suppliers/create-supplier')
           }}
         />
       </div>
@@ -144,7 +154,12 @@ const CustomersRoot = ({
             { title: 'Name', key: 'name' },
             { title: 'Email Address', key: 'email' },
             { title: 'Date Created', key: 'date' },
-            { title: 'Lifetime Value', key: 'value' },
+            {
+              title: 'Approval',
+              key: 'approval',
+              type: 'badge',
+              badgeList: badgeList,
+            },
             {
               title: '',
               key: 'actions',
@@ -159,7 +174,7 @@ const CustomersRoot = ({
   )
 }
 
-const Customers = () => {
+const Suppliers = () => {
   const [openModal, setOpenModal] = useState(false)
   const [modalChild, setModalChild] = useState(<></>)
   const [mounted, setMounted] = useState(false)
@@ -169,7 +184,7 @@ const Customers = () => {
   }, [])
   return (
     <AdminLayout>
-      <CustomersRoot
+      <SuppliersRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
         modalChild={modalChild}
@@ -184,4 +199,4 @@ const Customers = () => {
   )
 }
 
-export default Customers
+export default Suppliers

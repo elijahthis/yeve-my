@@ -13,6 +13,7 @@ import {
   EventAccepted,
   CancelEvent,
   QuoteSent,
+  MessageSent,
 } from '../modalChildren'
 import { ProgressBar } from '../formTools'
 import { HiStar } from 'react-icons/hi'
@@ -535,6 +536,51 @@ export const VendorInfoCard = ({ cardData }) => {
   )
 }
 
+export const VendorInfoCard2 = ({ cardData }) => {
+  return (
+    <div
+      css={css`
+        padding-top: 26px;
+        padding-bottom: 30px;
+        padding-left: 14px;
+        width: 202px;
+        min-width: 170px;
+        height: 81px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        background: #ffffff;
+        font-weight: 600;
+
+        box-shadow: 0px 4px 8px rgba(16, 24, 51, 0.08);
+        border-radius: 8px;
+      `}
+    >
+      <div
+        css={css`
+          width: 40px;
+          height: 40px;
+          display: grid;
+          place-items: center;
+          background-color: #fdf9f3;
+          color: #de8e0e;
+          border-radius: 50%;
+        `}
+      >
+        {cardData.icon}
+      </div>
+      <div>
+        <h5>
+          {cardData.money ? <span>&#163;</span> : ''}
+          {cardData.value}
+        </h5>
+        <p tw="text-xs text-[#767676]">{cardData.title}</p>
+      </div>
+    </div>
+  )
+}
+
 export const UpcomingLiveList = ({ cardData }) => {
   return (
     <div
@@ -835,6 +881,87 @@ export const PreviewQuoteCard = ({ setOpenModal, setModalChild }) => {
           content="Publish"
           onClick={() => {
             setModalChild(<QuoteSent setOpenModal={setOpenModal} />)
+            setOpenModal(true)
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+export const PreviewMessageCard = ({ setOpenModal, setModalChild }) => {
+  const router = useRouter()
+
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 16px 24px;
+        width: 564px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+
+        h5 {
+          font-size: 18px;
+          line-height: 24px;
+          font-weight: 700;
+          color: #343434;
+          font-family: Montserrat;
+        }
+        p {
+          width: 100%;
+          margin-top: 12px;
+          color: #1a1a1a;
+          font-size: 14px;
+        }
+        span {
+          color: #343434;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+        }}
+      />
+      <div>
+        <Image src={imgPlaceholder} />
+      </div>
+
+      <div tw="border-b border-[#E5E5E5] w-full py-4">
+        <h5>The Future of Events: No one knows</h5>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. A magna ut
+          lorem consequat. Lorem ipsum dolor sit. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. A magna ut lorem consequat. Lorem ipsum
+          dolor sit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. A
+          magna ut loremconsequat. Lorem ipsum dolor sit. Lorem ipsum dolor sit
+          amet, consectetur adipiscing elit. A magna ut lorem consequat. Lorem
+          ipsum dolor sit. Lorem ipsum dolor sit amet, consectetur adipiscing
+          elit. A magna ut lorem consequat. Lorem ipsum dolor sit. Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit. A magna ut lorem
+          consequat. Lorem ipsum dolor sit.
+        </p>
+      </div>
+
+      <div tw="flex flex-row items-center gap-9 w-full mt-4">
+        <ProceedButton bg="white" col="#1a1a1a" content="Cancel" />
+        <ProceedButton
+          bg="#de8e0e"
+          col="white"
+          content="Send Message"
+          onClick={() => {
+            setModalChild(<MessageSent setOpenModal={setOpenModal} />)
             setOpenModal(true)
           }}
         />

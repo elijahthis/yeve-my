@@ -3,15 +3,18 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai'
+import { BsShop } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
 import { FiCheck, FiMoreVertical } from 'react-icons/fi'
 import imgPlaceholder from '../images/card-banner.png'
 import profilePlaceholder from '../images/profile-placeholder.png'
 import { ProceedButton } from './pieces/Buttons'
 import premiumIcon from '../images/premium-icon.png'
-import { DropdownMenu } from './formTools'
+import { DropdownMenu, DateFilter } from './formTools'
 import ImageUploadPreview from './pieces/imageUploadPreview'
 import RatingStars from './pieces/ratingStars'
+import { VendorInfoCard2 } from './pieces/cards'
+import { GridView2 } from './pieces/gridView'
 
 export const RequestSubmitted = ({ setOpenModal, setServicePhase }) => {
   return (
@@ -1615,6 +1618,215 @@ export const SendMessage = ({ setOpenModal }) => {
           content="Send"
           onClick={() => {
             setOpenModal(false)
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+export const PaymentHistory = ({ setOpenModal, vendor }) => {
+  const infoCards = [
+    {
+      title: 'Total Amount Paid',
+      value: 137,
+      icon: <BsShop size={21} />,
+      money: true,
+    },
+    {
+      title: 'Total Commission',
+      value: 488.0,
+      icon: <BsShop size={21} />,
+      money: true,
+    },
+    {
+      title: 'Left in Wallet',
+      value: 356,
+      icon: <BsShop size={21} />,
+      money: true,
+    },
+  ]
+  const gridList = [
+    {
+      amount: '£120.00',
+      commission: '£120.00',
+      'payment-method': 'Paypal',
+      date: 'Aug 20, 2021  15:00',
+    },
+    {
+      amount: '£120.00',
+      commission: '£120.00',
+      'payment-method': 'Paypal',
+      date: 'Aug 20, 2021  15:00',
+    },
+    {
+      amount: '£120.00',
+      commission: '£120.00',
+      'payment-method': 'Paypal',
+      date: 'Aug 20, 2021  15:00',
+    },
+    {
+      amount: '£120.00',
+      commission: '£120.00',
+      'payment-method': 'Paypal',
+      date: 'Aug 20, 2021  15:00',
+    },
+    {
+      amount: '£120.00',
+      commission: '£120.00',
+      'payment-method': 'Paypal',
+      date: 'Aug 20, 2021  15:00',
+    },
+  ]
+
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        width: 720px;
+        max-height: 681px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+        padding-bottom: 72px;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+        }
+        > div {
+          width: 100%;
+        }
+        > div:first-of-type {
+          width: 100%;
+          padding: 24px;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 top-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+        }}
+      />
+      <div>
+        <h4>Payment History</h4>
+        <div tw="flex flex-row items-center justify-between w-full mb-7 mt-2">
+          <div tw="flex flex-row items-center gap-2 p-1 pr-6 bg-transparent border border-[#D2D2D2] rounded">
+            <Image src={profilePlaceholder} height="24" width="24" />
+            John Smith
+          </div>
+          <DateFilter />
+        </div>
+        <div tw="flex flex-row items-center gap-4 justify-between w-full">
+          {infoCards.map((card, ind) => (
+            <VendorInfoCard2 cardData={card} key={ind} />
+          ))}
+        </div>
+      </div>
+      <div
+        css={css`
+          > div {
+            margin-top: 0;
+          }
+        `}
+      >
+        <GridView2
+          headers={[
+            { title: 'Amount', key: 'amount' },
+            { title: 'Commission', key: 'commission' },
+            { title: 'Payment Method', key: 'payment-method' },
+            { title: 'Date', key: 'date' },
+          ]}
+          list={gridList}
+        />
+      </div>
+    </div>
+  )
+}
+export const MessageSent = ({ setOpenModal }) => {
+  const router = useRouter()
+
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 30px 25px;
+        width: clamp(300px, 80vw, 466px);
+        text-align: center;
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+        }
+        p {
+          max-width: 278px;
+          margin-bottom: 52px;
+          margin-top: 12px;
+          color: #000000;
+          font-size: 14px;
+        }
+        @media (max-width: 1140px) {
+          padding: 16px 14px;
+          h4 {
+            font-size: 16px;
+            line-height: 24px;
+          }
+          p {
+            color: #767676;
+            font-weight: 400;
+            margin-bottom: 32px;
+          }
+          > :first-child {
+            right: 14px;
+          }
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+          router.push('/vendors/my-requests')
+        }}
+      />
+      <div tw="p-2 bg-white rounded-full text-[#65B02A] border-4 border-[#65B02A] mb-6 mt-10">
+        <FiCheck strokeWidth={3} size={33} />
+      </div>
+      <h4>Message Sent</h4>
+      <p>Your message has been sent!</p>
+      <div tw="flex flex-row items-center gap-9 w-full">
+        <ProceedButton
+          bg="#f8f8f8"
+          col="#767676"
+          content="Back Home"
+          onClick={() => {
+            setOpenModal(false)
+            router.push('/admin/messaging')
           }}
         />
       </div>

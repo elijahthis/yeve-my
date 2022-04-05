@@ -33,6 +33,7 @@ const ImageUploadPreview = ({ limit, onChangeFunc }) => {
         border: 1px dashed #e5e5e5;
         border-radius: 8px;
         padding: 28px 0;
+        overflow: hidden;
       `}
     >
       <p>Drag and drop file</p>
@@ -53,6 +54,13 @@ const ImageUploadPreview = ({ limit, onChangeFunc }) => {
             opacity: 0;
             cursor: pointer;
           }
+          ~ p {
+            width: 100%;
+            padding: 0 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         `}
       >
         <BlackButton content="Browse" />
@@ -65,7 +73,7 @@ const ImageUploadPreview = ({ limit, onChangeFunc }) => {
           onChange={onImageChange}
         />
       </div>
-      {imageURLs.length !== 0 ? images[0].name : null}
+      <p>{imageURLs.length !== 0 ? images[0].name : null}</p>
     </div>
   )
 }

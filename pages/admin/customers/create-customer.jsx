@@ -44,7 +44,7 @@ const CreateCustomersRoot = () => {
                     >
                       <Image src={profilePlaceholder} />
                     </div>
-                    <p tw="text-sm text-gold cursor-pointer">Change Image</p>
+                    <p tw="text-sm text-gold cursor-pointer">Add Image</p>
                   </div>
                 </label>
                 <label htmlFor="">
@@ -68,33 +68,10 @@ const CreateCustomersRoot = () => {
                     placeholder="Johndoe@gmail.com"
                   />
                 </label>
-                <div
-                  tw=" flex flex-row items-center gap-4"
-                  css={css`
-                    > * {
-                      width: 100%;
-                    }
-                  `}
-                >
-                  <label htmlFor="">
-                    Mobile number
-                    <input
-                      type="tel"
-                      name=""
-                      id=""
-                      placeholder="Mobile number"
-                    />
-                  </label>
-                  <label htmlFor="">
-                    Phone number
-                    <input
-                      type="tel"
-                      name=""
-                      id=""
-                      placeholder="Phone number"
-                    />
-                  </label>
-                </div>
+                <label htmlFor="">
+                  Mobile number
+                  <input type="tel" name="" id="" placeholder="Mobile number" />
+                </label>
               </div>
             </div>
 

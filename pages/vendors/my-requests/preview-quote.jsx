@@ -15,7 +15,7 @@ import { BackButton } from '../../../components/pieces/Buttons'
 import keyboardistBadge from '../../../images/Rectangle 444.png'
 import { ViewGig, PreviewQuoteCard } from '../../../components/pieces/cards'
 
-export const PreviewQuote = ({
+export const PreviewQuoteContent = ({
   openModal,
   setOpenModal,
   modalChild,
@@ -68,12 +68,12 @@ export const PreviewQuote = ({
   )
 }
 
-const hhh = () => {
+const PreviewQuote = () => {
   return (
     <VendorsLayout>
-      <PreviewQuote />
+      <PreviewQuoteContent />
     </VendorsLayout>
   )
 }
 
-export default hhh
+export default PreviewQuote
