@@ -1,8 +1,8 @@
 import tw, { css } from 'twin.macro'
-import MainNav from '../components/mainNav'
+import { useState } from 'react'
+import MainNav from '../components/UI/NavBars/MainNav'
 import SideBar from '../components/sidebar'
 import { BsShop } from 'react-icons/bs'
-import { useState } from 'react'
 
 const VendorsLayout = ({ children }) => {
   const [sideOpen, setSideOpen] = useState(false)

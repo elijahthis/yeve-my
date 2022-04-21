@@ -74,13 +74,13 @@ const ServiceComponent1 = ({ setServicePhase }) => {
                 height: 126px;
               }
             `}
+            key={ind}
           >
             <ServiceCard1
               cardData={cat}
               clickFunc={() => {
                 setServicePhase(0)
               }}
-              key={ind}
             />
           </div>
         ))}

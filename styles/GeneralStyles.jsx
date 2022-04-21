@@ -87,6 +87,7 @@ export const formStyles = css`
     border: 1px solid #d2d2d2;
     font-weight: 600;
     font-size: 14px;
+    resize: none;
   }
   .date-drop {
     top: 0;
@@ -142,6 +143,7 @@ export const formCoreStyles = css`
     border: 1px solid #d2d2d2;
     font-weight: 600;
     font-size: 14px;
+    resize: none;
   }
   .date-drop {
     top: 0;

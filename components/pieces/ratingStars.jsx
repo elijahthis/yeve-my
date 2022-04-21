@@ -19,9 +19,9 @@ const RatingStars = ({ size, active, value }) => {
               color: ${ind <= val ? '#DE8E0E' : '#D2D2D2'};
               cursor: pointer;
             `}
+            key={ind}
           >
             <HiStar
-              key={ind}
               size={size}
               onClick={() => {
                 if (active) setVal(ind)

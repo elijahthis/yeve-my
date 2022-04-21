@@ -1,12 +1,20 @@
 import { EventCard } from '../pieces/cards'
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { sectionStyles, formStyles } from '../../styles/GeneralStyles'
 import imgPlaceholder from '../../images/Group 526.png'
 import { BackButton } from '../pieces/Buttons'
 import { BooleanToggle, DropdownMenu, DatePickerr } from '../formTools'
+import { CustomTable } from '../pieces/customTable'
+import { SendMessage } from '../modalChildren'
 
 export const AllEvents = () => {
+  useEffect(() => {
+    // const router = useRouter()
+  })
+
   const cardList = [
     {
       gig: 'Wedding',
@@ -48,7 +56,13 @@ export const AllEvents = () => {
   return (
     <div tw="py-4 flex flex-row gap-6 flex-wrap">
       {cardList.map((card, ind) => (
-        <EventCard cardData={card} key={ind} />
+        <EventCard
+          cardData={card}
+          key={ind}
+          clickFunc={() => {
+            // router.push('/clients/events/view-event/attendees')
+          }}
+        />
       ))}
     </div>
   )

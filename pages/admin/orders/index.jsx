@@ -6,7 +6,7 @@ import Modal from '../../../components/modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import { BlackButton } from '../../../components/pieces/Buttons'
 import { SearchBar } from '../../../components/formTools'
-import { GridView2 } from '../../../components/pieces/gridView'
+import { CustomTable } from '../../../components/pieces/customTable'
 import {
   MdOutlineModeEdit,
   MdDeleteOutline,
@@ -142,7 +142,7 @@ const OrdersRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
           </div>
           <SortComponent />
         </div>
-        <GridView2
+        <CustomTable
           headers={[
             { title: 'Order ID', key: 'order-id' },
             { title: 'Amount Paid', key: 'amount-paid' },

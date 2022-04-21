@@ -58,7 +58,7 @@ export const FeaturesToolTip = () => {
         width: 640px;
       `}
     >
-      {dataList.map(item => (
+      {dataList.map((item, ind) => (
         <div
           css={css`
             width: 268px;
@@ -67,6 +67,7 @@ export const FeaturesToolTip = () => {
             align-items: center;
             gap: 12px;
           `}
+          key={ind}
         >
           <FadedIcon icon={item.icon} />
           <div
@@ -148,6 +149,7 @@ export const NotificationsToolTip = () => {
             border-radius: 4px 0px 0px 4px;
           `}
           onClick={item.func ? item.func : null}
+          key={ind}
         >
           <div
             css={css`

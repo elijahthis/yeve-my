@@ -10,6 +10,7 @@ import {
   MdOutlineModeEdit,
   MdDeleteOutline,
   MdOutlineMoreVert,
+  MdOutlineMail,
 } from 'react-icons/md'
 import { FiCalendar } from 'react-icons/fi'
 
@@ -257,7 +258,14 @@ export const DateFilter = () => {
   )
 }
 
-export const CrudOptions = ({ more, moreList }) => {
+export const CrudOptions = ({
+  more,
+  moreList,
+  editFunc,
+  deleteFunc,
+  messageFunc,
+  message,
+}) => {
   const [openPopUp, setOpenPopUp] = useState(false)
   useEffect(() => {
     document.body.addEventListener('click', () => setOpenPopUp(false))
@@ -273,8 +281,32 @@ export const CrudOptions = ({ more, moreList }) => {
       `}
     >
       <div tw="flex flex-row items-center gap-6">
-        <MdOutlineModeEdit size={18} />
-        <MdDeleteOutline size={18} />
+        {message ? (
+          <span
+            onClick={() => {
+              messageFunc ? messageFunc() : null
+              console.log('editt')
+            }}
+          >
+            <MdOutlineMail size={18} />
+          </span>
+        ) : null}
+        <span
+          onClick={() => {
+            editFunc ? editFunc() : null
+            console.log('editt')
+          }}
+        >
+          <MdOutlineModeEdit size={18} />
+        </span>
+        <span
+          onClick={() => {
+            deleteFunc ? deleteFunc() : null
+            console.log('deletee')
+          }}
+        >
+          <MdDeleteOutline size={18} />
+        </span>
       </div>
       {more ? (
         <div

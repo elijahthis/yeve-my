@@ -452,7 +452,9 @@ export const VendorCard2 = ({
   )
 }
 
-export const EventCard = ({ cardData }) => {
+export const EventCard = ({ cardData, clickFunc }) => {
+  const router = useRouter()
+
   return (
     <div
       css={css`
@@ -466,7 +468,11 @@ export const EventCard = ({ cardData }) => {
         font-weight: 600;
         color: #767676;
         height: max-content;
+        cursor: pointer;
       `}
+      onClick={() => {
+        router.push('/clients/events/view-event/attendees')
+      }}
     >
       <div>
         <Image src={cardData.image} />
@@ -664,6 +670,7 @@ export const ServicesListCard = ({ cardData }) => {
           css={css`
             padding: 18px 20px;
           `}
+          key={ind}
         >
           <div>
             <p tw="text-sm">{item}</p>

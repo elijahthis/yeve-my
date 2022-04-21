@@ -5,7 +5,8 @@ import Image from 'next/image'
 import { AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai'
 import { BsShop } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
-import { FiCheck, FiMoreVertical } from 'react-icons/fi'
+import { FiCheck, FiMoreVertical, FiLink } from 'react-icons/fi'
+import { CheckMark } from './pieces/svgs'
 import imgPlaceholder from '../images/card-banner.png'
 import profilePlaceholder from '../images/profile-placeholder.png'
 import { ProceedButton } from './pieces/Buttons'
@@ -14,7 +15,8 @@ import { DropdownMenu, DateFilter } from './formTools'
 import ImageUploadPreview from './pieces/imageUploadPreview'
 import RatingStars from './pieces/ratingStars'
 import { VendorInfoCard2 } from './pieces/cards'
-import { GridView2 } from './pieces/gridView'
+import { CustomTable } from './pieces/customTable'
+import { formCoreStyles } from '../styles/GeneralStyles'
 
 export const RequestSubmitted = ({ setOpenModal, setServicePhase }) => {
   return (
@@ -1492,10 +1494,919 @@ export const QuoteSent = ({ setOpenModal }) => {
     </div>
   )
 }
+export const InvitationSent = ({ setOpenModal, email }) => {
+  const router = useRouter()
+
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 34px 24px;
+        width: clamp(300px, 80vw, 466px);
+        text-align: center;
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin-top: 24px;
+          margin-bottom: 9px;
+        }
+        p {
+          max-width: 206px;
+          color: #7d849d;
+          font-size: 14px;
+          margin-bottom: 14px;
+        }
+        svg:nth-of-type(2) {
+          margin-top: 48px;
+        }
+        @media (max-width: 1140px) {
+          padding: 24px 34px;
+          h4 {
+            font-size: 16px;
+            line-height: 24px;
+          }
+          p {
+            color: #7d849d;
+            font-weight: 400;
+            margin-bottom: 32px;
+          }
+          > :first-child {
+            right: 14px;
+          }
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+        }}
+      />
+      <CheckMark size={56} />
+      <h4>Invitation Sent</h4>
+      <p>An admin invitation has been sent to {email}</p>
+    </div>
+  )
+}
+
+export const CreateAdmin = ({ setOpenModal, setModalChild, email }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 38px;
+        width: 466px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin: 0;
+        }
+        > * {
+          width: 100%;
+        }
+        form {
+          margin-top: 40px;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <div css={formCoreStyles}>
+        <IoClose
+          size={24}
+          tw="absolute right-6 cursor-pointer"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+        <h4>Create Admin</h4>
+        <form action="">
+          <div className="form-div">
+            <label htmlFor="">
+              Enter email
+              <input type="email" name="" id="" placeholder="Enter email" />
+            </label>
+            <label htmlFor="">
+              Enter title
+              <input type="text" name="" id="" placeholder="Enter title" />
+            </label>
+            <div
+              css={css`
+                background: #fafafa;
+                border-radius: 4px;
+                padding: 12px 16px;
+                label {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: space-between;
+                  margin-bottom: 15px;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 24px;
+                  color: #7d849d;
+                }
+                > :first-child {
+                  display: inline-block;
+                  margin-bottom: 12px;
+                }
+              `}
+            >
+              <span>Select permissions</span>
+              <label htmlFor="">
+                View transaction history
+                <input type="checkbox" name="" id="" />
+              </label>
+              <label htmlFor="">
+                View vendors
+                <input type="checkbox" name="" id="" />
+              </label>
+              <label htmlFor="">
+                Manage subscriptions
+                <input type="checkbox" name="" id="" />
+              </label>
+              <label htmlFor="">
+                Withdrawals
+                <input type="checkbox" name="" id="" />
+              </label>
+              <label htmlFor="">
+                Help and support
+                <input type="checkbox" name="" id="" />
+              </label>
+            </div>
+          </div>
+        </form>
+        <div
+          tw="w-full mt-10 flex flex-row items-center gap-4"
+          css={css`
+            > :first-child {
+              width: 40%;
+            }
+          `}
+        >
+          <ProceedButton
+            bg="#fafafa"
+            col="#de8e0e"
+            content="Cancel"
+            onClick={() => {
+              setOpenModal(false)
+            }}
+          />
+          <ProceedButton
+            bg="#de8e0e"
+            col="white"
+            content="Save"
+            onClick={() => {
+              setModalChild(
+                <InvitationSent setOpenModal={setOpenModal} email={email} />,
+              )
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+export const EditAdmin = ({ setOpenModal, setModalChild, data }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 38px;
+        width: 466px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin: 0;
+        }
+        > * {
+          width: 100%;
+        }
+        form {
+          margin-top: 40px;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <div css={formCoreStyles}>
+        <IoClose
+          size={24}
+          tw="absolute right-6 cursor-pointer"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+        <h4>Edit Admin</h4>
+        <div tw="flex flex-row items-center gap-4 border border-[#EEEEEE] px-4 py-3 rounded-lg">
+          <Image src={data.image} width="40" height="40" />
+          <div tw="flex flex-col items-start" style={{ gap: '2px' }}>
+            <p tw="text-[#2F364A]">{data.name}</p>
+            <p tw="text-[#7D849D]">{data.email}</p>
+          </div>
+        </div>
+        <form action="">
+          <div className="form-div">
+            <label htmlFor="">
+              Enter title
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="Enter title"
+                value={data.role}
+              />
+            </label>
+            <div
+              css={css`
+                background: #fafafa;
+                border-radius: 4px;
+                padding: 12px 16px;
+                label {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: space-between;
+                  margin-bottom: 15px;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 24px;
+                  color: #7d849d;
+                }
+                > :first-child {
+                  display: inline-block;
+                  margin-bottom: 12px;
+                }
+              `}
+            >
+              <span>Select permissions</span>
+              <label htmlFor="">
+                View transaction history
+                <input type="checkbox" name="" id="" />
+              </label>
+              <label htmlFor="">
+                View vendors
+                <input type="checkbox" name="" id="" />
+              </label>
+              <label htmlFor="">
+                Manage subscriptions
+                <input type="checkbox" name="" id="" />
+              </label>
+              <label htmlFor="">
+                Withdrawals
+                <input type="checkbox" name="" id="" />
+              </label>
+              <label htmlFor="">
+                Help and support
+                <input type="checkbox" name="" id="" />
+              </label>
+            </div>
+          </div>
+        </form>
+        <div
+          tw="w-full mt-10 flex flex-row items-center gap-4"
+          css={css`
+            > :first-child {
+              width: 40%;
+            }
+          `}
+        >
+          <ProceedButton
+            bg="#fafafa"
+            col="#de8e0e"
+            content="Cancel"
+            onClick={() => {
+              setOpenModal(false)
+            }}
+          />
+          <ProceedButton
+            bg="#de8e0e"
+            col="white"
+            content="Save"
+            onClick={() => {
+              setOpenModal(false)
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+export const DeleteAdmin = ({ setOpenModal, email }) => {
+  const router = useRouter()
+
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 34px 24px;
+        width: clamp(300px, 80vw, 466px);
+        text-align: center;
+        font-weight: 600;
+        position: relative;
+
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin-top: 24px;
+          margin-bottom: 9px;
+        }
+        p {
+          color: #7d849d;
+          font-size: 14px;
+          margin-bottom: 14px;
+        }
+
+        @media (max-width: 1140px) {
+          padding: 24px 34px;
+          h4 {
+            font-size: 16px;
+            line-height: 24px;
+          }
+          p {
+            color: #7d849d;
+            font-weight: 400;
+            margin-bottom: 32px;
+          }
+          > :first-child {
+            right: 14px;
+          }
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <IoClose
+        size={24}
+        tw="absolute right-6 cursor-pointer"
+        onClick={() => {
+          setOpenModal(false)
+        }}
+      />
+      <h4>Delete Admin</h4>
+      <p>
+        Are you sure you want to delete this admin ({email})? Deleting this
+        admin removes all access to the platform.
+      </p>
+      <div tw="flex flex-row items-center gap-9 w-full mt-11">
+        <ProceedButton
+          bg="#f8f8f8"
+          col="#767676"
+          content="Cancel"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+        <ProceedButton
+          bg="#E3394D"
+          col="white"
+          content="Delete"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+export const AddAttendees = ({ setOpenModal, setModalChild }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 24px;
+        width: 466px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin: 0;
+        }
+        > * {
+          width: 100%;
+        }
+        form {
+          margin-top: 20px;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <div css={formCoreStyles}>
+        <IoClose
+          size={24}
+          tw="absolute right-6 cursor-pointer"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+        <h4>Add Attendees</h4>
+        <form action="">
+          <div className="form-div">
+            <label htmlFor="">
+              Email address
+              <textarea
+                name=""
+                id=""
+                placeholder="Enter Email then comma to add more"
+              ></textarea>
+            </label>
+            <div
+              tw="bg-[#FAFAFA] rounded mt-7"
+              css={css`
+                display: grid;
+                grid-template-columns: 4fr 1fr;
+                > * {
+                  padding: 12px 16px;
+                  font-weight: 600;
+                }
+              `}
+            >
+              <div tw="flex flex-row items-center gap-2 border-r border-[#e5e5e5]">
+                <FiLink size={16} />
+                <p tw="text-[#767676]">https://yeve.com/share-quote/0276516</p>
+              </div>
+              <button tw="h-full text-gold">Copy</button>
+            </div>
+          </div>
+        </form>
+        <div tw="w-full mt-6 flex flex-row items-center gap-4">
+          <ProceedButton
+            bg="#fafafa"
+            col="#767676"
+            content="Cancel"
+            onClick={() => {
+              setOpenModal(false)
+            }}
+          />
+          <ProceedButton
+            bg="#de8e0e"
+            col="white"
+            content="Add"
+            onClick={() => {
+              setModalChild(
+                <InvitationSent setOpenModal={setOpenModal} email={'email'} />,
+              )
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export const NewMeal = ({ setOpenModal, setModalChild }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 24px;
+        width: 466px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin: 0;
+        }
+        > * {
+          width: 100%;
+        }
+        form {
+          margin-top: 20px;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <div css={formCoreStyles}>
+        <IoClose
+          size={24}
+          tw="absolute right-6 cursor-pointer"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+        <h4>New Meal</h4>
+        <form action="">
+          <div className="form-div">
+            <label htmlFor="">
+              Meal Name
+              <input type="text" name="" id="" placeholder="Enter meal name" />
+            </label>
+            <label htmlFor="">
+              Meal Description
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="Enter meal description"
+              />
+            </label>
+            <label htmlFor="">
+              Available Slots
+              <input type="number" name="" id="" />
+            </label>
+          </div>
+        </form>
+        <div tw="w-full mt-6 flex flex-row items-center gap-4">
+          <ProceedButton
+            bg="#fafafa"
+            col="#767676"
+            content="Cancel"
+            onClick={() => {
+              setOpenModal(false)
+            }}
+          />
+          <ProceedButton
+            bg="#de8e0e"
+            col="white"
+            content="Save"
+            onClick={() => {
+              setModalChild(
+                <InvitationSent setOpenModal={setOpenModal} email={'email'} />,
+              )
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+export const EditTables = ({
+  setOpenModal,
+  setModalChild,
+  capacity,
+  setCapacity,
+}) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 24px;
+        width: 466px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin: 0;
+        }
+        > * {
+          width: 100%;
+        }
+        form {
+          margin-top: 20px;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <div css={formCoreStyles}>
+        <IoClose
+          size={24}
+          tw="absolute right-6 cursor-pointer"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+        <h4>Edit Tables</h4>
+        <form action="">
+          <div className="form-div">
+            <label htmlFor="">
+              Total Tables
+              <input type="number" name="" id="" placeholder="50" />
+            </label>
+            <label htmlFor="">
+              Tables allocated
+              <input type="number" name="" id="" placeholder="19" />
+            </label>
+            <label htmlFor="">
+              Seat per table
+              <input
+                type="text"
+                name=""
+                id=""
+                value={capacity.val}
+                onChange={ev => {
+                  const newCapacity = { ...capacity }
+                  newCapacity.val = ev.target.value
+                  setCapacity(newCapacity)
+                  console.log(capacity)
+                }}
+              />
+            </label>
+          </div>
+        </form>
+        <div tw="w-full mt-6 flex flex-row items-center gap-4">
+          <ProceedButton
+            bg="#fafafa"
+            col="#767676"
+            content="Cancel"
+            onClick={() => {
+              setOpenModal(false)
+            }}
+          />
+          <ProceedButton
+            bg="#de8e0e"
+            col="white"
+            content="Save"
+            onClick={() => {
+              setModalChild(
+                <InvitationSent setOpenModal={setOpenModal} email={'email'} />,
+              )
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export const EditTickets = ({ setOpenModal, setModalChild }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 24px;
+        width: 466px;
+        text-align: left;
+        font-weight: 600;
+        position: relative;
+        h4 {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+          font-family: Montserrat;
+          margin: 0;
+        }
+        > * {
+          width: 100%;
+        }
+        form {
+          margin-top: 20px;
+        }
+      `}
+      onClick={ev => {
+        ev.stopPropagation()
+      }}
+    >
+      <div css={formCoreStyles}>
+        <IoClose
+          size={24}
+          tw="absolute right-6 cursor-pointer"
+          onClick={() => {
+            setOpenModal(false)
+          }}
+        />
+        <h4>Edit TIckets</h4>
+        <form action="">
+          <div className="form-div">
+            <>
+              <div>
+                <p tw="text-base">Number of tickets</p>
+                <div
+                  tw=" flex flex-row items-center gap-4 justify-between"
+                  css={css`
+                    > * {
+                      width: 30%;
+                    }
+                  `}
+                >
+                  <label htmlFor="">
+                    Early Bird
+                    <input type="number" name="" id="" />
+                  </label>
+                  <label htmlFor="">
+                    Standard
+                    <input type="number" name="" id="" />
+                  </label>
+                  <label htmlFor="">
+                    VIP
+                    <input type="number" name="" id="" />
+                  </label>
+                </div>
+              </div>
+              <div>
+                <p tw="text-base">Ticket Pricing</p>
+                <div
+                  tw=" flex flex-row items-center gap-4 justify-between"
+                  css={css`
+                    > * {
+                      width: 30%;
+                    }
+                  `}
+                >
+                  <label htmlFor="">
+                    Early Bird
+                    <div tw="flex flex-row items-center">
+                      <div
+                        tw="px-4 py-3 rounded-l bg-[#fafafa] border border-[#d2d2d2]"
+                        css={css`
+                          height: 47px;
+                        `}
+                      >
+                        &#163;
+                      </div>
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        style={{
+                          borderRadius: '0 4px 4px 0',
+                          borderLeft: 0,
+                        }}
+                        tw="w-full"
+                        //   value={formData.budget[ind].from}
+                        //   onChange={ev => {
+                        //     const newData = { ...formData }
+                        //     newData.budget[ind].from = Number.isNaN(
+                        //       parseInt(ev.target.value),
+                        //     )
+                        //       ? 0
+                        //       : parseInt(ev.target.value)
+                        //     setFormData(newData)
+                        //   }}
+                      />
+                    </div>
+                  </label>
+                  <label htmlFor="">
+                    Standard
+                    <div tw="flex flex-row items-center">
+                      <div
+                        tw="px-4 py-3 rounded-l bg-[#fafafa] border border-[#d2d2d2]"
+                        css={css`
+                          height: 47px;
+                        `}
+                      >
+                        &#163;
+                      </div>
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        style={{
+                          borderRadius: '0 4px 4px 0',
+                          borderLeft: 0,
+                        }}
+                        tw="w-full"
+                        //   value={formData.budget[ind].from}
+                        //   onChange={ev => {
+                        //     const newData = { ...formData }
+                        //     newData.budget[ind].from = Number.isNaN(
+                        //       parseInt(ev.target.value),
+                        //     )
+                        //       ? 0
+                        //       : parseInt(ev.target.value)
+                        //     setFormData(newData)
+                        //   }}
+                      />
+                    </div>
+                  </label>
+                  <label htmlFor="">
+                    VIP
+                    <div tw="flex flex-row items-center">
+                      <div
+                        tw="px-4 py-3 rounded-l bg-[#fafafa] border border-[#d2d2d2]"
+                        css={css`
+                          height: 47px;
+                        `}
+                      >
+                        &#163;
+                      </div>
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        style={{
+                          borderRadius: '0 4px 4px 0',
+                          borderLeft: 0,
+                        }}
+                        tw="w-full"
+                        //   value={formData.budget[ind].from}
+                        //   onChange={ev => {
+                        //     const newData = { ...formData }
+                        //     newData.budget[ind].from = Number.isNaN(
+                        //       parseInt(ev.target.value),
+                        //     )
+                        //       ? 0
+                        //       : parseInt(ev.target.value)
+                        //     setFormData(newData)
+                        //   }}
+                      />
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </>
+          </div>
+        </form>
+        <div tw="w-full mt-6 flex flex-row items-center gap-4">
+          <ProceedButton
+            bg="#fafafa"
+            col="#767676"
+            content="Cancel"
+            onClick={() => {
+              setOpenModal(false)
+            }}
+          />
+          <ProceedButton
+            bg="#de8e0e"
+            col="white"
+            content="Save"
+            onClick={() => {
+              setModalChild(
+                <InvitationSent setOpenModal={setOpenModal} email={'email'} />,
+              )
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 //Admin
 
-export const SendMessage = ({ setOpenModal }) => {
+export const SendMessage = ({ setOpenModal, image }) => {
   return (
     <div
       css={css`
@@ -1580,6 +2491,12 @@ export const SendMessage = ({ setOpenModal }) => {
       <h4>Send Message</h4>
       <form action="">
         <div className="form-div">
+          {image ? (
+            <label>
+              Add Image
+              <ImageUploadPreview />
+            </label>
+          ) : null}
           <label htmlFor="">
             Recipient
             <div tw="flex flex-row items-center gap-4 py-3 px-4 bg-[#fafafa] border border-[#d2d2d2] rounded">
@@ -1742,7 +2659,7 @@ export const PaymentHistory = ({ setOpenModal, vendor }) => {
           }
         `}
       >
-        <GridView2
+        <CustomTable
           headers={[
             { title: 'Amount', key: 'amount' },
             { title: 'Commission', key: 'commission' },

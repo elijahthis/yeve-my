@@ -1,5 +1,5 @@
 import tw, { css } from 'twin.macro'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import VendorsLayout from '../../../layouts/vendorsLayout'
 import TabBar from '../../../components/pieces/tabBar'
 import {
@@ -13,7 +13,6 @@ import { SearchBar, DropdownMenu } from '../../../components/formTools'
 import { BsSortDownAlt, BsSortUp, BsListTask, BsGridFill } from 'react-icons/bs'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import Modal from '../../../components/modal'
-import { useEffect } from 'react'
 
 export const RequestsRoot = ({
   openModal,

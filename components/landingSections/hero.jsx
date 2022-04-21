@@ -1,5 +1,5 @@
 import tw, { css } from 'twin.macro'
-import Navbar from '../navbar'
+import Navbar from '../UI/NavBars/Navbar'
 import Image from 'next/image'
 import heroSide from '../../images/hero-side.png'
 import { Button } from '../../components'

@@ -258,6 +258,7 @@ export const ChooseService = ({
                 height: clamp(80px, 20vw, 140px);
               }
             `}
+            key={ind}
           >
             <ServiceCard2
               cardData={item}
@@ -271,7 +272,6 @@ export const ChooseService = ({
                   : setServiceField([...new Set([...serviceField, item.title])])
               }}
               referenceList={serviceField}
-              key={ind}
             />
           </div>
         ))}
@@ -317,9 +317,7 @@ export const ServiceRequest = ({
           Service Request
         </h3>
       </div>
-      <div
-        css={formStyles}
-      >
+      <div css={formStyles}>
         <div></div>
         <div>
           <form

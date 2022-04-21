@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro'
 import { useState } from 'react'
-import MainNav from '../components/mainNav'
+import MainNav from '../components/UI/NavBars/MainNav'
 import SideBar from '../components/sidebar'
 import { BsShop } from 'react-icons/bs'
 

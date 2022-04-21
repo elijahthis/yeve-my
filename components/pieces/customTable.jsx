@@ -1,7 +1,9 @@
 import tw, { css } from 'twin.macro'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { BooleanToggle, CrudOptions, MoreOptions } from '../formTools'
 import { StatusBadge } from './badges'
+import { Checkbox, message } from 'antd'
 
 const GridView = ({ list, headers }) => {
   return (
@@ -81,7 +83,76 @@ const GridView = ({ list, headers }) => {
     </div>
   )
 }
-export const GridView2 = ({ list, headers }) => {
+
+const TableRow = ({ badgeCols, item, headers, checkAll }) => {
+  const [checked, setChecked] = useState(false)
+  useEffect(() => {
+    if (checkAll) {
+      setChecked(true)
+    } else {
+      setChecked(false)
+    }
+  }, [checkAll])
+
+  return (
+    <tr
+      css={css`
+        background-color: ${checked ? '#FDF9F3' : 'white'};
+        transition: background-color 0.3s;
+      `}
+    >
+      <td>
+        <Checkbox
+          checked={checked}
+          onChange={() => {
+            setChecked(!checked)
+          }}
+        />
+      </td>
+      {headers.map((header, ind) => (
+        <td key={ind}>
+          {header.type === 'Bool' ? (
+            <BooleanToggle
+              list={header.list}
+              value={item[header.key]}
+              valueList={header.list}
+            />
+          ) : header.type === 'actions-crud' ? (
+            <CrudOptions more={true} moreList={header.moreList} />
+          ) : header.type === 'actions-ud' ? (
+            <CrudOptions more={false} />
+          ) : header.type === 'actions-mud' ? (
+            <CrudOptions
+              more={false}
+              message={true}
+              // messageFunc={() => {}}
+              messageFunc={header.messageFunc}
+            />
+          ) : header.type === 'actions-more' ? (
+            <MoreOptions moreList={header.moreList} />
+          ) : header.type === 'badge' ? (
+            <StatusBadge
+              color={
+                badgeCols[
+                  Object.keys(header.badgeList).find(
+                    key => header.badgeList[key] === item[header.key],
+                  )
+                ]
+              }
+            >
+              {item[header.key]}
+            </StatusBadge>
+          ) : (
+            item[header.key]
+          )}
+        </td>
+      ))}
+    </tr>
+  )
+}
+
+export const CustomTable = ({ list, headers, title }) => {
+  const [checkAll, setCheckAll] = useState(false)
   const badgeCols = {
     green: '#3E9F4D',
     gold: '#DE8E0E',
@@ -122,9 +193,15 @@ export const GridView2 = ({ list, headers }) => {
     >
       <table>
         <thead>
+          <tr>{title ? <th>{title}</th> : null}</tr>
           <tr>
             <th>
-              <input type="checkbox" name="" id="" />
+              <Checkbox
+                checked={checkAll}
+                onChange={() => {
+                  setCheckAll(!checkAll)
+                }}
+              />
             </th>
             {headers.map((header, ind) => (
               <th key={ind}>{header.title}</th>
@@ -134,42 +211,13 @@ export const GridView2 = ({ list, headers }) => {
         <tbody>
           {list.map((item, ind) => {
             return (
-              <tr key={ind}>
-                <td>
-                  <input type="checkbox" name="" id="" />
-                </td>
-                {headers.map(header => (
-                  <td>
-                    {header.type === 'Bool' ? (
-                      <BooleanToggle
-                        list={header.list}
-                        value={item[header.key]}
-                        valueList={header.list}
-                      />
-                    ) : header.type === 'actions-crud' ? (
-                      <CrudOptions more={true} moreList={header.moreList} />
-                    ) : header.type === 'actions-ud' ? (
-                      <CrudOptions more={false} />
-                    ) : header.type === 'actions-more' ? (
-                      <MoreOptions moreList={header.moreList} />
-                    ) : header.type === 'badge' ? (
-                      <StatusBadge
-                        color={
-                          badgeCols[
-                            Object.keys(header.badgeList).find(
-                              key => header.badgeList[key] === item[header.key],
-                            )
-                          ]
-                        }
-                      >
-                        {item[header.key]}
-                      </StatusBadge>
-                    ) : (
-                      item[header.key]
-                    )}
-                  </td>
-                ))}
-              </tr>
+              <TableRow
+                item={item}
+                headers={headers}
+                badgeCols={badgeCols}
+                key={ind}
+                checkAll={checkAll}
+              />
             )
           })}
         </tbody>
