@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import VendorsLayout from '../../../layouts/vendorsLayout'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import { BackButton } from '../../../components/pieces/Buttons'
-import { ViewGig, PreviewQuoteCard } from '../../../components/pieces/cards'
+import { ViewGig, PreviewQuoteCard } from '../../../components/UI/Cards'
 
 export const PreviewQuoteContent = ({
   openModal,

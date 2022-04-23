@@ -18,7 +18,7 @@ import {
   RequestSummary,
 } from '../../components/clients/servicePhases'
 import { sectionStyles } from '../../styles/GeneralStyles'
-import { ServiceCard1 } from '../../components/pieces/cards'
+import { ServiceCard1 } from '../../components/UI/Cards'
 import Modal from '../../components/UI/Modals/Modal'
 
 const ServiceComponent1 = ({ setServicePhase }) => {

@@ -1,7 +1,7 @@
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import tw, { css } from 'twin.macro'
 
-export const PendingActionsBanner = () => {
+const PendingActionsBanner = () => {
   return (
     <div tw="bg-[#1A1A1A] flex flex-row items-center justify-between rounded-lg mb-4 px-4 py-3 font-semibold">
       <div tw="flex flex-row items-center gap-8">
@@ -22,3 +22,5 @@ export const PendingActionsBanner = () => {
     </div>
   )
 }
+
+export default PendingActionsBanner

@@ -6,7 +6,7 @@ import AdminLayout from '../../../layouts/adminLayout'
 import { sectionStyles, formStyles } from '../../../styles/GeneralStyles'
 import profilePlaceholder from '../../../images/Ellipse 56.png'
 import Modal from '../../../components/UI/Modals/Modal'
-import { PreviewMessageCard } from '../../../components/pieces/cards'
+import { PreviewMessageCard } from '../../../components/UI/Cards'
 
 const PreviewMessageRoot = ({ setOpenModal, setModalChild }) => {
   const router = useRouter()

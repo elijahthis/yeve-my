@@ -1,7 +1,7 @@
 import tw, { css } from 'twin.macro'
 import { useState } from 'react'
 import MainNav from '../components/UI/NavBars/MainNav'
-import SideBar from '../components/sidebar'
+import SideBar from '../components/UI/Sidebars/SideBar'
 import { BsShop } from 'react-icons/bs'
 
 const ClientsLayout = ({ children }) => {

@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react'
 import { BooleanToggle, DropdownMenu, DatePickerr } from '../formTools'
 import { ProceedButton, BackButton } from '../pieces/Buttons'
 import { RequestSubmitted } from '../UI/Modals/ModalChildren'
-import { ServiceCard2 } from '../pieces/cards'
+import { ServiceCard2 } from '../UI/Cards'
 
 export const ChooseService = ({
   servicePhase,

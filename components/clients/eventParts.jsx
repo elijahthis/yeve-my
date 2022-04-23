@@ -1,4 +1,4 @@
-import { EventCard } from '../pieces/cards'
+import { EventCard } from '../UI/Cards'
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
 import { useEffect } from 'react'

@@ -5,8 +5,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Tooltip } from 'antd'
 import 'antd/dist/antd.css'
-import { FeaturesToolTip } from '../../../pieces/Tooltips'
-import { YeveLogo1, YeveLogo2 } from '../../Logos'
+import { YeveLogo2 } from '../../Logos'
 import { MenuInvertedIcon } from '../../../pieces/svgs'
 
 const linkItem = css`

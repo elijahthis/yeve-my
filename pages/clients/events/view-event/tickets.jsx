@@ -7,7 +7,7 @@ import {
   ProfileInfo,
   Payment,
 } from '../../../../components/clients/accountParts'
-import { VendorInfoCard } from '../../../../components/pieces/cards'
+import { VendorInfoCard } from '../../../../components/UI/Cards'
 import ClientsEventLayout from '../../../../layouts/clientsEventLayout'
 import { sectionStyles } from '../../../../styles/GeneralStyles'
 import { SearchBar } from '../../../../components/formTools'

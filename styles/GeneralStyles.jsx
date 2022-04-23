@@ -265,3 +265,13 @@ export const loaderStyles = css`
     }
   }
 `
+
+export const actionBtn = css`
+  font-size: 14px;
+  line-height: 14px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 32px;
+  border: 1px solid #e5e5e5;
+  cursor: pointer;
+`

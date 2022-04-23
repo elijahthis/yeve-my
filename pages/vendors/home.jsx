@@ -2,16 +2,16 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import VendorsLayout from '../../layouts/vendorsLayout'
-import { PendingActionsBanner } from '../../components/pieces/pendingActions'
+import PendingActionsBanner from '../../components/UI/Banners/PendingActionsBanner'
 import { sectionStyles } from '../../styles/GeneralStyles'
 import { BsShop } from 'react-icons/bs'
-import { VendorInfoCard } from '../../components/pieces/cards'
 import { VendorProfile } from '../../components/vendors/homeParts'
 import {
-  UpcomingLiveList,
+  UpcomingLiveListCard,
   NewsCard,
   ServicesListCard,
-} from '../../components/pieces/cards'
+  VendorInfoCard,
+} from '../../components/UI/Cards'
 import YeveWallet from '../../components/pieces/yeveWallet'
 import imgPlaceholder from '../../images/musician-5.png'
 import { DateFilter } from '../../components/formTools'
@@ -158,11 +158,11 @@ export const HomeRoot = ({
             >
               <div>
                 <h5>Upcoming Events</h5>
-                <UpcomingLiveList cardData={upcomingList} />
+                <UpcomingLiveListCard cardData={upcomingList} />
               </div>
               <div>
                 <h5>Live Events</h5>
-                <UpcomingLiveList cardData={liveList} />
+                <UpcomingLiveListCard cardData={liveList} />
               </div>
               <div>
                 <h5>Yeve News</h5>

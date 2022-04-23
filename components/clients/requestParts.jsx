@@ -1,5 +1,5 @@
 import tw, { css } from 'twin.macro'
-import { VendorCard, RecurringCard } from '../pieces/cards'
+import { VendorCard, RecurringCard } from '../UI/Cards'
 import GridView from '../pieces/customTable'
 import profilePlaceholder from '../../images/profile-1.png'
 import imgPlaceholder from '../../images/Group 526.png'

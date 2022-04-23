@@ -22,7 +22,7 @@ import musician3 from '../../images/musician-3.png'
 import musician4 from '../../images/musician-4.png'
 import musician5 from '../../images/musician-5.png'
 import musician6 from '../../images/musician-6.png'
-import { ServiceCard1, ServiceCard2, ReviewCard } from '../pieces/cards'
+import { ServiceCard1, ServiceCard2, ReviewCard } from '../UI/Cards'
 import { useState } from 'react'
 
 export const MyProfile = () => {

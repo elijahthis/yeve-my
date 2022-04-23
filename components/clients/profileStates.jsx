@@ -9,7 +9,7 @@ import { FaPlay, FaSearch } from 'react-icons/fa'
 import { FiMoreVertical } from 'react-icons/fi'
 import { HiStar } from 'react-icons/hi'
 import Post from '../pieces/post'
-import { ReviewCard } from '../pieces/cards'
+import { ReviewCard } from '../UI/Cards'
 
 export const MyProfile = () => {
   return (

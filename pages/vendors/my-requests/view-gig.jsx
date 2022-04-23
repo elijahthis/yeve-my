@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import VendorsLayout from '../../../layouts/vendorsLayout'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import { BackButton } from '../../../components/pieces/Buttons'
-import { ViewGigCard, PreviewQuoteCard } from '../../../components/pieces/cards'
+import { ViewGigCard, PreviewQuoteCard } from '../../../components/UI/Cards'
 
 export const ViewGigContent = ({
   openModal,
