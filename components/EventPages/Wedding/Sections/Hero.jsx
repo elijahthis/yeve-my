@@ -1,8 +1,11 @@
 import tw, { css } from 'twin.macro'
 import { AiOutlineShareAlt } from 'react-icons/ai'
 import { Heart } from '../../../pieces/svgs'
+import { useRouter } from 'next/router'
 
 const Hero = () => {
+  const router = useRouter()
+
   return (
     <section className="hero">
       <div>
@@ -46,6 +49,9 @@ const Hero = () => {
                 line-height: 24px;
                 border-radius: 4px;
               `}
+              onClick={() => {
+                router.push('/event-page/RSVP?type=wedding')
+              }}
             >
               RSVP
             </button>

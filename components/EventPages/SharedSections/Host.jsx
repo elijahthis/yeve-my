@@ -5,7 +5,20 @@ import profilePlaceholder from '../../../images/profile-placeholder.png'
 
 const Host = () => {
   return (
-    <div tw="grid place-items-center pt-14 pb-11 border-t border-b border-[#E5E5E5]">
+    <div
+      tw="grid place-items-center pt-14 pb-11 border-t border-b border-[#E5E5E5]"
+      css={css`
+        h5 {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 32px;
+          margin-bottom: 16px;
+          color: #343434;
+        }
+      `}
+    >
       <div
         tw="flex flex-col items-center gap-2 "
         css={css`
@@ -22,7 +35,16 @@ const Host = () => {
         </div>
         <p>HOST</p>
         <h5 tw="">John Michael Smith</h5>
-        <div tw="flex flex-row items-center gap-5 w-full">
+        <div
+          tw="flex flex-row items-center gap-5 w-full"
+          css={css`
+            > :last-child {
+              background: transparent;
+              color: black;
+              border: 1px solid #e5e5e5;
+            }
+          `}
+        >
           <ProceedButton content="Follow" />
           <ProceedButton content="Contact" />
         </div>

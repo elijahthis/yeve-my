@@ -61,7 +61,7 @@ const NearbyEvents = () => {
       </div>
       <div tw="flex flex-row items-center justify-between">
         {cardList.map((card, ind) => (
-          <EventCard cardData={card} key={ind} />
+          <EventCard cardData={card} key={ind} actions={true} />
         ))}
       </div>
     </div>

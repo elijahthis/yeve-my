@@ -55,7 +55,7 @@ export const weddingSection = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 96px 0;
+  padding: 96px 143px;
 
   h2 {
     font-family: 'Bellaberry';

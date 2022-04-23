@@ -1,6 +1,12 @@
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
+import Link from 'next/link'
 import phone from '../../../images/phone.png'
+import { BiChevronDown } from 'react-icons/bi'
+import { BsYoutube, BsTwitter } from 'react-icons/bs'
+import { AiFillInstagram } from 'react-icons/ai'
+import { FaFacebook, FaTelegramPlane } from 'react-icons/fa'
+import { SiDiscord } from 'react-icons/si'
 
 const Footer = () => {
   return (
@@ -123,8 +129,58 @@ const Footer = () => {
               <li>www.yeve.co.uk</li>
               <li>support@yeve.co.uk</li>
             </ul>
+            <div
+              css={css`
+                margin-top: 2rem;
+
+                > :nth-child(2) {
+                  margin-top: 1.5rem;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  gap: 2rem;
+                  svg {
+                    color: #767676;
+                    cursor: pointer;
+                  }
+                }
+              `}
+            >
+              <p>Join the community</p>
+              <div>
+                <Link href="#">
+                  <AiFillInstagram size={24} />
+                </Link>
+                <Link href="#">
+                  <BsYoutube size={24} />
+                </Link>
+                <Link href="#">
+                  <FaFacebook size={24} />
+                </Link>
+                <Link href="#">
+                  <BsTwitter size={24} />
+                </Link>
+                <Link href="#">
+                  <BsYoutube size={24} />
+                </Link>
+                <Link href="#">
+                  <FaTelegramPlane size={24} />
+                </Link>
+                <Link href="#">
+                  <SiDiscord size={24} />
+                </Link>
+              </div>
+            </div>
           </div>
-          <div></div>
+          <div tw="absolute right-20 flex flex-row items-center gap-4 ">
+            <p tw="flex flex-row items-center gap-3">
+              English <BiChevronDown />
+            </p>
+            <span>|</span>
+            <p tw="flex flex-row items-center gap-3">
+              USD <BiChevronDown />
+            </p>
+          </div>
         </div>
       </div>
       <div>2020 Yeve.co.uk</div>

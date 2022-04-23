@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { BsPeople } from 'react-icons/bs'
 import { AiOutlineShareAlt } from 'react-icons/ai'
 
-const EventCard = ({ cardData }) => {
+const EventCard = ({ cardData, actions }) => {
   const { image, date, time, title, location, attendees } = cardData
 
   return (
@@ -28,9 +28,11 @@ const EventCard = ({ cardData }) => {
           letter-spacing: 0;
           word-spacing: 0;
           font-size: 0;
+          width: 100%;
+          position: relative;
         `}
       >
-        <Image src={image} />
+        <Image src={image} layout="fill" objectFit="contain" />
       </div>
       <div tw="flex flex-col items-start justify-between">
         <div tw="flex flex-col items-start gap-2 w-full">
@@ -51,12 +53,14 @@ const EventCard = ({ cardData }) => {
           </p>
           <p>{location}</p>
         </div>
-        <div tw="flex flex-row items-center justify-between w-full">
-          <div tw="flex flex-row items-center gap-2">
-            <BsPeople size="24" /> <p>{attendees} Attendees</p>
+        {actions ? (
+          <div tw="flex flex-row items-center justify-between w-full">
+            <div tw="flex flex-row items-center gap-2">
+              <BsPeople size="24" /> <p>{attendees} Attendees</p>
+            </div>
+            <AiOutlineShareAlt size="24" />
           </div>
-          <AiOutlineShareAlt size="24" />
-        </div>
+        ) : null}
       </div>
     </div>
   )

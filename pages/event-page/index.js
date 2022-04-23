@@ -1,5 +1,5 @@
-import { Regular } from '../components/EventPages/Regular'
-import Wedding from '../components/EventPages/Wedding'
+import { Regular } from '../../components/EventPages/Regular'
+import Wedding from '../../components/EventPages/Wedding'
 import { useRouter } from 'next/router'
 
 const EventPage = () => {
