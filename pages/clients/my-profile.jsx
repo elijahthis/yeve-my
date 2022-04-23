@@ -11,7 +11,7 @@ import {
   Feed,
 } from '../../components/clients/profileStates'
 import profileImg from '../../images/profile-img.png'
-import { CreatePost } from '../../components/modalChildren'
+import { CreatePost } from '../../components/UI/Modals/ModalChildren'
 import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
 import { MdAdd } from 'react-icons/md'
 import { BlackButton } from '../../components/pieces/Buttons'

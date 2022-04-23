@@ -8,7 +8,7 @@ import { BlackButton } from '../../../components/pieces/Buttons'
 import { SearchBar, CrudOptions } from '../../../components/formTools'
 import { CustomTable } from '../../../components/pieces/customTable'
 import { MdOutlineMail } from 'react-icons/md'
-import { SendMessage } from '../../../components/modalChildren'
+import { SendMessage } from '../../../components/UI/Modals/ModalChildren'
 import { PaymentSymbol } from '../../../components/pieces/svgs'
 import SortComponent from '../../../components/pieces/sort'
 

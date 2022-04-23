@@ -16,7 +16,7 @@ import {
   GroupsAttendees,
   TablesAttendees,
 } from '../../../../components/clients/events/attendeesPhases.jsx'
-import { AddAttendees } from '../../../../components/modalChildren'
+import { AddAttendees } from '../../../../components/UI/Modals/ModalChildren'
 import Modal from '../../../../components/UI/Modals/Modal'
 
 const AttendeesRoot = ({

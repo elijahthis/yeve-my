@@ -7,7 +7,7 @@ import flutterwaveIcon from '../../images/flutterwave-icon.png'
 import YeveWallet from '../pieces/yeveWallet'
 import { BiChevronRight } from 'react-icons/bi'
 import Image from 'next/image'
-import { WithdrawEarnings } from '../modalChildren'
+import { WithdrawEarnings } from '../UI/Modals/ModalChildren'
 
 export const AddPayment = ({ paymentPart, setPaymentPart }) => {
   return (

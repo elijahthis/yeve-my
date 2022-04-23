@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro'
 import { CustomTable } from '../../pieces/customTable'
-import { SendMessage, NewMeal } from '../../modalChildren'
+import { SendMessage, NewMeal } from '../../UI/Modals/ModalChildren'
 import MenuControl from '../../pieces/menuControl'
 
 export const AllRSVP = ({ list, setOpenModal, setModalChild }) => {

@@ -14,9 +14,8 @@ import { SearchBar } from '../../../../components/formTools'
 import { BlackButton, BackButton } from '../../../../components/pieces/Buttons'
 import SortComponent from '../../../../components/pieces/sort'
 import { AllTickets } from '../../../../components/clients/events/ticketsPhases'
-import { AddAttendees } from '../../../../components/modalChildren'
+import { AddAttendees } from '../../../../components/UI/Modals/ModalChildren'
 import Modal from '../../../../components/UI/Modals/Modal'
-
 
 const TicketsRoot = ({
   openModal,

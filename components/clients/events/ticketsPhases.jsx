@@ -1,7 +1,11 @@
 import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { CustomTable } from '../../pieces/customTable'
-import { SendMessage, NewMeal, EditTickets } from '../../modalChildren'
+import {
+  SendMessage,
+  NewMeal,
+  EditTickets,
+} from '../../UI/Modals/ModalChildren'
 import MenuControl from '../../pieces/menuControl'
 
 export const AllTickets = ({ list, setOpenModal, setModalChild, filterBy }) => {

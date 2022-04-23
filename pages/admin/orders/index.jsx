@@ -12,7 +12,7 @@ import {
   MdDeleteOutline,
   MdPersonOutline,
 } from 'react-icons/md'
-import { SendMessage } from '../../../components/modalChildren'
+import { SendMessage } from '../../../components/UI/Modals/ModalChildren'
 import SortComponent from '../../../components/pieces/sort'
 
 const OrdersRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {

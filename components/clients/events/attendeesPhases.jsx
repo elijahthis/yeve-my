@@ -1,7 +1,7 @@
 import tw, { css } from 'twin.macro'
 import { CustomTable } from '../../pieces/customTable'
 import MenuControl from '../../pieces/menuControl'
-import { SendMessage, EditTables } from '../../modalChildren'
+import { SendMessage, EditTables } from '../../UI/Modals/ModalChildren'
 import { SeatingChart, SeatingChart2 } from '../../pieces/seatingChart'
 import { useState } from 'react'
 

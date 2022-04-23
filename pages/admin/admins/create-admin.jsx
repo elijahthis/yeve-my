@@ -6,7 +6,7 @@ import { sectionStyles, formStyles } from '../../../styles/GeneralStyles'
 import profilePlaceholder from '../../../images/Ellipse 56.png'
 import Modal from '../../../components/UI/Modals/Modal'
 import { ProceedButton } from '../../../components/pieces/Buttons'
-import { SendMessage } from '../../../components/modalChildren'
+import { SendMessage } from '../../../components/UI/Modals/ModalChildren'
 import { DropdownMenu } from '../../../components/formTools'
 
 const CreateCustomersRoot = () => {

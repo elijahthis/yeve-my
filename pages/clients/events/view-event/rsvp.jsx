@@ -17,9 +17,8 @@ import {
   GiftsRSVP,
   GroupsRSVP,
 } from '../../../../components/clients/events/rsvpPhases'
-import { AddAttendees } from '../../../../components/modalChildren'
+import { AddAttendees } from '../../../../components/UI/Modals/ModalChildren'
 import Modal from '../../../../components/UI/Modals/Modal'
-
 
 const RSVPRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   const RSVPList = [

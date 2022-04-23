@@ -14,7 +14,7 @@ import {
   CancelEvent,
   QuoteSent,
   MessageSent,
-} from '../modalChildren'
+} from '../UI/Modals/ModalChildren/'
 import { ProgressBar } from '../formTools'
 import { HiStar } from 'react-icons/hi'
 import { Tooltip } from 'antd'

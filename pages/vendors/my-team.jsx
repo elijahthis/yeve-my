@@ -11,7 +11,7 @@ import {
   CreateAdmin,
   EditAdmin,
   DeleteAdmin,
-} from '../../components/modalChildren'
+} from '../../components/UI/Modals/ModalChildren'
 
 const TeamMember = ({ data, setOpenModal, setModalChild }) => (
   <div tw="flex flex-row items-center justify-between py-2 px-4 bg-white border border-[#eeeeee] rounded-lg w-full">

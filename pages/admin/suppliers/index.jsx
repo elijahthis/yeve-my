@@ -9,7 +9,10 @@ import { SearchBar, CrudOptions } from '../../../components/formTools'
 import { CustomTable } from '../../../components/pieces/customTable'
 import { MdOutlineMail } from 'react-icons/md'
 import { PaymentSymbol } from '../../../components/pieces/svgs'
-import { SendMessage, PaymentHistory } from '../../../components/modalChildren'
+import {
+  SendMessage,
+  PaymentHistory,
+} from '../../../components/UI/Modals/ModalChildren'
 import SortComponent from '../../../components/pieces/sort'
 
 const SuppliersRoot = ({
