@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ClientsLayout from '../../../layouts/clientsLayout'
 import CreateEvent from '../../../components/vendors/eventPhases'
-import Modal from '../../../components/modal'
+import Modal from '../../../components/UI/Modals/Modal'
 
 export const CreateEventRoot = () => {
   const [formData, setFormData] = useState({

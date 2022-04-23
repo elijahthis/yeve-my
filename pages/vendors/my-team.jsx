@@ -5,7 +5,7 @@ import VendorsLayout from '../../layouts/vendorsLayout'
 import { sectionStyles } from '../../styles/GeneralStyles'
 import profilePlaceholder from '../../images/Ellipse 56.png'
 import { CrudOptions } from '../../components/formTools'
-import Modal from '../../components/modal'
+import Modal from '../../components/UI/Modals/Modal'
 import { ProceedButton } from '../../components/pieces/Buttons'
 import {
   CreateAdmin,

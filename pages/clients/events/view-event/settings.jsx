@@ -9,7 +9,7 @@ import ClientsEventLayout from '../../../../layouts/clientsEventLayout'
 import EventDetails from '../../../../components/clients/events/settingsPhases'
 import { sectionStyles } from '../../../../styles/GeneralStyles'
 import { BackButton } from '../../../../components/pieces/Buttons'
-import Modal from '../../../../components/modal'
+import Modal from '../../../../components/UI/Modals/Modal'
 
 const SettingsRoot = ({
   openModal,

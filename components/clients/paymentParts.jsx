@@ -4,11 +4,9 @@ import { formStyles } from '../../styles/GeneralStyles'
 import bankIcon from '../../images/bank-icon.png'
 import stripeIcon from '../../images/stripe-icon.png'
 import flutterwaveIcon from '../../images/flutterwave-icon.png'
-import yeveWalletBg from '../../images/yeve-wallet.png'
 import YeveWallet from '../pieces/yeveWallet'
 import { BiChevronRight } from 'react-icons/bi'
 import Image from 'next/image'
-import Modal from '../modal'
 import { WithdrawEarnings } from '../modalChildren'
 
 export const AddPayment = ({ paymentPart, setPaymentPart }) => {

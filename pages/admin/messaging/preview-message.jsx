@@ -5,7 +5,7 @@ import Router, { useRouter } from 'next/router'
 import AdminLayout from '../../../layouts/adminLayout'
 import { sectionStyles, formStyles } from '../../../styles/GeneralStyles'
 import profilePlaceholder from '../../../images/Ellipse 56.png'
-import Modal from '../../../components/modal'
+import Modal from '../../../components/UI/Modals/Modal'
 import { PreviewMessageCard } from '../../../components/pieces/cards'
 
 const PreviewMessageRoot = ({ setOpenModal, setModalChild }) => {

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import ClientsLayout from '../../layouts/clientsLayout'
 import { sectionStyles } from '../../styles/GeneralStyles'
 import { BsShop } from 'react-icons/bs'
-import Modal from '../../components/modal'
+import Modal from '../../components/UI/Modals/Modal'
 import {
   MyProfile,
   Reviews,

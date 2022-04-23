@@ -19,7 +19,7 @@ import {
 } from '../../components/clients/servicePhases'
 import { sectionStyles } from '../../styles/GeneralStyles'
 import { ServiceCard1 } from '../../components/pieces/cards'
-import Modal from '../../components/modal'
+import Modal from '../../components/UI/Modals/Modal'
 
 const ServiceComponent1 = ({ setServicePhase }) => {
   const categories = [

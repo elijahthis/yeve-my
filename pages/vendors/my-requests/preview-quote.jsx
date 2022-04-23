@@ -1,18 +1,9 @@
 import tw, { css } from 'twin.macro'
-import Image from 'next/image'
-import {
-  PendingRequests,
-  ActiveBookings,
-  PastBookings,
-  RecurringBookings,
-} from '../../../components/vendors/requestParts'
+
 import { useRouter } from 'next/router'
 import VendorsLayout from '../../../layouts/vendorsLayout'
-import { SearchBar, DropdownMenu } from '../../../components/formTools'
-import { BsSortDownAlt, BsSortUp, BsListTask, BsGridFill } from 'react-icons/bs'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import { BackButton } from '../../../components/pieces/Buttons'
-import keyboardistBadge from '../../../images/Rectangle 444.png'
 import { ViewGig, PreviewQuoteCard } from '../../../components/pieces/cards'
 
 export const PreviewQuoteContent = ({

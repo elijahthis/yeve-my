@@ -17,7 +17,7 @@ import {
   TablesAttendees,
 } from '../../../../components/clients/events/attendeesPhases.jsx'
 import { AddAttendees } from '../../../../components/modalChildren'
-import Modal from '../../../../components/modal'
+import Modal from '../../../../components/UI/Modals/Modal'
 
 const AttendeesRoot = ({
   openModal,

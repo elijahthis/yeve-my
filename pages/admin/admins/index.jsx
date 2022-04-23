@@ -2,16 +2,12 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import AdminLayout from '../../../layouts/adminLayout'
-import Modal from '../../../components/modal'
+import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import { BlackButton } from '../../../components/pieces/Buttons'
 import { SearchBar, CrudOptions } from '../../../components/formTools'
 import { CustomTable } from '../../../components/pieces/customTable'
-import { MdOutlineMail } from 'react-icons/md'
-import { BooleanToggle } from '../../../components/formTools'
-import { SendMessage } from '../../../components/modalChildren'
 import SortComponent from '../../../components/pieces/sort'
-import { PaymentSymbol } from '../../../components/pieces/svgs'
 
 const AdminsRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   const router = useRouter()

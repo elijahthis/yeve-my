@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import profilePlaceholder from '../../../images/Ellipse 56.png'
 import AdminLayout from '../../../layouts/adminLayout'
-import Modal from '../../../components/modal'
+import Modal from '../../../components/UI/Modals/Modal'
 import { ProceedButton } from '../../../components/pieces/Buttons'
 import { DropdownMenu } from '../../../components/formTools'
 import {

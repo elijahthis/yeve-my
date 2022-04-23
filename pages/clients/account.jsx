@@ -4,7 +4,7 @@ import TabBar from '../../components/pieces/tabBar'
 import { ProfileInfo, Payment } from '../../components/clients/accountParts'
 import ClientsLayout from '../../layouts/clientsLayout'
 import { sectionStyles } from '../../styles/GeneralStyles'
-import Modal from '../../components/modal'
+import Modal from '../../components/UI/Modals/Modal'
 
 const AccountRoot = ({
   openModal,

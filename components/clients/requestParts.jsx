@@ -3,7 +3,6 @@ import { VendorCard, RecurringCard } from '../pieces/cards'
 import GridView from '../pieces/customTable'
 import profilePlaceholder from '../../images/profile-1.png'
 import imgPlaceholder from '../../images/Group 526.png'
-import Modal from '../modal'
 
 export const PendingRequests = ({
   openModal,

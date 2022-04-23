@@ -12,7 +12,7 @@ import {
 import { SearchBar, DropdownMenu } from '../../../components/formTools'
 import { BsSortDownAlt, BsSortUp, BsListTask, BsGridFill } from 'react-icons/bs'
 import { sectionStyles } from '../../../styles/GeneralStyles'
-import Modal from '../../../components/modal'
+import Modal from '../../../components/UI/Modals/Modal'
 
 export const RequestsRoot = ({
   openModal,

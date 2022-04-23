@@ -15,7 +15,7 @@ import {
 import YeveWallet from '../../components/pieces/yeveWallet'
 import imgPlaceholder from '../../images/musician-5.png'
 import { DateFilter } from '../../components/formTools'
-import Modal from '../../components/modal'
+import Modal from '../../components/UI/Modals/Modal'
 import { ProceedButton } from '../../components/pieces/Buttons'
 
 export const HomeRoot = ({

@@ -12,7 +12,7 @@ import {
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import { BlackButton } from '../../../components/pieces/Buttons'
 import { BsSortDownAlt, BsSortUp, BsListTask, BsGridFill } from 'react-icons/bs'
-import Modal from '../../../components/modal'
+import Modal from '../../../components/UI/Modals/Modal'
 
 const EventsRoot = () => {
   const [shape, setShape] = useState(0)
