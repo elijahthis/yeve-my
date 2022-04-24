@@ -7,7 +7,7 @@ import { sectionStyles, formStyles } from '../../styles/GeneralStyles'
 import imgPlaceholder from '../../images/Group 526.png'
 import { BackButton } from '../pieces/Buttons'
 import { BooleanToggle, DropdownMenu, DatePickerr } from '../formTools'
-import { CustomTable } from '../pieces/customTable'
+import { CustomTable } from '../UI/CustomTable'
 import { SendMessage } from '../UI/Modals/ModalChildren'
 
 export const AllEvents = () => {

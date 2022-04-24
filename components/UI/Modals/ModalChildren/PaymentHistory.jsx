@@ -4,7 +4,7 @@ import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
 import profilePlaceholder from '../../../../images/profile-placeholder.png'
 import { DateFilter } from '../../../formTools'
-import { CustomTable } from '../../../pieces/customTable'
+import { CustomTable } from '../../../UI/CustomTable'
 import { VendorInfoCard2 } from '../../../UI/Cards'
 
 const PaymentHistory = ({ setOpenModal, vendor }) => {

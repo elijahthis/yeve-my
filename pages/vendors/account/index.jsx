@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro'
 import VendorLayout from '../../../layouts/vendorsLayout'
-import TabBar from '../../../components/pieces/tabBar'
+import TabBar from '../../../components/UI/TabBar'
 import { ProfileInfo, Payment } from '../../../components/clients/accountParts'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 

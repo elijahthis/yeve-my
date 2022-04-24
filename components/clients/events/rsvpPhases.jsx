@@ -1,5 +1,5 @@
 import tw, { css } from 'twin.macro'
-import { CustomTable } from '../../pieces/customTable'
+import { CustomTable } from '../../UI/CustomTable'
 import { SendMessage, NewMeal } from '../../UI/Modals/ModalChildren'
 import MenuControl from '../../pieces/menuControl'
 
@@ -68,6 +68,7 @@ export const MealsRSVP = ({ list, setOpenModal, setModalChild }) => {
 export const GiftsRSVP = ({ list, setOpenModal, setModalChild }) => {
   const badgeList = {
     green: 'Purchased',
+    green: 'Activated',
     gold: 'Pending',
     red: 'Cancelled',
   }

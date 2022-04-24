@@ -2,7 +2,7 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { BsShop } from 'react-icons/bs'
-import TabBar from '../../../../components/pieces/tabBar'
+import TabBar from '../../../../components/UI/TabBar'
 import {
   ProfileInfo,
   Payment,

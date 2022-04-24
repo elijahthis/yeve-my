@@ -1,7 +1,7 @@
 import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import VendorsLayout from '../../../layouts/vendorsLayout'
-import TabBar from '../../../components/pieces/tabBar'
+import TabBar from '../../../components/UI/TabBar'
 import {
   PendingRequests,
   ActiveBookings,
@@ -31,6 +31,7 @@ export const RequestsRoot = ({
       price: 120,
       duration: 2,
       status: 'Pending Acceptance',
+      rate: '60/hr',
     },
     {
       gig: 'Keyboardist',
@@ -42,6 +43,7 @@ export const RequestsRoot = ({
       duration: 2,
       status: 'Pending Acceptance',
       budgetAccepted: true,
+      rate: '60/hr',
     },
     {
       gig: 'Keyboardist',
@@ -53,6 +55,7 @@ export const RequestsRoot = ({
       duration: 2,
       status: 'Pending Acceptance',
       budgetAccepted: false,
+      rate: '60/hr',
     },
     {
       gig: 'Keyboardist',
@@ -63,6 +66,7 @@ export const RequestsRoot = ({
       price: 120,
       duration: 2,
       status: 'Accepted',
+      rate: '60/hr',
     },
     {
       gig: 'Keyboardist',
@@ -73,6 +77,7 @@ export const RequestsRoot = ({
       price: 120,
       duration: 2,
       status: 'Accepted',
+      rate: '60/hr',
     },
     {
       gig: 'Keyboardist',
@@ -83,6 +88,7 @@ export const RequestsRoot = ({
       price: 120,
       duration: 2,
       status: 'Activated',
+      rate: '60/hr',
     },
     {
       gig: 'Keyboardist',
@@ -93,6 +99,7 @@ export const RequestsRoot = ({
       price: 120,
       duration: 2,
       status: 'Event Completed',
+      rate: '60/hr',
     },
     {
       gig: 'Keyboardist',
@@ -103,6 +110,7 @@ export const RequestsRoot = ({
       price: 120,
       duration: 2,
       status: 'Event Completed',
+      rate: '60/hr',
     },
     {
       gig: 'Keyboardist',
@@ -113,6 +121,7 @@ export const RequestsRoot = ({
       price: 120,
       duration: 2,
       status: 'Event Completed',
+      rate: '60/hr',
     },
   ])
   const requestTabData = [

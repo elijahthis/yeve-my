@@ -2,7 +2,7 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import ClientsLayout from '../../layouts/clientsLayout'
-import TabBar from '../../components/pieces/tabBar'
+import TabBar from '../../components/UI/TabBar'
 import {
   PendingRequests,
   ActiveBookings,

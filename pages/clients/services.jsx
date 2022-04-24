@@ -10,7 +10,7 @@ import service4 from '../../images/service4.png'
 import service5 from '../../images/service5.png'
 import service6 from '../../images/service6.png'
 import profileImg from '../../images/profile-img.png'
-import TabBar from '../../components/pieces/tabBar'
+import TabBar from '../../components/UI/TabBar'
 import { BiChevronRight } from 'react-icons/bi'
 import {
   ChooseService,

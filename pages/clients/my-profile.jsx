@@ -15,7 +15,7 @@ import { CreatePost } from '../../components/UI/Modals/ModalChildren'
 import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
 import { MdAdd } from 'react-icons/md'
 import { BlackButton } from '../../components/pieces/Buttons'
-import TabBar from '../../components/pieces/tabBar'
+import TabBar from '../../components/UI/TabBar'
 
 const ProfileRoot = ({
   openModal,
