@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
-import { CustomTable } from '../../UI/CustomTable'
+import CustomTable from '../../UI/CustomTable'
 import {
   SendMessage,
   NewMeal,

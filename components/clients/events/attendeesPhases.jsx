@@ -1,5 +1,5 @@
 import tw, { css } from 'twin.macro'
-import { CustomTable } from '../../UI/CustomTable'
+import CustomTable from '../../UI/CustomTable'
 import MenuControl from '../../pieces/menuControl'
 import { SendMessage, EditTables } from '../../UI/Modals/ModalChildren'
 import { SeatingChart, SeatingChart2 } from '../../pieces/seatingChart'

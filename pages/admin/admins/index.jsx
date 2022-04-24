@@ -6,7 +6,7 @@ import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import { BlackButton } from '../../../components/pieces/Buttons'
 import { SearchBar, CrudOptions } from '../../../components/formTools'
-import { CustomTable } from '../../../components/UI/CustomTable'
+import CustomTable from '../../../components/UI/CustomTable'
 import SortComponent from '../../../components/pieces/sort'
 
 const AdminsRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {

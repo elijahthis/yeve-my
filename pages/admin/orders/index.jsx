@@ -6,7 +6,7 @@ import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import { BlackButton } from '../../../components/pieces/Buttons'
 import { SearchBar } from '../../../components/formTools'
-import { CustomTable } from '../../../components/UI/CustomTable'
+import CustomTable from '../../../components/UI/CustomTable'
 import {
   MdOutlineModeEdit,
   MdDeleteOutline,
