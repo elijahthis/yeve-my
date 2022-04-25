@@ -1,6 +1,6 @@
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 import RatingStars from '../../../pieces/ratingStars'
 
 const VendorReview = ({ setOpenModal }) => {
@@ -92,22 +92,22 @@ const VendorReview = ({ setOpenModal }) => {
         </div>
       </div>
       <div tw="flex flex-row items-center gap-9 w-full">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content="Report Issue"
+        <Button
+          variant="secondary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Yes, complete"
+        >
+          Report Issue
+        </Button>
+        <Button
+          variant="primary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
+        >
+          Yes, complete
+        </Button>
       </div>
     </div>
   )

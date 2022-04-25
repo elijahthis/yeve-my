@@ -12,11 +12,11 @@ import {
   ServicesListCard,
   VendorInfoCard,
 } from '../../components/UI/Cards'
-import YeveWallet from '../../components/pieces/yeveWallet'
+import YeveWallet from '../../components/UI/YeveWallet'
 import imgPlaceholder from '../../images/musician-5.png'
 import { DateFilter } from '../../components/formTools'
 import Modal from '../../components/UI/Modals/Modal'
-import { ProceedButton } from '../../components/pieces/Buttons'
+import Button from '../../components/UI/Buttons/Button'
 
 export const HomeRoot = ({
   openModal,
@@ -176,12 +176,12 @@ export const HomeRoot = ({
                 <ServicesListCard cardData={myServicesList} />
               </div>
               <div>
-                <ProceedButton
-                  content="Generate Quote"
-                  onClick={() => {
-                    router.push('/vendors/my-requests/generate-quoteB')
-                  }}
-                />
+                <Button
+                  variant="primary"
+                  href="/vendors/my-requests/generate-quoteB"
+                >
+                  Generate Quote
+                </Button>
               </div>
             </div>
           </div>

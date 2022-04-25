@@ -9,7 +9,8 @@ import {
 import ClientsEventLayout from '../../../../layouts/clientsEventLayout'
 import { sectionStyles } from '../../../../styles/GeneralStyles'
 import { SearchBar } from '../../../../components/formTools'
-import { BlackButton, BackButton } from '../../../../components/pieces/Buttons'
+import BackButton from '../../../../components/UI/Buttons/BackButton'
+import Button from '../../../../components/UI/Buttons/Button'
 import SortComponent from '../../../../components/pieces/sort'
 import {
   AllAttendees,
@@ -101,8 +102,9 @@ const AttendeesRoot = ({
           `}
         >
           <h3>Attendees</h3>
-          <BlackButton
-            content="Add"
+          <Button
+            variant="tertiary"
+            fill="fill"
             bg="#de8e0e"
             onClick={() => {
               setModalChild(
@@ -113,7 +115,9 @@ const AttendeesRoot = ({
               )
               setOpenModal(true)
             }}
-          />
+          >
+            Add
+          </Button>
         </div>
         <div>
           <div tw="flex flex-row items-center justify-between">
@@ -130,7 +134,7 @@ const AttendeesRoot = ({
               `}
             >
               <SearchBar />
-              <BlackButton content="Export" />
+              <Button variant="tertiary">Export</Button>
             </div>
             <SortComponent />
           </div>

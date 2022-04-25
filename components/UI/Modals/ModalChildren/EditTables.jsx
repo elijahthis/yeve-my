@@ -1,7 +1,8 @@
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
 import { formCoreStyles } from '../../../../styles/GeneralStyles'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
+import { InvitationSent } from './'
 
 const EditTables = ({ setOpenModal, setModalChild, capacity, setCapacity }) => {
   return (
@@ -73,24 +74,24 @@ const EditTables = ({ setOpenModal, setModalChild, capacity, setCapacity }) => {
           </div>
         </form>
         <div tw="w-full mt-6 flex flex-row items-center gap-4">
-          <ProceedButton
-            bg="#fafafa"
-            col="#767676"
-            content="Cancel"
+          <Button
+            variant="secondary"
             onClick={() => {
               setOpenModal(false)
             }}
-          />
-          <ProceedButton
-            bg="#de8e0e"
-            col="white"
-            content="Save"
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="primary"
             onClick={() => {
               setModalChild(
                 <InvitationSent setOpenModal={setOpenModal} email={'email'} />,
               )
             }}
-          />
+          >
+            Save
+          </Button>
         </div>
       </div>
     </div>

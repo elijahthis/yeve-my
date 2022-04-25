@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro'
 import Image from 'next/image'
-import { ProceedButton } from '../../pieces/Buttons'
+import Button from '../../UI/Buttons/Button'
 import profilePlaceholder from '../../../images/profile-placeholder.png'
 
 const Host = () => {
@@ -39,14 +39,14 @@ const Host = () => {
           tw="flex flex-row items-center gap-5 w-full"
           css={css`
             > :last-child {
-              background: transparent;
-              color: black;
               border: 1px solid #e5e5e5;
             }
           `}
         >
-          <ProceedButton content="Follow" />
-          <ProceedButton content="Contact" />
+          <Button variant="primary">Follow</Button>
+          <Button variant="primary" fill="outline" col="black">
+            Contact
+          </Button>
         </div>
       </div>
     </div>

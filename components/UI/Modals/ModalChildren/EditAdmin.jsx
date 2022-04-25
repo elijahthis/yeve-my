@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
 import { formCoreStyles } from '../../../../styles/GeneralStyles'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const EditAdmin = ({ setOpenModal, setModalChild, data }) => {
   return (
@@ -119,22 +119,22 @@ const EditAdmin = ({ setOpenModal, setModalChild, data }) => {
             }
           `}
         >
-          <ProceedButton
-            bg="#fafafa"
-            col="#de8e0e"
-            content="Cancel"
+          <Button
+            variant="secondary"
             onClick={() => {
               setOpenModal(false)
             }}
-          />
-          <ProceedButton
-            bg="#de8e0e"
-            col="white"
-            content="Save"
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="primary"
             onClick={() => {
               setOpenModal(false)
             }}
-          />
+          >
+            Save
+          </Button>
         </div>
       </div>
     </div>

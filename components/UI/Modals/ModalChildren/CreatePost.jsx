@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import CreatePostPhase0 from './CreatePostPhase0'
+import CreatePostPhase1 from './CreatePostPhase1'
+import CreatePostPhase2 from './CreatePostPhase2'
 
 const CreatePost = ({ setOpenModal }) => {
   const [phase, setPhase] = useState(0)

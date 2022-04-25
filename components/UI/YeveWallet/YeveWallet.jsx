@@ -1,8 +1,7 @@
 import tw, { css } from 'twin.macro'
-import yeveWalletBg from '../../images/yeve-wallet.png'
-import yeveWalletIcon from '../../images/yeve-wallet-icon2.svg'
-import Image from 'next/image'
-import { YeveIcon } from './svgs'
+import yeveWalletBg from '../../../images/yeve-wallet.png'
+import yeveWalletIcon from '../../../images/yeve-wallet-icon2.svg'
+import { YeveIcon } from '../../pieces/svgs'
 
 const YeveWallet = () => {
   return (

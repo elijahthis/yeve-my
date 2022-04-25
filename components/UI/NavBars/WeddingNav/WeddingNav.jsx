@@ -2,6 +2,7 @@ import { WeddingLogo1 } from '../../Logos/Logo'
 import { Button } from '../../.././../components'
 import tw, { css } from 'twin.macro'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Tooltip } from 'antd'
 import 'antd/dist/antd.css'
@@ -45,6 +46,7 @@ const active = css`
 `
 
 const WeddingNav = ({ page }) => {
+  const router = useRouter()
   const [navOpen, setNavOpen] = useState(false)
   const navItems = [
     { title: 'Home', tooltip: null },
@@ -52,6 +54,7 @@ const WeddingNav = ({ page }) => {
     { title: 'Our Story', tooltip: null },
     { title: 'Support Us', tooltip: null },
   ]
+
   return (
     <>
       <header
@@ -98,6 +101,9 @@ const WeddingNav = ({ page }) => {
                 css={css`
                   transition: color 0.3s, background-color 0.3s;
                 `}
+                onClick={() => {
+                  router.push('/event-page/RSVP?type=wedding')
+                }}
               >
                 RSVP
               </Button>

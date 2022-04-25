@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { FiCheck } from 'react-icons/fi'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const EventAccepted = ({ setOpenModal }) => {
   const router = useRouter()
@@ -70,15 +70,15 @@ const EventAccepted = ({ setOpenModal }) => {
         We have submitted your request and it is processing. We will notify you
         when it has been accepted by the client
       </p>
-      <ProceedButton
-        bg="#de8e0e"
-        col="white"
-        content="Back Home"
+      <Button
+        variant="primary"
         onClick={() => {
           setOpenModal(false)
           router.push('/vendors/my-requests')
         }}
-      />
+      >
+        Back Home
+      </Button>
     </div>
   )
 }

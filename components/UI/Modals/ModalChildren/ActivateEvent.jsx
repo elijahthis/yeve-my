@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro'
 import { IoClose } from 'react-icons/io5'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 export const ActivateEvent = ({
   setOpenModal,
@@ -56,25 +56,25 @@ export const ActivateEvent = ({
         event venue
       </p>
       <div tw="flex flex-row items-center gap-9 w-full">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content="No, Cancel"
+        <Button
+          variant="secondary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Yes, activate"
+        >
+          No, Cancel
+        </Button>
+        <Button
+          variant="primary"
           onClick={() => {
             const newList = [...cardList]
             newList[cardInd].status = 'Activated'
             setCardList(newList)
             setOpenModal(false)
           }}
-        />
+        >
+          Yes, activate
+        </Button>
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import tw, { css } from 'twin.macro'
 import imgPlaceholder from '../../../../images/card-banner.png'
 import premiumIcon from '../../../../images/premium-icon.png'
 import profilePlaceholder from '../../../../images/profile-placeholder.png'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const ViewQuote = ({ setOpenModal }) => {
   return (
@@ -75,22 +75,22 @@ const ViewQuote = ({ setOpenModal }) => {
         <p>&#163;120</p>
       </div>
       <div tw="flex flex-row items-center gap-9 w-full mt-4">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content="Reject"
+        <Button
+          variant="secondary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Accept"
+        >
+          Reject
+        </Button>
+        <Button
+          variant="primary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
+        >
+          Accept
+        </Button>
       </div>
     </div>
   )

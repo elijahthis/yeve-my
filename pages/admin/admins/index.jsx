@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import AdminLayout from '../../../layouts/adminLayout'
 import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
-import { BlackButton } from '../../../components/pieces/Buttons'
+import Button from '../../../components/UI/Buttons/Button'
 import { SearchBar, CrudOptions } from '../../../components/formTools'
 import CustomTable from '../../../components/UI/CustomTable'
 import SortComponent from '../../../components/pieces/sort'
@@ -26,13 +26,14 @@ const AdminsRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
     <section css={sectionStyles}>
       <div tw="flex flex-row items-center justify-between mb-7">
         <h3>Admins</h3>
-        <BlackButton
-          content="Create +"
+        <Button
+          variant="tertiary"
           bg="#de8e0e"
-          onClick={() => {
-            router.push('/admin/admins/create-admin')
-          }}
-        />
+          href="/admin/admins/create-admin"
+          fill="fill"
+        >
+          Create +
+        </Button>
       </div>
       <div>
         <div tw="flex flex-row items-center justify-between">
@@ -49,7 +50,7 @@ const AdminsRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
             `}
           >
             <SearchBar />
-            <BlackButton content="Export" />
+            <Button variant="tertiary">Export</Button>
           </div>
           <SortComponent />
         </div>

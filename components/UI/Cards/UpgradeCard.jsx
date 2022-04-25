@@ -1,8 +1,8 @@
 import tw, { css } from 'twin.macro'
+import { useState } from 'react'
 import { FiCheck } from 'react-icons/fi'
 import 'antd/dist/antd.css'
-import { ToggleText } from '../formTools'
-import { useState } from 'react/cjs/react.development'
+import { ToggleText } from '../../formTools'
 
 const UpgradeCard = ({ cardData, current, setCurrent, ind, setPhase }) => {
   const [cycle, setCycle] = useState(true)
@@ -35,7 +35,7 @@ const UpgradeCard = ({ cardData, current, setCurrent, ind, setPhase }) => {
               checkedChildren="Monthly"
               unCheckedChildren="Annually"
               changeFunc={val => setCycle(val)}
-            />  
+            />
           </div>
         ) : null}
       </div>

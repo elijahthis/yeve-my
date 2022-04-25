@@ -5,7 +5,7 @@ import AdminLayout from '../../../layouts/adminLayout'
 import { sectionStyles, formStyles } from '../../../styles/GeneralStyles'
 import profilePlaceholder from '../../../images/Ellipse 56.png'
 import Modal from '../../../components/UI/Modals/Modal'
-import { ProceedButton } from '../../../components/pieces/Buttons'
+import Button from '../../../components/UI/Buttons/Button'
 import { SendMessage } from '../../../components/UI/Modals/ModalChildren'
 
 const CreateCustomersRoot = () => {
@@ -88,7 +88,7 @@ const CreateCustomersRoot = () => {
                 }
               `}
             >
-              <ProceedButton content="Cancel" bg="#F8F8F8" col="#343434" />
+              <Button variant="secondary">Cancel</Button>
               <input type="submit" value="Continue" />
             </div>
           </form>

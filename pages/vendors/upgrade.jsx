@@ -1,11 +1,12 @@
 import tw, { css } from 'twin.macro'
-import { formStyles } from '../../styles/GeneralStyles'
-import { LoginNav } from '../login'
-import UpgradeCard from '../../components/pieces/upgradeCard'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { formStyles } from '../../styles/GeneralStyles'
+import { LoginNav } from '../login'
+import { UpgradeCard } from '../../components/UI/Cards'
 import Router from 'next/router'
-import { BackButton } from '../../components/pieces/Buttons'
+import BackButton from '../../components/UI/Buttons/BackButton'
+import Button from '../../components/UI/Buttons/Button'
 
 const Cards = ({ setPhase }) => {
   const [current, setCurrent] = useState(0)

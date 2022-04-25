@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
 import imgPlaceholder from '../../../images/card-banner.png'
-import { ProceedButton } from '../../pieces/Buttons'
+import Button from '../Buttons/Button'
 import { MessageSent } from '../Modals/ModalChildren/'
 
 const PreviewMessageCard = ({ setOpenModal, setModalChild }) => {
@@ -73,16 +73,18 @@ const PreviewMessageCard = ({ setOpenModal, setModalChild }) => {
       </div>
 
       <div tw="flex flex-row items-center gap-9 w-full mt-4">
-        <ProceedButton bg="white" col="#1a1a1a" content="Cancel" />
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Send Message"
+        <Button variant="primary" fill="fill" bg="white" col="#1a1a1a">
+          Cancel
+        </Button>
+        <Button
+          variant="primary"
           onClick={() => {
             setModalChild(<MessageSent setOpenModal={setOpenModal} />)
             setOpenModal(true)
           }}
-        />
+        >
+          Send Message
+        </Button>
       </div>
     </div>
   )

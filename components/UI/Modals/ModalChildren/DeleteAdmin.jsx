@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const DeleteAdmin = ({ setOpenModal, email }) => {
   const router = useRouter()
@@ -68,22 +68,24 @@ const DeleteAdmin = ({ setOpenModal, email }) => {
         admin removes all access to the platform.
       </p>
       <div tw="flex flex-row items-center gap-9 w-full mt-11">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content="Cancel"
+        <Button
+          variant="secondary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
-        <ProceedButton
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="primary"
+          fill="fill"
           bg="#E3394D"
-          col="white"
-          content="Delete"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
+        >
+          Delete
+        </Button>
       </div>
     </div>
   )

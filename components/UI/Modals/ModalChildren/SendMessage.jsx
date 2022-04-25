@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
 import profilePlaceholder from '../../../../images/profile-placeholder.png'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 import ImageUploadPreview from '../../../pieces/imageUploadPreview'
 
 const SendMessage = ({ setOpenModal, image }) => {
@@ -120,22 +120,22 @@ const SendMessage = ({ setOpenModal, image }) => {
       </form>
 
       <div tw="flex flex-row items-center gap-9 w-full mt-11">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content="Cancel"
+        <Button
+          variant="secondary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Send"
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="primary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
+        >
+          Send
+        </Button>
       </div>
     </div>
   )

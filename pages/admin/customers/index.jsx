@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import AdminLayout from '../../../layouts/adminLayout'
 import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
-import { BlackButton } from '../../../components/pieces/Buttons'
+import Button from '../../../components/UI/Buttons/Button'
 import { SearchBar, CrudOptions } from '../../../components/formTools'
 import CustomTable from '../../../components/UI/CustomTable'
 import { MdOutlineMail } from 'react-icons/md'
@@ -102,13 +102,14 @@ const CustomersRoot = ({
     <section css={sectionStyles}>
       <div tw="flex flex-row items-center justify-between mb-7">
         <h3>Customers</h3>
-        <BlackButton
-          content="Create +"
+        <Button
+          variant="tertiary"
+          fill="fill"
           bg="#de8e0e"
-          onClick={() => {
-            router.push('/admin/customers/create-customer')
-          }}
-        />
+          href="/admin/customers/create-customer"
+        >
+          Create +
+        </Button>
       </div>
       <div>
         <div tw="flex flex-row items-center justify-between">
@@ -125,7 +126,7 @@ const CustomersRoot = ({
             `}
           >
             <SearchBar />
-            <BlackButton content="Export" />
+            <Button variant="tertiary">Export</Button>
           </div>
           <SortComponent />
         </div>

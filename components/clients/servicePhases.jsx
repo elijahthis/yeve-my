@@ -10,9 +10,10 @@ import musician5 from '../../images/musician-5.png'
 import musician6 from '../../images/musician-6.png'
 import { useEffect, useState } from 'react'
 import { BooleanToggle, DropdownMenu, DatePickerr } from '../formTools'
-import { ProceedButton, BackButton } from '../pieces/Buttons'
+import BackButton from '../UI/Buttons/BackButton'
 import { RequestSubmitted } from '../UI/Modals/ModalChildren'
 import { ServiceCard2 } from '../UI/Cards'
+import Button from '../UI/Buttons/Button'
 
 export const ChooseService = ({
   servicePhase,
@@ -937,10 +938,8 @@ export const RequestSummary = ({
               </div>
             </div>
             <div tw="py-8">
-              <ProceedButton
-                content="Submit Request"
-                bg="#de8e0e"
-                col="white"
+              <Button
+                variant="primary"
                 onClick={() => {
                   setModalChild(
                     <RequestSubmitted
@@ -950,7 +949,9 @@ export const RequestSummary = ({
                   )
                   setOpenModal(true)
                 }}
-              />
+              >
+                Submit Request
+              </Button>
             </div>
           </div>
         </div>
@@ -1188,10 +1189,8 @@ export const RequestSummary = ({
               </div>
             </div>
             <div tw="py-8">
-              <ProceedButton
-                content="Submit Request"
-                bg="#de8e0e"
-                col="white"
+              <Button
+                variant="primary"
                 onClick={() => {
                   setModalChild(
                     <RequestSubmitted
@@ -1201,7 +1200,9 @@ export const RequestSummary = ({
                   )
                   setOpenModal(true)
                 }}
-              />
+              >
+                Submit Request
+              </Button>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const CancelRecurring = ({ setOpenModal }) => {
   return (
@@ -47,22 +47,22 @@ const CancelRecurring = ({ setOpenModal }) => {
       <h4>Cancel Recurring</h4>
       <p>Once you proceed, this cannot be undone</p>
       <div tw="flex flex-row items-center gap-9 w-full">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content="No"
+        <Button
+          variant="secondary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Yes"
+        >
+          No
+        </Button>
+        <Button
+          variant="primary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
+        >
+          Yes
+        </Button>
       </div>
     </div>
   )

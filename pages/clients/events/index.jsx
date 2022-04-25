@@ -10,7 +10,7 @@ import {
   CreateEvent,
 } from '../../../components/clients/eventParts'
 import { sectionStyles } from '../../../styles/GeneralStyles'
-import { BlackButton } from '../../../components/pieces/Buttons'
+import Button from '../../../components/UI/Buttons/Button'
 import { BsSortDownAlt, BsSortUp, BsListTask, BsGridFill } from 'react-icons/bs'
 import Modal from '../../../components/UI/Modals/Modal'
 
@@ -39,14 +39,9 @@ const EventsRoot = () => {
           `}
         >
           <h3>Events</h3>
-          <BlackButton
-            content="Create new event"
-            bg="#1a1a1a"
-            col="white"
-            onClick={() => {
-              router.push('/clients/events/create-event')
-            }}
-          />
+          <Button variant="tertiary" href="/clients/events/create-event">
+            Create new event
+          </Button>
         </div>
         <div
           css={css`

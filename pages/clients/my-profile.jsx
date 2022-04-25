@@ -14,7 +14,7 @@ import profileImg from '../../images/profile-img.png'
 import { CreatePost } from '../../components/UI/Modals/ModalChildren'
 import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
 import { MdAdd } from 'react-icons/md'
-import { BlackButton } from '../../components/pieces/Buttons'
+import Button from '../../components/UI/Buttons/Button'
 import TabBar from '../../components/UI/TabBar'
 
 const ProfileRoot = ({
@@ -177,17 +177,16 @@ const ProfileRoot = ({
                   }
                 `}
               >
-                <BlackButton
-                  content={
-                    <div tw="flex flex-row items-center gap-2">
-                      Create <MdAdd color="white" />
-                    </div>
-                  }
+                <Button
+                  variant="tertiary"
+                  icon={<MdAdd color="white" />}
                   onClick={() => {
                     setModalChild(<CreatePost setOpenModal={setOpenModal} />)
                     setOpenModal(true)
                   }}
-                />
+                >
+                  Create
+                </Button>
               </div>
             }
           />
@@ -204,17 +203,16 @@ const ProfileRoot = ({
                   }
                 `}
               >
-                <BlackButton
-                  content={
-                    <div tw="flex flex-row items-center gap-2">
-                      Create <MdAdd color="white" />
-                    </div>
-                  }
+                <Button
+                  variant="tertiary"
+                  icon={<MdAdd color="white" />}
                   onClick={() => {
                     setModalChild(<CreatePost setOpenModal={setOpenModal} />)
                     setOpenModal(true)
                   }}
-                />
+                >
+                  Create
+                </Button>
               </div>
             }
           />

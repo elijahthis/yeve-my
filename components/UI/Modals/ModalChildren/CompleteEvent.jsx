@@ -1,6 +1,7 @@
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import { RateClient } from './'
+import Button from '../../Buttons/Button'
 
 const CompleteEvent = ({ setOpenModal, setModalChild, vendor }) => {
   return (
@@ -52,24 +53,24 @@ const CompleteEvent = ({ setOpenModal, setModalChild, vendor }) => {
           : 'Kindly confirm within 48 hours or it will be automatically confirmed in the vendor’s favor'}
       </p>
       <div tw="flex flex-row items-center gap-9 w-full">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content={vendor ? 'No, Cancel' : 'Report Issue'}
+        <Button
+          variant="secondary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Yes, complete"
+        >
+          {vendor ? 'No, Cancel' : 'Report Issue'}
+        </Button>
+        <Button
+          variant="primary"
           onClick={() => {
             if (vendor)
               setModalChild(<RateClient setOpenModal={setOpenModal} />)
             else setOpenModal(false)
           }}
-        />
+        >
+          Yes, complete
+        </Button>
       </div>
     </div>
   )

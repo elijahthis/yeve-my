@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import AdminLayout from '../../../layouts/adminLayout'
 import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
-import { BlackButton } from '../../../components/pieces/Buttons'
+import Button from '../../../components/UI/Buttons/Button'
 import { SearchBar } from '../../../components/formTools'
 import CustomTable from '../../../components/UI/CustomTable'
 import {
@@ -138,7 +138,7 @@ const OrdersRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
             `}
           >
             <SearchBar />
-            <BlackButton content="Export" />
+            <Button variant="tertiary">Export</Button>
           </div>
           <SortComponent />
         </div>

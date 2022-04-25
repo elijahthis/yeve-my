@@ -8,8 +8,10 @@ const WeddingLayout = ({ children }) => {
     <section
       css={css`
         .hero {
-          height: 559px;
+          height: calc(clamp(690px, 100vh, 900px) - 88px);
           background: url(/images/wedding-hero-img.png) no-repeat;
+          background-position: center;
+          background-size: cover;
           color: #ffffff;
           font-family: 'Open Sans';
           font-style: normal;
@@ -27,13 +29,13 @@ const WeddingLayout = ({ children }) => {
             height: 100%;
             background-color: rgba(0, 0, 0, 0.3);
             padding: 0 196px;
-            padding-top: 254px;
-            padding-bottom: 56px;
+            padding-top: 42.4vh;
+            padding-bottom: 14vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            // gap:px;
+            justify-content: flex-end;
+            gap: 9.4vh;
           }
         }
         h1 {

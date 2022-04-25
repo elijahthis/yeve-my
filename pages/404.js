@@ -2,7 +2,7 @@ import tw, { css } from 'twin.macro'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { LoginNav } from '../pages/login'
-import { ProceedButton } from '../components/pieces/Buttons'
+import Button from '../components/UI/Buttons/Button'
 import { errorStyles } from '../styles/GeneralStyles'
 
 const ErrorPage = () => {
@@ -20,20 +20,17 @@ const ErrorPage = () => {
           <h1>You seem lost</h1>
           <p>Let's help you find your way back.</p>
           <div className="lost-btns">
-            <ProceedButton
-              content="Go Back"
+            <Button
+              variant="primary"
               onClick={() => {
                 router.back()
               }}
-            />
-            <ProceedButton
-              bg="#f8f8f8"
-              col="#767676"
-              content="Go Home"
-              onClick={() => {
-                router.push('/')
-              }}
-            />
+            >
+              Go Back
+            </Button>
+            <Button variant="secondary" href="/">
+              Go Home
+            </Button>
           </div>
         </div>
       </div>

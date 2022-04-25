@@ -6,7 +6,7 @@ import tw, { css } from 'twin.macro'
 import imgPlaceholder from '../../../images/card-banner.png'
 import premiumIcon from '../../../images/premium-icon.png'
 import profilePlaceholder from '../../../images/profile-placeholder.png'
-import { ProceedButton } from '../../pieces/Buttons'
+import Button from '../Buttons/Button'
 import { QuoteSent } from '../Modals/ModalChildren/'
 
 const PreviewQuoteCard = ({ setOpenModal, setModalChild }) => {
@@ -80,15 +80,15 @@ const PreviewQuoteCard = ({ setOpenModal, setModalChild }) => {
         <p>&#163;120</p>
       </div>
       <div tw="flex flex-row items-center gap-9 w-full mt-4">
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Publish"
+        <Button
+          variant="primary"
           onClick={() => {
             setModalChild(<QuoteSent setOpenModal={setOpenModal} />)
             setOpenModal(true)
           }}
-        />
+        >
+          Publish
+        </Button>
       </div>
     </div>
   )

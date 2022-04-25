@@ -22,7 +22,7 @@ export const YeveLogo2 = () => (
 )
 
 export const WeddingLogo1 = () => (
-  <Link href="/" passHref>
+  <Link href="/event-page?type=wedding" passHref>
     <a
     // Use the tw prop to add tailwind styles directly on jsx elements
     >

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
 import profilePlaceholder from '../../../../images/profile-placeholder.png'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const CreatePostPhase1 = ({
   setOpenModal,
@@ -134,14 +134,14 @@ const CreatePostPhase1 = ({
             ></textarea>
             <span>0/60</span>
           </label>
-          <ProceedButton
-            bg="#de8e0e"
-            col="white"
-            content="Upload"
+          <Button
+            variant="primary"
             onClick={() => {
               setPhase(2)
             }}
-          />
+          >
+            Upload
+          </Button>
         </div>
       </div>
     </div>

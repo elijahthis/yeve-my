@@ -1,7 +1,7 @@
+import tw, { css } from 'twin.macro'
 import { useRouter } from 'next/router'
 import { IoClose } from 'react-icons/io5'
-import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const CancelEvent = ({ setOpenModal }) => {
   const router = useRouter()
@@ -61,23 +61,23 @@ const CancelEvent = ({ setOpenModal }) => {
         ></textarea>
       </label>
       <div tw="flex flex-row items-center gap-9 w-full">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content="No"
+        <Button
+          variant="secondary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Yes"
+        >
+          No
+        </Button>
+        <Button
+          variant="primary"
           onClick={() => {
             setOpenModal(false)
             router.push('/vendors/my-requests')
           }}
-        />
+        >
+          Yes
+        </Button>
       </div>
     </div>
   )

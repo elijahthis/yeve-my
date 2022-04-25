@@ -4,7 +4,7 @@ import { BsPeople } from 'react-icons/bs'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { AiOutlineShareAlt } from 'react-icons/ai'
 import { MdAttachMoney } from 'react-icons/md'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../../UI/Buttons/Button'
 import { twoColBlock } from '../styles'
 import heroPlaceholder from '../../../../images/regular-placeholder.png'
 import profilePlaceholder from '../../../../images/profile-placeholder.png'
@@ -59,7 +59,7 @@ const Hero = () => {
             </div>
           </div>
           <div tw="flex flex-row items-center gap-4">
-            <ProceedButton content="Attend" />
+            <Button variant="primary">Attend</Button>
             <div
               css={css`
                 width: 55px;

@@ -1,7 +1,7 @@
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
 import { DropdownMenu } from '../../../formTools'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const WithdrawEarnings = ({ setOpenModal }) => {
   return (
@@ -102,14 +102,14 @@ const WithdrawEarnings = ({ setOpenModal }) => {
         </div>
       </form>
       <div tw="w-full mt-10">
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Withdraw"
+        <Button
+          variant="primary"
           onClick={() => {
             setOpenModal(false)
           }}
-        />
+        >
+          Withdraw
+        </Button>
       </div>
     </div>
   )

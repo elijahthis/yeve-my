@@ -6,7 +6,7 @@ import tw, { css } from 'twin.macro'
 import imgPlaceholder from '../../../images/card-banner.png'
 import premiumIcon from '../../../images/premium-icon.png'
 import profilePlaceholder from '../../../images/profile-placeholder.png'
-import { ProceedButton } from '../../pieces/Buttons'
+import Button from '../Buttons/Button'
 import { EventAccepted } from '../Modals/ModalChildren/'
 
 const ViewGigCard = ({ setOpenModal, setModalChild }) => {
@@ -108,30 +108,33 @@ const ViewGigCard = ({ setOpenModal, setModalChild }) => {
         <p>1 London Street, London Road, Greater, London SE1 2AB</p>
       </div>
       <div tw="flex flex-row items-center gap-9 w-full mt-4">
-        <ProceedButton bg="#f8f8f8" col="#767676" content="Reject" />
+        <Button variant="secondary">Reject</Button>
         <div
           css={css`
             width: 150%;
           `}
         >
-          <ProceedButton
+          <Button
+            variant="primary"
+            fill="fill"
             bg="#1a1a1a"
             col="#ffffff"
-            content="Generate Quote"
             onClick={() => {
               router.push('/vendors/my-requests/generate-quoteA')
             }}
-          />
+          >
+            Generate Quote
+          </Button>
         </div>
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Accept"
+        <Button
+          variant="primary"
           onClick={() => {
             setModalChild(<EventAccepted setOpenModal={setOpenModal} />)
             setOpenModal(true)
           }}
-        />
+        >
+          Accept
+        </Button>
       </div>
     </div>
   )

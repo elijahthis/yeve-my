@@ -6,7 +6,7 @@ import { sectionStyles } from '../../styles/GeneralStyles'
 import profilePlaceholder from '../../images/Ellipse 56.png'
 import { CrudOptions } from '../../components/formTools'
 import Modal from '../../components/UI/Modals/Modal'
-import { ProceedButton } from '../../components/pieces/Buttons'
+import Button from '../../components/UI/Buttons/Button'
 import {
   CreateAdmin,
   EditAdmin,
@@ -127,8 +127,8 @@ const MyTeamRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
               }
             `}
           >
-            <ProceedButton content="Cancel" bg="#F8F8F8" col="#de8e0e" />
-            <ProceedButton content="Save Changes" />
+            <Button variant="secondary">Cancel</Button>
+            <Button variant="primary">Save Changes</Button>
           </div>
         </div>
       </section>

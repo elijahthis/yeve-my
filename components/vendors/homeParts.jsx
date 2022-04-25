@@ -1,4 +1,5 @@
 import tw, { css } from 'twin.macro'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import profileImg from '../../images/profile-img.png'
 import bannerImg from '../../images/profile-banner.png'
@@ -8,8 +9,7 @@ import { FaSearch } from 'react-icons/fa'
 import { FiShare2 } from 'react-icons/fi'
 import { HiOutlineLocationMarker, HiStar } from 'react-icons/hi'
 import { MdAdd } from 'react-icons/md'
-import { useState, useEffect } from 'react'
-import { BlackButton } from '../pieces/Buttons'
+import Button from '../UI/Buttons/Button'
 import TabBar from '../UI/TabBar'
 import { sectionStyles } from '../../styles/GeneralStyles'
 import { ToggleText } from '../formTools'
@@ -104,17 +104,16 @@ const VendorTabs = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
               }
             `}
           >
-            <BlackButton
-              content={
-                <div tw="flex flex-row items-center gap-2">
-                  Create <MdAdd color="white" />
-                </div>
-              }
+            <Button
+              variant="tertiary"
+              icon={<MdAdd color="white" />}
               onClick={() => {
                 setModalChild(<CreatePost setOpenModal={setOpenModal} />)
                 setOpenModal(true)
               }}
-            />
+            >
+              Create
+            </Button>
           </div>
         }
       />
@@ -131,16 +130,15 @@ const VendorTabs = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
               }
             `}
           >
-            <BlackButton
-              content={
-                <div tw="flex flex-row items-center gap-2">
-                  Create <MdAdd color="white" />
-                </div>
-              }
+            <Button
+              variant="tertiary"
+              icon={<MdAdd color="white" />}
               onClick={() => {
                 setOpenModal(true)
               }}
-            />
+            >
+              Create
+            </Button>
           </div>
         }
       />

@@ -1,7 +1,7 @@
 import { FiCheck } from 'react-icons/fi'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const RequestSubmitted = ({ setOpenModal, setServicePhase }) => {
   return (
@@ -68,15 +68,15 @@ const RequestSubmitted = ({ setOpenModal, setServicePhase }) => {
         We have submitted your request and it is processing. We will notify you
         when your gig has been accepted
       </p>
-      <ProceedButton
-        bg="#de8e0e"
-        col="white"
-        content="Back Home"
+      <Button
+        variant="primary"
         onClick={() => {
           setOpenModal(false)
           setServicePhase(null)
         }}
-      />
+      >
+        Back Home
+      </Button>
     </div>
   )
 }

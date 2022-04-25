@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import profilePlaceholder from '../../../images/Ellipse 56.png'
 import AdminLayout from '../../../layouts/adminLayout'
 import Modal from '../../../components/UI/Modals/Modal'
-import { ProceedButton } from '../../../components/pieces/Buttons'
+import Button from '../../../components/UI/Buttons/Button'
 import { DropdownMenu } from '../../../components/formTools'
 import {
   sectionStyles,
@@ -157,7 +157,7 @@ const CreateSupplierRoot = () => {
                   }
                 `}
               >
-                <ProceedButton content="Cancel" bg="#F8F8F8" col="#343434" />
+                <Button variant="secondary">Cancel</Button>
                 <input type="submit" value="Create" />
               </div>
             </form>

@@ -1,12 +1,5 @@
 import tw, { css } from 'twin.macro'
-import Image from 'next/image'
-
-import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
-import { ProceedButton } from '../../../pieces/Buttons'
-import EventCard from '../EventCard'
-import cardPlaceholder from '../../../../images/art.png'
-import profilePlaceholder from '../../../../images/profile-placeholder.png'
-import { regularSection, twoColBlock } from '../styles'
+import { twoColBlock } from '../styles'
 
 const AboutInfo = () => {
   return (

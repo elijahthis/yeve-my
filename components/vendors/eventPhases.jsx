@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { formStyles, sectionStyles } from '../../styles/GeneralStyles'
 import { EventCard } from '../UI/Cards'
 import imgPlaceholder from '../../images/Group 526.png'
-import { BackButton } from '../pieces/Buttons'
+import BackButton from '../UI/Buttons/BackButton'
 import { BooleanToggle, DropdownMenu, DatePickerr } from '../formTools'
 import ImageUploadPreview from '../pieces/imageUploadPreview'
 

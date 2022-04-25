@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 import ImageUploadPreview from '../../../pieces/imageUploadPreview'
 
 const CreatePostPhase0 = ({
@@ -83,14 +83,15 @@ const CreatePostPhase0 = ({
         />
       </div>
       <div tw="flex flex-row items-center gap-9 w-full">
-        <ProceedButton
-          bg={active ? '#de8e0e' : '#D2D2D2'}
-          col={active ? 'white' : '#8C8C8C'}
-          content="Upload"
+        <Button
+          variant="primary"
+          disabled={!active}
           onClick={() => {
-            active ? setPhase(1) : null
+            setPhase(1)
           }}
-        />
+        >
+          Upload
+        </Button>
       </div>
     </div>
   )

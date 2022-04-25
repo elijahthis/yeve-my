@@ -1,7 +1,7 @@
 import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { BlackButton } from './Buttons'
+import Button from '../UI/Buttons/Button'
 import imgplace from '../../images/clinton.png'
 
 const ImageUploadPreview = ({ limit, onChangeFunc }) => {
@@ -63,7 +63,7 @@ const ImageUploadPreview = ({ limit, onChangeFunc }) => {
           }
         `}
       >
-        <BlackButton content="Browse" />
+        <Button variant="tertiary">Browse</Button>
         <input
           type="file"
           name=""

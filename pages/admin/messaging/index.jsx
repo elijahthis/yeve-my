@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import AdminLayout from '../../../layouts/adminLayout'
 import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
-import { BlackButton } from '../../../components/pieces/Buttons'
+import Button from '../../../components/UI/Buttons/Button'
 import { SearchBar, CrudOptions } from '../../../components/formTools'
 import CustomTable from '../../../components/UI/CustomTable'
 import SortComponent from '../../../components/pieces/sort'
@@ -45,13 +45,14 @@ const MessagingRoot = ({
     <section css={sectionStyles}>
       <div tw="flex flex-row items-center justify-between mb-7">
         <h3>Messaging</h3>
-        <BlackButton
-          content="Create +"
+        <Button
+          variant="tertiary"
+          fill="fill"
           bg="#de8e0e"
-          onClick={() => {
-            router.push('/admin/messaging/create-message')
-          }}
-        />
+          href="/admin/messaging/create-message"
+        >
+          Create +
+        </Button>
       </div>
       <div>
         <div tw="flex flex-row items-center justify-between">
@@ -68,7 +69,7 @@ const MessagingRoot = ({
             `}
           >
             <SearchBar />
-            <BlackButton content="Export" />
+            <Button variant="tertiary">Export</Button>
           </div>
           <SortComponent />
         </div>

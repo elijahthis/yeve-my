@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { FiCheck } from 'react-icons/fi'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const QuoteSent = ({ setOpenModal }) => {
   const router = useRouter()
@@ -72,24 +72,12 @@ const QuoteSent = ({ setOpenModal }) => {
         client’s approval
       </p>
       <div tw="flex flex-row items-center gap-9 w-full">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content="Back Home"
-          onClick={() => {
-            setOpenModal(false)
-            router.push('/vendors/my-requests')
-          }}
-        />
-        <ProceedButton
-          bg="#de8e0e"
-          col="white"
-          content="Share Quote"
-          onClick={() => {
-            setOpenModal(false)
-            router.push('/vendors/my-requests')
-          }}
-        />
+        <Button variant="secondary" href="/vendors/my-requests">
+          Back Home
+        </Button>
+        <Button variant="primary" href="/vendors/my-requests">
+          Share Quote
+        </Button>
       </div>
     </div>
   )

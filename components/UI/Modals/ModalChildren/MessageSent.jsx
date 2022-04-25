@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { FiCheck } from 'react-icons/fi'
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
-import { ProceedButton } from '../../../pieces/Buttons'
+import Button from '../../Buttons/Button'
 
 const MessageSent = ({ setOpenModal }) => {
   const router = useRouter()
@@ -69,15 +69,9 @@ const MessageSent = ({ setOpenModal }) => {
       <h4>Message Sent</h4>
       <p>Your message has been sent!</p>
       <div tw="flex flex-row items-center gap-9 w-full">
-        <ProceedButton
-          bg="#f8f8f8"
-          col="#767676"
-          content="Back Home"
-          onClick={() => {
-            setOpenModal(false)
-            router.push('/admin/messaging')
-          }}
-        />
+        <Button variant="secondary" href="/admin/messaging">
+          Back Home
+        </Button>
       </div>
     </div>
   )
