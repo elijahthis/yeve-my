@@ -4,8 +4,16 @@ import tw, { css } from 'twin.macro'
 import { BooleanToggle, CrudOptions, MoreOptions } from '../../formTools'
 import { StatusBadge } from '../../pieces/badges'
 
-const TableRow = ({ badgeCols, item, headers, checkAll }) => {
+const TableRow = ({
+  badgeCols,
+  item,
+  headers,
+  checkAll,
+  draggable,
+  onDragStart,
+}) => {
   const [checked, setChecked] = useState(false)
+
   useEffect(() => {
     if (checkAll) {
       setChecked(true)
@@ -19,7 +27,12 @@ const TableRow = ({ badgeCols, item, headers, checkAll }) => {
       css={css`
         background-color: ${checked ? '#FDF9F3' : 'white'};
         transition: background-color 0.3s;
+        cursor: ${draggable ? 'grab' : ''};
       `}
+      draggable={draggable}
+      onDragStart={ev => {
+        onDragStart(item)
+      }}
     >
       <td>
         <Checkbox

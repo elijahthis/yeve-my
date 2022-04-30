@@ -3,7 +3,7 @@ import { useState } from 'react'
 import tw, { css } from 'twin.macro'
 import TableRow from './TableRow'
 
-const CustomTable = ({ list, headers, title }) => {
+const CustomTable = ({ list, headers, title, draggable,onDragStart }) => {
   const [checkAll, setCheckAll] = useState(false)
   const badgeCols = {
     green: '#3E9F4D',
@@ -69,6 +69,8 @@ const CustomTable = ({ list, headers, title }) => {
                 badgeCols={badgeCols}
                 key={ind}
                 checkAll={checkAll}
+                draggable={draggable}
+                onDragStart={onDragStart}
               />
             )
           })}

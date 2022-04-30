@@ -2,8 +2,12 @@ import tw, { css } from 'twin.macro'
 import CustomTable from '../../UI/CustomTable'
 import MenuControl from '../../pieces/menuControl'
 import { SendMessage, EditTables } from '../../UI/Modals/ModalChildren'
-import { SeatingChart, SeatingChart2 } from '../../pieces/seatingChart'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { MyResponsivePie } from '../../UI/SeatingChart'
+import {
+  morphData,
+  generateTableData,
+} from '../../UI/SeatingChart/dataHandlers'
 
 export const AllAttendees = ({ list, setOpenModal, setModalChild }) => {
   const messageFunc = () => {
@@ -179,53 +183,91 @@ export const GroupsAttendees = ({ setOpenModal, setModalChild }) => {
 
 export const TablesAttendees = ({ setOpenModal, setModalChild }) => {
   const [capacity, setCapacity] = useState({ val: 12 })
+  const [draggingVal, setDraggingVal] = useState({})
 
-  const messageFunc = () => {
-    setModalChild(<SendMessage image={true} />)
-    setOpenModal(true)
-  }
-  const list = [
-    {
-      name: 'John Smith',
-      table: 1,
-    },
-    {
-      name: 'John Smith',
-      table: 2,
-    },
-    {
-      name: 'John Smith',
-      table: 1,
-    },
-    {
-      name: 'John Smith',
-      table: 4,
-    },
-    {
-      name: 'John Smith',
-      table: 1,
-    },
-    {
-      name: 'John Smith',
-      table: 1,
-    },
-    {
-      name: 'John Smith',
-      table: 1,
-    },
-    {
-      name: 'John Smith',
-      table: 1,
-    },
-    {
-      name: 'John Smith',
-      table: 1,
-    },
-    {
-      name: 'John Smith',
-      table: 1,
-    },
+  const seatList1 = [
+    { seatNumber: 1, person: null },
+    { seatNumber: 2, person: null },
+    { seatNumber: 3, person: null },
+    { seatNumber: 4, person: null },
+    { seatNumber: 5, person: null },
+    { seatNumber: 6, person: null },
+    { seatNumber: 7, person: null },
+    { seatNumber: 8, person: null },
+    { seatNumber: 9, person: null },
+    { seatNumber: 10, person: null },
+    { seatNumber: 11, person: null },
+    { seatNumber: 12, person: null },
   ]
+  const seatList2 = [
+    { seatNumber: 1, person: null },
+    { seatNumber: 2, person: null },
+    { seatNumber: 3, person: null },
+    { seatNumber: 4, person: null },
+    { seatNumber: 5, person: null },
+    { seatNumber: 6, person: null },
+    { seatNumber: 7, person: null },
+    { seatNumber: 8, person: null },
+    { seatNumber: 9, person: null },
+    { seatNumber: 10, person: null },
+    { seatNumber: 11, person: null },
+    { seatNumber: 12, person: null },
+  ]
+  const seatList3 = [
+    { seatNumber: 1, person: null },
+    { seatNumber: 2, person: null },
+    { seatNumber: 3, person: null },
+    { seatNumber: 4, person: null },
+    { seatNumber: 5, person: null },
+    { seatNumber: 6, person: null },
+    { seatNumber: 7, person: null },
+    { seatNumber: 8, person: null },
+    { seatNumber: 9, person: null },
+    { seatNumber: 10, person: null },
+    { seatNumber: 11, person: null },
+    { seatNumber: 12, person: null },
+  ]
+
+  const guestList = [
+    'John Green',
+    'Elvis Duru',
+    'Elijah Oyerinde',
+    'Will Bambo',
+    'Dee Willis',
+  ]
+
+  const [tableList, setTableList] = useState([
+    {
+      tableNumber: 1,
+      name: 'Groom',
+      seats: [...seatList1],
+      guests: [...guestList],
+    },
+    {
+      tableNumber: 2,
+      name: 'Bride',
+      seats: [...seatList2],
+      guests: [...guestList],
+    },
+    {
+      tableNumber: 3,
+      name: 'Bridesmaids',
+      seats: [...seatList3],
+      guests: [...guestList],
+    },
+  ])
+  const [tableData, setTableData] = useState([])
+  const [chartData, setChartData] = useState([])
+
+  useEffect(() => {
+    setTableData(generateTableData(tableList))
+    const newList = []
+    tableList.map(item => {
+      newList.push(morphData(item.seats, item.tableNumber))
+    })
+    setChartData(newList)
+    console.log(newList)
+  }, [tableList])
 
   return (
     <div
@@ -267,65 +309,38 @@ export const TablesAttendees = ({ setOpenModal, setModalChild }) => {
         </div>
         <CustomTable
           headers={[
-            { title: 'Name', key: 'name' },
-            { title: 'Table', key: 'table' },
+            { title: 'Name', key: 'attendee' },
+            { title: 'Table', key: 'tableNumber' },
           ]}
-          list={list}
+          list={tableData}
+          draggable={true}
+          onDragStart={(item, ev) => {
+            console.log(item)
+            setDraggingVal(item)
+          }}
         />
       </div>
       <div
         css={css`
           // width: max-content;
+
           display: flex;
           flex-direction: row;
           align-items: start;
           flex-wrap: wrap;
-          gap: 60px;
+          gap: 55px;
           margin-top: 52px;
         `}
       >
-        <SeatingChart2
-          title="T1"
-          index={1}
-          dataList={list}
-          group={{ name: "Bride's Family", ind: 1 }}
-          capacity={capacity}
-        />
-        <SeatingChart2
-          title="T1"
-          index={1}
-          dataList={list}
-          group={{ name: "Bride's Family", ind: 1 }}
-          capacity={capacity}
-        />
-        <SeatingChart2
-          title="T1"
-          index={1}
-          dataList={list}
-          group={{ name: "Bride's Family", ind: 1 }}
-          capacity={capacity}
-        />
-        <SeatingChart2
-          title="T1"
-          index={1}
-          dataList={list}
-          group={{ name: "Bride's Family", ind: 1 }}
-          capacity={capacity}
-        />
-        <SeatingChart2
-          title="T1"
-          index={1}
-          dataList={list}
-          group={{ name: "Bride's Family", ind: 1 }}
-          capacity={capacity}
-        />
-        <SeatingChart2
-          title="T1"
-          index={1}
-          dataList={list}
-          group={{ name: "Bride's Family", ind: 1 }}
-          capacity={capacity}
-        />
+        {chartData.map(chartItem => (
+          <MyResponsivePie
+            data={chartItem}
+            draggingVal={draggingVal}
+            setDraggingVal={setDraggingVal}
+            tableList={tableList}
+            setTableList={setTableList}
+          />
+        ))}
       </div>
     </div>
   )

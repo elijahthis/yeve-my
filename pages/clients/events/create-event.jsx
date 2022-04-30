@@ -2,7 +2,7 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ClientsLayout from '../../../layouts/clientsLayout'
-import CreateEvent from '../../../components/vendors/eventPhases'
+import { CreateEvent } from '../../../components/clients/eventParts'
 import Modal from '../../../components/UI/Modals/Modal'
 
 export const CreateEventRoot = () => {

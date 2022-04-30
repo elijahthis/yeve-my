@@ -2,6 +2,7 @@ import tw, { css } from 'twin.macro'
 import { weddingSection } from '../../Regular/styles'
 import EventCard from '../../Regular/EventCard'
 import cardPlaceholder from '../../../../images/art.png'
+import Button from '../../../UI/Buttons/Button'
 
 const WhenWhere = () => {
   const cardList = [
@@ -36,6 +37,11 @@ const WhenWhere = () => {
         {cardList.map((card, ind) => (
           <EventCard cardData={card} key={ind} actions={false} />
         ))}
+      </div>
+      <div tw="mt-6">
+        <Button variant="tertiary" href="/event-page/tables?type=wedding">
+          View Table
+        </Button>
       </div>
     </section>
   )

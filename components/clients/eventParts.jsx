@@ -9,6 +9,9 @@ import BackButton from '../UI/Buttons/BackButton'
 import { BooleanToggle, DropdownMenu, DatePickerr } from '../formTools'
 import CustomTable from '../UI/CustomTable'
 import { SendMessage } from '../UI/Modals/ModalChildren'
+import FormLayout from '../UI/FormTools/FormLayout'
+import FormDiv from '../UI/FormTools/FormDiv'
+import InputBlock from '../UI/FormTools/InputBlock'
 
 export const AllEvents = () => {
   useEffect(() => {
@@ -153,131 +156,77 @@ export const CreateEvent = ({ setEventsPhase }) => {
       <div css={formStyles}>
         <div></div>
         <div>
-          <form
-            action=""
+          <FormLayout
             onSubmit={ev => {
               ev.preventDefault()
             }}
           >
             <div>
               <h4 style={{ marginTop: '8px' }}>Event Banner</h4>
-              <div className="form-div">
+              <FormDiv>
                 <label htmlFor="">
                   Event name
                   <div></div>
                 </label>
-              </div>
+              </FormDiv>
             </div>
             <div>
               <h4 style={{ marginTop: '8px' }}>Basic</h4>
-              <div className="form-div">
-                <label htmlFor="">
-                  Event name
-                  <input
-                    id=""
-                    name=""
-                    type="text"
-                    placeholder="Event name"
-                    // value={formData.details.postcode}
-                    // onChange={ev => {
-                    //   const newData = { ...formData }
-                    //   newData.details.postcode = ev.target.value
-                    //   setFormData(newData)
-                    // }}
-                  />
-                </label>
-                <label htmlFor="moreInfo">
-                  Event description
-                  <textarea
-                    name="moreInfo"
-                    id="moreInfo"
-                    tw="resize-none"
-                    placeholder="Enter description..."
-                    // value={formData.details.moreInfo}
-                    // onChange={ev => {
-                    //   const newData = { ...formData }
-                    //   newData.details.moreInfo = ev.target.value
-                    //   setFormData(newData)
-                    // }}
-                  ></textarea>
-                  <p tw="text-right">0/200</p>
-                </label>
-                <label htmlFor="">
-                  Event category
-                  <DropdownMenu
-                    list={eventList}
-                    placeholder="Select event category"
-                    // onChange={val => {
-                    //   const newData = { ...formData }
-                    //   newData.eventType.type = val
-                    //   setFormData(newData)
-                    // }}
-                  />
-                </label>
-                <label htmlFor="">
-                  Event Type
-                  <BooleanToggle
-                    list={['Physical', 'Virtual', 'Hybrid']}
-                    // value={formData.vendorPreferences.experienceLevel}
-                    // onChange={val => {
-                    //   const newData = { ...formData }
-                    //   newData.vendorPreferences.experienceLevel = val
-                    //   setFormData(newData)
-                    // }}
-                  />
-                </label>
-                <label htmlFor="">
-                  Enter postcode
-                  <input
-                    id="zip"
-                    name="zip"
-                    type="text"
-                    inputmode="numeric"
-                    pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
-                    placeholder="Enter postcode"
-                    // value={formData.details.postcode}
-                    // onChange={ev => {
-                    //   const newData = { ...formData }
-                    //   newData.details.postcode = ev.target.value
-                    //   setFormData(newData)
-                    // }}
-                  />
-                </label>
-                <label htmlFor="address">
-                  Enter address
-                  <input
-                    type="text"
-                    name="address"
-                    id="address"
-                    placeholder="Enter address"
-                    // value={formData.details.address}
-                    // onChange={ev => {
-                    //   const newData = { ...formData }
-                    //   newData.details.address = ev.target.value
-                    //   setFormData(newData)
-                    // }}
-                  />
-                </label>
-              </div>
+              <FormDiv>
+                <InputBlock
+                  variant="text"
+                  properties={{
+                    label: 'Event name',
+                    placeholder: 'Event name',
+                  }}
+                />
+                <InputBlock
+                  variant="textarea"
+                  properties={{
+                    label: 'Enter description',
+                    placeholder: 'Enter description...',
+                  }}
+                />
+                <InputBlock
+                  variant="dropdown"
+                  properties={{
+                    label: 'Event category',
+                    placeholder: 'Select event category',
+                  }}
+                  data={{ list: eventList }}
+                />
+                <InputBlock
+                  variant="BoolToggle"
+                  properties={{ label: 'Event Type' }}
+                  data={{ list: ['Physical', 'Virtual', 'Hybrid'] }}
+                />
+                <InputBlock
+                  variant="postcode"
+                  properties={{
+                    label: 'Enter postcode',
+                    placeholder: 'Enter postcode',
+                  }}
+                />
+                <InputBlock
+                  variant="address"
+                  properties={{
+                    label: 'Enter address',
+                    placeholder: 'Enter address',
+                  }}
+                />
+              </FormDiv>
             </div>
             <div>
               <div tw="flex flex-row items-center justify-between">
                 <h4 style={{ marginTop: '8px' }}>Ticketing</h4>{' '}
                 <p>-3% service charge</p>
               </div>
-              <div className="form-div">
-                <label htmlFor="">
-                  Event Type
-                  <BooleanToggle
-                    list={['Free Event', 'Paid Event']}
-                    // value={formData.vendorPreferences.experienceLevel}
-                    // onChange={val => {
-                    //   const newData = { ...formData }
-                    //   newData.vendorPreferences.experienceLevel = val
-                    //   setFormData(newData)
-                    // }}
-                  />
-                </label>
+              <FormDiv>
+                <InputBlock
+                  variant="BoolToggle"
+                  properties={{ label: 'Event Type' }}
+                  data={{ list: ['Free Event', 'Paid Event'] }}
+                />
                 <div>
                   <p tw="text-base">Number of tickets</p>
                   <div
@@ -288,18 +237,18 @@ export const CreateEvent = ({ setEventsPhase }) => {
                       }
                     `}
                   >
-                    <label htmlFor="">
-                      Early Bird
-                      <input type="number" name="" id="" />
-                    </label>
-                    <label htmlFor="">
-                      Standard
-                      <input type="number" name="" id="" />
-                    </label>
-                    <label htmlFor="">
-                      VIP
-                      <input type="number" name="" id="" />
-                    </label>
+                    <InputBlock
+                      variant="number"
+                      properties={{ label: 'Early Bird' }}
+                    />
+                    <InputBlock
+                      variant="number"
+                      properties={{ label: 'Standard' }}
+                    />
+                    <InputBlock
+                      variant="number"
+                      properties={{ label: 'VIP' }}
+                    />
                   </div>
                 </div>
                 <div>
@@ -312,129 +261,35 @@ export const CreateEvent = ({ setEventsPhase }) => {
                       }
                     `}
                   >
-                    <label htmlFor="">
-                      Early Bird
-                      <div tw="flex flex-row items-center">
-                        <div
-                          tw="px-4 py-3 rounded-l bg-[#fafafa] border border-[#d2d2d2]"
-                          css={css`
-                            height: 47px;
-                          `}
-                        >
-                          &#163;
-                        </div>
-                        <input
-                          type="text"
-                          name=""
-                          id=""
-                          style={{
-                            borderRadius: '0 4px 4px 0',
-                            borderLeft: 0,
-                          }}
-                          tw="w-full"
-                          //   value={formData.budget[ind].from}
-                          //   onChange={ev => {
-                          //     const newData = { ...formData }
-                          //     newData.budget[ind].from = Number.isNaN(
-                          //       parseInt(ev.target.value),
-                          //     )
-                          //       ? 0
-                          //       : parseInt(ev.target.value)
-                          //     setFormData(newData)
-                          //   }}
-                        />
-                      </div>
-                    </label>
-                    <label htmlFor="">
-                      Standard
-                      <div tw="flex flex-row items-center">
-                        <div
-                          tw="px-4 py-3 rounded-l bg-[#fafafa] border border-[#d2d2d2]"
-                          css={css`
-                            height: 47px;
-                          `}
-                        >
-                          &#163;
-                        </div>
-                        <input
-                          type="text"
-                          name=""
-                          id=""
-                          style={{
-                            borderRadius: '0 4px 4px 0',
-                            borderLeft: 0,
-                          }}
-                          tw="w-full"
-                          //   value={formData.budget[ind].from}
-                          //   onChange={ev => {
-                          //     const newData = { ...formData }
-                          //     newData.budget[ind].from = Number.isNaN(
-                          //       parseInt(ev.target.value),
-                          //     )
-                          //       ? 0
-                          //       : parseInt(ev.target.value)
-                          //     setFormData(newData)
-                          //   }}
-                        />
-                      </div>
-                    </label>
-                    <label htmlFor="">
-                      VIP
-                      <div tw="flex flex-row items-center">
-                        <div
-                          tw="px-4 py-3 rounded-l bg-[#fafafa] border border-[#d2d2d2]"
-                          css={css`
-                            height: 47px;
-                          `}
-                        >
-                          &#163;
-                        </div>
-                        <input
-                          type="text"
-                          name=""
-                          id=""
-                          style={{
-                            borderRadius: '0 4px 4px 0',
-                            borderLeft: 0,
-                          }}
-                          tw="w-full"
-                          //   value={formData.budget[ind].from}
-                          //   onChange={ev => {
-                          //     const newData = { ...formData }
-                          //     newData.budget[ind].from = Number.isNaN(
-                          //       parseInt(ev.target.value),
-                          //     )
-                          //       ? 0
-                          //       : parseInt(ev.target.value)
-                          //     setFormData(newData)
-                          //   }}
-                        />
-                      </div>
-                    </label>
+                    <InputBlock
+                      variant="money"
+                      properties={{ label: 'Early Bird' }}
+                    />
+                    <InputBlock
+                      variant="money"
+                      properties={{ label: 'Standard' }}
+                    />
+                    <InputBlock variant="money" properties={{ label: 'VIP' }} />
                   </div>
                 </div>
-              </div>
+              </FormDiv>
             </div>
             <div>
               <h4 style={{ marginTop: '8px' }}>Location</h4>
-              <div className="form-div">
-                <label htmlFor="">
-                  Location type
-                  <DropdownMenu
-                    list={dressCodeList}
-                    placeholder="Venue"
-                    // onChange={val => {
-                    //   const newData = { ...formData }
-                    //   newData.dressCode.dressCode = val
-                    //   setFormData(newData)
-                    // }}
-                  />
-                </label>
-              </div>
+              <FormDiv>
+                <InputBlock
+                  variant="dropdown"
+                  properties={{
+                    label: 'Location type',
+                    placeholder: 'Venue',
+                  }}
+                  data={{ list: dressCodeList }}
+                />
+              </FormDiv>
             </div>
             <div>
               <h4 style={{ marginTop: '8px' }}>Date and Time</h4>
-              <div className="form-div">
+              <FormDiv>
                 <div
                   tw=" flex flex-row items-center gap-4"
                   css={css`
@@ -443,21 +298,21 @@ export const CreateEvent = ({ setEventsPhase }) => {
                     }
                   `}
                 >
-                  <label htmlFor="date">
-                    Select Date
-                    <DatePickerr />
-                  </label>
-                  <label htmlFor="">
-                    Select Time
-                    <input type="text" name="" id="" />
-                  </label>
+                  <InputBlock
+                    variant="date"
+                    properties={{ label: 'Select Date' }}
+                  />
+                  <InputBlock
+                    variant="time"
+                    properties={{ label: 'Select Time' }}
+                  />
                 </div>
-              </div>
+              </FormDiv>
             </div>
             <div>
               <input type="submit" value="Next" />
             </div>
-          </form>
+          </FormLayout>
         </div>
       </div>
     </section>

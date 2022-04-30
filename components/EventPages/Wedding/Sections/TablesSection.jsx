@@ -1,7 +1,8 @@
 import tw, { css } from 'twin.macro'
 import { weddingSection } from '../../Regular/styles'
 import CustomTable from '../../../UI/CustomTable'
-import { SeatingChart2 } from '../../../pieces/seatingChart'
+import { FoodDropdown } from '../Components/FoodForm'
+// import { SeatingChart2 } from '../../../pieces/seatingChart'
 import { IoPersonOutline } from 'react-icons/io5'
 
 const TablesSection = () => {
@@ -36,7 +37,7 @@ const TablesSection = () => {
     },
   ]
   return (
-    <section css={weddingSection} style={{ padding: '72px' }}>
+    <section css={weddingSection} style={{ padding: '0' }}>
       <div
         css={css`
           display: flex;
@@ -62,6 +63,7 @@ const TablesSection = () => {
         <div
           css={css`
             width: 50%;
+            padding: 112px 0 32px 72px;
           `}
         >
           <div tw="flex flex-row items-center gap-6">
@@ -85,9 +87,18 @@ const TablesSection = () => {
             align-items: flex-start;
             gap: 106px;
             width: 100%;
+            padding: 60px 72px;
+            background: #fafafa;
           `}
         >
-          <div>
+          <div
+            css={css`
+              table,
+              td {
+                width: max-content;
+              }
+            `}
+          >
             <CustomTable
               list={seatList}
               headers={[
@@ -97,31 +108,35 @@ const TablesSection = () => {
             />
           </div>
           <div>
-            <SeatingChart2
+            {/* <SeatingChart2
               title="T1"
               index={1}
               dataList={seatList}
               group={{ name: "Bride's Family", ind: 1 }}
               capacity={12}
-            />
+            /> */}
           </div>
           <div
             css={css`
               margin-left: 115px;
+              width: 100%;
             `}
           >
-            <div>Food</div>
-            <div>
-              <h3>Select Meals</h3>
-              <div>
-                <p>Fried Rice</p>
-                <p>Fried rice and coleslaw</p>
-              </div>
-              <div>
-                <p>Jollof Rice</p>
-                <p>Jollof rice and meat</p>
-              </div>
-            </div>
+            <FoodDropdown
+              title="Food"
+              info={[
+                {
+                  id: 1,
+                  title: 'Fried Rice',
+                  fullName: 'Fried rice and coleslaw',
+                },
+                {
+                  id: 2,
+                  title: 'Jollof Rice',
+                  fullName: 'Jollof rice and meat',
+                },
+              ]}
+            />
           </div>
         </section>
       </div>

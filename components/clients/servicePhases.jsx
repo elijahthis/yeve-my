@@ -14,6 +14,7 @@ import BackButton from '../UI/Buttons/BackButton'
 import { RequestSubmitted } from '../UI/Modals/ModalChildren'
 import { ServiceCard2 } from '../UI/Cards'
 import Button from '../UI/Buttons/Button'
+import FormLayout from '../UI/FormTools/FormLayout'
 
 export const ChooseService = ({
   servicePhase,
@@ -314,11 +315,23 @@ export const ServiceRequest = ({
           Service Request
         </h3>
       </div>
-      <div css={formStyles}>
+      <div
+        css={css`
+          display: grid;
+          grid-template-columns: 316px 1fr;
+          > :nth-child(2) > form > * {
+            width: 471px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+            font-weight: 600;
+          }
+        `}
+      >
         <div></div>
         <div>
-          <form
-            action=""
+          <FormLayout
             onSubmit={ev => {
               ev.preventDefault()
               setServicePhase(2)
@@ -701,7 +714,7 @@ export const ServiceRequest = ({
             <div>
               <input type="submit" value="Next" />
             </div>
-          </form>
+          </FormLayout>
         </div>
       </div>
     </section>
