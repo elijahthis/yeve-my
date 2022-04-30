@@ -45,6 +45,19 @@ export const sectionStyles = css`
   }
 `
 
+export const mainSectionStyles = css`
+background-color: #fafafa;
+color: #343434;
+padding: 24px;
+font-size: 14px;
+font-weight: 600;
+overflow-y: scroll;
+
+@media (max-width: 1140px) {
+  padding: 20px;
+ 
+`
+
 export const formStyles = css`
   display: grid;
   grid-template-columns: 316px 1fr;

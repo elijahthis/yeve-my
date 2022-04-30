@@ -1,14 +1,8 @@
 import { EventCard } from '../UI/Cards'
 import tw, { css } from 'twin.macro'
-import Image from 'next/image'
 import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { sectionStyles, formStyles } from '../../styles/GeneralStyles'
 import imgPlaceholder from '../../images/Group 526.png'
-import BackButton from '../UI/Buttons/BackButton'
-import { BooleanToggle, DropdownMenu, DatePickerr } from '../formTools'
-import CustomTable from '../UI/CustomTable'
-import { SendMessage } from '../UI/Modals/ModalChildren'
+import { FormSectionLayout } from '../Layout/MainSections'
 import FormLayout from '../UI/FormTools/FormLayout'
 import FormDiv from '../UI/FormTools/FormDiv'
 import InputBlock from '../UI/FormTools/InputBlock'
@@ -135,186 +129,168 @@ export const CreateEvent = ({ setEventsPhase }) => {
   const eventList = ['Wedding', 'Birthday', 'Concert']
   const dressCodeList = ['Formal', 'Casual', 'Smart Casual', 'Native']
   return (
-    <section css={sectionStyles} style={{ backgroundColor: 'white' }}>
-      <div tw="flex flex-row items-center mb-4">
-        <BackButton
-          onClick={() => {
-            setEventsPhase(null)
-          }}
-        />
-        <h3
-          css={css`
-            margin-left: 40px;
-            @media (max-width: 1140px) {
-              margin-left: 16px;
-            }
-          `}
-        >
-          Create Event
-        </h3>
-      </div>
-      <div css={formStyles}>
-        <div></div>
+    <FormSectionLayout
+      content={{
+        title: 'Create Event',
+        backFunc: () => {
+          setEventsPhase(null)
+        },
+      }}
+    >
+      <FormLayout
+        onSubmit={ev => {
+          ev.preventDefault()
+        }}
+      >
         <div>
-          <FormLayout
-            onSubmit={ev => {
-              ev.preventDefault()
-            }}
-          >
-            <div>
-              <h4 style={{ marginTop: '8px' }}>Event Banner</h4>
-              <FormDiv>
-                <label htmlFor="">
-                  Event name
-                  <div></div>
-                </label>
-              </FormDiv>
-            </div>
-            <div>
-              <h4 style={{ marginTop: '8px' }}>Basic</h4>
-              <FormDiv>
-                <InputBlock
-                  variant="text"
-                  properties={{
-                    label: 'Event name',
-                    placeholder: 'Event name',
-                  }}
-                />
-                <InputBlock
-                  variant="textarea"
-                  properties={{
-                    label: 'Enter description',
-                    placeholder: 'Enter description...',
-                  }}
-                />
-                <InputBlock
-                  variant="dropdown"
-                  properties={{
-                    label: 'Event category',
-                    placeholder: 'Select event category',
-                  }}
-                  data={{ list: eventList }}
-                />
-                <InputBlock
-                  variant="BoolToggle"
-                  properties={{ label: 'Event Type' }}
-                  data={{ list: ['Physical', 'Virtual', 'Hybrid'] }}
-                />
-                <InputBlock
-                  variant="postcode"
-                  properties={{
-                    label: 'Enter postcode',
-                    placeholder: 'Enter postcode',
-                  }}
-                />
-                <InputBlock
-                  variant="address"
-                  properties={{
-                    label: 'Enter address',
-                    placeholder: 'Enter address',
-                  }}
-                />
-              </FormDiv>
-            </div>
-            <div>
-              <div tw="flex flex-row items-center justify-between">
-                <h4 style={{ marginTop: '8px' }}>Ticketing</h4>{' '}
-                <p>-3% service charge</p>
-              </div>
-              <FormDiv>
-                <InputBlock
-                  variant="BoolToggle"
-                  properties={{ label: 'Event Type' }}
-                  data={{ list: ['Free Event', 'Paid Event'] }}
-                />
-                <div>
-                  <p tw="text-base">Number of tickets</p>
-                  <div
-                    tw=" flex flex-row items-center gap-4 justify-between"
-                    css={css`
-                      > * {
-                        width: 30%;
-                      }
-                    `}
-                  >
-                    <InputBlock
-                      variant="number"
-                      properties={{ label: 'Early Bird' }}
-                    />
-                    <InputBlock
-                      variant="number"
-                      properties={{ label: 'Standard' }}
-                    />
-                    <InputBlock
-                      variant="number"
-                      properties={{ label: 'VIP' }}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <p tw="text-base">Ticket Pricing</p>
-                  <div
-                    tw=" flex flex-row items-center gap-4 justify-between"
-                    css={css`
-                      > * {
-                        width: 30%;
-                      }
-                    `}
-                  >
-                    <InputBlock
-                      variant="money"
-                      properties={{ label: 'Early Bird' }}
-                    />
-                    <InputBlock
-                      variant="money"
-                      properties={{ label: 'Standard' }}
-                    />
-                    <InputBlock variant="money" properties={{ label: 'VIP' }} />
-                  </div>
-                </div>
-              </FormDiv>
-            </div>
-            <div>
-              <h4 style={{ marginTop: '8px' }}>Location</h4>
-              <FormDiv>
-                <InputBlock
-                  variant="dropdown"
-                  properties={{
-                    label: 'Location type',
-                    placeholder: 'Venue',
-                  }}
-                  data={{ list: dressCodeList }}
-                />
-              </FormDiv>
-            </div>
-            <div>
-              <h4 style={{ marginTop: '8px' }}>Date and Time</h4>
-              <FormDiv>
-                <div
-                  tw=" flex flex-row items-center gap-4"
-                  css={css`
-                    > * {
-                      width: 100%;
-                    }
-                  `}
-                >
-                  <InputBlock
-                    variant="date"
-                    properties={{ label: 'Select Date' }}
-                  />
-                  <InputBlock
-                    variant="time"
-                    properties={{ label: 'Select Time' }}
-                  />
-                </div>
-              </FormDiv>
-            </div>
-            <div>
-              <input type="submit" value="Next" />
-            </div>
-          </FormLayout>
+          <h4 style={{ marginTop: '8px' }}>Event Banner</h4>
+          <FormDiv>
+            <label htmlFor="">
+              Event name
+              <div></div>
+            </label>
+          </FormDiv>
         </div>
-      </div>
-    </section>
+        <div>
+          <h4 style={{ marginTop: '8px' }}>Basic</h4>
+          <FormDiv>
+            <InputBlock
+              variant="text"
+              properties={{
+                label: 'Event name',
+                placeholder: 'Event name',
+              }}
+            />
+            <InputBlock
+              variant="textarea"
+              properties={{
+                label: 'Enter description',
+                placeholder: 'Enter description...',
+              }}
+            />
+            <InputBlock
+              variant="dropdown"
+              properties={{
+                label: 'Event category',
+                placeholder: 'Select event category',
+              }}
+              data={{ list: eventList }}
+            />
+            <InputBlock
+              variant="BoolToggle"
+              properties={{ label: 'Event Type' }}
+              data={{ list: ['Physical', 'Virtual', 'Hybrid'] }}
+            />
+            <InputBlock
+              variant="postcode"
+              properties={{
+                label: 'Enter postcode',
+                placeholder: 'Enter postcode',
+              }}
+            />
+            <InputBlock
+              variant="address"
+              properties={{
+                label: 'Enter address',
+                placeholder: 'Enter address',
+              }}
+            />
+          </FormDiv>
+        </div>
+        <div>
+          <div tw="flex flex-row items-center justify-between">
+            <h4 style={{ marginTop: '8px' }}>Ticketing</h4>{' '}
+            <p>-3% service charge</p>
+          </div>
+          <FormDiv>
+            <InputBlock
+              variant="BoolToggle"
+              properties={{ label: 'Event Type' }}
+              data={{ list: ['Free Event', 'Paid Event'] }}
+            />
+            <div>
+              <p tw="text-base">Number of tickets</p>
+              <div
+                tw=" flex flex-row items-center gap-4 justify-between"
+                css={css`
+                  > * {
+                    width: 30%;
+                  }
+                `}
+              >
+                <InputBlock
+                  variant="number"
+                  properties={{ label: 'Early Bird' }}
+                />
+                <InputBlock
+                  variant="number"
+                  properties={{ label: 'Standard' }}
+                />
+                <InputBlock variant="number" properties={{ label: 'VIP' }} />
+              </div>
+            </div>
+            <div>
+              <p tw="text-base">Ticket Pricing</p>
+              <div
+                tw=" flex flex-row items-center gap-4 justify-between"
+                css={css`
+                  > * {
+                    width: 30%;
+                  }
+                `}
+              >
+                <InputBlock
+                  variant="money"
+                  properties={{ label: 'Early Bird' }}
+                />
+                <InputBlock
+                  variant="money"
+                  properties={{ label: 'Standard' }}
+                />
+                <InputBlock variant="money" properties={{ label: 'VIP' }} />
+              </div>
+            </div>
+          </FormDiv>
+        </div>
+        <div>
+          <h4 style={{ marginTop: '8px' }}>Location</h4>
+          <FormDiv>
+            <InputBlock
+              variant="dropdown"
+              properties={{
+                label: 'Location type',
+                placeholder: 'Venue',
+              }}
+              data={{ list: dressCodeList }}
+            />
+          </FormDiv>
+        </div>
+        <div>
+          <h4 style={{ marginTop: '8px' }}>Date and Time</h4>
+          <FormDiv>
+            <div
+              tw=" flex flex-row items-center gap-4"
+              css={css`
+                > * {
+                  width: 100%;
+                }
+              `}
+            >
+              <InputBlock
+                variant="date"
+                properties={{ label: 'Select Date' }}
+              />
+              <InputBlock
+                variant="time"
+                properties={{ label: 'Select Time' }}
+              />
+            </div>
+          </FormDiv>
+        </div>
+        <div>
+          <input type="submit" value="Next" />
+        </div>
+      </FormLayout>
+    </FormSectionLayout>
   )
 }
