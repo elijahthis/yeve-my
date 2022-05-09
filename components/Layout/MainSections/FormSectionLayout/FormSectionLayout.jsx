@@ -24,13 +24,16 @@ const FormSectionLayout = ({ children, bg, content }) => {
         css={css`
           display: grid;
           grid-template-columns: 316px 1fr;
-          > :nth-child(2) > form > * {
+          > :nth-child(2) > form {
             width: 471px;
-            margin-bottom: 24px;
-            display: flex;
-            flex-direction: column;
-            font-size: 12px;
-            font-weight: 600;
+
+            > * {
+              margin-bottom: 24px;
+              display: flex;
+              flex-direction: column;
+              font-size: 12px;
+              font-weight: 600;
+            }
           }
         `}
       >
