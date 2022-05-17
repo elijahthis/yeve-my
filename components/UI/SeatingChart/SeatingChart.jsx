@@ -3,6 +3,7 @@ import { ResponsivePie } from '@nivo/pie'
 import { BsPerson } from 'react-icons/bs'
 
 export const MyResponsivePie = ({
+  capacity,
   data,
   setDraggingVal,
   draggingVal,
@@ -78,6 +79,7 @@ export const MyResponsivePie = ({
         const newTableList = [...tableList]
 
         console.log(node.data)
+        console.log(tableList)
         // console.log(newTableList[node.data.tableNumber - 1])
         newTableList[node.data.tableNumber - 1].seats[node.data.id - 1].person =
           draggingVal?.attendee

@@ -1,9 +1,9 @@
 import tw, { css } from 'twin.macro'
 import { useEffect, useState } from 'react'
-// import Gantt from 'frappe-gantt'
 import { dateDifference, dateBegin, morphMonths } from './helperFunctions'
+import { Card, Tooltip } from 'antd'
 
-const GanttChart = ({ cardList }) => {
+const GanttChart = ({ cardList, setCardList }) => {
   const baseMonths = [
     { name: 'Jan', length: 31, ind: 0 },
     { name: 'Feb', length: 29, ind: 1 },
@@ -68,6 +68,24 @@ const GanttChart = ({ cardList }) => {
           color: #767676;
           background-color: transparent;
         }
+
+        input[type='color'] {
+          display: block;
+          width: 12px;
+          height: 12px;
+          border-radius: 2px;
+          border: none;
+          cursor: pointer;
+          ::-webkit-color-swatch {
+            border-radius: 2px;
+          }
+          ::-webkit-color-swatch-wrapper {
+            padding: 0;
+          }
+          ::-moz-color-swatch {
+            border-radius: 2px;
+          }
+        }
       `}
     >
       <thead>
@@ -104,8 +122,28 @@ const GanttChart = ({ cardList }) => {
                 white-space: nowrap;
                 font-weight: ${card.type === 'parent' ? '600' : '400'};
               `}
+              tw="flex flex-row items-center gap-8 justify-between"
             >
               {card.task}
+              {card.type === 'parent' ? (
+                <input
+                  type="color"
+                  name=""
+                  id=""
+                  value={card.color}
+                  onChange={ev => {
+                    const newList = [...cardList]
+                    newList.forEach((item, ind) => {
+                      if (item.tag === card.tag) {
+                        newList[ind].color = ev.target.value
+                        console.log(ev.target.value)
+                      }
+                    })
+                    setCardList(newList)
+                    console.log(cardList[ind].color)
+                  }}
+                />
+              ) : null}
             </td>
             {dateBegin(card.start, months) ? (
               <td colSpan={dateBegin(card.start, months)}></td>
@@ -121,43 +159,59 @@ const GanttChart = ({ cardList }) => {
             >
               <div
                 css={css`
-                  background: ${card.color};
+                  background: ${cardList[ind].color};
                   border-radius: 4px;
                   color: white;
                   position: relative;
                   width: 100%;
                   height: 100%;
+
+                  button {
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    background: transparent;
+                  }
                 `}
               >
-                &nbsp;
+                <Tooltip
+                  title={
+                    <div
+                      css={css`
+                        font-family: 'Open Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 12px;
+                        line-height: 18px;
+                        color: #fafafa;
+                      `}
+                    >
+                      <p>START - {card.start}</p>
+                      <p>FINISH - {card.finish}</p>
+                      <p>DURATION - {card.duration} days</p>
+                    </div>
+                  }
+                  overlayInnerStyle={{
+                    maxWidth: '172px',
+                  }}
+                  // placement="bottom"
+                >
+                  <button>&nbsp;</button>
+                </Tooltip>
               </div>
             </td>
-            <td colSpan={30}></td>
+            <td
+              colSpan={
+                365 -
+                (dateBegin(card.start, months) +
+                  dateDifference(card.start, card.finish))
+              }
+            ></td>
           </tr>
         ))}
       </tbody>
     </table>
   )
 }
-
-// const GanttChart = () => {
-//   const tasks = [
-//     {
-//       id: 'Task 1',
-//       name: 'Redesign website',
-//       start: '2016-12-28',
-//       end: '2016-12-31',
-//       progress: 20,
-//       dependencies: 'Task 2, Task 3',
-//     },
-//   ]
-
-//   const gantt = new Gantt('#gantt', tasks)
-//   return (
-//     <div>
-//       <svg id="gantt"></svg>
-//     </div>
-//   )
-// }
 
 export default GanttChart

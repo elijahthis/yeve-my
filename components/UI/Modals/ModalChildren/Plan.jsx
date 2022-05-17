@@ -13,6 +13,9 @@ export const Plan = ({ setOpenModal, cardList, setCardList }) => {
         border-radius: 8px;
         max-width: 1149px;
         min-height: 240px;
+        max-height: 100%;
+        margin: 2rem 0;
+        overflow-y: scroll;
         h5 {
           font-family: 'Montserrat';
           font-style: normal;
@@ -31,7 +34,7 @@ export const Plan = ({ setOpenModal, cardList, setCardList }) => {
           overflow-x: auto;
         `}
       >
-        <GanttChart cardList={cardList}  />
+        <GanttChart cardList={cardList} setCardList={setCardList} />
       </div>
     </div>
   )

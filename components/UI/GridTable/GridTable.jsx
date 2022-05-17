@@ -2,6 +2,7 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { Checkbox } from 'antd'
 import GridTableRow from './GridTableRow'
+import { setFinishDate } from '../GanttChart/helperFunctions'
 
 const GridTable = ({ list, headers, title, groups, setCardList }) => {
   const generateObj = list => {
@@ -12,6 +13,20 @@ const GridTable = ({ list, headers, title, groups, setCardList }) => {
     return newObj
   }
   const [groupObj, setGroupObj] = useState(generateObj(groups))
+
+  useEffect(() => {
+    const newList = [...list]
+
+    newList.map((card, ind) => {
+      // console.log('this is ittt')
+      newList[ind].finish = setFinishDate(
+        newList[ind].start,
+        newList[ind].duration,
+      )
+    })
+    setCardList(newList)
+    //this effect sets the finish date of each row, so it reflects on the Gantt chart
+  }, [setCardList])
 
   return (
     <div
@@ -77,6 +92,39 @@ const GridTable = ({ list, headers, title, groups, setCardList }) => {
           })}
         </tbody>
       </table>
+      <p tw="text-gold text-xs cursor-pointer mt-2">
+        <span
+          onClick={() => {
+            const newTag = list.slice(list.length - 1)
+            const newParentObj = {
+              duration: '',
+              task: 'New Group',
+              start: '',
+              finish: '',
+              predecessor: '',
+              assignee: '',
+              type: 'parent',
+              tag: newTag,
+              color: '#343434',
+            }
+            const newChildObj = {
+              duration: 18,
+              task: 'New Task',
+              start: '2022-05-01',
+              finish: '2022-05-05',
+              predecessor: '',
+              assignee: '',
+              type: 'child',
+              tag: newTag,
+              color: '#343434',
+            }
+            const newList = [...list, newParentObj, newChildObj]
+            setCardList(newList)
+          }}
+        >
+          Add New Group +
+        </span>
+      </p>
     </div>
   )
 }

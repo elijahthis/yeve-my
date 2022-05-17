@@ -1,1 +1,1 @@
-export { YeveLogo1, YeveLogo2 } from './Logo'
+export { YeveLogo1, YeveLogo2, YeveGroupLogo1, YeveGroupLogo2 } from './Logo'

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { css } from 'twin.macro'
+import tw, { css } from 'twin.macro'
 import { YeveLogo2 } from '../../../Logo'
 
 const SideBar = ({ menuList, sideOpen, setSideOpen, child }) => {

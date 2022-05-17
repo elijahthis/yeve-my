@@ -16,25 +16,29 @@ import { sortCards } from '../../../../components/UI/GanttChart/helperFunctions'
 const DashboardRoot = ({ setModalChild, setOpenModal }) => {
   const infoCards = [
     {
-      title: 'Attendees',
+      title: 'Invitations',
+      // title: 'Attendees',
       value: 137,
       icon: <BsShop size={21} />,
       money: false,
     },
     {
-      title: 'Tickets Sold',
+      title: 'Total RSVPs sent',
+      // title: 'Tickets Sold',
       value: 488.0,
       icon: <BsShop size={21} />,
       money: false,
     },
     {
-      title: 'Completed tasks',
+      title: 'RSVPs confirmed',
+      // title: 'Completed tasks',
       value: 356,
       icon: <BsShop size={21} />,
       money: false,
     },
     {
-      title: 'Pending tasks',
+      title: 'RSVPs pending',
+      // title: 'Pending tasks',
       value: 1034,
       icon: <BsShop size={21} />,
       money: false,
@@ -50,7 +54,7 @@ const DashboardRoot = ({ setModalChild, setOpenModal }) => {
       predecessor: '',
       assignee: '',
       type: 'parent',
-      tag: 'A',
+      tag: 1,
       color: '#1C74AA',
     },
     {
@@ -61,7 +65,7 @@ const DashboardRoot = ({ setModalChild, setOpenModal }) => {
       predecessor: '',
       assignee: '',
       type: 'child',
-      tag: 'A',
+      tag: 1,
       color: '#1C74AA',
     },
     {
@@ -72,7 +76,7 @@ const DashboardRoot = ({ setModalChild, setOpenModal }) => {
       predecessor: '',
       assignee: '',
       type: 'child',
-      tag: 'A',
+      tag: 1,
       color: '#1C74AA',
     },
     {
@@ -83,7 +87,7 @@ const DashboardRoot = ({ setModalChild, setOpenModal }) => {
       predecessor: '',
       assignee: '',
       type: 'parent',
-      tag: 'B',
+      tag: 2,
       color: '#343434',
     },
     {
@@ -94,7 +98,7 @@ const DashboardRoot = ({ setModalChild, setOpenModal }) => {
       predecessor: '',
       assignee: '',
       type: 'child',
-      tag: 'B',
+      tag: 2,
       color: '#343434',
     },
     {
@@ -105,7 +109,7 @@ const DashboardRoot = ({ setModalChild, setOpenModal }) => {
       predecessor: '',
       assignee: '',
       type: 'child',
-      tag: 'B',
+      tag: 2,
       color: '#343434',
     },
   ])
@@ -183,9 +187,13 @@ const DashboardRoot = ({ setModalChild, setOpenModal }) => {
     },
   ])
 
+  const [groupList, setGroupList] = useState(
+    Array.from(new Set(cardList.map(card => card.tag))),
+  )
+
   useEffect(() => {
     setNewCardList(sortCards(cardList))
-    console.log(newCardList)
+    setGroupList(Array.from(new Set(cardList.map(card => card.tag))))
   }, [cardList])
 
   return (
@@ -245,7 +253,7 @@ const DashboardRoot = ({ setModalChild, setOpenModal }) => {
               { title: 'Predecessor', key: 'predecessor' },
               { title: 'Assignee', key: 'assignee' },
             ]}
-            groups={['A', 'B', 'C']}
+            groups={groupList}
             setCardList={setCardList}
           />
         </div>

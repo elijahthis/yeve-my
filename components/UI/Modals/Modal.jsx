@@ -12,6 +12,7 @@ const Modal = ({ children, openModal, setOpenModal }) => {
         place-items: center;
         overflow-y: scroll;
         background-color: rgba(0, 0, 0, 0.4);
+        padding: 2.5rem 6rem;
       `}
       onClick={() => {
         setOpenModal(false)

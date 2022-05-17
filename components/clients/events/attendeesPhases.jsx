@@ -182,51 +182,19 @@ export const GroupsAttendees = ({ setOpenModal, setModalChild }) => {
 }
 
 export const TablesAttendees = ({ setOpenModal, setModalChild }) => {
-  const [capacity, setCapacity] = useState({ val: 12 })
+  const [capacity, setCapacity] = useState(12)
+  const [tableCount, setTableCount] = useState(3)
   const [draggingVal, setDraggingVal] = useState({})
 
-  const seatList1 = [
-    { seatNumber: 1, person: null },
-    { seatNumber: 2, person: null },
-    { seatNumber: 3, person: null },
-    { seatNumber: 4, person: null },
-    { seatNumber: 5, person: null },
-    { seatNumber: 6, person: null },
-    { seatNumber: 7, person: null },
-    { seatNumber: 8, person: null },
-    { seatNumber: 9, person: null },
-    { seatNumber: 10, person: null },
-    { seatNumber: 11, person: null },
-    { seatNumber: 12, person: null },
-  ]
-  const seatList2 = [
-    { seatNumber: 1, person: null },
-    { seatNumber: 2, person: null },
-    { seatNumber: 3, person: null },
-    { seatNumber: 4, person: null },
-    { seatNumber: 5, person: null },
-    { seatNumber: 6, person: null },
-    { seatNumber: 7, person: null },
-    { seatNumber: 8, person: null },
-    { seatNumber: 9, person: null },
-    { seatNumber: 10, person: null },
-    { seatNumber: 11, person: null },
-    { seatNumber: 12, person: null },
-  ]
-  const seatList3 = [
-    { seatNumber: 1, person: null },
-    { seatNumber: 2, person: null },
-    { seatNumber: 3, person: null },
-    { seatNumber: 4, person: null },
-    { seatNumber: 5, person: null },
-    { seatNumber: 6, person: null },
-    { seatNumber: 7, person: null },
-    { seatNumber: 8, person: null },
-    { seatNumber: 9, person: null },
-    { seatNumber: 10, person: null },
-    { seatNumber: 11, person: null },
-    { seatNumber: 12, person: null },
-  ]
+  const [seatLists, setSeatLists] = useState(
+    Array(tableCount)
+      .fill(null)
+      .map(table =>
+        Array(capacity)
+          .fill(null)
+          .map((item, ind) => ({ seatNumber: ind + 1, person: null })),
+      ),
+  )
 
   const guestList = [
     'John Green',
@@ -236,38 +204,71 @@ export const TablesAttendees = ({ setOpenModal, setModalChild }) => {
     'Dee Willis',
   ]
 
-  const [tableList, setTableList] = useState([
-    {
-      tableNumber: 1,
-      name: 'Groom',
-      seats: [...seatList1],
-      guests: [...guestList],
-    },
-    {
-      tableNumber: 2,
-      name: 'Bride',
-      seats: [...seatList2],
-      guests: [...guestList],
-    },
-    {
-      tableNumber: 3,
-      name: 'Bridesmaids',
-      seats: [...seatList3],
-      guests: [...guestList],
-    },
-  ])
+  const [tableList, setTableList] = useState(
+    Array(tableCount)
+      .fill(null)
+      .map((table, ind) => {
+        return {
+          tableNumber: ind + 1,
+          name: 'Groom',
+          seats: seatLists[ind],
+          guests: [...guestList],
+        }
+      }),
+  )
+
   const [tableData, setTableData] = useState([])
   const [chartData, setChartData] = useState([])
+
+  useEffect(() => {
+    const newList = [...tableList]
+    newList.forEach(item => {
+      item.seats = Array(parseInt(capacity))
+        .fill(null)
+        .map((item, ind) => ({ seatNumber: ind + 1, person: null }))
+    })
+    setTableList(newList)
+  }, [capacity])
 
   useEffect(() => {
     setTableData(generateTableData(tableList))
     const newList = []
     tableList.map(item => {
+      console.log(item.seats)
       newList.push(morphData(item.seats, item.tableNumber))
     })
     setChartData(newList)
-    console.log(newList)
+    console.log(chartData)
   }, [tableList])
+
+  useEffect(() => {
+    const newList = Array(tableCount)
+      .fill(null)
+      .map(table =>
+        Array(capacity)
+          .fill(null)
+          .map((item, ind) => ({ seatNumber: ind + 1, person: null })),
+      )
+    setSeatLists(newList)
+  }, [tableCount])
+
+  useEffect(() => {
+    const newList2 = Array(tableCount)
+      .fill(null)
+      .map((table, ind) => {
+        return {
+          tableNumber: ind + 1,
+          name: 'Groom',
+          seats: seatLists[ind],
+          guests: [...guestList],
+        }
+      })
+    const filteredList = newList2.filter(item => item.seats !== undefined)
+    if (filteredList.length !== 0) {
+      setTableList(newList2)
+      console.log(seatLists)
+    }
+  }, [seatLists])
 
   return (
     <div
@@ -299,6 +300,8 @@ export const TablesAttendees = ({ setOpenModal, setModalChild }) => {
                   setModalChild={setModalChild}
                   capacity={capacity}
                   setCapacity={setCapacity}
+                  tableCount={tableCount}
+                  setTableCount={setTableCount}
                 />,
               )
               setOpenModal(true)
@@ -334,6 +337,7 @@ export const TablesAttendees = ({ setOpenModal, setModalChild }) => {
       >
         {chartData.map(chartItem => (
           <MyResponsivePie
+            capacity={capacity}
             data={chartItem}
             draggingVal={draggingVal}
             setDraggingVal={setDraggingVal}

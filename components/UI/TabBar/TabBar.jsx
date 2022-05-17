@@ -12,7 +12,7 @@ const TabBar = ({
   return (
     <div>
       <div tw="flex flex-row items-center justify-between border-b border-[#e5e5e5]">
-        <div tw="flex flex-row items-center gap-4 w-full">
+        <div tw="flex flex-row items-center gap-4 w-full" className="titleBar">
           {dataList.map((item, ind) => (
             <div
               key={ind}
@@ -30,6 +30,7 @@ const TabBar = ({
                 align-items: center;
                 gap: 30px;
               `}
+              className="title"
               onClick={() => {
                 setActive(ind)
               }}

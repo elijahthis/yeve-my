@@ -3,6 +3,7 @@ import tw, { css } from 'twin.macro'
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi'
 import { DatePicker } from 'antd'
 import GridCell from './GridCell'
+import { CgAdd } from 'react-icons/cg'
 
 const GridTableRow = ({
   item,
@@ -15,7 +16,7 @@ const GridTableRow = ({
 }) => {
   useEffect(() => {
     // console.log(groupObj)
-  }, [])
+  })
   return (
     <tr
       css={css`
@@ -27,10 +28,41 @@ const GridTableRow = ({
       `}
     >
       <td
+        style={{ textAlign: 'right' }}
         css={css`
           background-color: transparent;
+          position: relative;
+          // display: flex;
+          flex-direction; row;
+          justify-content: flex-end;
+          
+
+          svg {
+            position: absolute;
+            top: 50%;
+            left: 2px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            
+          }
         `}
+        // tw='flex flex-row items-centr'
       >
+        {item.type === 'child' ? (
+          <span
+            onClick={() => {
+              const tempList = [...cardList.slice(0, index)]
+              const newItem = { ...item }
+              newItem.task = 'New Task'
+              tempList.push(newItem)
+              const newList = [...tempList, ...cardList.slice(index)]
+              setCardList(newList)
+            }}
+            tw="text-gold mr-2"
+          >
+            <CgAdd size={16} />
+          </span>
+        ) : null}
         {index + 1}
       </td>
       {headers.slice(1).map((header, ind) => (
@@ -62,11 +94,9 @@ const GridTableRow = ({
                 cursor: pointer;
               `}
               onClick={() => {
-                console.log(item.tag)
                 const newObj = { ...groupObj }
                 newObj[item.tag] = !newObj[item.tag]
                 setGroupObj(newObj)
-                console.log(groupObj[item.tag])
               }}
             >
               {groupObj[item.tag] ? (

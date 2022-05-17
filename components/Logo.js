@@ -1,6 +1,6 @@
 import 'twin.macro'
 import Link from 'next/link'
-import { YeveLogoSVG1, YeveLogoSVG2 } from './pieces/svgs'
+import { YeveLogoSVG1, YeveLogoSVG2, YeveGroupLogoSVG1 } from './pieces/svgs'
 
 export const YeveLogo1 = () => (
   <Link href="/" passHref>
@@ -17,6 +17,16 @@ export const YeveLogo2 = () => (
     // Use the tw prop to add tailwind styles directly on jsx elements
     >
       <YeveLogoSVG2 />
+    </a>
+  </Link>
+)
+
+export const YeveGroupLogo = () => (
+  <Link href="/" passHref>
+    <a
+    // Use the tw prop to add tailwind styles directly on jsx elements
+    >
+      <YeveGroupLogoSVG1 />
     </a>
   </Link>
 )

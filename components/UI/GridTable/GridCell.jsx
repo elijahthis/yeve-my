@@ -3,8 +3,8 @@ import tw, { css } from 'twin.macro'
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi'
 import { DatePicker } from 'antd'
 import moment from 'moment'
-import 'moment/locale/zh-cn'
-import locale from 'antd/lib/locale/zh_CN'
+import 'moment/locale/en-gb'
+import locale from 'antd/lib/locale/en_GB'
 
 import {
   setFinishDate,
@@ -16,11 +16,13 @@ import {
 const GridCell = ({ item, header, index, cardList, setCardList }) => {
   useEffect(() => {
     const newList = [...cardList]
-    newList[index].finish = setFinishDate(
-      cardList[index].start,
-      parseInt(cardList[index].duration),
-    )
-    setCardList(newList)
+    newList.forEach((card, ind) => {
+      if (card.type === 'parent')
+        newList[index].duration = dateDifference(
+          newList[index].start,
+          newList[index].finish,
+        )
+    }) // this effect sets the duration of the parent rows on render, so it reflects on the Gantt chart
   }, [])
 
   switch (header.key) {
@@ -40,6 +42,7 @@ const GridCell = ({ item, header, index, cardList, setCardList }) => {
         return (
           <DatePicker
             picker="date | week | month"
+            locale={locale}
             defaultValue={moment(cardList[index][header.key], 'YYYY-MM-DD')}
             onChange={(date, dateString) => {
               const newList = [...cardList]
@@ -119,11 +122,11 @@ const GridCell = ({ item, header, index, cardList, setCardList }) => {
       else {
         let val = 0
         const newList = [...cardList]
-        newList.forEach(card => {
-          if (card.tag === item.tag && card.type === 'child')
-            val = card.duration > val ? card.duration : val
-        })
-        newList[index].duration = val
+        newList[index].duration = dateDifference(
+          newList[index].start,
+          newList[index].finish,
+        )
+        // setCardList(newList)
         return <span>{item[header.key]}</span>
       }
 

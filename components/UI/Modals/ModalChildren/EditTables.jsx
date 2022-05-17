@@ -1,10 +1,20 @@
 import { IoClose } from 'react-icons/io5'
 import tw, { css } from 'twin.macro'
+import { useState } from 'react'
 import { formCoreStyles } from '../../../../styles/GeneralStyles'
 import Button from '../../Buttons/Button'
 import { InvitationSent } from './'
 
-const EditTables = ({ setOpenModal, setModalChild, capacity, setCapacity }) => {
+const EditTables = ({
+  setOpenModal,
+  setModalChild,
+  capacity,
+  setCapacity,
+  tableCount,
+  setTableCount,
+}) => {
+  const [myCapacity, setMyCapacity] = useState(capacity)
+  const [myTableCount, setMyTableCount] = useState(tableCount)
   return (
     <div
       css={css`
@@ -50,7 +60,21 @@ const EditTables = ({ setOpenModal, setModalChild, capacity, setCapacity }) => {
           <div className="form-div">
             <label htmlFor="">
               Total Tables
-              <input type="number" name="" id="" placeholder="50" />
+              <input
+                type="text"
+                size=""
+                pattern="[0-9]{10}"
+                name=""
+                id=""
+                value={myTableCount}
+                onChange={ev => {
+                  setMyTableCount(
+                    Number.isNaN(parseInt(ev.target.value))
+                      ? 1
+                      : parseInt(ev.target.value),
+                  )
+                }}
+              />
             </label>
             <label htmlFor="">
               Tables allocated
@@ -60,14 +84,17 @@ const EditTables = ({ setOpenModal, setModalChild, capacity, setCapacity }) => {
               Seat per table
               <input
                 type="text"
+                size=""
+                pattern="[0-9]{10}"
                 name=""
                 id=""
-                value={capacity.val}
+                value={myCapacity}
                 onChange={ev => {
-                  const newCapacity = { ...capacity }
-                  newCapacity.val = ev.target.value
-                  setCapacity(newCapacity)
-                  console.log(capacity)
+                  setMyCapacity(
+                    Number.isNaN(parseInt(ev.target.value))
+                      ? 1
+                      : parseInt(ev.target.value),
+                  )
                 }}
               />
             </label>
@@ -85,9 +112,9 @@ const EditTables = ({ setOpenModal, setModalChild, capacity, setCapacity }) => {
           <Button
             variant="primary"
             onClick={() => {
-              setModalChild(
-                <InvitationSent setOpenModal={setOpenModal} email={'email'} />,
-              )
+              setCapacity(myCapacity)
+              setTableCount(myTableCount)
+              setOpenModal(false)
             }}
           >
             Save

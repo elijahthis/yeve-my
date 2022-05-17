@@ -66,7 +66,6 @@ export const morphMonths = (cardList, monthList) => {
     ...monthList.slice(earliestMonth, 12),
     ...monthList.slice(0, earliestMonth),
   ]
-  console.log(newList)
   return newList
 }
 
