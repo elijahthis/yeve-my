@@ -29,6 +29,7 @@ const TabBar = ({
                 flex-direction: row;
                 align-items: center;
                 gap: 30px;
+                color: ${active === ind ? '#000000' : '#767676'};
               `}
               className="title"
               onClick={() => {

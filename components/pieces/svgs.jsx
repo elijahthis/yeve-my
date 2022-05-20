@@ -1,4 +1,8 @@
 import tw, { css } from 'twin.macro'
+import { FiVolume1 } from 'react-icons/fi'
+import { FiVolumeX } from 'react-icons/fi'
+import { IoMicOutline } from 'react-icons/io5'
+import { IoMicOffOutline } from 'react-icons/io5'
 
 export const YeveLogoSVG1 = () => (
   <svg
@@ -296,53 +300,54 @@ export const HeadSetIcon = ({ size, color }) => (
       d="M3.89062 18C3.28125 16.4531 2.25 13.6233 2.25 12C2.25 6.615 6.99984 2.25 12 2.25C17.0002 2.25 21.75 6.615 21.75 12C21.75 13.6233 20.6719 16.5469 20.1094 18"
       stroke={color}
       stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M5.08003 12.6623L4.43831 13.0373C3.02128 13.867 2.95237 16.4315 4.27987 18.7654C5.60737 21.0993 7.83628 22.319 9.25331 21.4898L9.89503 21.1148C10.0654 21.0134 10.1891 20.8492 10.2398 20.6575C10.2904 20.4659 10.2639 20.262 10.166 20.0896L6.093 12.9375C6.04498 12.8524 5.98056 12.7778 5.90349 12.7179C5.82641 12.6579 5.73821 12.6139 5.64398 12.5883C5.54976 12.5627 5.45139 12.5561 5.35459 12.5688C5.25778 12.5815 5.16446 12.6133 5.08003 12.6623V12.6623ZM18.9185 12.6623L19.5602 13.0373C20.9772 13.8665 21.048 16.4311 19.7186 18.765C18.3892 21.0989 16.1622 22.3186 14.7452 21.4893L14.1035 21.1143C13.9331 21.0129 13.8094 20.8487 13.7587 20.6571C13.7081 20.4654 13.7346 20.2615 13.8325 20.0892L17.9055 12.9375C17.9535 12.8524 18.0179 12.7778 18.095 12.7179C18.1721 12.6579 18.2603 12.6139 18.3545 12.5883C18.4487 12.5627 18.5471 12.5561 18.6439 12.5688C18.7407 12.5815 18.834 12.6133 18.9185 12.6623V12.6623Z"
       stroke={color}
-      stroke-width="1.5"
-      stroke-miterlimit="10"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
     />
   </svg>
 )
 
-export const MessagingIcon = ({ size, color }) => (
+export const DetailsIcon = ({ size, color, onClick }) => (
   <svg
     width={size}
     height={size}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    onClick={onClick}
   >
     <path
       d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
       stroke={color}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M15.9965 12H16.0054"
       stroke={color}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M11.9945 12H12.0035"
       stroke={color}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M7.99451 12H8.00349"
       stroke={color}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -370,8 +375,8 @@ export const EmojiIcon = ({ size, color }) => (
     <path
       d="M12 22.25C17.3848 22.25 21.75 17.8848 21.75 12.5C21.75 7.11522 17.3848 2.75 12 2.75C6.61522 2.75 2.25 7.11522 2.25 12.5C2.25 17.8848 6.61522 22.25 12 22.25Z"
       stroke="#767676"
-      stroke-width="1.5"
-      stroke-miterlimit="10"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
     />
   </svg>
 )
@@ -387,16 +392,16 @@ export const AtIcon = ({ size, color }) => (
     <path
       d="M14.9836 12.5C14.7659 15.3688 13.0429 17 11.0872 17C9.13156 17 7.82987 14.9851 8.01804 12.5C8.20621 10.0149 9.81361 8 11.7693 8C13.725 8 15.1713 10.025 14.9836 12.5V12.5Z"
       stroke={color}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M15.2196 21.2173C13.7682 21.8651 12.8169 22 11.1907 22C6.2511 22 2.60233 17.7466 3.0348 12.5C3.46726 7.25341 7.8275 3 12.7671 3C18.3312 3 21.39 6.87179 20.96 12.0536C20.6394 15.9222 18.3119 17.0368 17.0932 16.8074C15.9468 16.5915 15.0005 15.4893 15.1754 13.3798L15.6063 8.18452"
       stroke={color}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -431,37 +436,37 @@ export const MicIcon = ({ size, color }) => (
     <path
       d="M12 15.5C14.21 15.5 16 13.71 16 11.5V6C16 3.79 14.21 2 12 2C9.79 2 8 3.79 8 6V11.5C8 13.71 9.79 15.5 12 15.5Z"
       stroke={color}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M4.34961 9.6499V11.3499C4.34961 15.5699 7.77961 18.9999 11.9996 18.9999C16.2196 18.9999 19.6496 15.5699 19.6496 11.3499V9.6499"
       stroke={color}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M10.6094 6.43012C11.5094 6.10012 12.4894 6.10012 13.3894 6.43012"
       stroke={color}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M11.1992 8.55007C11.7292 8.41007 12.2792 8.41007 12.8092 8.55007"
       stroke={color}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M12 19V22"
       stroke={color}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -481,6 +486,123 @@ export const SendIcon = ({ size, color }) => (
     <path
       d="M22.1391 8.96004L13.1091 11.96C7.03914 13.99 7.03914 17.3 13.1091 19.32L15.7891 20.21L16.6791 22.89C18.6991 28.96 22.0191 28.96 24.0391 22.89L27.0491 13.87C28.3891 9.82004 26.1891 7.61004 22.1391 8.96004ZM22.4591 14.34L18.6591 18.16C18.5091 18.31 18.3191 18.38 18.1291 18.38C17.9391 18.38 17.7491 18.31 17.5991 18.16C17.3091 17.87 17.3091 17.39 17.5991 17.1L21.3991 13.28C21.6891 12.99 22.1691 12.99 22.4591 13.28C22.7491 13.57 22.7491 14.05 22.4591 14.34Z"
       fill="white"
+    />
+  </svg>
+)
+
+export const AddPersonIcon = ({ size, color }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="16" cy="16" r="16" fill="#FAFAFA" />
+    <path
+      d="M22.5 23.5H18.5"
+      stroke={color || '#DE8E0E'}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M20.5 25.5V21.5"
+      stroke={color || '#DE8E0E'}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16.1606 14.87C16.0606 14.86 15.9406 14.86 15.8306 14.87C13.4506 14.79 11.5606 12.84 11.5606 10.44C11.5506 7.99 13.5406 6 15.9906 6C18.4406 6 20.4306 7.99 20.4306 10.44C20.4306 12.84 18.5306 14.79 16.1606 14.87Z"
+      stroke={color || '#DE8E0E'}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M15.9891 25.8102C14.1691 25.8102 12.3591 25.3502 10.9791 24.4302C8.55906 22.8102 8.55906 20.1702 10.9791 18.5602C13.7291 16.7202 18.2391 16.7202 20.9891 18.5602"
+      stroke={color || '#DE8E0E'}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
+export const EndTalkIcon = ({ size }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 33 33"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="16.5" cy="16.5" r="16" fill="#E3394D" />
+    <path
+      d="M9.74219 21.5C9.23438 20.2109 8.375 17.8527 8.375 16.5C8.375 12.0125 12.3332 8.375 16.5 8.375C20.6668 8.375 24.625 12.0125 24.625 16.5C24.625 17.8527 23.7266 20.2891 23.2578 21.5"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10.7334 17.0519L10.1986 17.3644C9.01773 18.0558 8.96031 20.1929 10.0666 22.1379C11.1728 24.0828 13.0302 25.0992 14.2111 24.4082L14.7459 24.0957C14.8878 24.0111 14.9909 23.8743 15.0331 23.7146C15.0754 23.5549 15.0533 23.385 14.9716 23.2414L11.5775 17.2812C11.5375 17.2104 11.4838 17.1482 11.4196 17.0982C11.3553 17.0483 11.2818 17.0116 11.2033 16.9903C11.1248 16.9689 11.0428 16.9634 10.9622 16.974C10.8815 16.9846 10.8037 17.0111 10.7334 17.0519V17.0519ZM22.2654 17.0519L22.8002 17.3644C23.981 18.0554 24.04 20.1925 22.9322 22.1375C21.8244 24.0824 19.9685 25.0988 18.7877 24.4078L18.2529 24.0953C18.111 24.0107 18.0078 23.8739 17.9656 23.7142C17.9234 23.5545 17.9455 23.3846 18.0271 23.241L21.4212 17.2812C21.4613 17.2104 21.5149 17.1482 21.5792 17.0982C21.6434 17.0483 21.7169 17.0116 21.7954 16.9903C21.8739 16.9689 21.9559 16.9634 22.0366 16.974C22.1173 16.9846 22.195 17.0111 22.2654 17.0519V17.0519Z"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+    />
+    <line
+      x1="8.16602"
+      y1="23.7727"
+      x2="23.772"
+      y2="8.16671"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+  </svg>
+)
+
+export const MuteVol = () => (
+  <div tw="w-8 h-8 rounded-full bg-[#FAFAFA] grid place-items-center">
+    <FiVolume1 size={22} />
+  </div>
+)
+
+export const UnMuteVol = () => (
+  <div tw="w-8 h-8 rounded-full bg-[#FAFAFA] grid place-items-center">
+    <FiVolumeX size={22} />
+  </div>
+)
+
+export const MuteMic = () => (
+  <div tw="w-8 h-8 rounded-full bg-[#FAFAFA] grid place-items-center">
+    <IoMicOutline size={22} />
+  </div>
+)
+
+export const UnMuteMic = () => (
+  <div tw="w-8 h-8 rounded-full bg-[#FAFAFA] grid place-items-center">
+    <IoMicOffOutline size={22} />
+  </div>
+)
+
+export const CrownIcon = ({ size }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M14.6675 3.80666V10.1933C14.6675 12.0333 13.1742 13.5267 11.3342 13.5267H4.66753C4.36086 13.5267 4.06753 13.4867 3.78086 13.4067C3.36753 13.2933 3.23419 12.7667 3.54086 12.46L10.6275 5.37333C10.7742 5.22666 10.9942 5.19333 11.2009 5.23333C11.4142 5.27333 11.6475 5.21333 11.8142 5.05333L13.5275 3.33333C14.1542 2.70666 14.6675 2.91333 14.6675 3.80666Z"
+      fill="#DE8E0E"
+    />
+    <path
+      d="M9.76065 4.90668L2.78065 11.8867C2.46065 12.2067 1.92732 12.1267 1.71398 11.7267C1.46732 11.2733 1.33398 10.7467 1.33398 10.1933V3.80668C1.33398 2.91335 1.84732 2.70668 2.47398 3.33335L4.19398 5.06001C4.45398 5.31335 4.88065 5.31335 5.14065 5.06001L7.52732 2.66668C7.78732 2.40668 8.21398 2.40668 8.47398 2.66668L9.76732 3.96001C10.0206 4.22001 10.0207 4.64668 9.76065 4.90668Z"
+      fill="#DE8E0E"
     />
   </svg>
 )

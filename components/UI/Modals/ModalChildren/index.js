@@ -1,5 +1,6 @@
 export { default as ActivateEvent } from './ActivateEvent'
 export { default as AddAttendees } from './AddAttendees'
+export { default as AddTalkback } from './AddTalkback'
 export { default as CancelEvent } from './CancelEvent'
 export { default as CancelRecurring } from './CancelRecurring'
 export { default as CompleteEvent } from './CompleteEvent'

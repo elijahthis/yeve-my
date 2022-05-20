@@ -148,7 +148,10 @@ export const formCoreStyles = css`
     flex-direction: column;
     gap: 0.25rem;
   }
-  input,
+  input[type='text'],
+  input[type='email'],
+  input[type='number'],
+  input[type='postcode'],
   textarea {
     padding: 12px 16px;
     border-radius: 4px;
@@ -157,6 +160,9 @@ export const formCoreStyles = css`
     font-weight: 600;
     font-size: 14px;
     resize: none;
+  }
+
+  input[type='search'] {
   }
   .date-drop {
     top: 0;

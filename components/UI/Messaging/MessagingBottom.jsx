@@ -6,7 +6,7 @@ const MessagingBottom = () => {
     <div
       css={css`
         padding: 0 112px;
-        padding-top: 32px;
+        margin-top: 32px;
       `}
     >
       <MessageBar />

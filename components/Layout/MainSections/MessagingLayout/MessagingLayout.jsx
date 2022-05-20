@@ -5,9 +5,6 @@ const MessagingLayout = ({ children }) => {
     <section
       css={css`
         height: 100%;
-        display: grid;
-        grid-template-columns: 1fr 320px;
-        background-color: #fafafa;
       `}
     >
       {children}

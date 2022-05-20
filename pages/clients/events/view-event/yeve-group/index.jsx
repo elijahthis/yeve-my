@@ -1,26 +1,15 @@
 import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import TabBar from '../../../../components/UI/TabBar'
-import {
-  ProfileInfo,
-  Payment,
-} from '../../../../components/clients/accountParts'
-import YeveGroupLayout from '../../../../layouts/yeveGroupLayout'
-import MessagingLayout from '../../../../components/Layout/MainSections/MessagingLayout'
+import YeveGroupLayout from '../../../../../layouts/yeveGroupLayout'
+import MessagingLayout from '../../../../../components/Layout/MainSections/MessagingLayout'
 import {
   MessagingTopBar,
   MessagingBody,
   MessagingBottom,
-  SubGroupAside,
-} from '../../../../components/UI/Messaging'
-import { sectionStyles } from '../../../../styles/GeneralStyles'
-import { SearchBar } from '../../../../components/formTools'
-import BackButton from '../../../../components/UI/Buttons/BackButton'
-import Button from '../../../../components/UI/Buttons/Button'
-import SortComponent from '../../../../components/pieces/sort'
-import { AddAttendees } from '../../../../components/UI/Modals/ModalChildren'
-import Modal from '../../../../components/UI/Modals/Modal'
+} from '../../../../../components/UI/Messaging'
+import SubGroupAside from '../../../../../components/UI/Messaging/SubGroupAside'
+import Modal from '../../../../../components/UI/Modals/Modal'
 
 const YeveGroupRoot = ({
   openModal,
@@ -30,6 +19,7 @@ const YeveGroupRoot = ({
   currentSubGroup,
 }) => {
   const router = useRouter()
+  const [showSide, setShowSide] = useState(false)
 
   useEffect(() => {
     console.log(currentSubGroup)
@@ -40,16 +30,37 @@ const YeveGroupRoot = ({
       <div
         css={css`
           height: 100%;
-          display: grid;
-          grid-template-rows: 57px 1fr 122px;
+          display: ${showSide ? 'grid' : 'block'};
+          grid-template-columns: 1fr 320px;
           background-color: #fafafa;
         `}
       >
-        <MessagingTopBar currentSubGroup={currentSubGroup} />
-        <MessagingBody />
-        <MessagingBottom />
+        <div
+          css={css`
+            height: 100%;
+            display: grid;
+            grid-template-rows: 57px 1fr 122px;
+            background-color: #fafafa;
+          `}
+        >
+          <MessagingTopBar
+            currentSubGroup={currentSubGroup}
+            showSide={showSide}
+            setShowSide={setShowSide}
+            setOpenModal={setOpenModal}
+            setModalChild={setModalChild}
+          />
+          <MessagingBody />
+          <MessagingBottom />
+        </div>
+        {showSide ? (
+          <SubGroupAside
+            currentSubGroup={currentSubGroup}
+            showSide={showSide}
+            setShowSide={setShowSide}
+          />
+        ) : null}
       </div>
-      <SubGroupAside currentSubGroup={currentSubGroup} />
     </MessagingLayout>
   )
 }
