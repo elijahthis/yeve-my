@@ -18,7 +18,7 @@ const Modal = ({ children, openModal, setOpenModal }) => {
         setOpenModal(false)
       }}
     >
-      {children}
+      {openModal ? children : ''}
     </div>,
     document.querySelector('#myportal'),
   )

@@ -1,9 +1,9 @@
 import tw, { css } from 'twin.macro'
 import { formStyles } from './styles'
 
-const FormLayout = ({ children }) => {
+const FormLayout = ({ children, onSubmit }) => {
   return (
-    <form action="" css={formStyles}>
+    <form action="" css={formStyles} onSubmit={onSubmit}>
       {children}
     </form>
   )

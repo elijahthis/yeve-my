@@ -53,6 +53,18 @@ export const PendingRequests = ({
       budgetAccepted: false,
       rate: '60/hr',
     },
+    {
+      gig: 'Venue Provider',
+      name: 'Joseph Pegg',
+      image: profilePlaceholder,
+      date: 'Mon, Oct 15',
+      time: '22:15',
+      price: 120,
+      duration: 2,
+      status: 'Pending Acceptance',
+      budgetAccepted: false,
+      rate: '60/hr',
+    },
   ]
   return (
     <>

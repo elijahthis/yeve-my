@@ -10,8 +10,11 @@ export const formDivStyles = css`
     flex-direction: row;
     align-items: center;
     gap: 24px;
+    width: 100%;
+    justify-content: space-between;
+
     > * {
-      width: 100%;
+      width: 45%;
     }
   }
 `

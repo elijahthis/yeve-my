@@ -4,6 +4,9 @@ import Router from 'next/router'
 import GlobalStyles from './../styles/GlobalStyles'
 import '../App.css'
 import Loader from '../components/loader'
+import '@fullcalendar/common/main.css'
+import '@fullcalendar/daygrid/main.css'
+import '@fullcalendar/timegrid/main.css'
 
 const App = ({ Component, pageProps }) => {
   const [loading, setLoading] = useState(false)

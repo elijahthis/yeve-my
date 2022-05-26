@@ -2,9 +2,14 @@ import tw, { css } from 'twin.macro'
 import DropdownMenu from '../DropdownMenu'
 import BooleanToggle from '../BooleanToggle'
 import DatePickerr from '../DatePickerr'
+import { DatePicker, TimePicker } from 'antd'
 import { InputBlockStyles } from './styles'
+import { DateTimeStyles } from './styles'
+import moment from 'moment'
+import 'moment/locale/en-gb'
+import locale from 'antd/lib/locale/en_GB'
 
-const InputBlock = ({ variant, properties, data }) => {
+const InputBlock = ({ variant, properties, data, value, onChange }) => {
   const VARIANTS = [
     'text',
     'email',
@@ -31,12 +36,8 @@ const InputBlock = ({ variant, properties, data }) => {
             name=""
             type="text"
             placeholder={placeholder}
-            // value={formData.details.postcode}
-            // onChange={ev => {
-            //   const newData = { ...formData }
-            //   newData.details.postcode = ev.target.value
-            //   setFormData(newData)
-            // }}
+            value={value}
+            onChange={onChange}
           />
         </label>
       )
@@ -95,7 +96,14 @@ const InputBlock = ({ variant, properties, data }) => {
       return (
         <label htmlFor="address" css={InputBlockStyles}>
           {label}
-          <input type="text" name="" id="" placeholder={placeholder} />
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+          />
         </label>
       )
       break
@@ -111,6 +119,8 @@ const InputBlock = ({ variant, properties, data }) => {
             inputmode="numeric"
             pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
             placeholder={placeholder}
+            value={value}
+            onChange={onChange}
           />
         </label>
       )
@@ -120,7 +130,11 @@ const InputBlock = ({ variant, properties, data }) => {
       return (
         <label htmlFor="date" css={InputBlockStyles}>
           {label}
-          <DatePickerr />
+          <DatePicker
+            css={DateTimeStyles}
+            value={moment(value) || {}}
+            onChange={onChange}
+          />
         </label>
       )
       break
@@ -128,7 +142,13 @@ const InputBlock = ({ variant, properties, data }) => {
       return (
         <label htmlFor="" css={InputBlockStyles}>
           Select Time
-          <input type="text" name="" id="" />
+          <TimePicker
+            css={DateTimeStyles}
+            use12Hours={true}
+            format="HH:mm"
+            value={moment(value || '00:00', 'HH:mm')}
+            onChange={onChange}
+          />
         </label>
       )
       break

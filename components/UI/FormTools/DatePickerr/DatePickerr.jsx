@@ -1,9 +1,15 @@
 import tw, { css } from 'twin.macro'
 import 'antd/dist/antd.css'
 import { DatePicker } from 'antd'
-import 'antd/dist/antd.css'
+import { useEffect } from 'react'
+import moment from 'moment'
+import 'moment/locale/en-gb'
+import locale from 'antd/lib/locale/en_GB'
 
-const DatePickerr = () => {
+const DatePickerr = ({ value }) => {
+  useEffect(() => {
+    console.log(value)
+  }, [])
   return (
     <DatePicker
       css={css`
@@ -26,6 +32,7 @@ const DatePickerr = () => {
           }
         }
       `}
+      value={moment(value) || {}}
     />
   )
 }

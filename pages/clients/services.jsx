@@ -15,6 +15,8 @@ import { BiChevronRight } from 'react-icons/bi'
 import {
   ChooseService,
   ServiceRequest,
+  VenueRequest,
+  VenueSummary,
   RequestSummary,
 } from '../../components/clients/servicePhases'
 import { sectionStyles } from '../../styles/GeneralStyles'
@@ -29,6 +31,7 @@ const ServiceComponent1 = ({ setServicePhase }) => {
     { name: 'Security', image: service4 },
     { name: 'Wedding', image: service5 },
     { name: 'Event Travel', image: service6 },
+    { name: 'Venue Provider', image: service6 },
   ]
 
   return (
@@ -79,7 +82,11 @@ const ServiceComponent1 = ({ setServicePhase }) => {
             <ServiceCard1
               cardData={cat}
               clickFunc={() => {
-                setServicePhase(0)
+                if (cat.name === 'Venue Provider') {
+                  setServicePhase(11)
+                } else {
+                  setServicePhase(0)
+                }
               }}
             />
           </div>
@@ -258,9 +265,29 @@ const ServicesRoot = ({
           setFormData={setFormData}
         />
       )
+    case 11:
+      return (
+        <VenueRequest
+          servicePhase={servicePhase}
+          setServicePhase={setServicePhase}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )
     case 2:
       return (
         <RequestSummary
+          servicePhase={servicePhase}
+          setServicePhase={setServicePhase}
+          formData={formData}
+          setFormData={setFormData}
+          setOpenModal={setOpenModal}
+          setModalChild={setModalChild}
+        />
+      )
+    case 22:
+      return (
+        <VenueSummary
           servicePhase={servicePhase}
           setServicePhase={setServicePhase}
           formData={formData}

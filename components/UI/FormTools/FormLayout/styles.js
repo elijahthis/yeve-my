@@ -14,6 +14,7 @@ export const formStyles = css`
     font-weight: 700;
     color: #1a1a1a;
     font-family: Montserrat;
+    margin-bottom: 1rem;
   }
   h5 {
     font-size: 18px;

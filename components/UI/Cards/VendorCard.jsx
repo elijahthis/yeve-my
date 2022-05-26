@@ -7,6 +7,7 @@ import {
   ActivateEvent,
   VendorReview,
   ViewQuote,
+  ViewQuoteVenue,
 } from '../Modals/ModalChildren/'
 
 const VendorCard = ({
@@ -82,7 +83,10 @@ const VendorCard = ({
               tw="w-full grid place-items-center text-gold"
               css={actionBtn}
               onClick={() => {
-                setModalChild(<ViewQuote setOpenModal={setOpenModal} />)
+                if (cardData.gig === 'Venue Provider')
+                  setModalChild(<ViewQuoteVenue setOpenModal={setOpenModal} />)
+                else setModalChild(<ViewQuote setOpenModal={setOpenModal} />)
+
                 setOpenModal(true)
               }}
             >
