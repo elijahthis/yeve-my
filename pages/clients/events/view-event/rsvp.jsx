@@ -208,7 +208,7 @@ const RSVP = () => {
   }, [])
 
   return (
-    <ClientsEventLayout>
+    <>
       <RSVPRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -220,8 +220,11 @@ const RSVP = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsEventLayout>
+    </>
   )
 }
+
+RSVP.getLayout = page => <ClientsEventLayout>{page}</ClientsEventLayout>
+
 
 export default RSVP

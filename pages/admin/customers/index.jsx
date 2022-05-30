@@ -159,7 +159,7 @@ const Customers = () => {
     setMounted(true)
   }, [])
   return (
-    <AdminLayout>
+    <>
       <CustomersRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -171,8 +171,10 @@ const Customers = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </AdminLayout>
+    </>
   )
 }
+
+Customers.getLayout = page => <AdminLayout>{page}</AdminLayout>
 
 export default Customers

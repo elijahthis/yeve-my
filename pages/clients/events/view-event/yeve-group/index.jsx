@@ -75,7 +75,7 @@ const YeveGroup = () => {
   }, [])
 
   return (
-    <YeveGroupLayout>
+    <>
       <YeveGroupRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -88,8 +88,10 @@ const YeveGroup = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </YeveGroupLayout>
+    </>
   )
 }
+
+YeveGroup.getLayout = page => <YeveGroupLayout>{page}</YeveGroupLayout>
 
 export default YeveGroup

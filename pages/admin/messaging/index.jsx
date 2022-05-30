@@ -96,7 +96,7 @@ const Messaging = () => {
     setMounted(true)
   }, [])
   return (
-    <AdminLayout>
+    <>
       <MessagingRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -108,8 +108,10 @@ const Messaging = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </AdminLayout>
+    </>
   )
 }
+
+Messaging.getLayout = page => <AdminLayout>{page}</AdminLayout>
 
 export default Messaging

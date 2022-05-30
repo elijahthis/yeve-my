@@ -123,7 +123,7 @@ const Requests = () => {
   }, [])
 
   return (
-    <ClientsLayout>
+    <>
       <RequestsRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -135,8 +135,10 @@ const Requests = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsLayout>
+    </>
   )
 }
+
+Requests.getLayout = page => <ClientsLayout>{page}</ClientsLayout>
 
 export default Requests

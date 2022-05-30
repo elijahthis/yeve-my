@@ -9,7 +9,7 @@ import Button from '../../../components/UI/Buttons/Button'
 import { SendMessage } from '../../../components/UI/Modals/ModalChildren'
 import { DropdownMenu } from '../../../components/formTools'
 
-const CreateCustomersRoot = () => {
+const CreateAdminRoot = () => {
   const router = useRouter()
   return (
     <section css={sectionStyles}>
@@ -117,12 +117,10 @@ const CreateCustomersRoot = () => {
   )
 }
 
-const CreateCustomers = () => {
-  return (
-    <AdminLayout>
-      <CreateCustomersRoot />
-    </AdminLayout>
-  )
+const CreateAdmin = () => {
+  return <CreateAdminRoot />
 }
 
-export default CreateCustomers
+CreateAdmin.getLayout = page => <AdminLayout>{page}</AdminLayout>
+
+export default CreateAdmin

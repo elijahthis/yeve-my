@@ -77,7 +77,7 @@ const Events = () => {
   }, [])
 
   return (
-    <ClientsLayout>
+    <>
       <EventsRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -89,8 +89,10 @@ const Events = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsLayout>
+    </>
   )
 }
+
+Events.getLayout = page => <ClientsLayout>{page}</ClientsLayout>
 
 export default Events

@@ -232,7 +232,7 @@ const Profile = () => {
   }, [])
 
   return (
-    <ClientsLayout>
+    <>
       <ProfileRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -244,8 +244,10 @@ const Profile = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsLayout>
+    </>
   )
 }
+
+Profile.getLayout = page => <ClientsLayout>{page}</ClientsLayout>
 
 export default Profile

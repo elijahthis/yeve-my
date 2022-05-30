@@ -124,11 +124,9 @@ export const GenerateQuoteContent = () => {
 }
 
 const GenerateQuote = () => {
-  return (
-    <VendorsLayout>
-      <GenerateQuoteContent />
-    </VendorsLayout>
-  )
+  return <GenerateQuoteContent />
 }
+
+GenerateQuote.getLayout = page => <VendorsLayout>{page}</VendorsLayout>
 
 export default GenerateQuote

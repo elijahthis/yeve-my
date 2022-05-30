@@ -157,7 +157,7 @@ const Attendees = () => {
   }, [])
 
   return (
-    <ClientsEventLayout>
+    <>
       <AttendeesRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -169,8 +169,10 @@ const Attendees = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsEventLayout>
+    </>
   )
 }
+
+Attendees.getLayout = page => <ClientsEventLayout>{page}</ClientsEventLayout>
 
 export default Attendees

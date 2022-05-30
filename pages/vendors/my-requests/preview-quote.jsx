@@ -60,11 +60,9 @@ export const PreviewQuoteContent = ({
 }
 
 const PreviewQuote = () => {
-  return (
-    <VendorsLayout>
-      <PreviewQuoteContent />
-    </VendorsLayout>
-  )
+  return <PreviewQuoteContent />
 }
+
+PreviewQuote.getLayout = page => <VendorsLayout>{page}</VendorsLayout>
 
 export default PreviewQuote

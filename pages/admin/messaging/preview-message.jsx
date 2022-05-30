@@ -67,4 +67,6 @@ const PreviewMessage = () => {
   )
 }
 
+PreviewMessage.getLayout = page => <AdminLayout>{page}</AdminLayout>
+
 export default PreviewMessage

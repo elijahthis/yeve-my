@@ -201,7 +201,7 @@ const Home = () => {
   }, [])
 
   return (
-    <VendorsLayout>
+    <>
       <HomeRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -213,8 +213,10 @@ const Home = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </VendorsLayout>
+    </>
   )
 }
+
+Home.getLayout = page => <VendorsLayout>{page}</VendorsLayout>
 
 export default Home

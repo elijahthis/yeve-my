@@ -63,7 +63,7 @@ const Calendar = () => {
   }, [])
 
   return (
-    <ClientsLayout>
+    <>
       <CalendarRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -75,8 +75,10 @@ const Calendar = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsLayout>
+    </>
   )
 }
+
+Calendar.getLayout = page => <ClientsLayout>{page}</ClientsLayout>
 
 export default Calendar

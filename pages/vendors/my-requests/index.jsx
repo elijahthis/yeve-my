@@ -234,7 +234,7 @@ const Requests = () => {
   }, [])
 
   return (
-    <VendorsLayout>
+    <>
       <RequestsRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -246,8 +246,10 @@ const Requests = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </VendorsLayout>
+    </>
   )
 }
+
+Requests.getLayout = page => <VendorsLayout>{page}</VendorsLayout>
 
 export default Requests

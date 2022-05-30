@@ -1,5 +1,5 @@
 import tw, { css } from 'twin.macro'
-import VendorLayout from '../../../layouts/vendorsLayout'
+import VendorsLayout from '../../../layouts/vendorsLayout'
 import TabBar from '../../../components/UI/TabBar'
 import { ProfileInfo, Payment } from '../../../components/clients/accountParts'
 import { sectionStyles } from '../../../styles/GeneralStyles'
@@ -33,11 +33,9 @@ const AccountRoot = () => {
 }
 
 const Account = () => {
-  return (
-    <VendorLayout>
-      <AccountRoot />
-    </VendorLayout>
-  )
+  return <AccountRoot />
 }
+
+Account.getLayout = page => <VendorsLayout>{page}</VendorsLayout>
 
 export default Account

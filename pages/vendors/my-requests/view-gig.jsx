@@ -58,11 +58,9 @@ export const ViewGigContent = ({
 }
 
 const ViewGig = () => {
-  return (
-    <VendorsLayout>
-      <ViewGigContent />
-    </VendorsLayout>
-  )
+  return <ViewGigContent />
 }
+
+ViewGig.getLayout = page => <VendorsLayout>{page}</VendorsLayout>
 
 export default ViewGig

@@ -320,7 +320,7 @@ const Services = () => {
 
   return (
     <>
-      <ClientsLayout>
+      <>
         <ServicesRoot
           openModal={openModal}
           setOpenModal={setOpenModal}
@@ -332,9 +332,11 @@ const Services = () => {
             {modalChild}
           </Modal>
         ) : null}
-      </ClientsLayout>
+      </>
     </>
   )
 }
+
+Services.getLayout = page => <ClientsLayout>{page}</ClientsLayout>
 
 export default Services

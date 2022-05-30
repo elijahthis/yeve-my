@@ -97,7 +97,7 @@ const Settings = () => {
   }, [])
 
   return (
-    <ClientsEventLayout>
+    <>
       <SettingsRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -109,8 +109,10 @@ const Settings = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsEventLayout>
+    </>
   )
 }
+
+Settings.getLayout = page => <ClientsEventLayout>{page}</ClientsEventLayout>
 
 export default Settings

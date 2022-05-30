@@ -205,7 +205,7 @@ const Tickets = () => {
   }, [])
 
   return (
-    <ClientsEventLayout>
+    <>
       <TicketsRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -217,8 +217,10 @@ const Tickets = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsEventLayout>
+    </>
   )
 }
+
+Tickets.getLayout = page => <ClientsEventLayout>{page}</ClientsEventLayout>
 
 export default Tickets

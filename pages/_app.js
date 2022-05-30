@@ -10,6 +10,7 @@ import '@fullcalendar/timegrid/main.css'
 
 const App = ({ Component, pageProps }) => {
   const [loading, setLoading] = useState(false)
+  const getLayout = Component.getLayout || (page => page)
 
   useEffect(() => {
     document.getElementById('__next').className = 'edit-next'
@@ -24,7 +25,7 @@ const App = ({ Component, pageProps }) => {
       console.log('Error: Route Change error!!!')
     }
   }, [])
-  return (
+  return getLayout(
     <>
       <Head>
         <title>Yeve</title>
@@ -32,7 +33,7 @@ const App = ({ Component, pageProps }) => {
       </Head>
       <GlobalStyles />
       {loading ? <Loader loading={loading} /> : <Component {...pageProps} />}
-    </>
+    </>,
   )
 }
 

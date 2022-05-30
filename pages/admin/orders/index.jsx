@@ -180,7 +180,7 @@ const Orders = () => {
     setMounted(true)
   }, [])
   return (
-    <AdminLayout>
+    <>
       <OrdersRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -192,8 +192,10 @@ const Orders = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </AdminLayout>
+    </>
   )
 }
+
+Orders.getLayout = page => <AdminLayout>{page}</AdminLayout>
 
 export default Orders

@@ -177,7 +177,7 @@ const Suppliers = () => {
     setMounted(true)
   }, [])
   return (
-    <AdminLayout>
+    <>
       <SuppliersRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -189,8 +189,10 @@ const Suppliers = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </AdminLayout>
+    </>
   )
 }
+
+Suppliers.getLayout = page => <AdminLayout>{page}</AdminLayout>
 
 export default Suppliers

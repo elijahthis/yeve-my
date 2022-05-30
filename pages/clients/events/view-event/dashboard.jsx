@@ -272,7 +272,7 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <ClientsEventLayout>
+    <>
       <DashboardRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -284,8 +284,10 @@ const Dashboard = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsEventLayout>
+    </>
   )
 }
+
+Dashboard.getLayout = page => <ClientsEventLayout>{page}</ClientsEventLayout>
 
 export default Dashboard

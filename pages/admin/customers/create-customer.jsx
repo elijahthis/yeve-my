@@ -8,7 +8,7 @@ import Modal from '../../../components/UI/Modals/Modal'
 import Button from '../../../components/UI/Buttons/Button'
 import { SendMessage } from '../../../components/UI/Modals/ModalChildren'
 
-const CreateCustomersRoot = () => {
+const CreateCustomerRoot = () => {
   const router = useRouter()
   return (
     <section css={sectionStyles}>
@@ -98,12 +98,10 @@ const CreateCustomersRoot = () => {
   )
 }
 
-const CreateCustomers = () => {
-  return (
-    <AdminLayout>
-      <CreateCustomersRoot />
-    </AdminLayout>
-  )
+const CreateCustomer = () => {
+  return <CreateCustomerRoot />
 }
 
-export default CreateCustomers
+CreateCustomer.getLayout = page => <AdminLayout>{page}</AdminLayout>
+
+export default CreateCustomer

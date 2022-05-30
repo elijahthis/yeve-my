@@ -35,7 +35,7 @@ export const CreateEventRoot = () => {
   return <CreateEvent formData={formData} setFormData={setFormData} />
 }
 
-const Events = () => {
+const CreateEvent = () => {
   const [openModal, setOpenModal] = useState(false)
   const [modalChild, setModalChild] = useState(<></>)
   const [mounted, setMounted] = useState(false)
@@ -61,4 +61,6 @@ const Events = () => {
   )
 }
 
-export default Events
+CreateEvent.getLayout = page => <ClientsLayout>{page}</ClientsLayout>
+
+export default CreateEvent

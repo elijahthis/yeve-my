@@ -136,7 +136,7 @@ const MyTeamRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   )
 }
 
-const Requests = () => {
+const MyTeam = () => {
   const [openModal, setOpenModal] = useState(false)
   const [modalChild, setModalChild] = useState(<></>)
   const [mounted, setMounted] = useState(false)
@@ -146,7 +146,7 @@ const Requests = () => {
   }, [])
 
   return (
-    <VendorsLayout>
+    <>
       <MyTeamRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -158,8 +158,10 @@ const Requests = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </VendorsLayout>
+    </>
   )
 }
 
-export default Requests
+MyTeam.getLayout = page => <VendorsLayout>{page}</VendorsLayout>
+
+export default MyTeam

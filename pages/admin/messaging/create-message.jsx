@@ -105,11 +105,9 @@ const CreateMessageRoot = () => {
 }
 
 const CreateMessage = () => {
-  return (
-    <AdminLayout>
-      <CreateMessageRoot />
-    </AdminLayout>
-  )
+  return <CreateMessageRoot />
 }
+
+CreateMessage.getLayout = page => <AdminLayout>{page}</AdminLayout>
 
 export default CreateMessage

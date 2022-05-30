@@ -54,7 +54,7 @@ const Account = () => {
   }, [])
 
   return (
-    <ClientsLayout>
+    <>
       <AccountRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -66,8 +66,10 @@ const Account = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsLayout>
+    </>
   )
 }
+
+Account.getLayout = page => <ClientsLayout>{page}</ClientsLayout>
 
 export default Account

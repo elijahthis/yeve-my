@@ -146,7 +146,7 @@ const VirtualTalkback = () => {
   }, [])
 
   return (
-    <YeveGroupLayout>
+    <>
       <VirtualTalkbackRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -159,8 +159,10 @@ const VirtualTalkback = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </YeveGroupLayout>
+    </>
   )
 }
+
+VirtualTalkback.getLayout = page => <YeveGroupLayout>{page}</YeveGroupLayout>
 
 export default VirtualTalkback

@@ -88,7 +88,7 @@ const Admins = () => {
     setMounted(true)
   }, [])
   return (
-    <AdminLayout>
+    <>
       <AdminsRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -100,8 +100,10 @@ const Admins = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </AdminLayout>
+    </>
   )
 }
+
+Admins.getLayout = page => <AdminLayout>{page}</AdminLayout>
 
 export default Admins
