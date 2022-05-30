@@ -178,10 +178,8 @@ const ServicesRoot = ({
     details: {
       postcode: '',
       address: '',
-      fromDate: '',
-      fromTime: '',
-      toDate: '',
-      toTime: '',
+      date: '',
+      time: '',
       numHours: 1,
       moreInfo: '',
     },

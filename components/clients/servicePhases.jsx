@@ -17,6 +17,9 @@ import { RequestSubmitted } from '../UI/Modals/ModalChildren'
 import { ServiceCard2 } from '../UI/Cards'
 import Button from '../UI/Buttons/Button'
 import FormLayout from '../UI/FormTools/FormLayout'
+import moment from 'moment'
+import 'moment/locale/en-gb'
+import locale from 'antd/lib/locale/en_GB'
 
 export const ChooseService = ({
   servicePhase,
@@ -382,129 +385,145 @@ export const ServiceRequest = ({
                     properties={{
                       label: 'Select Date',
                     }}
+                    value={formData.details.date}
+                    onChange={(date, dateString) => {
+                      const newData = { ...formData }
+                      newData.details.date = dateString
+                      setFormData(newData)
+                    }}
                   />
                   <InputBlock
                     variant="time"
                     properties={{
                       label: 'Select Time',
                     }}
+                    value={formData.details.time}
+                    onChange={(time, timeString) => {
+                      const newData = { ...formData }
+                      newData.details.time = timeString
+                      setFormData(newData)
+                    }}
                   />
                 </div>
                 <p tw="text-gold text-sm">Add+</p>
-                <label htmlFor="">
-                  Select number of hours here
-                  <DropdownMenu
-                    list={[...Array(10).keys()]
+                <InputBlock
+                  variant="dropdown"
+                  data={{
+                    list: [...Array(10).keys()]
                       .slice(1)
                       .map(h =>
                         h === 0 || h === 1 ? h + ' Hour' : h + ' Hours',
-                      )}
-                    onChange={val => {
-                      const newData = { ...formData }
-                      newData.details.numHours = parseInt(val.slice(0, -5))
-                      setFormData(newData)
-                    }}
-                  />
-                  <p tw="text-right">
-                    Standard Hours - 2 hours. Additional hours chargeable{' '}
-                  </p>
-                </label>
-                <label htmlFor="moreInfo">
-                  Add more info
-                  <textarea
-                    name="moreInfo"
-                    id="moreInfo"
-                    tw="resize-none"
-                    placeholder="Add more info"
-                    value={formData.details.moreInfo}
-                    onChange={ev => {
-                      const newData = { ...formData }
-                      newData.details.moreInfo = ev.target.value
-                      setFormData(newData)
-                    }}
-                  ></textarea>
-                  <p tw="text-right">0/120</p>
-                </label>
+                      ),
+                  }}
+                  onChange={val => {
+                    const newData = { ...formData }
+                    newData.details.numHours = parseInt(val.slice(0, -5))
+                    setFormData(newData)
+                  }}
+                  properties={{
+                    label: 'Select number of hours here',
+                    additionalText:
+                      'Standard Hours - 2 hours. Additional hours chargeable',
+                  }}
+                />
+                <InputBlock
+                  variant="textarea"
+                  properties={{
+                    label: 'Add more info',
+                    placeholder: 'Add more info',
+                  }}
+                  value={formData.details.moreInfo}
+                  onChange={ev => {
+                    const newData = { ...formData }
+                    newData.details.moreInfo = ev.target.value
+                    setFormData(newData)
+                  }}
+                  maxLength={120}
+                />
               </FormDiv>
             </div>
             <div>
               <h4>Rehearsals</h4>
-              <div className="form-div">
-                <div>
-                  <p>Rehearsals Needed?</p>
-                  <BooleanToggle
-                    list={['Yes', 'No']}
-                    valueList={[true, false]}
-                    value={formData.rehearsals.state}
-                    onChange={val => {
-                      const newData = { ...formData }
-                      newData.rehearsals.state = val
-                      setFormData(newData)
-                    }}
-                  />
-                </div>
+              <FormDiv>
+                <InputBlock
+                  variant="BoolToggle"
+                  data={{
+                    list: ['Yes', 'No'],
+                    valueList: [true, false],
+                  }}
+                  value={formData.rehearsals.state}
+                  onChange={val => {
+                    const newData = { ...formData }
+                    newData.rehearsals.state = val
+                    setFormData(newData)
+                  }}
+                  properties={{
+                    label: 'Rehearsals Needed?',
+                  }}
+                />
                 {formData.rehearsals.state ? (
                   <>
-                    <label>
-                      Select Number of rehearsals
-                      <DropdownMenu
-                        list={[...Array(10).keys()].slice(1)}
-                        onChange={val => {
-                          const newData = { ...formData }
-                          newData.rehearsals.count = parseInt(val)
-                          setFormData(newData)
-                        }}
-                      />
-                    </label>
-                    <div>
-                      <p>Same Event Venue?</p>
-                      <BooleanToggle
-                        list={['Yes', 'No']}
-                        valueList={[true, false]}
-                        value={formData.rehearsals.same}
-                        onChange={val => {
-                          const newData = { ...formData }
-                          newData.rehearsals.same = val
-                          setFormData(newData)
-                        }}
-                      />
-                    </div>
+                    <InputBlock
+                      variant="dropdown"
+                      data={{
+                        list: [...Array(10).keys()].slice(1),
+                      }}
+                      onChange={val => {
+                        const newData = { ...formData }
+                        newData.rehearsals.count = parseInt(val)
+                        setFormData(newData)
+                      }}
+                      properties={{
+                        label: 'Select Number of rehearsals',
+                      }}
+                    />
+                    <InputBlock
+                      variant="BoolToggle"
+                      data={{
+                        list: ['Yes', 'No'],
+                        valueList: [true, false],
+                      }}
+                      value={formData.rehearsals.same}
+                      onChange={val => {
+                        const newData = { ...formData }
+                        newData.rehearsals.same = val
+                        setFormData(newData)
+                      }}
+                      properties={{
+                        label: 'Same Event Venue?',
+                      }}
+                    />
                   </>
                 ) : null}
                 {formData.rehearsals.state && !formData.rehearsals.same ? (
                   <>
-                    <label htmlFor="">
-                      Enter postcode
-                      <input
-                        id="rehearsal-zip"
-                        name="rehearsal-zip"
-                        type="text"
-                        inputmode="numeric"
-                        pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
-                        placeholder="Enter postcode"
-                        value={formData.rehearsals.postcode}
-                        onChange={ev => {
-                          const newData = { ...formData }
-                          newData.rehearsals.postcode = ev.target.value
-                          setFormData(newData)
-                        }}
-                      />
-                    </label>
-                    <label htmlFor="rehearsal-address">
-                      Enter address
-                      <input
-                        type="text"
-                        name="rehearsal-address"
-                        id="rehearsal-address"
-                        placeholder="Enter address"
-                        value={formData.rehearsals.address}
-                        onChange={ev => {
-                          const newData = { ...formData }
-                          newData.rehearsals.address = ev.target.value
-                          setFormData(newData)
-                        }}
-                      />
-                    </label>
+                    <InputBlock
+                      variant="postcode"
+                      value={formData.rehearsals.postcode}
+                      onChange={ev => {
+                        const newData = { ...formData }
+                        newData.rehearsals.postcode = ev.target.value
+                        setFormData(newData)
+                      }}
+                      properties={{
+                        label: 'Enter postcode',
+                        placeholder: 'Enter postcode',
+                      }}
+                    />
+                    <InputBlock
+                      variant="address"
+                      value={formData.rehearsals.address}
+                      onChange={ev => {
+                        const newData = { ...formData }
+                        newData.rehearsals.address = ev.target.value
+                        setFormData(newData)
+                      }}
+                      properties={{
+                        label: 'Enter address',
+                        placeholder: 'Enter address',
+                      }}
+                    />
+
                     <div
                       tw=" flex flex-row items-center gap-4"
                       css={css`
@@ -513,97 +532,128 @@ export const ServiceRequest = ({
                         }
                       `}
                     >
-                      <label htmlFor="">
-                        Select Date
-                        <DatePickerr />
-                      </label>
-                      <label htmlFor="">
-                        Select Time
-                        <input type="text" name="" id="" />
-                      </label>
+                      <InputBlock
+                        variant="date"
+                        properties={{
+                          label: 'Select Date',
+                        }}
+                        value={formData.rehearsals.date}
+                        onChange={(date, dateString) => {
+                          const newData = { ...formData }
+                          newData.rehearsals.date = dateString
+                          setFormData(newData)
+                        }}
+                      />
+                      <InputBlock
+                        variant="time"
+                        properties={{
+                          label: 'Select Time',
+                        }}
+                        value={formData.rehearsals.time}
+                        onChange={(time, timeString) => {
+                          const newData = { ...formData }
+                          newData.rehearsals.time = timeString
+                          setFormData(newData)
+                        }}
+                      />
                     </div>
                   </>
                 ) : null}
-              </div>
+              </FormDiv>
             </div>
             <div>
               <h4>Event Type</h4>
-              <div className="form-div">
-                <label htmlFor="">
-                  Select event type
-                  <DropdownMenu
-                    list={eventList}
-                    placeholder="Select event type"
-                    onChange={val => {
-                      const newData = { ...formData }
-                      newData.eventType.type = val
-                      setFormData(newData)
-                    }}
-                  />
-                </label>
-                <label htmlFor="">
-                  <p>Recurring event?</p>
-                  <BooleanToggle
-                    list={['Yes', 'No']}
-                    valueList={[true, false]}
-                    value={formData.eventType.recurring}
-                    onChange={val => {
-                      const newData = { ...formData }
-                      newData.eventType.recurring = val
-                      setFormData(newData)
-                    }}
-                  />
-                </label>
+              <FormDiv>
+                <InputBlock
+                  variant="dropdown"
+                  data={{
+                    list: eventList,
+                  }}
+                  onChange={val => {
+                    const newData = { ...formData }
+                    newData.eventType.type = val
+                    setFormData(newData)
+                  }}
+                  properties={{
+                    label: 'Select event type',
+                    placeholder: 'Select event type',
+                  }}
+                />
+                <InputBlock
+                  variant="BoolToggle"
+                  data={{
+                    list: ['Yes', 'No'],
+                    valueList: [true, false],
+                  }}
+                  value={formData.eventType.recurring}
+                  onChange={val => {
+                    const newData = { ...formData }
+                    newData.eventType.recurring = val
+                    setFormData(newData)
+                  }}
+                  properties={{
+                    label: 'Recurring event?',
+                  }}
+                />
                 {formData.eventType.recurring ? (
                   <>
-                    <div>
-                      <p>Same Event Venue?</p>
-                      <BooleanToggle
-                        list={['Weekly', 'Monthly']}
-                        value={formData.eventType.period}
-                        onChange={val => {
-                          const newData = { ...formData }
-                          newData.eventType.period = val
-                          setFormData(newData)
-                        }}
-                      />
-                    </div>
-                    <label htmlFor="">
-                      Select Day
-                      <DropdownMenu
-                        list={dayList}
-                        placeholder="Select Day"
-                        onChange={val => {
-                          const newData = { ...formData }
-                          newData.eventType.dayMonth = val
-                          setFormData(newData)
-                        }}
-                      />
-                    </label>
+                    <InputBlock
+                      variant="BoolToggle"
+                      data={{
+                        list: ['Weekly', 'Monthly'],
+                      }}
+                      value={formData.eventType.period}
+                      onChange={val => {
+                        const newData = { ...formData }
+                        newData.eventType.period = val
+                        setFormData(newData)
+                      }}
+                      properties={{
+                        label: 'Same Event Venue?',
+                      }}
+                    />
+                    <InputBlock
+                      variant="dropdown"
+                      data={{
+                        list: dayList,
+                      }}
+                      onChange={val => {
+                        const newData = { ...formData }
+                        newData.eventType.dayMonth = val
+                        setFormData(newData)
+                      }}
+                      properties={{
+                        label: 'Select Day',
+                        placeholder: 'Select Day',
+                      }}
+                    />
                   </>
                 ) : null}
-              </div>
+              </FormDiv>
             </div>
             <div>
               <h4>Dress Code</h4>
-              <div className="form-div">
-                <label htmlFor="">
-                  Select dress code
-                  <DropdownMenu
-                    list={dressCodeList}
-                    placeholder="Select dress code"
-                    onChange={val => {
-                      const newData = { ...formData }
-                      newData.dressCode.dressCode = val
-                      setFormData(newData)
-                    }}
-                  />
-                </label>
-              </div>
+              <FormDiv>
+                <InputBlock
+                  variant="dropdown"
+                  data={{
+                    list: dressCodeList,
+                  }}
+                  onChange={val => {
+                    const newData = { ...formData }
+                    newData.dressCode.dressCode = val
+                    setFormData(newData)
+                  }}
+                  properties={{
+                    label: 'Select dress code',
+                    placeholder: 'Select dress code',
+                  }}
+                />
+              </FormDiv>
             </div>
             <div>
               <h4>Budget</h4>
-              <div className="form-div">
+              <FormDiv>
                 {formData.services.map((service, ind) => (
                   <label htmlFor="" key={ind}>
                     {formData.services.length > 1
@@ -681,36 +731,42 @@ export const ServiceRequest = ({
                     </div>
                   </label>
                 ))}
-              </div>
+              </FormDiv>
             </div>
             <div>
               <h4>Vendor Preferences</h4>
-              <div className="form-div">
-                <label htmlFor="">
-                  How many vendors would you like to respond?
-                  <DropdownMenu
-                    list={[...Array(10).keys()].slice(1)}
-                    placeholder="Number of responses"
-                    onChange={val => {
-                      const newData = { ...formData }
-                      newData.vendorPreferences.count = parseInt(val)
-                      setFormData(newData)
-                    }}
-                  />
-                </label>
-                <label htmlFor="">
-                  Desired Vendor Experience level
-                  <BooleanToggle
-                    list={['All', 'Premium', 'Elite']}
-                    value={formData.vendorPreferences.experienceLevel}
-                    onChange={val => {
-                      const newData = { ...formData }
-                      newData.vendorPreferences.experienceLevel = val
-                      setFormData(newData)
-                    }}
-                  />
-                </label>
-              </div>
+              <FormDiv>
+                <InputBlock
+                  variant="dropdown"
+                  data={{
+                    list: [...Array(10).keys()].slice(1),
+                  }}
+                  onChange={val => {
+                    const newData = { ...formData }
+                    newData.vendorPreferences.count = parseInt(val)
+                    setFormData(newData)
+                  }}
+                  properties={{
+                    label: 'How many vendors would you like to respond?',
+                    placeholder: 'Number of responses',
+                  }}
+                />
+                <InputBlock
+                  variant="BoolToggle"
+                  data={{
+                    list: ['All', 'Premium', 'Elite'],
+                  }}
+                  value={formData.vendorPreferences.experienceLevel}
+                  onChange={val => {
+                    const newData = { ...formData }
+                    newData.vendorPreferences.experienceLevel = val
+                    setFormData(newData)
+                  }}
+                  properties={{
+                    label: 'Desired Vendor Experience level',
+                  }}
+                />
+              </FormDiv>
             </div>
             <div>
               <input type="submit" value="Next" />

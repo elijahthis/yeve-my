@@ -2,7 +2,7 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ClientsLayout from '../../../layouts/clientsLayout'
-import { CreateEvent } from '../../../components/clients/eventParts'
+import { CreateEventForm } from '../../../components/clients/eventParts'
 import Modal from '../../../components/UI/Modals/Modal'
 
 export const CreateEventRoot = () => {
@@ -32,7 +32,7 @@ export const CreateEventRoot = () => {
       time: '',
     },
   })
-  return <CreateEvent formData={formData} setFormData={setFormData} />
+  return <CreateEventForm formData={formData} setFormData={setFormData} />
 }
 
 const CreateEvent = () => {
@@ -45,7 +45,7 @@ const CreateEvent = () => {
   }, [])
 
   return (
-    <ClientsLayout>
+    <>
       <CreateEventRoot
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -57,7 +57,7 @@ const CreateEvent = () => {
           {modalChild}
         </Modal>
       ) : null}
-    </ClientsLayout>
+    </>
   )
 }
 

@@ -8,8 +8,16 @@ import { DateTimeStyles } from './styles'
 import moment from 'moment'
 import 'moment/locale/en-gb'
 import locale from 'antd/lib/locale/en_GB'
+import { useEffect } from 'react'
 
-const InputBlock = ({ variant, properties, data, value, onChange }) => {
+const InputBlock = ({
+  variant,
+  properties,
+  data,
+  value,
+  onChange,
+  maxLength = 200,
+}) => {
   const VARIANTS = [
     'text',
     'email',
@@ -23,8 +31,12 @@ const InputBlock = ({ variant, properties, data, value, onChange }) => {
     'BoolToggle',
   ]
 
-  const { label, placeholder } = properties
-  const { list } = data ?? {}
+  const { label, placeholder, additionalText } = properties
+  const { list, valueList } = data ?? {}
+
+  useEffect(() => {
+    console.log(data)
+  }, [])
 
   switch (variant) {
     case 'text':
@@ -132,7 +144,7 @@ const InputBlock = ({ variant, properties, data, value, onChange }) => {
           {label}
           <DatePicker
             css={DateTimeStyles}
-            value={moment(value) || {}}
+            value={value ? moment(value) : moment()}
             onChange={onChange}
           />
         </label>
@@ -146,7 +158,7 @@ const InputBlock = ({ variant, properties, data, value, onChange }) => {
             css={DateTimeStyles}
             use12Hours={true}
             format="HH:mm"
-            value={moment(value || '00:00', 'HH:mm')}
+            value={value ? moment(value, 'HH:mm') : moment('00:00', 'HH:mm')}
             onChange={onChange}
           />
         </label>
@@ -157,7 +169,12 @@ const InputBlock = ({ variant, properties, data, value, onChange }) => {
       return (
         <label htmlFor="" css={InputBlockStyles}>
           {label}
-          <DropdownMenu list={list} placeholder={placeholder} />
+          <DropdownMenu
+            list={list}
+            placeholder={placeholder}
+            onChange={onChange}
+          />
+          {additionalText && <p tw="text-right">{additionalText}</p>}
         </label>
       )
       break
@@ -171,8 +188,14 @@ const InputBlock = ({ variant, properties, data, value, onChange }) => {
             id="moreInfo"
             tw="resize-none"
             placeholder={placeholder}
+            value={value}
+            onChange={ev => {
+              if (ev.target.value.length <= maxLength) onChange(ev)
+            }}
           ></textarea>
-          <p tw="text-right">0/200</p>
+          <p tw="text-right">
+            {value.length}/{maxLength}
+          </p>
         </label>
       )
       break
@@ -183,12 +206,9 @@ const InputBlock = ({ variant, properties, data, value, onChange }) => {
           {label}
           <BooleanToggle
             list={list}
-            // value={formData.vendorPreferences.experienceLevel}
-            // onChange={val => {
-            //   const newData = { ...formData }
-            //   newData.vendorPreferences.experienceLevel = val
-            //   setFormData(newData)
-            // }}
+            value={value}
+            valueList={valueList}
+            onChange={onChange}
           />
         </label>
       )

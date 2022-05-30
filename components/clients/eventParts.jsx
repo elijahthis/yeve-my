@@ -1,6 +1,7 @@
-import { EventCard } from '../UI/Cards'
 import tw, { css } from 'twin.macro'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { EventCard } from '../UI/Cards'
 import imgPlaceholder from '../../images/Group 526.png'
 import { FormSectionLayout } from '../Layout/MainSections'
 import FormLayout from '../UI/FormTools/FormLayout'
@@ -125,15 +126,16 @@ export const DraftsEvents = () => {
   )
 }
 
-export const CreateEvent = ({ setEventsPhase }) => {
+export const CreateEventForm = ({ setEventsPhase }) => {
   const eventList = ['Wedding', 'Birthday', 'Concert']
   const dressCodeList = ['Formal', 'Casual', 'Smart Casual', 'Native']
+  const router = useRouter()
   return (
     <FormSectionLayout
       content={{
         title: 'Create Event',
         backFunc: () => {
-          setEventsPhase(null)
+          router.push('/clients/events')
         },
       }}
     >
