@@ -20,6 +20,7 @@
     "@fullcalendar/react": "^5.11.1",
     "@fullcalendar/timegrid": "^5.11.0",
     "@nivo/core": "^0.79.0",
+    "@nivo/line": "^0.79.1",
     "@nivo/pie": "^0.79.1",
     "antd": "^4.18.7",
     "babel-plugin-import": "^1.13.3",

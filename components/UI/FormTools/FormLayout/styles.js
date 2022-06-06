@@ -68,7 +68,7 @@ export const formStyles = css`
     }
   }
   @media (max-width: 1140px) {
-    padding: 20px;
+    padding: 20px 0;
     h3 {
       font-size: 24px;
       line-height: 48px;

@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { EventCard } from '../UI/Cards'
 import imgPlaceholder from '../../images/Group 526.png'
 import { FormSectionLayout } from '../Layout/MainSections'
@@ -129,6 +129,26 @@ export const DraftsEvents = () => {
 export const CreateEventForm = ({ setEventsPhase }) => {
   const eventList = ['Wedding', 'Birthday', 'Concert']
   const dressCodeList = ['Formal', 'Casual', 'Smart Casual', 'Native']
+
+  const [formData, setFormData] = useState({
+    image: '',
+    basic: {
+      name: '',
+      description: '',
+      category: '',
+      eventType: 'Physical',
+      postcode: '',
+      address: '',
+    },
+    ticketing: {
+      eventType: 'free',
+      ticketNumber: { earlyBird: 0, standard: 0, VIP: 0 },
+      ticketPricing: { earlyBird: 0, standard: 0, VIP: 0 },
+    },
+    eventLink: '',
+    location: { type: '' },
+  })
+
   const router = useRouter()
   return (
     <FormSectionLayout
@@ -169,6 +189,7 @@ export const CreateEventForm = ({ setEventsPhase }) => {
                 label: 'Enter description',
                 placeholder: 'Enter description...',
               }}
+              value=""
             />
             <InputBlock
               variant="dropdown"

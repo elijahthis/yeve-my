@@ -1,5 +1,6 @@
 import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import TabBar from '../../../../components/UI/TabBar'
 import {
   ProfileInfo,
@@ -43,6 +44,7 @@ const SettingsRoot = ({
       time: '',
     },
   })
+  const router = useRouter()
 
   const SettingsTabData = [
     {

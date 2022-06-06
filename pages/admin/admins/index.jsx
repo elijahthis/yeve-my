@@ -2,6 +2,7 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import AdminLayout from '../../../layouts/adminLayout'
+import { DashboardLayout1 } from '../../../components/Layout/MainSections'
 import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import Button from '../../../components/UI/Buttons/Button'
@@ -23,59 +24,36 @@ const AdminsRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   ]
 
   return (
-    <section css={sectionStyles}>
-      <div tw="flex flex-row items-center justify-between mb-7">
-        <h3>Admins</h3>
-        <Button
-          variant="tertiary"
-          bg="#de8e0e"
-          href="/admin/admins/create-admin"
-          fill="fill"
-        >
-          Create +
-        </Button>
-      </div>
-      <div>
-        <div tw="flex flex-row items-center justify-between">
-          <div
-            tw="flex flex-row items-center gap-6"
-            css={css`
-              > :first-child {
-                height: 48px;
-              }
-              button {
-                padding: 12px 20px;
-                line-height: 24px;
-              }
-            `}
-          >
-            <SearchBar />
-            <Button variant="tertiary">Export</Button>
-          </div>
-          <SortComponent />
-        </div>
-        <CustomTable
-          headers={[
-            { title: 'Name', key: 'name' },
-            { title: 'Email', key: 'email' },
-            { title: 'Date Created', key: 'date-created' },
-            { title: 'Last Online', key: 'last-online' },
-            {
-              title: 'Status',
-              key: 'status',
-              type: 'Bool',
-              list: ['Active', 'Inactive'],
-            },
-            {
-              title: '',
-              key: 'actions',
-              type: 'actions-ud',
-            },
-          ]}
-          list={gridList}
-        />
-      </div>
-    </section>
+    <DashboardLayout1
+      title="Admins"
+      button={{
+        href: '/admin/admins/create-admin',
+        variant: 'tertiary',
+        fill: 'fill',
+        bg: '#de8e0e',
+      }}
+    >
+      <CustomTable
+        headers={[
+          { title: 'Name', key: 'name' },
+          { title: 'Email', key: 'email' },
+          { title: 'Date Created', key: 'date-created' },
+          { title: 'Last Online', key: 'last-online' },
+          {
+            title: 'Status',
+            key: 'status',
+            type: 'Bool',
+            list: ['Active', 'Inactive'],
+          },
+          {
+            title: '',
+            key: 'actions',
+            type: 'actions-ud',
+          },
+        ]}
+        list={gridList}
+      />
+    </DashboardLayout1>
   )
 }
 

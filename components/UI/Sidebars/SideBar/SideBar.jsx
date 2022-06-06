@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import tw, { css } from 'twin.macro'
 import { YeveLogo2 } from '../../../Logo'
+import SidebarItem from './SidebarItem'
 
 const SideBar = ({ menuList, sideOpen, setSideOpen, child }) => {
   const router = useRouter()
@@ -54,31 +55,7 @@ const SideBar = ({ menuList, sideOpen, setSideOpen, child }) => {
         <YeveLogo2 />
       </div>
       {menuList.map((item, ind) => (
-        <div
-          key={ind}
-          css={css`
-            background-color: ${router.pathname.startsWith(
-              basePath + item.route,
-            )
-              ? 'rgba(222, 142, 14, 0.05)'
-              : 'transparent'};
-            color: ${router.pathname.startsWith(basePath + item.route)
-              ? '#1A1A1A'
-              : '#767676'};
-            border-right: ${router.pathname.startsWith(basePath + item.route)
-              ? '4px solid #de8e0e'
-              : '0'};
-            cursor: pointer;
-          `}
-          tw="flex flex-row items-center gap-5 text-sm py-4 px-6"
-          onClick={() => {
-            router.push(basePath + item.route, undefined, { shallow: true })
-            setSideOpen(false)
-          }}
-        >
-          {item.icon}
-          {item.label}
-        </div>
+        <SidebarItem item={item} key={ind} setSideOpen={setSideOpen} />
       ))}
     </aside>
   )

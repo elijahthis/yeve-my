@@ -2,6 +2,7 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import AdminLayout from '../../../layouts/adminLayout'
+import { DashboardLayout1 } from '../../../components/Layout/MainSections'
 import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import Button from '../../../components/UI/Buttons/Button'
@@ -112,59 +113,36 @@ const SuppliersRoot = ({
   ]
 
   return (
-    <section css={sectionStyles}>
-      <div tw="flex flex-row items-center justify-between mb-7">
-        <h3>Suppliers</h3>
-        <Button
-          variant="tertiary"
-          fill="fill"
-          bg="#de8e0e"
-          href="/admin/suppliers/create-supplier"
-        >
-          Create +
-        </Button>
-      </div>
-      <div>
-        <div tw="flex flex-row items-center justify-between">
-          <div
-            tw="flex flex-row items-center gap-6"
-            css={css`
-              > :first-child {
-                height: 48px;
-              }
-              button {
-                padding: 12px 20px;
-                line-height: 24px;
-              }
-            `}
-          >
-            <SearchBar />
-            <Button variant="tertiary">Export</Button>
-          </div>
-          <SortComponent />
-        </div>
-        <CustomTable
-          headers={[
-            { title: 'Name', key: 'name' },
-            { title: 'Email Address', key: 'email' },
-            { title: 'Date Created', key: 'date' },
-            {
-              title: 'Approval',
-              key: 'approval',
-              type: 'badge',
-              badgeList: badgeList,
-            },
-            {
-              title: '',
-              key: 'actions',
-              type: 'actions-crud',
-              moreList: moreList,
-            },
-          ]}
-          list={gridList}
-        />
-      </div>
-    </section>
+    <DashboardLayout1
+      title="Suppliers"
+      button={{
+        href: '/admin/suppliers/create-supplier',
+        variant: 'tertiary',
+        fill: 'fill',
+        bg: '#de8e0e',
+      }}
+    >
+      <CustomTable
+        headers={[
+          { title: 'Name', key: 'name' },
+          { title: 'Email Address', key: 'email' },
+          { title: 'Date Created', key: 'date' },
+          {
+            title: 'Approval',
+            key: 'approval',
+            type: 'badge',
+            badgeList: badgeList,
+          },
+          {
+            title: '',
+            key: 'actions',
+            type: 'actions-crud',
+            moreList: moreList,
+          },
+        ]}
+        list={gridList}
+      />
+    </DashboardLayout1>
   )
 }
 

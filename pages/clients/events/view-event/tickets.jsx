@@ -9,6 +9,7 @@ import {
 } from '../../../../components/clients/accountParts'
 import { VendorInfoCard } from '../../../../components/UI/Cards'
 import ClientsEventLayout from '../../../../layouts/clientsEventLayout'
+import { ViewEventLayout } from '../../../../components/Layout/MainSections'
 import { sectionStyles } from '../../../../styles/GeneralStyles'
 import { SearchBar } from '../../../../components/formTools'
 import BackButton from '../../../../components/UI/Buttons/BackButton'
@@ -124,74 +125,41 @@ const TicketsRoot = ({
     },
   ]
   const router = useRouter()
+  const cards = (
+    <div tw="flex flex-row items-center gap-6 flex-wrap mb-7">
+      {infoCards.map((card, ind) => (
+        <VendorInfoCard cardData={card} key={ind} />
+      ))}
+    </div>
+  )
 
   return (
-    <section css={sectionStyles}>
+    <ViewEventLayout
+      title="Tickets"
+      button={{
+        onClick: () => {
+          setModalChild(
+            <AddAttendees
+              setModalChild={setModalChild}
+              setOpenModal={setOpenModal}
+            />,
+          )
+          setOpenModal(true)
+        },
+        variant: 'tertiary',
+        fill: 'fill',
+        bg: '#de8e0e',
+      }}
+      eventTitle="2021 Concert: Live Jam"
+      backFunc={() => {
+        router.push('/clients/events')
+      }}
+      cards={cards}
+    >
       <div>
-        <div tw="flex flex-row items-center gap-6 mb-2">
-          <BackButton
-            onClick={() => {
-              router.push('/clients/events')
-            }}
-          />
-          <h5>2021 Concert: Live Jam</h5>
-        </div>
-        <div
-          tw="flex flex-row items-center justify-between mb-6"
-          css={css`
-            button {
-              padding: 16px 32px;
-            }
-          `}
-        >
-          <h3>Tickets</h3>
-          <Button
-            variant="tertiary"
-            fill="fill"
-            bg="#de8e0e"
-            onClick={() => {
-              setModalChild(
-                <AddAttendees
-                  setModalChild={setModalChild}
-                  setOpenModal={setOpenModal}
-                />,
-              )
-              setOpenModal(true)
-            }}
-          >
-            Add
-          </Button>
-        </div>
-        <div tw="flex flex-row items-center gap-6 flex-wrap mb-7">
-          {infoCards.map((card, ind) => (
-            <VendorInfoCard cardData={card} key={ind} />
-          ))}
-        </div>
-        <div>
-          <div tw="flex flex-row items-center justify-between mb-6">
-            <div
-              tw="flex flex-row items-center gap-6"
-              css={css`
-                > :first-child {
-                  height: 48px;
-                }
-                button {
-                  padding: 12px 20px;
-                  line-height: 24px;
-                }
-              `}
-            >
-              <SearchBar />
-              <Button variant="tertiary">Export</Button>
-            </div>
-            <SortComponent />
-          </div>
-          <div>
-            <TabBar dataList={RSVPTabData} />
-          </div>
-        </div>
+        <TabBar dataList={RSVPTabData} />
       </div>
-    </section>
+    </ViewEventLayout>
   )
 }
 

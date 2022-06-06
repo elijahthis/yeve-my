@@ -1,4 +1,5 @@
 import tw, { css } from 'twin.macro'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import loginBg from '../images/login-bg.png'
@@ -84,6 +85,12 @@ export const accessButton = css`
 `
 
 const Login = () => {
+  const [access, setAccess] = useState(0)
+  const accessList = [
+    { title: 'Customer', icon: <BsPeopleFill /> },
+    { title: 'Vendor', icon: <BsShop /> },
+  ]
+
   return (
     <main>
       <LoginNav />
@@ -121,14 +128,21 @@ const Login = () => {
           <h3>Login to Yeve</h3>
           <p className="select">Select your access</p>
           <div tw="flex flex-row gap-2">
-            <div tw="bg-[#1A1A1A] text-white" css={accessButton}>
-              <BsPeopleFill />
-              Customer
-            </div>
-            <div css={accessButton}>
-              <BsShop />
-              Vendor
-            </div>
+            {accessList.map((item, ind) => (
+              <div
+                css={accessButton}
+                key={ind}
+                onClick={() => setAccess(ind)}
+                style={
+                  access === ind
+                    ? { backgroundColor: '#1a1a1a', color: 'white' }
+                    : {}
+                }
+              >
+                {item.icon}
+                {item.title}
+              </div>
+            ))}
           </div>
           <form action="" tw="flex flex-col gap-6">
             <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">

@@ -8,7 +8,8 @@ const VendorInfoCard = ({ cardData }) => {
         padding-top: 26px;
         padding-bottom: 30px;
         padding-left: 14px;
-        max-width: 196px;
+        padding-right: 14px;
+        // max-width: 196px;
         min-width: 170px;
         height: 98px;
         display: flex;

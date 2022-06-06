@@ -7,6 +7,7 @@ import {
   Payment,
 } from '../../../../components/clients/accountParts'
 import ClientsEventLayout from '../../../../layouts/clientsEventLayout'
+import { ViewEventLayout } from '../../../../components/Layout/MainSections'
 import { sectionStyles } from '../../../../styles/GeneralStyles'
 import { SearchBar } from '../../../../components/formTools'
 import BackButton from '../../../../components/UI/Buttons/BackButton'
@@ -134,67 +135,31 @@ const RSVPRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   const router = useRouter()
 
   return (
-    <section css={sectionStyles}>
+    <ViewEventLayout
+      title="RSVP"
+      button={{
+        onClick: () => {
+          setModalChild(
+            <AddAttendees
+              setModalChild={setModalChild}
+              setOpenModal={setOpenModal}
+            />,
+          )
+          setOpenModal(true)
+        },
+        variant: 'tertiary',
+        fill: 'fill',
+        bg: '#de8e0e',
+      }}
+      eventTitle="2021 Concert: Live Jam"
+      backFunc={() => {
+        router.push('/clients/events')
+      }}
+    >
       <div>
-        <div tw="flex flex-row items-center gap-6 mb-2">
-          <BackButton
-            onClick={() => {
-              router.push('/clients/events')
-            }}
-          />
-          <h5>2021 Concert: Live Jam</h5>
-        </div>
-        <div
-          tw="flex flex-row items-center justify-between mb-7"
-          css={css`
-            button {
-              padding: 16px 32px;
-            }
-          `}
-        >
-          <h3>RSVP</h3>
-          <Button
-            variant="tertiary"
-            fill="fill"
-            bg="#de8e0e"
-            onClick={() => {
-              setModalChild(
-                <AddAttendees
-                  setModalChild={setModalChild}
-                  setOpenModal={setOpenModal}
-                />,
-              )
-              setOpenModal(true)
-            }}
-          >
-            Add
-          </Button>
-        </div>
-        <div>
-          <div tw="flex flex-row items-center justify-between">
-            <div
-              tw="flex flex-row items-center gap-6"
-              css={css`
-                > :first-child {
-                  height: 48px;
-                }
-                button {
-                  padding: 12px 20px;
-                  line-height: 24px;
-                }
-              `}
-            >
-              <SearchBar />
-              <Button variant="tertiary">Export</Button>
-            </div>
-            <SortComponent />
-          </div>
-          <div>
-            <TabBar dataList={RSVPTabData} />
-          </div>
-        </div>
+        <TabBar dataList={RSVPTabData} />
       </div>
-    </section>
+    </ViewEventLayout>
   )
 }
 
@@ -225,6 +190,5 @@ const RSVP = () => {
 }
 
 RSVP.getLayout = page => <ClientsEventLayout>{page}</ClientsEventLayout>
-
 
 export default RSVP

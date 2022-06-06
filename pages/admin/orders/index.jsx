@@ -2,6 +2,7 @@ import tw, { css } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import AdminLayout from '../../../layouts/adminLayout'
+import { DashboardLayout1 } from '../../../components/Layout/MainSections'
 import Modal from '../../../components/UI/Modals/Modal'
 import { sectionStyles } from '../../../styles/GeneralStyles'
 import Button from '../../../components/UI/Buttons/Button'
@@ -119,55 +120,32 @@ const OrdersRoot = ({ openModal, setOpenModal, modalChild, setModalChild }) => {
   ]
 
   return (
-    <section css={sectionStyles}>
-      <div tw="flex flex-row items-center justify-between mb-7">
-        <h3>Orders</h3>
-      </div>
-      <div>
-        <div tw="flex flex-row items-center justify-between">
-          <div
-            tw="flex flex-row items-center gap-6"
-            css={css`
-              > :first-child {
-                height: 48px;
-              }
-              button {
-                padding: 12px 20px;
-                line-height: 24px;
-              }
-            `}
-          >
-            <SearchBar />
-            <Button variant="tertiary">Export</Button>
-          </div>
-          <SortComponent />
-        </div>
-        <CustomTable
-          headers={[
-            { title: 'Order ID', key: 'order-id' },
-            { title: 'Amount Paid', key: 'amount-paid' },
-            { title: 'Commission', key: 'commission' },
-            { title: 'Payment type', key: 'payment-type' },
-            {
-              title: 'Status',
-              key: 'status',
-              type: 'badge',
-              badgeList: badgeList,
-            },
-            { title: 'Location', key: 'location' },
-            { title: 'Date', key: 'date' },
-            { title: 'Assigned Vendor', key: 'assigned-vendor' },
-            {
-              title: '',
-              key: 'actions',
-              type: 'actions-more',
-              moreList: moreList,
-            },
-          ]}
-          list={gridList}
-        />
-      </div>
-    </section>
+    <DashboardLayout1 title="Orders" button={false}>
+      <CustomTable
+        headers={[
+          { title: 'Order ID', key: 'order-id' },
+          { title: 'Amount Paid', key: 'amount-paid' },
+          { title: 'Commission', key: 'commission' },
+          { title: 'Payment type', key: 'payment-type' },
+          {
+            title: 'Status',
+            key: 'status',
+            type: 'badge',
+            badgeList: badgeList,
+          },
+          { title: 'Location', key: 'location' },
+          { title: 'Date', key: 'date' },
+          { title: 'Assigned Vendor', key: 'assigned-vendor' },
+          {
+            title: '',
+            key: 'actions',
+            type: 'actions-more',
+            moreList: moreList,
+          },
+        ]}
+        list={gridList}
+      />
+    </DashboardLayout1>
   )
 }
 

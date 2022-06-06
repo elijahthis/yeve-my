@@ -12,7 +12,15 @@ const TabBar = ({
   return (
     <div>
       <div tw="flex flex-row items-center justify-between border-b border-[#e5e5e5]">
-        <div tw="flex flex-row items-center gap-4 w-full" className="titleBar">
+        <div
+          tw="flex flex-row items-center gap-4 w-full"
+          className="titleBar"
+          css={css`
+            @media (max-width: 1140px) {
+              justify-content: space-between;
+            }
+          `}
+        >
           {dataList.map((item, ind) => (
             <div
               key={ind}
@@ -30,13 +38,29 @@ const TabBar = ({
                 align-items: center;
                 gap: 30px;
                 color: ${active === ind ? '#000000' : '#767676'};
+
+                > :nth-child(2) {
+                  display: none;
+                }
+
+                @media (max-width: 1140px) {
+                  padding: 16px 6px;
+                  > :first-child {
+                    display: ${item.mobileTitle ? 'none' : 'inline-block'};
+                  }
+                  > :nth-child(2) {
+                    display: inline-block;
+                  }
+                }
               `}
               className="title"
               onClick={() => {
                 setActive(ind)
               }}
             >
-              {item.title}
+              <span>{item.title}</span>
+              {item.mobileTitle ? <span>{item.mobileTitle}</span> : null}
+
               {item.unread ? (
                 <div
                   tw="w-5 h-5 grid place-items-center text-xs bg-gold text-white rounded-full"
@@ -57,6 +81,9 @@ const TabBar = ({
             svg {
               width: 24px;
               height: 24px;
+            }
+            @media (max-width: 1140px) {
+              display: none;
             }
           `}
           onClick={() => {

@@ -18,10 +18,14 @@ const EventsRoot = () => {
   const [shape, setShape] = useState(0)
   const router = useRouter()
   const eventsTabData = [
-    { title: 'All event', component: <AllEvents /> },
-    { title: 'Published', component: <PublishedEvents /> },
-    { title: 'Draft', component: <DraftsEvents /> },
-    { title: 'Past', component: <></> },
+    { title: 'All event', mobileTitle: 'All', component: <AllEvents /> },
+    {
+      title: 'Published',
+      mobileTitle: 'Published',
+      component: <PublishedEvents />,
+    },
+    { title: 'Draft', mobileTitle: 'Draft', component: <DraftsEvents /> },
+    { title: 'Past', mobileTitle: 'Past', component: <></> },
   ]
 
   return (
@@ -51,6 +55,10 @@ const EventsRoot = () => {
             @media (max-width: 1140px) {
               > div > div > div {
                 justify-content: space-between;
+
+                .title {
+                  padding: 1rem;
+                }
               }
             }
           `}

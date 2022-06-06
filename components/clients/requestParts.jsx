@@ -69,7 +69,7 @@ export const PendingRequests = ({
   return (
     <>
       {shape === 0 ? (
-        <div tw="py-4 flex flex-row gap-6">
+        <div tw="py-4 flex flex-row flex-wrap gap-6">
           {cardList.map((card, ind) => (
             <VendorCard
               key={ind}
@@ -149,7 +149,7 @@ export const ActiveBookings = ({
   return (
     <>
       {shape === 0 ? (
-        <div tw="py-4 flex flex-row gap-6">
+        <div tw="py-4 flex flex-row flex-wrap gap-6">
           {cardList.map((card, ind) => (
             <VendorCard
               cardData={card}
@@ -229,7 +229,7 @@ export const PastBookings = ({
   return (
     <>
       {shape === 0 ? (
-        <div tw="py-4 flex flex-row gap-6">
+        <div tw="py-4 flex flex-row flex-wrap gap-6">
           {cardList.map((card, ind) => (
             <VendorCard
               cardData={card}
@@ -309,7 +309,7 @@ export const RecurringBookings = ({
   return (
     <>
       {shape === 0 ? (
-        <div tw="py-4 flex flex-row gap-6">
+        <div tw="py-4 flex flex-row flex-wrap gap-6">
           {cardList.map((card, ind) => (
             <RecurringCard
               cardData={card}

@@ -1,5 +1,7 @@
 import tw, { css } from 'twin.macro'
 import { formStyles } from '../../styles/GeneralStyles'
+import { FormSectionLayout } from '../Layout/MainSections'
+import FormLayout from '../UI/FormTools/FormLayout'
 import profilePlaceholder from '../../images/Ellipse 56.png'
 import yeveWalletIcon from '../../images/yeve-wallet-icon.png'
 import visaIcon from '../../images/visa-icon.png'
@@ -123,62 +125,59 @@ export const Payment = ({ setOpenModal, setModalChild }) => {
   switch (paymentPart) {
     case null:
       return (
-        <div css={formStyles} tw="py-6">
-          <div></div>
-          <div>
-            <form action="">
-              <div>
-                <div tw="flex flex-row items-center justify-between">
-                  <h4>Payment details</h4>
-                  <span
-                    tw="text-sm text-gold cursor-pointer"
+        <FormSectionLayout back={false}>
+          <FormLayout>
+            <div>
+              <div tw="flex flex-row items-center justify-between">
+                <h4>Payment details</h4>
+                <span
+                  tw="text-sm text-gold cursor-pointer"
+                  onClick={() => {
+                    setPaymentPart(0)
+                  }}
+                >
+                  Add+
+                </span>
+              </div>
+              <div className="form-div">
+                <label htmlFor="">
+                  Credit Card
+                  <div
+                    tw="flex flex-row items-center justify-between bg-[#fafafa] border border-[#d2d2d2] rounded px-4 py-3 cursor-pointer"
                     onClick={() => {
-                      setPaymentPart(0)
+                      setPaymentPart(1)
                     }}
                   >
-                    Add+
-                  </span>
-                </div>
-                <div className="form-div">
-                  <label htmlFor="">
-                    Credit Card
-                    <div
-                      tw="flex flex-row items-center justify-between bg-[#fafafa] border border-[#d2d2d2] rounded px-4 py-3 cursor-pointer"
-                      onClick={() => {
-                        setPaymentPart(1)
-                      }}
-                    >
-                      <div tw="flex flex-row items-center gap-3">
-                        <div tw="w-9 h-6">
-                          <Image src={visaIcon} />
-                        </div>
-                        <p>**** 2475</p>
+                    <div tw="flex flex-row items-center gap-3">
+                      <div tw="w-9 h-6">
+                        <Image src={visaIcon} />
                       </div>
-                      <BiChevronRight size={16} />
+                      <p>**** 2475</p>
                     </div>
-                  </label>
-                  <label htmlFor="">
-                    Yeve Wallet
-                    <div
-                      tw="flex flex-row items-center justify-between bg-[#fafafa] border border-[#d2d2d2] rounded px-4 py-3 cursor-pointer"
-                      onClick={() => {
-                        setPaymentPart(2)
-                      }}
-                    >
-                      <div tw="flex flex-row items-center gap-3">
-                        <div tw="w-9 h-6">
-                          <Image src={yeveWalletIcon} />
-                        </div>
-                        <p>£290.00</p>
+                    <BiChevronRight size={16} />
+                  </div>
+                </label>
+                <label htmlFor="">
+                  Yeve Wallet
+                  <div
+                    tw="flex flex-row items-center justify-between bg-[#fafafa] border border-[#d2d2d2] rounded px-4 py-3 cursor-pointer"
+                    onClick={() => {
+                      setPaymentPart(2)
+                    }}
+                  >
+                    <div tw="flex flex-row items-center gap-3">
+                      <div tw="w-9 h-6">
+                        <Image src={yeveWalletIcon} />
                       </div>
-                      <BiChevronRight size={16} />
+                      <p>£290.00</p>
                     </div>
-                  </label>
-                </div>
+                    <BiChevronRight size={16} />
+                  </div>
+                </label>
               </div>
-            </form>
-          </div>
-        </div>
+            </div>
+          </FormLayout>
+        </FormSectionLayout>
       )
       break
 

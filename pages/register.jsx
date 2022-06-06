@@ -1,4 +1,5 @@
 import tw, { css } from 'twin.macro'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import loginBg from '../images/login-bg.png'
@@ -7,6 +8,12 @@ import { BiChevronLeft } from 'react-icons/bi'
 import { LoginNav, loginSection, accessButton } from './login'
 
 const Register = () => {
+  const [access, setAccess] = useState(0)
+  const accessList = [
+    { title: 'Customer', icon: <BsPeopleFill /> },
+    { title: 'Vendor', icon: <BsShop /> },
+  ]
+
   return (
     <main>
       <LoginNav />
@@ -43,14 +50,21 @@ const Register = () => {
           <h3>Register with Yeve</h3>
           <p className="select">Select your access</p>
           <div tw="flex flex-row gap-2">
-            <div tw="bg-[#1A1A1A] text-white" css={accessButton}>
-              <BsPeopleFill />
-              Customer
-            </div>
-            <div css={accessButton}>
-              <BsShop />
-              Vendor
-            </div>
+            {accessList.map((item, ind) => (
+              <div
+                css={accessButton}
+                key={ind}
+                onClick={() => setAccess(ind)}
+                style={
+                  access === ind
+                    ? { backgroundColor: '#1a1a1a', color: 'white' }
+                    : {}
+                }
+              >
+                {item.icon}
+                {item.title}
+              </div>
+            ))}
           </div>
           <form action="" tw="flex flex-col gap-6">
             <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">

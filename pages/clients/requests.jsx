@@ -24,6 +24,7 @@ const RequestsRoot = ({
   const requestTabData = [
     {
       title: 'Pending Requests',
+      title: 'Pending',
       component: (
         <PendingRequests
           openModal={openModal}
@@ -33,10 +34,11 @@ const RequestsRoot = ({
           shape={shape}
         />
       ),
-      unread: 1,
+      unread: 0,
     },
     {
       title: 'Active Bookings',
+      title: 'Active',
       component: (
         <ActiveBookings
           openModal={openModal}
@@ -50,6 +52,7 @@ const RequestsRoot = ({
     },
     {
       title: 'Past Bookings',
+      title: 'Past',
       component: (
         <PastBookings
           openModal={openModal}
@@ -63,6 +66,7 @@ const RequestsRoot = ({
     },
     {
       title: 'Recurring Bookings',
+      title: 'Recurring',
       component: (
         <RecurringBookings
           openModal={openModal}
