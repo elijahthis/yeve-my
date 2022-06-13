@@ -42,6 +42,7 @@ export const formStyles = css`
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    width: 100%;
   }
   input,
   textarea {
@@ -61,6 +62,7 @@ export const formStyles = css`
     color: #ffffff;
     border: 1px solid #de8e0e;
     margin: 16px 0;
+    width: 100%;
     :hover {
       cursor: pointer;
       background-color: transparent;

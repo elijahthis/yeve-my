@@ -1,7 +1,9 @@
 import { Checkbox, message } from 'antd'
 import { useEffect, useState } from 'react'
 import tw, { css } from 'twin.macro'
-import { BooleanToggle, CrudOptions, MoreOptions } from '../../formTools'
+import { CrudOptions, MoreOptions } from '../../formTools'
+import BooleanToggle from '../FormTools/BooleanToggle'
+import DropdownMenu from '../FormTools/DropdownMenu'
 import { StatusBadge } from '../../pieces/badges'
 
 const TableRow = ({
@@ -50,6 +52,8 @@ const TableRow = ({
               value={item[header.key]}
               valueList={header.list}
             />
+          ) : header.type === 'drop' ? (
+            <DropdownMenu list={header.list} />
           ) : header.type === 'actions-crud' ? (
             <CrudOptions more={true} moreList={header.moreList} />
           ) : header.type === 'actions-ud' ? (

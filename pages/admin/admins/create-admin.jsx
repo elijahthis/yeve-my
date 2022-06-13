@@ -6,23 +6,27 @@ import { sectionStyles, formStyles } from '../../../styles/GeneralStyles'
 import profilePlaceholder from '../../../images/Ellipse 56.png'
 import Modal from '../../../components/UI/Modals/Modal'
 import Button from '../../../components/UI/Buttons/Button'
+import BreadCrumb from '../../../components/UI/BreadCrumb'
 import { SendMessage } from '../../../components/UI/Modals/ModalChildren'
 import { DropdownMenu } from '../../../components/formTools'
 
 const CreateAdminRoot = () => {
   const router = useRouter()
+
   return (
     <section css={sectionStyles}>
       <h3>Create Admin</h3>
-      <p tw="my-6">
-        <span
-          onClick={() => router.push('/admin/admins')}
-          tw="cursor-pointer text-[#767676]"
-        >
-          Admins
-        </span>{' '}
-        / Create Admin
-      </p>
+      <BreadCrumb
+        pages={[
+          {
+            name: 'Admins',
+            onClick: () => {
+              router.push('/admin/admins')
+            },
+          },
+          { name: 'Create Admin', last: true },
+        ]}
+      />
       <div css={formStyles}>
         <div></div>
         <div>

@@ -5,6 +5,7 @@ export const InputBlockStyles = css`
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    width: 100%;
   }
   input,
   textarea {

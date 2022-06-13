@@ -6,7 +6,7 @@ import { sectionStyles } from '../../../styles/GeneralStyles'
 
 const DashboardLayout1 = ({ children, title, button }) => {
   return (
-    <section css={sectionStyles}>
+    <section css={sectionStyles} tw="pb-5">
       <div tw="flex flex-row items-center justify-between mb-7">
         <h3>{title}</h3>
         {button ? (

@@ -1,4 +1,3 @@
-import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { extractCritical } from '@emotion/server'
 
@@ -8,13 +7,13 @@ export default class MyDocument extends Document {
     const critical = extractCritical(initialProps.html)
     initialProps.html = critical.html
     initialProps.styles = (
-      <React.Fragment>
+      <>
         {initialProps.styles}
         <style
           data-emotion-css={critical.ids.join(' ')}
           dangerouslySetInnerHTML={{ __html: critical.css }}
         />
-      </React.Fragment>
+      </>
     )
 
     return initialProps
@@ -23,20 +22,14 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <style
+            data-emotion-css={this.props.ids?.join(' ')}
+            dangerouslySetInnerHTML={{ __html: this.props.css }}
+          />
+        </Head>
         <body>
           <Main />
-
-          <div
-            id="myportal"
-            style={{
-              position: 'fixed',
-              top: '0',
-              left: '0',
-              width: '100vw',
-              zIndex: '300',
-            }}
-          />
           <NextScript />
         </body>
       </Html>
