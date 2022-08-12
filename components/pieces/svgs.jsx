@@ -142,7 +142,7 @@ export const MenuInvertedIcon = ({ onClick }) => (
     onClick={onClick}
   >
     <rect
-      width="22"
+      checkwidth="22"
       height="2"
       rx="1"
       transform="matrix(-1 0 0 1 22 0)"

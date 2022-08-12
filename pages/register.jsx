@@ -1,18 +1,53 @@
 import tw, { css } from 'twin.macro'
 import { useState } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import loginBg from '../images/login-bg.png'
 import { BsPeopleFill, BsShop, BsArrowLeft } from 'react-icons/bs'
 import { BiChevronLeft } from 'react-icons/bi'
 import { LoginNav, loginSection, accessButton } from './login'
+import { signup } from '../services/requests/auth'
+import { inputFunc } from '../services/helpers'
 
 const Register = () => {
+  const router = useRouter()
   const [access, setAccess] = useState(0)
   const accessList = [
-    { title: 'Customer', icon: <BsPeopleFill /> },
-    { title: 'Vendor', icon: <BsShop /> },
+    { title: 'Customer', icon: <BsPeopleFill />, value: 'client' },
+    { title: 'Vendor', icon: <BsShop />, value: 'vendor' },
   ]
+  const [formInput, setFormInput] = useState({
+    userType: accessList[access].value,
+    email: '',
+    password: '',
+    confirmPassword: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    country: '',
+  })
+
+  const handleInput = ev => inputFunc(ev, formInput, setFormInput)
+
+  const submitFunc = async ev => {
+    ev.preventDefault()
+    console.log(formInput)
+    if (formInput.password === formInput.confirmPassword) {
+      const newObj = { ...formInput }
+      delete newObj['confirmPassword']
+      try {
+        await signup(newObj)
+        router.push(`${accessList[access].value}s/my-profile`)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 
   return (
     <main>
@@ -54,7 +89,14 @@ const Register = () => {
               <div
                 css={accessButton}
                 key={ind}
-                onClick={() => setAccess(ind)}
+                onClick={() => {
+                  console.log(ind)
+                  setAccess(ind)
+                  setFormInput({
+                    ...formInput,
+                    userType: accessList[ind].value,
+                  })
+                }}
                 style={
                   access === ind
                     ? { backgroundColor: '#1a1a1a', color: 'white' }
@@ -66,23 +108,27 @@ const Register = () => {
               </div>
             ))}
           </div>
-          <form action="" tw="flex flex-col gap-6">
+          <form action="" tw="flex flex-col gap-6" onSubmit={submitFunc}>
             <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
               Full Name
               <div tw="flex flex-row">
                 <input
                   type="text"
-                  name=""
+                  name="firstName"
                   id=""
                   placeholder="First Name"
                   tw="px-4 py-3 rounded-tl rounded-bl bg-[#FAFAFA]"
+                  onChange={handleInput}
+                  required={true}
                 />
                 <input
                   type="text"
-                  name=""
+                  name="lastName"
                   id=""
                   placeholder="Last Name"
                   tw="px-4 py-3 rounded-tr rounded-br bg-[#FAFAFA]"
+                  onChange={handleInput}
+                  required={true}
                 />
               </div>
             </label>
@@ -90,30 +136,110 @@ const Register = () => {
               Email address
               <input
                 type="email"
-                name=""
+                name="email"
                 id=""
                 placeholder="Enter email address..."
                 tw="px-4 py-3 rounded bg-[#FAFAFA]"
+                onChange={handleInput}
+                required={true}
+              />
+            </label>
+            <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
+              Phone
+              <input
+                type="text"
+                name="phone"
+                id=""
+                placeholder="Enter phone number..."
+                tw="px-4 py-3 rounded bg-[#FAFAFA]"
+                onChange={handleInput}
+                required={true}
               />
             </label>
             <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
               Password
               <input
                 type="password"
-                name=""
+                name="password"
                 id=""
                 placeholder="********"
                 tw="px-4 py-3 rounded bg-[#FAFAFA]"
+                onChange={handleInput}
+                required={true}
               />
             </label>
             <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
               Confirm Password
               <input
                 type="password"
-                name=""
+                name="confirmPassword"
                 id=""
                 placeholder="********"
                 tw="px-4 py-3 rounded bg-[#FAFAFA]"
+                onChange={handleInput}
+                required={true}
+              />
+            </label>
+            <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
+              Address Line 1
+              <input
+                type="text"
+                name="address"
+                id=""
+                placeholder=""
+                tw="px-4 py-3 rounded bg-[#FAFAFA]"
+                onChange={handleInput}
+                required={true}
+              />
+            </label>
+            <label htmlFor="" tw="flex flex-row text-[#343434] font-semibold">
+              <label>
+                City
+                <input
+                  type="text"
+                  name="city"
+                  id=""
+                  placeholder="Lagos"
+                  tw="px-4 py-3 rounded-tl rounded-bl bg-[#FAFAFA]"
+                  onChange={handleInput}
+                  required={true}
+                />
+              </label>
+              <label>
+                State
+                <input
+                  type="text"
+                  name="state"
+                  id=""
+                  placeholder="State"
+                  tw="px-4 py-3 rounded-tr rounded-br bg-[#FAFAFA]"
+                  onChange={handleInput}
+                  required={true}
+                />
+              </label>
+            </label>
+            <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
+              Country
+              <input
+                type="text"
+                name="country"
+                id=""
+                placeholder="Nigeria"
+                tw="px-4 py-3 rounded-tr rounded-br bg-[#FAFAFA]"
+                onChange={handleInput}
+                required={true}
+              />
+            </label>
+            <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
+              Postal Code
+              <input
+                type="text"
+                name="postalCode"
+                id=""
+                placeholder="121101"
+                tw="px-4 py-3 rounded bg-[#FAFAFA]"
+                onChange={handleInput}
+                required={true}
               />
             </label>
             <input

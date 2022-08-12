@@ -70,22 +70,21 @@ export const accessButton = css`
   }
 `
 
-const Login = () => {
+const Register = () => {
   return (
     <main>
       <LoginNav />
       <section css={loginSection}>
         <div tw="flex flex-row items-center">
           <BsArrowLeft size={16} />
-          <h3>Login to Yeve Admin</h3>
+          <h3>Register as a Yeve Admin</h3>
         </div>
-        <div
-          tw="justify-self-start"
-          css={css`
-            max-width: 630px;
-          `}
-        >
-          <div>
+        <div>
+          <div
+            css={css`
+              max-width: 630px;
+            `}
+          >
             <Image src={loginBg} />
           </div>
         </div>
@@ -105,9 +104,28 @@ const Login = () => {
             />
             Back
           </div>
-          <h3>Login to Yeve Admin</h3>
-
+          <h3>Register as a Yeve Admin</h3>
+          <div tw="flex flex-row gap-2"></div>
           <form action="" tw="flex flex-col gap-6">
+            <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
+              Full Name
+              <div tw="flex flex-row">
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="First Name"
+                  tw="px-4 py-3 rounded-tl rounded-bl bg-[#FAFAFA]"
+                />
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="Last Name"
+                  tw="px-4 py-3 rounded-tr rounded-br bg-[#FAFAFA]"
+                />
+              </div>
+            </label>
             <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
               Email address
               <input
@@ -128,25 +146,32 @@ const Login = () => {
                 tw="px-4 py-3 rounded bg-[#FAFAFA]"
               />
             </label>
-            <a href="" tw="text-right text-gold font-semibold">
-              Forgot Password?
-            </a>
+            <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
+              Confirm Password
+              <input
+                type="password"
+                name=""
+                id=""
+                placeholder="********"
+                tw="px-4 py-3 rounded bg-[#FAFAFA]"
+              />
+            </label>
             <input
               type="submit"
-              value="Log In"
+              value="Next"
               tw="px-4 py-3 rounded bg-gold text-white"
             />
           </form>
-          {/* <p>
-            Not registered?
-            <Link href="/register" passHref>
-              <a tw="text-gold font-semibold ml-4">Create an account</a>
+          <p>
+            Already have an account?
+            <Link href="/admin/login" passHref>
+              <a tw="text-gold font-semibold ml-4">Login</a>
             </Link>
-          </p> */}
+          </p>
         </div>
       </section>
     </main>
   )
 }
 
-export default Login
+export default Register
