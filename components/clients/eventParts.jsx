@@ -205,14 +205,14 @@ export const CreateEventForm = ({ setEventsPhase }) => {
               data={{ list: ['Physical', 'Virtual', 'Hybrid'] }}
             />
             <InputBlock
-              variant="postcode"
+              variant="text"
               properties={{
                 label: 'Enter postcode',
                 placeholder: 'Enter postcode',
               }}
             />
             <InputBlock
-              variant="address"
+              variant="text"
               properties={{
                 label: 'Enter address',
                 placeholder: 'Enter address',

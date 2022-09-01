@@ -1,5 +1,5 @@
-import { setAuthToken } from '../helpers'
-import { request } from '../axios'
+import { setAuthToken, setRefreshToken } from '../helpers'
+import { request, refreshRequest } from '../axios'
 
 export const signup = async values => {
   try {
@@ -17,7 +17,9 @@ export const signup = async values => {
 export const signin = async values => {
   try {
     const res = await request.post('users/signin', values)
+    console.log(res)
     setAuthToken(res?.data?.accessToken)
+    setRefreshToken(res?.data?.refreshToken)
     return res?.data
   } catch (err) {
     console.log(err?.response?.data)
@@ -28,7 +30,7 @@ export const signin = async values => {
 
 export const refresh = async () => {
   try {
-    const res = await request.post('users/refresh')
+    const res = await refreshRequest.post('users/refresh')
     setAuthToken(res?.data?.accessToken)
     return res?.data
   } catch (err) {

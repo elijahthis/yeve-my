@@ -1,14 +1,19 @@
 import tw, { css } from 'twin.macro'
+import { Form, Input, Checkbox, message } from 'antd'
 import DropdownMenu from '../DropdownMenu'
 import BooleanToggle from '../BooleanToggle'
 import DatePickerr from '../DatePickerr'
-import { DatePicker, TimePicker } from 'antd'
+import { DatePicker, TimePicker, Select } from 'antd'
 import { InputBlockStyles } from './styles'
 import { DateTimeStyles } from './styles'
 import moment from 'moment'
 import 'moment/locale/en-gb'
 import locale from 'antd/lib/locale/en_GB'
 import { useEffect } from 'react'
+// import
+
+const { TextArea } = Input
+const { Option } = Select
 
 const InputBlock = ({
   variant,
@@ -16,7 +21,13 @@ const InputBlock = ({
   data,
   value,
   onChange,
+  name,
   maxLength = 200,
+  required = true,
+  errorMessage,
+  onKeyPress,
+  disabled,
+  ...rest
 }) => {
   const VARIANTS = [
     'text',
@@ -39,23 +50,24 @@ const InputBlock = ({
   }, [])
 
   switch (variant) {
-    case 'text':
-      return (
-        <label htmlFor="" css={InputBlockStyles}>
-          {label}
-          <input
-            id=""
-            name=""
-            type="text"
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-          />
-        </label>
-      )
-      break
-    case 'email':
-      break
+    // case 'text':
+    //   return (
+    //     <label htmlFor="" css={InputBlockStyles}>
+    //       {label}
+    //       <input
+    //         id=""
+    //         name=""
+    //         type="text"
+    //         placeholder={placeholder}
+    //         value={value}
+    //         onChange={onChange}
+    //       />
+    //     </label>
+    //   )
+    //   break
+
+    // case 'email':
+    //   break
 
     case 'number':
       return (
@@ -104,56 +116,44 @@ const InputBlock = ({
       )
       break
 
-    case 'address':
-      return (
-        <label htmlFor="address" css={InputBlockStyles}>
-          {label}
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-          />
-        </label>
-      )
-      break
-
-    case 'postcode':
-      return (
-        <label htmlFor="" css={InputBlockStyles}>
-          {label}
-          <input
-            id=""
-            name=""
-            type="text"
-            inputmode="numeric"
-            pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-          />
-        </label>
-      )
-      break
-
     case 'date':
       return (
-        <label htmlFor="date" css={InputBlockStyles}>
-          {label}
+        <Form.Item
+          name={name}
+          label={label}
+          rules={[
+            {
+              required: required,
+              message: errorMessage
+                ? errorMessage
+                : `Please input your ${label}!`,
+            },
+          ]}
+          initialValue={value ? moment(value) : undefined}
+        >
           <DatePicker
             css={DateTimeStyles}
             value={value ? moment(value) : moment()}
             onChange={onChange}
           />
-        </label>
+        </Form.Item>
       )
       break
     case 'time':
       return (
-        <label htmlFor="" css={InputBlockStyles}>
-          Select Time
+        <Form.Item
+          name={name}
+          label={label}
+          rules={[
+            {
+              required: required,
+              message: errorMessage
+                ? errorMessage
+                : `Please input your ${label}!`,
+            },
+          ]}
+          initialValue={value ? moment(value) : undefined}
+        >
           <TimePicker
             css={DateTimeStyles}
             use12Hours={true}
@@ -161,42 +161,86 @@ const InputBlock = ({
             value={value ? moment(value, 'HH:mm') : moment('00:00', 'HH:mm')}
             onChange={onChange}
           />
-        </label>
+        </Form.Item>
       )
       break
 
     case 'dropdown':
       return (
-        <label htmlFor="" css={InputBlockStyles}>
-          {label}
-          <DropdownMenu
-            list={list}
-            placeholder={placeholder}
+        // <label htmlFor="" css={InputBlockStyles}>
+        //   {label}
+        //   <DropdownMenu
+        //     list={list}
+        //     placeholder={placeholder}
+        //     onChange={onChange}
+        //   />
+        //   {additionalText && <p tw="text-right">{additionalText}</p>}
+        // </label>
+        <Form.Item
+          name={name}
+          label={label}
+          initialValue={value || ''}
+          rules={[
+            {
+              required: required,
+              message: errorMessage
+                ? errorMessage
+                : `Please input your ${label}!`,
+            },
+          ]}
+        >
+          <Select
+            defaultValue={value}
+            style={{
+              width: 120,
+            }}
             onChange={onChange}
-          />
-          {additionalText && <p tw="text-right">{additionalText}</p>}
-        </label>
+          >
+            {list.map(item => (
+              <Option value={item?.value ?? item}>{item?.label ?? item}</Option>
+            ))}
+          </Select>
+        </Form.Item>
       )
       break
 
     case 'textarea':
       return (
-        <label htmlFor="moreInfo" css={InputBlockStyles}>
-          {label}
-          <textarea
-            name="moreInfo"
-            id="moreInfo"
-            tw="resize-none"
+        <Form.Item
+          name={name}
+          label={label}
+          initialValue={value}
+          rules={[
+            {
+              required: required,
+              message: errorMessage
+                ? errorMessage
+                : `Please input your ${label}!`,
+            },
+
+            // {
+            //   min: min,
+            //   message: `Characters should not be less than ${min} words`,
+            // },
+          ]}
+          // type={variant}
+        >
+          <TextArea
+            // rows={4}
+            style={{ height: 150, marginLeft: 0 }}
             placeholder={placeholder}
-            value={value}
-            onChange={ev => {
-              if (ev.target.value.length <= maxLength) onChange(ev)
-            }}
-          ></textarea>
-          <p tw="text-right">
-            {value.length}/{maxLength}
-          </p>
-        </label>
+            onChange={onChange}
+            // onKeyPress={onKeyPress}
+            showCount={true}
+            maxLength={maxLength}
+            css={css`
+              textarea {
+                margin-left: 0 !important;
+              }
+            `}
+            // {...rest}
+          />
+        </Form.Item>
       )
       break
 
@@ -215,7 +259,48 @@ const InputBlock = ({
       break
 
     default:
-      return <p>Invalid input type</p>
+      return (
+        <Form.Item
+          name={name}
+          rules={[
+            {
+              required: required,
+              message: errorMessage
+                ? errorMessage
+                : `Please input your ${label}!`,
+            },
+            // {
+            //   type: name === 'email' ? name : type === 'url' ? 'url' : '',
+            //   message: errorMessage
+            //     ? errorMessage
+            //     : name === 'email'
+            //     ? `Please input a correct ${name}`
+            //     : type === 'url'
+            //     ? `Please enter a valid ${name} url`
+            //     : '',
+            // },
+          ]}
+          type={variant}
+          initialValue={value}
+          label={label}
+        >
+          <Input
+            id={variant}
+            // onBlur={onBlur}
+            // onFocus={onFocus}
+            // className={`${className}`}
+            placeholder={placeholder}
+            type={variant}
+            value={value}
+            onChange={onChange}
+            defaultValue={value}
+            onKeyPress={onKeyPress}
+            disabled={disabled}
+            // required={required}
+            {...rest}
+          />
+        </Form.Item>
+      )
       break
   }
 }

@@ -6,6 +6,9 @@ import loginBg from '../images/login-bg.png'
 import { BsPeopleFill, BsShop, BsArrowLeft } from 'react-icons/bs'
 import { BiChevronLeft } from 'react-icons/bi'
 import { YeveLogo1 } from '../components/Logo'
+import { signin } from '../services/requests/auth'
+import { inputFunc } from '../services/helpers'
+import { useRouter } from 'next/dist/client/router'
 
 export const LoginNav = () => (
   <header
@@ -47,6 +50,7 @@ export const loginSection = css`
   }
   input[type='submit'] {
     border: 0;
+    cursor: pointer;
   }
   @media (max-width: 1024px) {
     display: flex;
@@ -85,11 +89,30 @@ export const accessButton = css`
 `
 
 const Login = () => {
+  const router = useRouter()
   const [access, setAccess] = useState(0)
   const accessList = [
-    { title: 'Customer', icon: <BsPeopleFill /> },
-    { title: 'Vendor', icon: <BsShop /> },
+    { title: 'Customer', icon: <BsPeopleFill />, value: 'client' },
+    { title: 'Vendor', icon: <BsShop />, value: 'vendor' },
   ]
+
+  const [formInput, setFormInput] = useState({
+    email: '',
+    password: '',
+  })
+
+  const handleInput = ev => inputFunc(ev, formInput, setFormInput)
+
+  const submitFunc = async ev => {
+    ev.preventDefault()
+    console.log(formInput)
+    try {
+      await signin(formInput)
+      router.push(`${accessList[access].value}s/my-profile`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <main>
@@ -144,25 +167,27 @@ const Login = () => {
               </div>
             ))}
           </div>
-          <form action="" tw="flex flex-col gap-6">
+          <form action="" tw="flex flex-col gap-6" onSubmit={submitFunc}>
             <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
               Email address
               <input
                 type="email"
-                name=""
+                name="email"
                 id=""
                 placeholder="Enter email address..."
                 tw="px-4 py-3 rounded bg-[#FAFAFA]"
+                onChange={handleInput}
               />
             </label>
             <label htmlFor="" tw="flex flex-col text-[#343434] font-semibold">
               Password
               <input
                 type="password"
-                name=""
+                name="password"
                 id=""
                 placeholder="********"
                 tw="px-4 py-3 rounded bg-[#FAFAFA]"
+                onChange={handleInput}
               />
             </label>
             <a href="" tw="text-right text-gold font-semibold">

@@ -6,6 +6,14 @@ export const setAuthToken = token => {
   localStorage.setItem('yeve:token', token)
 }
 
+export const getRefreshToken = () => {
+  return localStorage.getItem('yeve:refresh:token')
+}
+
+export const setRefreshToken = token => {
+  localStorage.setItem('yeve:refresh:token', token)
+}
+
 export const setLocationHistory = location => {
   sessionStorage.setItem('yeve:redirect:location', JSON.stringify(location))
 }

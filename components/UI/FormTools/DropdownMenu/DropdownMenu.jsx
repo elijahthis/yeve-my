@@ -24,6 +24,7 @@ const DropdownMenu = ({ list, placeholder, onChange }) => {
     <Dropdown overlay={menu} trigger={['click']}>
       <Button
         css={css`
+          width: 100%;
           text-align: left;
           padding: 12px 16px;
           height: 48px;

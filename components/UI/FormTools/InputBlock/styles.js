@@ -2,8 +2,8 @@ import { css } from 'twin.macro'
 
 export const InputBlockStyles = css`
   label {
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
     gap: 0.25rem;
     width: 100%;
   }

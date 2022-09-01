@@ -313,8 +313,10 @@ export const ServiceRequest = ({
       }}
     >
       <FormLayout
-        onSubmit={ev => {
-          ev.preventDefault()
+        onSubmit={values => {
+          // ev.preventDefault()
+          console.log(values)
+          console.log(formData)
           setServicePhase(2)
         }}
       >
@@ -322,28 +324,30 @@ export const ServiceRequest = ({
           <h4 style={{ marginTop: '8px' }}>Event Details</h4>
           <FormDiv>
             <InputBlock
-              variant="postcode"
+              variant="text"
               properties={{
                 label: 'Enter postcode',
                 placeholder: 'Enter postcode',
               }}
-              value={formData.details.postcode}
+              name="postalCode"
+              value={formData.postalCode}
               onChange={ev => {
                 const newData = { ...formData }
-                newData.details.postcode = ev.target.value
+                newData.postalCode = ev.target.value
                 setFormData(newData)
               }}
             />
             <InputBlock
-              variant="address"
+              variant="text"
               properties={{
                 label: 'Enter address',
                 placeholder: 'Enter address',
               }}
-              value={formData.details.address}
+              name="address"
+              value={formData.address}
               onChange={ev => {
                 const newData = { ...formData }
-                newData.details.address = ev.target.value
+                newData.address = ev.target.value
                 setFormData(newData)
               }}
             />
@@ -360,10 +364,12 @@ export const ServiceRequest = ({
                 properties={{
                   label: 'Select Date',
                 }}
-                value={formData.details.date}
+                value={formData.date}
+                name="date"
+                errorMessage="Please select a date"
                 onChange={(date, dateString) => {
                   const newData = { ...formData }
-                  newData.details.date = dateString
+                  newData.date = new Date(dateString).toISOString()
                   setFormData(newData)
                 }}
               />
@@ -372,10 +378,12 @@ export const ServiceRequest = ({
                 properties={{
                   label: 'Select Time',
                 }}
-                value={formData.details.time}
+                name="time"
+                errorMessage="Please select a time"
+                value={formData.time}
                 onChange={(time, timeString) => {
                   const newData = { ...formData }
-                  newData.details.time = timeString
+                  newData.time = timeString
                   setFormData(newData)
                 }}
               />
@@ -390,9 +398,12 @@ export const ServiceRequest = ({
               }}
               onChange={val => {
                 const newData = { ...formData }
-                newData.details.numHours = parseInt(val.slice(0, -5))
+                newData.hours = parseInt(val.slice(0, -5))
                 setFormData(newData)
               }}
+              errorMessage="Please select the number of hours"
+              name="hours"
+              required={true}
               properties={{
                 label: 'Select number of hours here',
                 additionalText:
@@ -405,13 +416,15 @@ export const ServiceRequest = ({
                 label: 'Add more info',
                 placeholder: 'Add more info',
               }}
-              value={formData.details.moreInfo}
+              name="info"
+              value={formData.info}
               onChange={ev => {
                 const newData = { ...formData }
-                newData.details.moreInfo = ev.target.value
+                newData.info = ev.target.value
                 setFormData(newData)
               }}
               maxLength={120}
+              required={false}
             />
           </FormDiv>
         </div>
@@ -424,17 +437,17 @@ export const ServiceRequest = ({
                 list: ['Yes', 'No'],
                 valueList: [true, false],
               }}
-              value={formData.rehearsals.state}
+              value={formData.rehearsal}
               onChange={val => {
                 const newData = { ...formData }
-                newData.rehearsals.state = val
+                newData.rehearsal = val
                 setFormData(newData)
               }}
               properties={{
                 label: 'Rehearsals Needed?',
               }}
             />
-            {formData.rehearsals.state ? (
+            {formData.rehearsal ? (
               <>
                 <InputBlock
                   variant="dropdown"
@@ -456,10 +469,10 @@ export const ServiceRequest = ({
                     list: ['Yes', 'No'],
                     valueList: [true, false],
                   }}
-                  value={formData.rehearsals.same}
+                  value={formData.sameVenue}
                   onChange={val => {
                     const newData = { ...formData }
-                    newData.rehearsals.same = val
+                    newData.sameVenue = val
                     setFormData(newData)
                   }}
                   properties={{
@@ -468,10 +481,10 @@ export const ServiceRequest = ({
                 />
               </>
             ) : null}
-            {formData.rehearsals.state && !formData.rehearsals.same ? (
+            {formData.rehearsal && !formData.sameVenue ? (
               <>
-                <InputBlock
-                  variant="postcode"
+                {/* <InputBlock
+                  variant="text"
                   value={formData.rehearsals.postcode}
                   onChange={ev => {
                     const newData = { ...formData }
@@ -482,13 +495,13 @@ export const ServiceRequest = ({
                     label: 'Enter postcode',
                     placeholder: 'Enter postcode',
                   }}
-                />
+                /> */}
                 <InputBlock
-                  variant="address"
-                  value={formData.rehearsals.address}
+                  variant="text"
+                  value={formData.venueAddress}
                   onChange={ev => {
                     const newData = { ...formData }
-                    newData.rehearsals.address = ev.target.value
+                    newData.venueAddress = ev.target.value
                     setFormData(newData)
                   }}
                   properties={{
@@ -497,7 +510,7 @@ export const ServiceRequest = ({
                   }}
                 />
 
-                <div
+                {/* <div
                   tw=" flex flex-row items-center gap-4"
                   css={css`
                     > * {
@@ -513,7 +526,9 @@ export const ServiceRequest = ({
                     value={formData.rehearsals.date}
                     onChange={(date, dateString) => {
                       const newData = { ...formData }
-                      newData.rehearsals.date = dateString
+                      newData.rehearsals.date = new Date(
+                        dateString,
+                      ).toISOString()
                       setFormData(newData)
                     }}
                   />
@@ -529,7 +544,7 @@ export const ServiceRequest = ({
                       setFormData(newData)
                     }}
                   />
-                </div>
+                </div> */}
               </>
             ) : null}
           </FormDiv>
@@ -544,7 +559,7 @@ export const ServiceRequest = ({
               }}
               onChange={val => {
                 const newData = { ...formData }
-                newData.eventType.type = val
+                newData.type = val
                 setFormData(newData)
               }}
               properties={{
@@ -558,27 +573,27 @@ export const ServiceRequest = ({
                 list: ['Yes', 'No'],
                 valueList: [true, false],
               }}
-              value={formData.eventType.recurring}
+              value={formData.recurring}
               onChange={val => {
                 const newData = { ...formData }
-                newData.eventType.recurring = val
+                newData.recurring = val
                 setFormData(newData)
               }}
               properties={{
                 label: 'Recurring event?',
               }}
             />
-            {formData.eventType.recurring ? (
+            {formData.recurring ? (
               <>
                 <InputBlock
                   variant="BoolToggle"
                   data={{
                     list: ['Weekly', 'Monthly'],
                   }}
-                  value={formData.eventType.period}
+                  value={formData.recurringInterval}
                   onChange={val => {
                     const newData = { ...formData }
-                    newData.eventType.period = val
+                    newData.recurringInterval = val
                     setFormData(newData)
                   }}
                   properties={{
@@ -592,7 +607,7 @@ export const ServiceRequest = ({
                   }}
                   onChange={val => {
                     const newData = { ...formData }
-                    newData.eventType.dayMonth = val
+                    newData.recurringDay = val
                     setFormData(newData)
                   }}
                   properties={{
@@ -614,7 +629,7 @@ export const ServiceRequest = ({
               }}
               onChange={val => {
                 const newData = { ...formData }
-                newData.dressCode.dressCode = val
+                newData.dressCode = val
                 setFormData(newData)
               }}
               properties={{
@@ -716,7 +731,7 @@ export const ServiceRequest = ({
               }}
               onChange={val => {
                 const newData = { ...formData }
-                newData.vendorPreferences.count = parseInt(val)
+                newData.numberOfResponse = parseInt(val)
                 setFormData(newData)
               }}
               properties={{
@@ -729,10 +744,10 @@ export const ServiceRequest = ({
               data={{
                 list: ['All', 'Premium', 'Elite'],
               }}
-              value={formData.vendorPreferences.experienceLevel}
+              value={formData.expirienceLevel}
               onChange={val => {
                 const newData = { ...formData }
-                newData.vendorPreferences.experienceLevel = val
+                newData.expirienceLevel = val
                 setFormData(newData)
               }}
               properties={{
@@ -803,9 +818,10 @@ export const VenueRequest = ({
         <div></div>
         <div>
           <FormLayout
-            onSubmit={ev => {
-              ev.preventDefault()
-              setServicePhase(22)
+            onSubmit={values => {
+              // ev.preventDefault()
+              console.log(values)
+              // setServicePhase(22)
             }}
           >
             <div>
@@ -843,7 +859,7 @@ export const VenueRequest = ({
                       )}
                     onChange={val => {
                       const newData = { ...formData }
-                      newData.details.numHours = parseInt(val.slice(0, -5))
+                      newData.hours = parseInt(val.slice(0, -5))
                       setFormData(newData)
                     }}
                   />
@@ -851,17 +867,17 @@ export const VenueRequest = ({
                     Standard Hours - 2 hours. Additional hours chargeable{' '}
                   </p>
                 </label>
-                <label htmlFor="moreInfo">
+                <label htmlFor="info">
                   Add more info
                   <textarea
-                    name="moreInfo"
-                    id="moreInfo"
+                    name="info"
+                    id="info"
                     tw="resize-none"
                     placeholder="Add more info"
-                    value={formData.details.moreInfo}
+                    value={formData.info}
                     onChange={ev => {
                       const newData = { ...formData }
-                      newData.details.moreInfo = ev.target.value
+                      newData.info = ev.target.value
                       setFormData(newData)
                     }}
                   ></textarea>
@@ -879,10 +895,10 @@ export const VenueRequest = ({
                   <BooleanToggle
                     list={['Yes', 'No']}
                     valueList={[true, false]}
-                    value={formData.rehearsals.state}
+                    value={formData.rehearsal}
                     onChange={val => {
                       const newData = { ...formData }
-                      newData.rehearsals.state = val
+                      newData.rehearsal = val
                       setFormData(newData)
                     }}
                   />
@@ -900,7 +916,7 @@ export const VenueRequest = ({
                     placeholder="Select event type"
                     onChange={val => {
                       const newData = { ...formData }
-                      newData.eventType.type = val
+                      newData.type = val
                       setFormData(newData)
                     }}
                   />
@@ -910,24 +926,24 @@ export const VenueRequest = ({
                   <BooleanToggle
                     list={['Yes', 'No']}
                     valueList={[true, false]}
-                    value={formData.eventType.recurring}
+                    value={formData.recurring}
                     onChange={val => {
                       const newData = { ...formData }
-                      newData.eventType.recurring = val
+                      newData.recurring = val
                       setFormData(newData)
                     }}
                   />
                 </label>
-                {formData.eventType.recurring ? (
+                {formData.recurring ? (
                   <>
                     <div>
                       <p>Same Event Venue?</p>
                       <BooleanToggle
                         list={['Weekly', 'Monthly']}
-                        value={formData.eventType.period}
+                        value={formData.recurringInterval}
                         onChange={val => {
                           const newData = { ...formData }
-                          newData.eventType.period = val
+                          newData.recurringInterval = val
                           setFormData(newData)
                         }}
                       />
@@ -939,7 +955,7 @@ export const VenueRequest = ({
                         placeholder="Select Day"
                         onChange={val => {
                           const newData = { ...formData }
-                          newData.eventType.dayMonth = val
+                          newData.recurringDay = val
                           setFormData(newData)
                         }}
                       />
@@ -1040,7 +1056,7 @@ export const VenueRequest = ({
                     placeholder="Number of responses"
                     onChange={val => {
                       const newData = { ...formData }
-                      newData.vendorPreferences.count = parseInt(val)
+                      newData.numberOfResponse = parseInt(val)
                       setFormData(newData)
                     }}
                   />
@@ -1049,10 +1065,10 @@ export const VenueRequest = ({
                   Desired Vendor Experience level
                   <BooleanToggle
                     list={['All', 'Premium', 'Elite']}
-                    value={formData.vendorPreferences.experienceLevel}
+                    value={formData.expirienceLevel}
                     onChange={val => {
                       const newData = { ...formData }
-                      newData.vendorPreferences.experienceLevel = val
+                      newData.expirienceLevel = val
                       setFormData(newData)
                     }}
                   />
@@ -1159,7 +1175,7 @@ export const RequestSummary = ({
               </div>
               <div>
                 <p>Event Type:</p>
-                <p>{formData.eventType.type}</p>
+                <p>{formData.type}</p>
                 <p
                   className="right"
                   tw="cursor-pointer"
@@ -1198,7 +1214,7 @@ export const RequestSummary = ({
               </div>
               <div>
                 <p>Dress Code:</p>
-                <p>{formData.dressCode.dressCode}</p>
+                <p>{formData.dressCode}</p>
                 <p
                   className="right"
                   tw="cursor-pointer"
@@ -1224,7 +1240,7 @@ export const RequestSummary = ({
                     max-width: 105px;
                   `}
                 >
-                  {formData.details.address}
+                  {formData.address}
                 </p>
                 <p
                   className="right"
@@ -1410,7 +1426,7 @@ export const RequestSummary = ({
               </div>
               <div>
                 <p>Event Type:</p>
-                <p>{formData.eventType.type}</p>
+                <p>{formData.type}</p>
                 <p
                   className="right"
                   tw="cursor-pointer"
@@ -1449,7 +1465,7 @@ export const RequestSummary = ({
               </div>
               <div>
                 <p>Dress Code:</p>
-                <p>{formData.dressCode.dressCode}</p>
+                <p>{formData.dressCode}</p>
                 <p
                   className="right"
                   tw="cursor-pointer"
@@ -1475,7 +1491,7 @@ export const RequestSummary = ({
                     max-width: 105px;
                   `}
                 >
-                  {formData.details.address}
+                  {formData.address}
                 </p>
                 <p
                   className="right"
@@ -1663,7 +1679,7 @@ export const VenueSummary = ({
               </div>
               <div>
                 <p>Event Type:</p>
-                <p>{formData.eventType.type}</p>
+                <p>{formData.type}</p>
                 <p
                   className="right"
                   tw="cursor-pointer"
@@ -1852,7 +1868,7 @@ export const VenueSummary = ({
               </div>
               <div>
                 <p>Event Type:</p>
-                <p>{formData.eventType.type}</p>
+                <p>{formData.type}</p>
                 <p
                   className="right"
                   tw="cursor-pointer"
@@ -1891,7 +1907,7 @@ export const VenueSummary = ({
               </div>
               <div>
                 <p>Dress Code:</p>
-                <p>{formData.dressCode.dressCode}</p>
+                <p>{formData.dressCode}</p>
                 <p
                   className="right"
                   tw="cursor-pointer"
@@ -1917,7 +1933,7 @@ export const VenueSummary = ({
                     max-width: 105px;
                   `}
                 >
-                  {formData.details.address}
+                  {formData.address}
                 </p>
                 <p
                   className="right"

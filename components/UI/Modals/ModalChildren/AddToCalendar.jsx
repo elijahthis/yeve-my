@@ -148,7 +148,7 @@ const AddToCalendar = ({
               </FormDiv>
             </div>
             <InputBlock
-              variant="address"
+              variant="text"
               properties={{
                 label: 'Add Location',
                 placeholder: 'Enter Location',

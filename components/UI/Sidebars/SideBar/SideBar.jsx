@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import tw, { css } from 'twin.macro'
 import { YeveLogo2 } from '../../../Logo'
 import SidebarItem from './SidebarItem'
+import { getCurrentUser } from '../../../../services/requests/users'
 
 const SideBar = ({ menuList, sideOpen, setSideOpen, child }) => {
   const router = useRouter()
@@ -48,6 +49,8 @@ const SideBar = ({ menuList, sideOpen, setSideOpen, child }) => {
     console.log(router.pathname, basePath)
     console.log(menuList)
   }, [])
+
+  
 
   return (
     <aside css={sideBar}>

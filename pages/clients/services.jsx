@@ -174,27 +174,32 @@ const ServicesRoot = ({
 }) => {
   const [servicePhase, setServicePhase] = useState(null)
   const [formData, setFormData] = useState({
+    postalCode: '',
+    address: '',
+    date: '',
+    time: '',
     services: [],
-    details: {
-      postcode: '',
-      address: '',
-      date: '',
-      time: '',
-      numHours: 1,
-      moreInfo: '',
-    },
-    rehearsals: {
-      state: false,
-      count: 0,
-      same: false,
-      address: '',
-      date: '',
-      time: '',
-    },
-    eventType: { type: '', recurring: false, period: 'Weekly', dayMonth: '' },
-    dressCode: { dressCode: '' },
+    info: '',
+    hours: 1,
+    rehearsal: true,
+    sameVenue: true,
+    venueAddress: '',
+    // rehearsals: {
+    //   state: false,
+    //   count: 0,
+    //   same: false,
+    //   address: '',
+    //   date: '',
+    //   time: '',
+    // },
+    type: '',
+    recurring: false,
+    recurringInterval: '',
+    recurringDay: '',
+    dressCode: '',
     budget: [],
-    vendorPreferences: { count: 1, experienceLevel: 'All' },
+    numberOfResponse: undefined,
+    expirienceLevel: '',
   })
   const serviceTabData = [
     {

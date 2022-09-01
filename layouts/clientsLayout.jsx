@@ -1,10 +1,14 @@
 import tw, { css } from 'twin.macro'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import MainNav from '../components/UI/NavBars/MainNav'
 import SideBar from '../components/UI/Sidebars/SideBar'
 import { BsShop } from 'react-icons/bs'
+import { getCurrentUser } from '../services/requests/users'
+import { useGeneralStore } from '../zustand/store'
+import { useRouter } from 'next/router'
 
 const ClientsLayout = ({ children }) => {
+  const router = useRouter()
   const [sideOpen, setSideOpen] = useState(false)
   const menuItems = [
     { icon: <BsShop />, label: 'Services', route: 'services' },
@@ -16,6 +20,20 @@ const ClientsLayout = ({ children }) => {
     { icon: <BsShop />, label: 'Account', route: 'account' },
   ]
 
+  const user = useGeneralStore(state => state.user)
+  const updateUser = useGeneralStore((state) => state.updateUser)
+
+  useEffect(async () => {
+    try {
+      const res = await getCurrentUser()
+      console.log(res)
+      updateUser(res)
+    } catch (e) {
+      console.log(e)
+    }
+  }, [router.pathname])
+
+  console.log(user)
   return (
     <>
       <MainNav
