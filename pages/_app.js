@@ -4,6 +4,11 @@ import Router from 'next/router'
 import GlobalStyles from './../styles/GlobalStyles'
 import '../App.css'
 import Loader from '../components/loader'
+
+//react-toastify...for notifications
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import '@fullcalendar/common/main.css'
 import '@fullcalendar/daygrid/main.css'
 import '@fullcalendar/timegrid/main.css'
@@ -32,7 +37,24 @@ const App = ({ Component, pageProps }) => {
         <link rel="icon" href="images/logo.svg" type="image/svg+xml" />
       </Head>
       <GlobalStyles />
-      {loading ? <Loader loading={loading} /> : <Component {...pageProps} />}
+      {loading ? (
+        <Loader loading={loading} />
+      ) : (
+        <>
+          <Component {...pageProps} />
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </>
+      )}
     </>,
   )
 }

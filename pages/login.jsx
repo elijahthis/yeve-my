@@ -109,6 +109,7 @@ const Login = () => {
     try {
       await signin(formInput)
       router.push(`${accessList[access].value}s/my-profile`)
+      toast.success('Login Successful')
     } catch (error) {
       console.log(error)
     }
