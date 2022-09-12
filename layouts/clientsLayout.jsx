@@ -6,6 +6,8 @@ import { BsShop } from 'react-icons/bs'
 import { getCurrentUser } from '../services/requests/users'
 import { useGeneralStore } from '../zustand/store'
 import { useRouter } from 'next/router'
+// import { getVisitor } from 'dbip'
+import useGeoLocation from 'react-ipgeolocation'
 
 const ClientsLayout = ({ children }) => {
   const router = useRouter()
@@ -21,7 +23,8 @@ const ClientsLayout = ({ children }) => {
   ]
 
   const user = useGeneralStore(state => state.user)
-  const updateUser = useGeneralStore((state) => state.updateUser)
+  const updateUser = useGeneralStore(state => state.updateUser)
+  const location = useGeoLocation()
 
   useEffect(async () => {
     try {
@@ -34,6 +37,7 @@ const ClientsLayout = ({ children }) => {
   }, [router.pathname])
 
   console.log(user)
+  console.log('location.country')
   return (
     <>
       <MainNav

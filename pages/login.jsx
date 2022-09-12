@@ -8,7 +8,8 @@ import { BiChevronLeft } from 'react-icons/bi'
 import { YeveLogo1 } from '../components/Logo'
 import { signin } from '../services/requests/auth'
 import { inputFunc } from '../services/helpers'
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 export const LoginNav = () => (
   <header
@@ -108,8 +109,10 @@ const Login = () => {
     console.log(formInput)
     try {
       await signin(formInput)
-      router.push(`${accessList[access].value}s/my-profile`)
       toast.success('Login Successful')
+      setTimeout(() => {
+        router.push(`${accessList[access].value}s/my-profile`)
+      }, 3000)
     } catch (error) {
       console.log(error)
     }
@@ -149,7 +152,15 @@ const Login = () => {
             />
             Back
           </div>
-          <h3>Login to Yeve</h3>
+          <h3
+            className="dfdf"
+            onClick={() => {
+              toast('erjekrjekjk')
+              console.log('sdgfer')
+            }}
+          >
+            Login to Yeve
+          </h3>
           <p className="select">Select your access</p>
           <div tw="flex flex-row gap-2">
             {accessList.map((item, ind) => (
